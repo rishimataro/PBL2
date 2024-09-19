@@ -1,0 +1,7 @@
+{
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ -std=c++14 *.cpp -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    },
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
