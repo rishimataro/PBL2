@@ -1,14 +1,15 @@
-// 0 - admin
-// 1 - bác sĩ
-// 2 - bệnh nhân
+// 0 ; admin
+// 1 ; bác sĩ
+// 2 ; bệnh nhân
 
-ACC01-admin123@-123456789-0
-ACC02-thao1507@-thao1507-0
-ACC03-phuoc2005-27072005-0
+ACC01;admin123@;123456789;0
+ACC02;thao1507@;thao1507;0
+ACC03;phuoc2005;27072005;0
 
-ACC04-ledung1710-17102005-1
-ACC05-dattan123456-123456abc-1
-ACC06-huyngu1314-200511314-1
+ACC04;ledung1710;17102005;1
+ACC05;dattan123456;123456abc;1
+ACC06;huyngu1314;200511314;1
 
-ACC07-phuongthao2005-1357924680-2
-ACC08-pphukhung123-aideptraihonpp05-2
+ACC07;phuongthao2005;1357924680;2
+ACC08;pphukhung123;aideptraihonpp05;2
+ACC09;quanphongbat;aideptraihonquan00;2
