@@ -58,7 +58,7 @@ int main() {
     // std::cout << "Text with default color.\n";
 
     // std::cout << setTextColor(77, 166, 58) << "\x1b[3m"  << "\x1b[4m" << "\x1b[1m" << "Hello, World!" <<"\x1b[0m\n";
-    std::cout << setTextColor("#E947B3") << setBackgroundColor("#58BED4") << setBold() << "Hello" << resetColor();
+    std::cout << setTextColor("FFF7D1") << setBackgroundColor("#58BED4") << setBold() << "Chao" << resetColor();
     // std::cout << hexToRgb("4DA63A");
 
     // std::cout << "\x1b[1mThis is bold text!\x1b[0m\n";
