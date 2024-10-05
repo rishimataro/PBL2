@@ -82,11 +82,11 @@ int inputKey()
 }
 
 //* Đặt màu cho chuỗi 
-void textcolor(int x)
+void textcolor(int color)
 {
 	HANDLE mau;
 	mau = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(mau, x);
+	SetConsoleTextAttribute(mau, color);
 }
 
 //* Hàm vẽ box mà không có nội dung
