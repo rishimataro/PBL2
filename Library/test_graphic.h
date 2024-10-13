@@ -1,6 +1,22 @@
-#include <iostream>
-#include <string>
-// #include <windows.h>
+#include ".\Header.h"
+// Chuyển mã hex sang mã RGB
+std::string hexToRgb(std::string);
+// Thiết lập màu text
+std::string setTextColor(const std::string&);
+// Thiết lập màu text
+std::string setTextColor(const int, const int, const int);
+// Thiết lập màu background
+std::string setBackgroundColor(const std::string&);
+// Thiết lập màu background
+std::string setBackgroundColor(const int, const int, const int);
+// Xóa hết toàn bộ thuộc tính text và background
+std::string resetColor();
+// Thiết lập chữ đậm
+std::string setBold();
+// Thiết lập chữ gạch dưới
+std::string setUnderline();
+// Thiết lập chữ nghiêng
+std::string setItalic();
 
 std::string hexToRgb(std::string hex) {
     int r, g, b;

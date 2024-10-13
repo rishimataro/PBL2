@@ -89,8 +89,112 @@ void textcolor(int color)
 	SetConsoleTextAttribute(mau, color);
 }
 
+
+std::vector<std::string> splitTextIntoLines(const std::string& text, int boxWidth) {
+    std::vector<std::string> lines;
+    int startIndex = 0;
+    int textLength = text.length();
+
+    while (startIndex < textLength) 
+    {
+        // Xác định chiều dài dòng hiện tại
+        int endIndex = startIndex + boxWidth;
+
+        // Kiểm tra nếu endIndex vượt quá chiều dài của chuỗi
+        if (endIndex >= textLength) {
+            endIndex = textLength;
+        } else {
+            // Lùi lại để tìm khoảng trắng gần nhất nếu có
+            while (endIndex > startIndex && text[endIndex] != ' ') {
+                endIndex--;
+            }
+
+            // Nếu không tìm thấy khoảng trắng, giữ nguyên chiều dài mặc định
+            if (endIndex == startIndex) {
+                endIndex = startIndex + boxWidth;
+            }
+        }
+
+        // Lấy đoạn văn bản từ startIndex đến endIndex
+        std::string line = text.substr(startIndex, endIndex - startIndex);
+        lines.push_back(line);
+
+        // Bỏ qua dấu cách ở đầu dòng tiếp theo (nếu có)
+        startIndex = endIndex;
+        while (startIndex < textLength && text[startIndex] == ' ') {
+            startIndex++;
+        }
+    }
+    return lines;
+}
 //* Hàm vẽ box mà không có nội dung
-void boxNot(int x, int y, int w, int h, int t_color, int b_color){
+void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
+{	
+    boxWidth--;
+    boxHeight--;
+	cout << setBackgroundColor(backgroundColor);
+	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+	{
+		for(int ix = x + 1; ix <= x + boxWidth - 1; ix++){
+			gotoXY(ix, iy);
+			cout << " ";
+		}
+	}
+	cout << setTextColor(borderColor);
+	for (int ix = x; ix <= x + boxWidth; ix++)
+	{
+        gotoXY(ix, y);
+        cout << char(196);
+        gotoXY(ix, y + boxHeight);
+        cout << char(196);
+    }	
+    for (int iy = y; iy <= y + boxHeight; iy++) 
+	{
+        gotoXY(x, iy);
+        cout << char(179);
+        gotoXY(x + boxWidth, iy);
+        cout << char(179);
+    }
+	gotoXY(x, y); cout << char(218);
+    gotoXY(x + boxWidth, y); cout << char (191);
+    gotoXY(x, y + boxHeight); cout << char(192);
+    gotoXY(x + boxWidth, y + boxHeight); cout << char (217);
+
+	cout << resetColor();
+}
+void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
+{	
+	cout << setBackgroundColor(backgroundColor);
+	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+	{
+		for(int ix = x + 1; ix <= x + boxWidth - 1; ix++){
+			gotoXY(ix, iy);
+			cout << " ";
+		}
+	}
+	cout << setTextColor(borderColor);
+	for (int x = x; x <= x + boxWidth; x++)
+	{
+        gotoXY(x, y);
+        cout << char(205);
+        gotoXY(x, y + boxHeight);
+        cout << char(205);
+    }	
+    for (int y = y; y <= y + boxHeight; y++) 
+	{
+        gotoXY(x, y);
+        cout << char(186);
+        gotoXY(x + boxWidth, y);
+        cout << char(186);
+    }
+	gotoXY(x, y); cout << char(201);
+    gotoXY(x + boxWidth, y); cout << char (187);
+    gotoXY(x, y + boxHeight); cout << char(200);
+    gotoXY(x + boxWidth, y + boxHeight); cout << char (188);
+
+	cout << resetColor();
+}
+void emptyBox(int x, int y, int w, int h, int t_color, int b_color){
 	textcolor(b_color);
 	for(int iy = y + 1; iy <= y + h - 1; iy++){
 		for(int ix = x + 1; ix <= x + w - 1; ix++){
@@ -120,7 +224,7 @@ void boxNot(int x, int y, int w, int h, int t_color, int b_color){
     gotoXY(x + w, y + h); cout << char (217);
 }
 
-void boxNot_(int x, int y, int w, int h, int t_color, int b_color){
+void emptyBox_(int x, int y, int w, int h, int t_color, int b_color){
 	textcolor(b_color);
 	for(int iy = y + 1; iy <= y + h - 1; iy++){
 		for(int ix = x + 1; ix <= x + w - 1; ix++){
@@ -151,6 +255,32 @@ void boxNot_(int x, int y, int w, int h, int t_color, int b_color){
 }
 
 //* Hàm vẽ box có nội dung
+void printBox(int x, int y, int boxWidth, int boxHeight, string text, string backgroundColor, string borderColor, string textColor)
+{	
+	emptyBox2(x, y, boxWidth, boxHeight, backgroundColor, borderColor);
+    cout << setBackgroundColor(backgroundColor);
+    cout << setTextColor(textColor);
+	int textLength = text.length();
+	 // Ngắt văn bản thành các dòng phù hợp với boxWidth
+    std::vector<std::string> lines = splitTextIntoLines(text, boxWidth - 2);
+    int numLines = lines.size();
+    // Tính toán khoảng trống trên và dưới để căn giữa theo chiều dọc
+    int verticalPadding = (boxHeight - numLines) / 2;
+    // int padd = (verticalPadding % 2 == 0)? 0 : 1;
+    // In từng dòng văn bản, căn giữa theo chiều ngang
+    gotoXY(x, y + verticalPadding);
+    for (const std::string& line : lines) 
+    {
+        int padding = (boxWidth - line.length()) / 2;
+        gotoXY(x + padding, whereY());
+        std::cout << line << std::endl;
+    }
+
+    cout << resetColor();
+    gotoXY(0, y + boxHeight + 1);
+}
+
+
 void box(int x, int y, int w, int h, int t_color, int b_color, int content_color, string content){
 	textcolor(b_color);
 	for(int iy = y + 1; iy <= y + h - 1; iy++){
@@ -239,4 +369,41 @@ int move(int x, int y, int h, int &yp, int &kt, int soKhung){
 		}
 	}
 	return yp;
+}
+std::string hexToRgb(std::string hex) {
+    int r, g, b;
+    if((hex[0] == '#' && hex.length() == 7))
+    {
+        hex.erase(0, 1);
+    }else if(hex.length() != 6)
+    return "0;0;0";
+    r = std::stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
+    g = std::stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
+    b = std::stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
+    return std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b);
+}
+
+std::string setTextColor(const std::string& hexColor) {
+    return "\x1b[38;2;" + hexToRgb(hexColor) + "m";
+}
+std::string setTextColor(const int red, const int green, const int blue) {
+    return "\x1b[38;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+}
+std::string setBackgroundColor(const std::string& hexColor) {
+    return "\x1b[48;2;" + hexToRgb(hexColor) + "m";
+}
+std::string setBackgroundColor(const int red, const int green, const int blue) {
+    return "\x1b[48;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+}
+std::string resetColor() {
+    return "\x1b[0m";
+}
+std::string setBold() {
+    return "\x1b[1m";
+}
+std::string setUnderline() {
+    return "\x1b[4m";
+}
+std::string setItalic() {
+    return "\x1b[3m";
 }
