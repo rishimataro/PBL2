@@ -57,17 +57,11 @@ class button
 };
 
 button::button(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
-
+    :text(text), bgColor(bgColor), textColor(textColor), borderColor(borderColor), x(x), y(y), width(width), height(height) 
 {
-    this->text = text;
-    this->bgColor = bgColor;
-    this->textColor = textColor;
-    this->borderColor = borderColor;
-    this->x = x;
-    this->y = y;
-    this->width = width;
-    this->height = height;
+    
 }
+
 void button::set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
 {
     this->text = text;
