@@ -36,15 +36,15 @@ int Account::getRole() const { return this->role; }
 // Nhập 1 account
 void Account::inputAccount() {
     int x = 60, y = 5, w = 30, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       USER INFORMATION");
+    box_(x, y - 3, w, h, 12, 14, 12, "       THÔNG TIN TÀI KHOẢN");
     box(x, y + 2, w, h, 15, 1, 15, "  ID       : "); 
-    box(x, y + 4, w, h, 15, 1, 15, "  TAI KHOAN: "); 
-    box(x, y + 6, w, h, 15, 1, 15, "  MAT KHAU : "); 
-    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRO  : "); 
+    box(x, y + 4, w, h, 15, 1, 15, "  TÀI KHOẢN: "); 
+    box(x, y + 6, w, h, 15, 1, 15, "  MẬT KHẨU : "); 
+    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRÒ  : "); 
 
     for(int i = 2; i <= 4; i ++ ){
-        gotoXY(x, y + (i*2)); cout << char(195);
-        gotoXY(x + w, y + (i*2)); cout << char(180);
+        gotoXY(x, y + (i*2)); cout << "├";
+        gotoXY(x + w, y + (i*2)); cout << "┤";
     }
 
     gotoXY(x + 14, y + 3); cin >> this->ID_acc;
@@ -76,14 +76,14 @@ void Account::saveAccount(fstream &f)
 void Account::printAccount()
 {
     int x = 60, y = 5, w = 30, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       USER INFORMATION");
+    box_(x, y - 3, w, h, 12, 14, 12, "       THÔNG TIN TÀI KHOẢN");
     box(x, y + 2, w, h, 15, 1, 15, "  ID       : " + this->ID_acc);
-    box(x, y + 4, w, h, 15, 1, 15, "  TAI KHOAN: " + this->userName);
-    box(x, y + 6, w, h, 15, 1, 15, "  MAT KHAU : " + this->password);
-    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRO  : " + to_string(this->role));
+    box(x, y + 4, w, h, 15, 1, 15, "  TÀI KHOẢN: " + this->userName);
+    box(x, y + 6, w, h, 15, 1, 15, "  MẬT KHẨU : " + this->password);
+    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRÒ  : " + to_string(this->role));
 
     for(int i = 2; i <= 4; i ++ ){
-        gotoXY(x, y + (i*2)); cout << char(195);
-        gotoXY(x + w, y + (i*2)); cout << char(180);
+        gotoXY(x, y + (i*2)); cout << "├";
+        gotoXY(x + w, y + (i*2)); cout << "┤";
     }
 }

@@ -102,22 +102,22 @@ void boxNot(int x, int y, int w, int h, int t_color, int b_color){
 	SetColor(t_color);
 	for (int ix = x; ix <= x + w; ix++){
         gotoXY(ix, y);
-        cout << char(196);
+        cout << "─";
         gotoXY(ix, y + h);
-        cout << char(196);
+        cout << "─";
     }
 
     for (int iy = y; iy <= y + h; iy++) {
         gotoXY(x, iy);
-        cout << char(179);
+        cout << "│";
         gotoXY(x + w, iy);
-        cout << char(179);
+        cout << "│";
     }
 
-    gotoXY(x, y); cout << char(218);
-    gotoXY(x + w, y); cout << char (191);
-    gotoXY(x, y + h); cout << char(192);
-    gotoXY(x + w, y + h); cout << char (217);
+    gotoXY(x, y); cout << "┌";
+    gotoXY(x + w, y); cout << "┐";
+    gotoXY(x, y + h); cout << "└";
+    gotoXY(x + w, y + h); cout << "┘";
 }
 
 void boxNot_(int x, int y, int w, int h, int t_color, int b_color){
@@ -132,22 +132,22 @@ void boxNot_(int x, int y, int w, int h, int t_color, int b_color){
 	SetColor(t_color);
 	for (int ix = x; ix <= x + w; ix++){
         gotoXY(ix, y);
-        cout << char(205);
+        cout << "═";
         gotoXY(ix, y + h);
-        cout << char(205);
+        cout << "═";
     }
 
     for (int iy = y; iy <= y + h; iy++) {
         gotoXY(x, iy);
-        cout << char(186);
+        cout << "║";
         gotoXY(x + w, iy);
-        cout << char(186);
+        cout << "║";
     }
 
-    gotoXY(x, y); cout << char(201);
-    gotoXY(x + w, y); cout << char (187);
-    gotoXY(x, y + h); cout << char(200);
-    gotoXY(x + w, y + h); cout << char (188);
+    gotoXY(x, y); cout << "╔";
+    gotoXY(x + w, y); cout << "╗";
+    gotoXY(x, y + h); cout << "╚";
+    gotoXY(x + w, y + h); cout << "╝";
 }
 
 //* Hàm vẽ box có nội dung
@@ -166,22 +166,22 @@ void box(int x, int y, int w, int h, int t_color, int b_color, int content_color
 	SetColor(t_color);
 	for (int ix = x; ix <= x + w; ix++){
         gotoXY(ix, y);
-        cout << char(196);
+        cout << "─";
         gotoXY(ix, y + h);
-        cout << char(196);
+        cout << "─";
     }
 
     for (int iy = y; iy <= y + h; iy++) {
         gotoXY(x, iy);
-        cout << char(179);
+        cout << "│";
         gotoXY(x + w, iy);
-        cout << char(179);
+        cout << "│";
     }
 
-    gotoXY(x, y); cout << char(218);
-    gotoXY(x + w, y); cout << char (191);
-    gotoXY(x, y + h); cout << char(192);
-    gotoXY(x + w, y + h); cout << char (217);
+    gotoXY(x, y); cout << "┌";
+    gotoXY(x + w, y); cout << "┐";
+    gotoXY(x, y + h); cout << "└";
+    gotoXY(x + w, y + h); cout << "┘";
 }
 
 void box_(int x, int y, int w, int h, int t_color, int b_color, int content_color, string content){
@@ -199,22 +199,22 @@ void box_(int x, int y, int w, int h, int t_color, int b_color, int content_colo
 	SetColor(t_color);
 	for (int ix = x; ix <= x + w; ix++){
         gotoXY(ix, y);
-        cout << char(205);
+        cout << "═";
         gotoXY(ix, y + h);
-        cout << char(205);
+        cout << "═";
     }
 
     for (int iy = y; iy <= y + h; iy++) {
         gotoXY(x, iy);
-        cout << char(186);
+        cout << "║";
         gotoXY(x + w, iy);
-        cout << char(186);
+        cout << "║";
     }
 
-    gotoXY(x, y); cout << char(201);
-    gotoXY(x + w, y); cout << char (187);
-    gotoXY(x, y + h); cout << char(200);
-    gotoXY(x + w, y + h); cout << char (188);
+    gotoXY(x, y); cout << "╔";
+    gotoXY(x + w, y); cout << "╗";
+    gotoXY(x, y + h); cout << "╚";
+    gotoXY(x + w, y + h); cout << "╝";
 }
 
 //* Hàm di chuyển đối tượng và trả về vị trí mới khi phím Enter được nhấn

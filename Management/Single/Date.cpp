@@ -19,19 +19,42 @@ Date::~Date() { }
 void Date::setDay(const int& day) { this->day = day; }
 void Date::setMonth(const int& month) { this->month = month; }
 void Date::setYear(const int& year) { this->year = year; }
-
+void Date::setDate(const string& date) {
+    string day_str, month_str, year_str;
+    size_t found = date.find('/');
+    if (found != string::npos) {
+        day_str = date.substr(0, found);
+        size_t found2 = date.find('/', found + 1);
+        if (found2 != string::npos) {
+            month_str = date.substr(found + 1, found2 - found - 1);
+            year_str = date.substr(found2 + 1);
+        }
+    }
+    this->day = stoi(day_str);
+    this->month = stoi(month_str);
+    this->year = stoi(year_str);
+}
 // Getters
 int Date::getDay() const { return this->day; }
 int Date::getMonth() const { return this->month; }
 int Date::getYear() const { return this->year; }
+string Date::getDate() const {
+    string day_str = to_string(this->day);
+    string month_str = to_string(this->month);
+    string year_str = to_string(this->year);
+    string res;
+    if(day_str.length() == 1) day_str = "0" + day_str;
+    if(month_str.length() == 1) month_str = "0" + month_str;
+    res = day_str + "/" + month_str + "/" + year_str;
+    return res;
+}
 
 void Date::inputDate() {
     while(true) {
         char separator;
-        cout << "Ngay sinh (dd/mm/yyyy): ";
         cin >> this->day >> separator >> this->month >> separator >> this->year;
         if(!this->isValidDate()) {
-            cout << "Ngay khong hop le. Vui long nhap lai." << endl;
+            cout << "Ngày không hợp lệ. Vui lòng nhập lại!" << endl;
         }
         else break;
     }

@@ -1,20 +1,14 @@
 #include "./Single/Account.h"
+#include "../Template/LinkedList.cpp"
 
-class listAccount
+class listAccount : public LinkedList<Account>
 {
-    private:
-        
-        int count;
     public:
-        listAccount(/* args */);
+        // * Constructor
+        listAccount();
         ~listAccount();
 
         // Create: add
-
-        // Read: sort, search, display
-
-
-        // Update: update
-
-        // Delete: delete
+        void signUp(Account &a, int &k);
 };
+

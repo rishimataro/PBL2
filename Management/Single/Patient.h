@@ -1,4 +1,5 @@
 #include "../../Library/Header.h"
+#include "./Date.h"
 
 class Patient
 {
@@ -8,9 +9,7 @@ class Patient
         string phone;
         Date dayOfBirth;
         bool sex; // 0: male, 1: female
-        string phone;
         string address;
-
     public:
         //* Constructor & Destructor
         Patient(string ID_patient = "", string fullName = "", string phone = "", Date dayOfBirth = Date(), bool sex = false, string address = "");
@@ -42,4 +41,5 @@ class Patient
         void savePatient(fstream& f);
         // Lấy 1 bệnh nhân từ file
         void setPatient(fstream& f);
+    
 };

@@ -22,7 +22,7 @@ class LinkedList
 {
     private:
         Node<T>* head;
-        int count; // caching the size of the list
+        int count;
     public:
         LinkedList();
         ~LinkedList();
