@@ -407,3 +407,32 @@ std::string setUnderline() {
 std::string setItalic() {
     return "\x1b[3m";
 }
+
+void SetConsoleSize(int width, int height) {
+    // Lấy handle của cửa sổ console
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Cấu hình kích thước của buffer và cửa sổ
+    COORD bufferSize = { static_cast<SHORT>(width), static_cast<SHORT>(height) };
+    SetConsoleScreenBufferSize(hConsole, bufferSize);
+
+    SMALL_RECT windowSize = { 0, 0, static_cast<SHORT>(width - 1), static_cast<SHORT>(height - 1) };
+    SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
+}
+void SetConsoleSizeAndDisableResize(int width, int height) {
+    // Lấy handle của cửa sổ console
+    HWND console = GetConsoleWindow();
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Cấu hình kích thước của buffer và cửa sổ
+    COORD bufferSize = { static_cast<SHORT>(width), static_cast<SHORT>(height) };
+    SetConsoleScreenBufferSize(hConsole, bufferSize);
+
+    SMALL_RECT windowSize = { 0, 0, static_cast<SHORT>(width - 1), static_cast<SHORT>(height - 1) };
+    SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
+
+    // Tắt chế độ thay đổi kích thước
+    LONG style = GetWindowLong(console, GWL_STYLE);
+    style &= ~(WS_MAXIMIZEBOX | WS_SIZEBOX);  // Loại bỏ khả năng thay đổi kích thước và nút phóng to
+    SetWindowLong(console, GWL_STYLE, style);
+}

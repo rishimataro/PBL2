@@ -1,6 +1,6 @@
 #include "Header.h"
 #include "Graphics.h"
-
+#include <cstdlib>
 // Cấu trúc chứa tọa độ x và y
 struct Point {
     int x;
@@ -8,7 +8,7 @@ struct Point {
 };
 
 // Hàm detect và trả về tọa độ khi có click chuột
-Point DetectMouseClick() {
+Point DetectLeftMouseClick() {
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE); // Lấy handle của console input
     DWORD events;
     INPUT_RECORD inputRecord;
@@ -126,13 +126,24 @@ button::~button()
 
 int main()
 {
+    // SetConsoleSize(200, 200);
+    // SetConsoleSizeAndDisableResize(200, 200);
+    // system("powershell -Command \"[console]::WindowWidth=80; [console]::WindowHeight=50\"");
+    // system("mode con: cols=50 lines=100");
+    // HWND console = GetConsoleWindow();
+    // RECT r;
+    // GetWindowRect(console, &r); //stores the console's current dimensions
+
+    // MoveWindow(console, r.left, r.top, 800, 100, TRUE); // 800 width, 100 height
+    // cout << "\e[8;150;100t";
+
     button btn1;
     btn1.changeText("Button 1");
     btn1.reSize(10, 3);
     btn1.draw();
     button btn2;
     btn2.changeText("Button 2");
-    btn2.setPosition(20, 0);
+    btn2.setPosition(90, 0);
     btn2.reSize(10, 3);
     btn2.draw();
     string t = "Axes represent a continuous range of style variations. One variable font can contain multiple axes. You can customize an axis to any number within its minimum or maximum range.";
@@ -141,28 +152,28 @@ int main()
     Point point;
     while (true)
     {
-        point = DetectMouseClick();
+        point = DetectLeftMouseClick();
         x = point.x;
         y = point.y;
         if (btn1.isClicked(x, y))
         {
-            btn1.changeColor("629584");
+            btn1.changeColor("#629584");
         }
         else
         {
-            btn1.changeColor("E2F1E7");
+            btn1.changeColor("#E2F1E7");
         }
         if (btn2.isClicked(x, y))
         {
-            btn2.changeColor("629584");
+            btn2.changeColor("#629584");
         }
         else
         {
-            btn2.changeColor("E2F1E7");
+            btn2.changeColor("#E2F1E7");
         }
         btn1.draw();
         btn2.draw();
     }
+    // system("pause");
     return 0;
-    system("pause");
 }

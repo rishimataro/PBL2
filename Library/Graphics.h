@@ -64,3 +64,7 @@ void box_(int x, int y, int w, int h, int t_color, int b_color, int content_colo
 
 //* Hàm di chuyển đối tượng và trả về vị trí mới khi phím Enter được nhấn
 int move(int x, int y, int h, int &yp, int &kt, int soKhung);
+
+void SetConsoleSize(int width, int height);
+
+void SetConsoleSizeAndDisableResize(int width, int height);
