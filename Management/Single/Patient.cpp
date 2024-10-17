@@ -1,7 +1,7 @@
 #include "./Patient.h"
 
 //* Constructor & Destructor
-Patient::Patient(string ID_patient = "", string fullName = "", string phone = "", Date dayOfBirth = Date(), bool sex = false, string address = "") {
+Patient::Patient(string ID_patien, string fullName, string phon, Date dayOfBirth, bool sex, string address) {
     this->ID_patient = ID_patient;
     this->fullName = fullName;
     this->phone = phone;
@@ -40,59 +40,71 @@ string Patient::getAddress() const { return this->address; }
 // Nhập 1 bệnh nhân
 void Patient::inputPatient() {
     int x = 60, y = 5, w = 40, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       USER INFORMATION");
+    box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
     box(x, y + 2, w, h, 15, 1, 15,  "  ID       : "); 
-    box(x, y + 4, w, h, 15, 1, 15,  "  Ho ten   : "); 
-    box(x, y + 6, w, h, 15, 1, 15,  "  SDT      : "); 
-    box(x, y + 8, w, h, 15, 1, 15,  "  Ngay sinh: "); 
-    box(x, y + 10, w, h, 15, 1, 15, "  Gioi tinh: ");
-    box(x, y + 12, w, h, 15, 1, 15, "  Dia chi  : ");
+    box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : "); 
+    box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : "); 
+    box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: "); 
+    box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: ");
+    box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : ");
 
     for(int i = 2; i <= 6; i ++ ){
-        gotoXY(x, y + (2*i)); cout << char(195);
-        gotoXY(x + w, y + (2*i)); cout << char(180);
+        gotoXY(x, y + (i*2)); cout << "├";
+        gotoXY(x + w, y + (i*2)); cout << "┤";
     }
 
-    gotoXY(x + 13, y + 3); cin >> this->ID_patient;
-    gotoXY(x + 13, y + 5); cin >> this->fullName;
-    gotoXY(x + 13, y + 7); cin >> this->phone;
-    gotoXY(x + 13, y + 9); dayOfBirth.inputDate();
-    gotoXY(x + 13, y + 11); cin >> this->sex;
-    gotoXY(x + 13, y + 13); cin >> this->address;
+    string sex_str;
+
+    gotoXY(x + 14, y + 3); cin >> this->ID_patient;
+    gotoXY(x + 14, y + 5); cin.ignore(); getline(cin, this->fullName);
+    gotoXY(x + 14, y + 7); cin >> this->phone;
+    gotoXY(x + 14, y + 9); dayOfBirth.inputDate();
+    gotoXY(x + 14, y + 11); cin >> sex_str;
+    if(sex_str == "Nam") this->sex = true;
+    else this->sex = false;
+    gotoXY(x + 14, y + 13); cin.ignore(); getline(cin, this->address);
 }
 
 // In thông tin 1 bệnh nhân
 void Patient::printPatient() {
     int x = 60, y = 5, w = 40, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       USER INFORMATION");
+    string sex_str = this->sex ? "Nam" : "Nữ";
+    box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
     box(x, y + 2, w, h, 15, 1, 15,  "  ID       : " + this->ID_patient); 
-    box(x, y + 4, w, h, 15, 1, 15,  "  Ho ten   : " + this->fullName); 
-    box(x, y + 6, w, h, 15, 1, 15,  "  SDT      : " + this->phone); 
-    box(x, y + 8, w, h, 15, 1, 15,  "  Ngay sinh: " + this->dayOfBirth.printDate()); 
-    box(x, y + 10, w, h, 15, 1, 15, "  Gioi tinh: " + (this->sex ? "Nam" : "Nu"));
-    box(x, y + 12, w, h, 15, 1, 15, "  Dia chi  : " + this->address);
+    box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : " + this->fullName); 
+    box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : " + this->phone); 
+    box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: " + this->dayOfBirth.getDate());
+    box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: " + sex_str);
+    box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : " + this->address);
 
-    for(int i = 2; i <= 4; i ++ ){
-        gotoXY(x, y + (2*i)); cout << char(195);
-        gotoXY(x + w, y + (2*i)); cout << char(180);
+    for(int i = 2; i <= 6; i ++ ){
+        gotoXY(x, y + (i*2)); cout << "├";
+        gotoXY(x + w, y + (i*2)); cout << "┤";
     }
 }
+
 // Lưu 1 bệnh nhân vào file
 void Patient::savePatient(fstream& f) {
     f << this->ID_patient << endl;
     f << this->fullName << endl;
     f << this->phone << endl;
-    f << this->dayOfBirth.printDate() << endl;
+    f << this->dayOfBirth.getDate() << endl;
     f << this->sex << endl;
     f << this->address << endl;
 }
+
 // Lấy 1 bệnh nhân từ file
 void Patient::setPatient(fstream& f) {
-    getline(f, this->ID_patient);
-    getline(f, this->fullName);
-    getline(f, this->phone);
-    getline(f, this->dayOfBirth());
+    string DOB_str;
+    getline(f, this->ID_patient, '\n');
+    getline(f, this->fullName, '\n');
+    getline(f, this->phone, '\n');
+
+    getline(f, DOB_str, '\n');
+    this->dayOfBirth.setDate(DOB_str);
+
     f >> this->sex;
     f.ignore();
-    getline(f, this->address);
+
+    getline(f, this->address, '\n');
 }
