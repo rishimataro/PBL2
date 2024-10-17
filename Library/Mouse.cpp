@@ -1,14 +1,6 @@
-#include <iostream>
-#include <windows.h>
+#include "Mouse.h"
 
-// Cấu trúc chứa tọa độ x và y
-struct Point {
-    int x;
-    int y;
-};
-
-// Hàm detect và trả về tọa độ khi có click chuột
-Point DetectMouseClick() {
+Point DetectLeftMouseClick() {
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE); // Lấy handle của console input
     DWORD events;
     INPUT_RECORD inputRecord;
@@ -30,15 +22,4 @@ Point DetectMouseClick() {
             }
         }
     }
-}
-
-int main() {
-    SetConsoleOutputCP(CP_UTF8); // Thiết lập mã ký tự UTF-8
-    std::cout << "Chương trình đang chờ click chuột trái...\n";
-
-    Point clickPosition = DetectMouseClick();
-    std::cout << "Click chuột tại tọa độ: (" << clickPosition.x << ", " << clickPosition.y << ")\n";
-
-    system("pause"); // Dừng chương trình để xem kết quả
-    return 0;
 }

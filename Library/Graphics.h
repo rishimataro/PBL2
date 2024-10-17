@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "windows.h" 
+#include "Mouse.h"
 #define KEY_NONE	-1
 using namespace std;
 
@@ -18,7 +19,24 @@ std::string setBackgroundColor(const std::string&);
 // Thiết lập màu background
 std::string setBackgroundColor(const int, const int, const int);
 // Xóa hết toàn bộ thuộc tính text và background
-std::string resetColor();
+std::string resetAll();
+// Thiết lập chữ đậm
+std::string setBold();
+// Thiết lập chữ gạch dưới
+std::string setUnderline();
+// Thiết lập chữ nghiêng
+std::string setItalic();
+std::string hexToRgb(std::string);
+// Thiết lập màu text
+std::string setTextColor(const std::string&);
+// Thiết lập màu text
+std::string setTextColor(const int, const int, const int);
+// Thiết lập màu background
+std::string setBackgroundColor(const std::string&);
+// Thiết lập màu background
+std::string setBackgroundColor(const int, const int, const int);
+// Xóa hết toàn bộ thuộc tính text và background
+std::string resetAll();
 // Thiết lập chữ đậm
 std::string setBold();
 // Thiết lập chữ gạch dưới
@@ -68,3 +86,27 @@ int move(int x, int y, int h, int &yp, int &kt, int soKhung);
 void SetConsoleSize(int width, int height);
 
 void SetConsoleSizeAndDisableResize(int width, int height);
+
+
+class button
+{   
+    private:
+    string text;
+    string bgColor;
+    string textColor;
+    string borderColor;
+    int x, y, width, height;
+    public:
+    button(string text = "Button", string bgColor = "E2F1E7", string textColor = "243642", string borderColor = "243642", int x = 0, int y = 0, int width = 8, int height = 3);
+    void set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height);
+    void draw();
+    void handleClick(int x, int y);
+    void changeColor(string newColor);
+    void changeText(string newText);
+    void changeBorderColor(string newColor);
+    void move(int dx, int dy);
+    bool isClicked(int x, int y);
+    void setPosition(int x, int y);
+    void reSize(int newWidth, int newHeight);
+    ~button();
+};

@@ -1,5 +1,42 @@
 #include "./Graphics.h"
 
+std::string hexToRgb(std::string hex) {
+    int r, g, b;
+    if((hex[0] == '#' && hex.length() == 7))
+    {
+        hex.erase(0, 1);
+    }else if(hex.length() != 6)
+    return "0;0;0";
+    r = std::stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
+    g = std::stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
+    b = std::stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
+    return std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b);
+}
+
+std::string setTextColor(const std::string& hexColor) {
+    return "\x1b[38;2;" + hexToRgb(hexColor) + "m";
+}
+std::string setTextColor(const int red, const int green, const int blue) {
+    return "\x1b[38;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+}
+std::string setBackgroundColor(const std::string& hexColor) {
+    return "\x1b[48;2;" + hexToRgb(hexColor) + "m";
+}
+std::string setBackgroundColor(const int red, const int green, const int blue) {
+    return "\x1b[48;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+}
+std::string resetAll() {
+    return "\x1b[0m";
+}
+std::string setBold() {
+    return "\x1b[1m";
+}
+std::string setUnderline() {
+    return "\x1b[4m";
+}
+std::string setItalic() {
+    return "\x1b[3m";
+}
 //* Lấy tọa độ x của con trỏ hiện tại 
 int whereX()
 {
@@ -160,7 +197,7 @@ void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor
     gotoXY(x, y + boxHeight); cout << char(192);
     gotoXY(x + boxWidth, y + boxHeight); cout << char (217);
 
-	cout << resetColor();
+	cout << resetAll();
 }
 void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
 {	
@@ -192,7 +229,7 @@ void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColo
     gotoXY(x, y + boxHeight); cout << char(200);
     gotoXY(x + boxWidth, y + boxHeight); cout << char (188);
 
-	cout << resetColor();
+	cout << resetAll();
 }
 void emptyBox(int x, int y, int w, int h, int t_color, int b_color){
 	textcolor(b_color);
@@ -276,7 +313,7 @@ void printBox(int x, int y, int boxWidth, int boxHeight, string text, string bac
         std::cout << line << std::endl;
     }
 
-    cout << resetColor();
+    cout << resetAll();
     gotoXY(0, y + boxHeight + 1);
 }
 
@@ -395,7 +432,7 @@ std::string setBackgroundColor(const std::string& hexColor) {
 std::string setBackgroundColor(const int red, const int green, const int blue) {
     return "\x1b[48;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
 }
-std::string resetColor() {
+std::string resetAll() {
     return "\x1b[0m";
 }
 std::string setBold() {
@@ -435,4 +472,72 @@ void SetConsoleSizeAndDisableResize(int width, int height) {
     LONG style = GetWindowLong(console, GWL_STYLE);
     style &= ~(WS_MAXIMIZEBOX | WS_SIZEBOX);  // Loại bỏ khả năng thay đổi kích thước và nút phóng to
     SetWindowLong(console, GWL_STYLE, style);
+}
+
+button::button(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+    :text(text), bgColor(bgColor), textColor(textColor), borderColor(borderColor), x(x), y(y), width(width), height(height) 
+{
+    
+}
+
+void button::set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+{
+    this->text = text;
+    this->bgColor = bgColor;
+    this->textColor = textColor;
+    this->borderColor = borderColor;
+    this->x = x;
+    this->y = y;
+    this->width = width;
+    this->height = height;
+}
+void button::draw()
+{
+    printBox(this->x, this->y, this->width, this->height, this->text, this->bgColor, this->borderColor, this->textColor);
+}
+void button::changeColor(string newColor)
+{
+    this->bgColor = newColor;
+    // draw();
+}
+
+void button::changeText(string newText)
+{
+    this->text = newText;
+    // draw();
+}
+void button::changeBorderColor(string newColor)
+{
+    this->borderColor = newColor;
+    // draw();
+}
+
+void button::move(int dx, int dy)
+{
+    this->x += dx;
+    this->y += dy;
+    // draw();
+}
+
+bool button::isClicked(int x, int y)
+{
+    return (x >= this->x && x <= this->x + this->width && y >= this->y && y <= this->y + this->height);
+}
+
+void button::setPosition(int x, int y)
+ {
+    this->x = x;
+    this->y = y;
+    // draw();
+}
+
+void button::reSize(int newWidth, int newHeight)
+{
+    this->width = newWidth;
+    this->height = newHeight;
+    // draw();
+}
+button::~button()
+{
+
 }
