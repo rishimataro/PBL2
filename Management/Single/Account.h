@@ -1,6 +1,6 @@
-#include "../../Library/Header.h"
 #ifndef ACCOUNT_H
-#define ACCOUNT_H
+#define ACCOUNT_H   
+#include "../../Library/Header.h"
 
 class Account
 {
@@ -31,7 +31,7 @@ class Account
         // Nhập 1 account
         void inputAccount();
         // Lấy 1 account từ file
-        void setAccount(fstream &f);    
+        void setAccount(const string& line);    
         // Lưu 1 account vào file
         void saveAccount(fstream &f);
         // In thông tin 1 account

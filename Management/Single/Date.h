@@ -1,3 +1,5 @@
+#ifndef DATE_H
+#define DATE_H
 #include "../../Library/Header.h"
 
 class Date
@@ -27,3 +29,5 @@ class Date
         bool isValidDate() const;
         bool isCurrentDate() const;
 };
+
+#endif

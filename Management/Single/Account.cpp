@@ -54,16 +54,23 @@ void Account::inputAccount() {
 }
 
 // Lấy 1 account từ file
-void Account::setAccount(fstream &f)
+void Account::setAccount(const string& line)
 {
-    string roleStr;
-    getline(f, this->ID_acc, ';');
-    getline(f, this->userName, ';');
-    getline(f, this->password, ';');
-    getline(f, roleStr, ';');
+    // string roleStr;
+    // getline(f, this->ID_acc, ';');
+    // getline(f, this->userName, ';');
+    // getline(f, this->password, ';');
+    // getline(f, roleStr, ';');
 
-    // Chuyển đổi từ chuỗi sang số nguyên
-    this->role = stoi(roleStr);
+    // // Chuyển đổi từ chuỗi sang số nguyên
+    // this->role = stoi(roleStr);
+
+    stringstream ss(line);
+    string token;
+    getline(ss, token, ';'); this->ID_acc = token;
+    getline(ss, token, ';'); this->userName = token;
+    getline(ss, token, ';'); this->password = token;
+    getline(ss, token, ';'); this->role = stoi(token);
 }
 
 // Lưu 1 account vào file
@@ -75,7 +82,7 @@ void Account::saveAccount(fstream &f)
 // In thông tin 1 account
 void Account::printAccount()
 {
-    int x = 60, y = 5, w = 30, h = 2;
+    /* int x = 60, y = 5, w = 30, h = 2;
     box_(x, y - 3, w, h, 12, 14, 12, "       THÔNG TIN TÀI KHOẢN");
     box(x, y + 2, w, h, 15, 1, 15, "  ID       : " + this->ID_acc);
     box(x, y + 4, w, h, 15, 1, 15, "  TÀI KHOẢN: " + this->userName);
@@ -85,5 +92,20 @@ void Account::printAccount()
     for(int i = 2; i <= 4; i ++ ){
         gotoXY(x, y + (i*2)); cout << "├";
         gotoXY(x + w, y + (i*2)); cout << "┤";
-    }
+    } */
+
+   int x = whereX(), y = whereY();
+   gotoXY(x, y);
+   cout << this->ID_acc;
+   gotoXY(x + 20, y);
+   cout << this->userName;
+   gotoXY(x + 40, y);
+   cout << this->password;
+
+   gotoXY(x + 60, y);
+   string roleStr;
+   if(this->role == 0) roleStr = "Quản trị viên";
+   else if(this->role == 1) roleStr = "Bác sĩ";
+   else roleStr = "Bệnh nhân";
+   cout << roleStr << endl << endl;
 }

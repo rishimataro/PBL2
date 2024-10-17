@@ -20,7 +20,7 @@ Node<T>::Node(T val) : data(val), next(NULL), prev(NULL) { }
 template<class T>
 class LinkedList
 {
-    private:
+    protected:
         Node<T>* head;
         int count;
     public:
@@ -51,6 +51,7 @@ class LinkedList
 
         // Lấy Node: lấy giá trị tại vị trí index
         T get(int index);
+
         // Lấy kích thước
         int size();
 
@@ -265,6 +266,7 @@ void LinkedList<T>::display() {
     } while (current != head);
     cout << endl;
 }
+
 
 /* int main() {
     LinkedList<string> list;

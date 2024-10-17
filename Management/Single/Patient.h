@@ -1,3 +1,5 @@
+#ifndef PATIENT_H
+#define PATIENT_H
 #include "../../Library/Header.h"
 #include "./Date.h"
 
@@ -41,5 +43,6 @@ class Patient
         void savePatient(fstream& f);
         // Lấy 1 bệnh nhân từ file
         void setPatient(fstream& f);
-    
 };
+
+#endif
