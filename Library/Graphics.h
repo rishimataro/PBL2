@@ -1,43 +1,48 @@
-#pragma once
+#ifndef GRAPHICS_H
+#define GRAPHICS_H
+
 #include <stdio.h>
 #include <conio.h>
 #include <ctime>
 #include <iostream>
+#include <vector>
 #include "windows.h" 
-#define KEY_NONE	-1
+#define KEY_NONE -1
 using namespace std;
 
-//* Hàm lấy tọa độ x của con trỏ hiện tại
-int whereX();
+int whereX(); // Lấy tọa độ x của con trỏ hiện tại
+int whereY(); // Lấy tọa độ y của con trỏ hiện tại
+int getCurrentCursorPositionY(); // Lấy vị trí dòng hiện tại của con trỏ màn hình trong Console
 
-//* Hàm lấy tọa độ y của con trỏ hiện tại
-int whereY();
+void gotoXY(int x, int y); // Dịch con trỏ hiện tại đến điểm có tọa độ (x, y)
+void SetColor(WORD color); // Đặt màu cho chữ
+void ShowCur(bool CursorVisibility); // Làm ẩn/hiện trỏ chuột
+int inputKey(); // Trả về mã phím người dùng bấm
+void textcolor(int color); // Đặt màu cho chuỗi
 
-//* Hàm lấy vị trí dòng hiện tại của con trỏ màn hình trong Console
-int getCurrentCursorPositionY();
+vector<string> splitTextIntoLines(const string& text, int boxWidth); // Tách chuỗi thành các dòng phù hợp với chiều rộng box
 
-//* Hàm dịch con trỏ hiện tại đến điểm có tọa độ (x, y)
-void gotoXY(int x, int y);
+void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor); // Vẽ box mà không có nội dung (loại thứ nhất)
+void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor); // Vẽ box mà không có nội dung (loại thứ hai)
+void emptyBox(int x, int y, int w, int h, int t_color, int b_color); // Vẽ box mà không có nội dung (kiểu 1 với màu số nguyên)
+void emptyBox_(int x, int y, int w, int h, int t_color, int b_color); // Vẽ box mà không có nội dung (kiểu 2 với màu số nguyên)
 
-//* Hàm đặt màu cho chữ
-void SetColor(WORD color);
+void printBox(int x, int y, int boxWidth, int boxHeight, string text, string backgroundColor, string borderColor, string textColor); // Vẽ box có nội dung
+void box(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor); // Vẽ box có nội dung (kiểu 1)
+void box_(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor); // Vẽ box có nội dung (kiểu 2)
 
-//* Hàm làm ẩn trỏ chuột
-void ShowCur(bool CursorVisibility);
+int move(int x, int y, int h, int &yp, int &kt, int soKhung); // Di chuyển đối tượng và trả về vị trí mới khi nhấn Enter
 
-//* Hàm trả về mã phím người dùng bấm
-int inputKey();
+string hexToRgb(string hex);
+string setTextColor(const string& hexColor);
+string setTextColor(const int red, const int green, const int blue);
 
-//* Hàm đặt màu cho chuỗi
-void textcolor(int x);
+string setBackgroundColor(const string& hexColor);
+string setBackgroundColor(const int red, const int green, const int blue);
 
-//* Hàm vẽ box mà không có nội dung
-void boxNot(int x, int y, int w, int h, int t_color, int b_color);  // 1 gạch
-void boxNot_(int x, int y, int w, int h, int t_color, int b_color); // 2 gạch
+string resetColor();
+string setBold();
+string setUnderline();
+string setItalic();
 
-//* Hàm vẽ box có nội dung
-void box(int x, int y, int w, int h, int t_color, int b_color, int content_color, string content);  // 1 gạch
-void box_(int x, int y, int w, int h, int t_color, int b_color, int content_color, string content); // 2 gạch
-
-//* Hàm di chuyển đối tượng và trả về vị trí mới khi phím Enter được nhấn
-int move(int x, int y, int h, int &yp, int &kt, int soKhung);
+#endif
