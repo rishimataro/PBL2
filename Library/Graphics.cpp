@@ -1,40 +1,40 @@
 #include "./Graphics.h"
 
-std::string hexToRgb(std::string hex) {
+string hexToRgb(string hex) {
     int r, g, b;
     if((hex[0] == '#' && hex.length() == 7))
     {
         hex.erase(0, 1);
     }else if(hex.length() != 6)
     return "0;0;0";
-    r = std::stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
-    g = std::stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
-    b = std::stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
-    return std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b);
+    r = stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
+    g = stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
+    b = stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
+    return to_string(r) + ";" + to_string(g) + ";" + to_string(b);
 }
 
-std::string setTextColor(const std::string& hexColor) {
+string setTextColor(const string& hexColor) {
     return "\x1b[38;2;" + hexToRgb(hexColor) + "m";
 }
-std::string setTextColor(const int red, const int green, const int blue) {
-    return "\x1b[38;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+string setTextColor(const int red, const int green, const int blue) {
+    return "\x1b[38;2;" + to_string(red) + ";" + to_string(green) + ";" + to_string(blue) + "m";
 }
-std::string setBackgroundColor(const std::string& hexColor) {
+string setBackgroundColor(const string& hexColor) {
     return "\x1b[48;2;" + hexToRgb(hexColor) + "m";
 }
-std::string setBackgroundColor(const int red, const int green, const int blue) {
-    return "\x1b[48;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
+string setBackgroundColor(const int red, const int green, const int blue) {
+    return "\x1b[48;2;" + to_string(red) + ";" + to_string(green) + ";" + to_string(blue) + "m";
 }
-std::string resetAll() {
+string resetAll() {
     return "\x1b[0m";
 }
-std::string setBold() {
+string setBold() {
     return "\x1b[1m";
 }
-std::string setUnderline() {
+string setUnderline() {
     return "\x1b[4m";
 }
-std::string setItalic() {
+string setItalic() {
     return "\x1b[3m";
 }
 //* Lấy tọa độ x của con trỏ hiện tại 
@@ -45,7 +45,6 @@ int whereX()
 		return csbi.dwCursorPosition.X;
 	return -1;
 }
-
 //* Lấy tọa độ y của con trỏ hiện tại 
 int whereY()
 {
@@ -54,7 +53,6 @@ int whereY()
 		return csbi.dwCursorPosition.Y;
 	return -1;
 }
-
 //* Lấy vị trí dòng hiện tại của con trỏ màn hình trong Console
 int getCurrentCursorPositionY(){
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -127,8 +125,8 @@ void textcolor(int color)
 }
 
 
-std::vector<std::string> splitTextIntoLines(const std::string& text, int boxWidth) {
-    std::vector<std::string> lines;
+vector<string> splitTextIntoLines(const string& text, int boxWidth) {
+    vector<string> lines;
     int startIndex = 0;
     int textLength = text.length();
 
@@ -153,7 +151,7 @@ std::vector<std::string> splitTextIntoLines(const std::string& text, int boxWidt
         }
 
         // Lấy đoạn văn bản từ startIndex đến endIndex
-        std::string line = text.substr(startIndex, endIndex - startIndex);
+        string line = text.substr(startIndex, endIndex - startIndex);
         lines.push_back(line);
 
         // Bỏ qua dấu cách ở đầu dòng tiếp theo (nếu có)
@@ -167,8 +165,8 @@ std::vector<std::string> splitTextIntoLines(const std::string& text, int boxWidt
 //* Hàm vẽ box mà không có nội dung
 void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
 {	
-    boxWidth--;
-    boxHeight--;
+    // boxWidth--;
+    // boxHeight--;
 	cout << setBackgroundColor(backgroundColor);
 	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
 	{
@@ -181,26 +179,28 @@ void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor
 	for (int ix = x; ix <= x + boxWidth; ix++)
 	{
         gotoXY(ix, y);
-        cout << char(196);
+        cout << "─";
         gotoXY(ix, y + boxHeight);
-        cout << char(196);
+        cout << "─";
     }	
     for (int iy = y; iy <= y + boxHeight; iy++) 
 	{
         gotoXY(x, iy);
-        cout << char(179);
+        cout << "│";
         gotoXY(x + boxWidth, iy);
-        cout << char(179);
+        cout << "│";
     }
-	gotoXY(x, y); cout << char(218);
-    gotoXY(x + boxWidth, y); cout << char (191);
-    gotoXY(x, y + boxHeight); cout << char(192);
-    gotoXY(x + boxWidth, y + boxHeight); cout << char (217);
+	gotoXY(x, y); cout << "┌";
+    gotoXY(x + boxWidth, y); cout << "┐";
+    gotoXY(x, y + boxHeight); cout << "└";
+    gotoXY(x + boxWidth, y + boxHeight); cout << "┘";
 
 	cout << resetAll();
 }
 void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
 {	
+    // boxWidth--;
+    // boxHeight--;
 	cout << setBackgroundColor(backgroundColor);
 	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
 	{
@@ -210,24 +210,24 @@ void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColo
 		}
 	}
 	cout << setTextColor(borderColor);
-	for (int x = x; x <= x + boxWidth; x++)
+	for (int ix = x; ix <= x + boxWidth; ix++)
 	{
-        gotoXY(x, y);
-        cout << char(205);
-        gotoXY(x, y + boxHeight);
-        cout << char(205);
+        gotoXY(ix, y);
+        cout << "═";
+        gotoXY(ix, y + boxHeight);
+        cout << "═";
     }	
-    for (int y = y; y <= y + boxHeight; y++) 
+    for (int iy = y; iy <= y + boxHeight; iy++) 
 	{
-        gotoXY(x, y);
-        cout << char(186);
-        gotoXY(x + boxWidth, y);
-        cout << char(186);
+        gotoXY(x, iy);
+        cout << "║";
+        gotoXY(x + boxWidth, iy);
+        cout << "║";
     }
-	gotoXY(x, y); cout << char(201);
-    gotoXY(x + boxWidth, y); cout << char (187);
-    gotoXY(x, y + boxHeight); cout << char(200);
-    gotoXY(x + boxWidth, y + boxHeight); cout << char (188);
+	gotoXY(x, y); cout << "╔";
+    gotoXY(x + boxWidth, y); cout << "╗";
+    gotoXY(x, y + boxHeight); cout << "╚";
+    gotoXY(x + boxWidth, y + boxHeight); cout << "╝";
 
 	cout << resetAll();
 }
@@ -296,21 +296,47 @@ void printBox(int x, int y, int boxWidth, int boxHeight, string text, string bac
 {	
 	emptyBox2(x, y, boxWidth, boxHeight, backgroundColor, borderColor);
     cout << setBackgroundColor(backgroundColor);
+
     cout << setTextColor(textColor);
 	int textLength = text.length();
 	 // Ngắt văn bản thành các dòng phù hợp với boxWidth
-    std::vector<std::string> lines = splitTextIntoLines(text, boxWidth - 2);
+    vector<string> lines = splitTextIntoLines(text, boxWidth - 2);
     int numLines = lines.size();
     // Tính toán khoảng trống trên và dưới để căn giữa theo chiều dọc
     int verticalPadding = (boxHeight - numLines) / 2;
     // int padd = (verticalPadding % 2 == 0)? 0 : 1;
     // In từng dòng văn bản, căn giữa theo chiều ngang
     gotoXY(x, y + verticalPadding);
-    for (const std::string& line : lines) 
+    for (const string& line : lines) 
     {
         int padding = (boxWidth - line.length()) / 2;
         gotoXY(x + padding, whereY());
-        std::cout << line << std::endl;
+        cout << line << endl;
+    }
+
+    cout << resetAll();
+    gotoXY(0, y + boxHeight + 1);
+}
+
+void printBox_(int x, int y, int boxWidth, int boxHeight, string text, string backgroundColor, string borderColor, string textColor)
+{	
+	emptyBox2_(x, y, boxWidth, boxHeight, backgroundColor, borderColor);
+    cout << setBackgroundColor(backgroundColor);
+    cout << setTextColor(textColor);
+	int textLength = text.length();
+	 // Ngắt văn bản thành các dòng phù hợp với boxWidth
+    vector<string> lines = splitTextIntoLines(text, boxWidth - 2);
+    int numLines = lines.size();
+    // Tính toán khoảng trống trên và dưới để căn giữa theo chiều dọc
+    int verticalPadding = (boxHeight - numLines) / 2;
+    // int padd = (verticalPadding % 2 == 0)? 0 : 1;
+    // In từng dòng văn bản, căn giữa theo chiều ngang
+    gotoXY(x, y + verticalPadding);
+    for (const string& line : lines) 
+    {
+        int padding = (boxWidth - line.length()) / 2;
+        gotoXY(x + padding, whereY());
+        cout << line << endl;
     }
 
     cout << resetAll();
@@ -406,43 +432,6 @@ int move(int x, int y, int h, int &yp, int &kt, int soKhung){
 		}
 	}
 	return yp;
-}
-std::string hexToRgb(std::string hex) {
-    int r, g, b;
-    if((hex[0] == '#' && hex.length() == 7))
-    {
-        hex.erase(0, 1);
-    }else if(hex.length() != 6)
-    return "0;0;0";
-    r = std::stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
-    g = std::stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
-    b = std::stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
-    return std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b);
-}
-
-std::string setTextColor(const std::string& hexColor) {
-    return "\x1b[38;2;" + hexToRgb(hexColor) + "m";
-}
-std::string setTextColor(const int red, const int green, const int blue) {
-    return "\x1b[38;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
-}
-std::string setBackgroundColor(const std::string& hexColor) {
-    return "\x1b[48;2;" + hexToRgb(hexColor) + "m";
-}
-std::string setBackgroundColor(const int red, const int green, const int blue) {
-    return "\x1b[48;2;" + std::to_string(red) + ";" + std::to_string(green) + ";" + std::to_string(blue) + "m";
-}
-std::string resetAll() {
-    return "\x1b[0m";
-}
-std::string setBold() {
-    return "\x1b[1m";
-}
-std::string setUnderline() {
-    return "\x1b[4m";
-}
-std::string setItalic() {
-    return "\x1b[3m";
 }
 
 void SetConsoleSize(int width, int height) {

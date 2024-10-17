@@ -63,8 +63,11 @@ void listAccount::printAccountByID() {
 void listAccount::printAllAccount() {
     int x = 40, y = 5, w = 20, h = 2; // tổng w = 80
     // cout << this->size() << endl;
+    // printBox_(x, y - 3, 80, h, "DANH SÁCH TẤT CẢ TÀI KHOẢN HIỆN CÓ", "#000000", "#BD012F", "#BD012F");
+    // printBox(x, y, w, h, "ID", "#000000", "#01890C", "#01890C");
     box_(x, y - 3, 80, h, 12, 14, 12, "DANH SÁCH TẤT CẢ TÀI KHOẢN HIỆN CÓ");
     box(x, y, w, h, 15, 1, 10, "ID");
+
     box(x + 20, y, w, h, 15, 1, 10, "TÀI KHOẢN");
     box(x + 40, y, w, h, 15, 1, 10, "MẬT KHẨU");
     box(x + 60, y, w, h, 15, 1, 10, "VAI TRÒ");
@@ -75,10 +78,10 @@ void listAccount::printAllAccount() {
 
     for(int i = 0; i < this->size(); i++) {
         y += 2;
-        boxNot(x, y, w, h, 15, 1);          
-        boxNot(x + 20, y, w, h, 15, 1);     
-        boxNot(x + 40, y, w, h, 15, 1);     
-        boxNot(x + 60, y, w, h, 15, 1);     
+        emptyBox(x, y, w, h, 15, 1);          
+        emptyBox(x + 20, y, w, h, 15, 1);     
+        emptyBox(x + 40, y, w, h, 15, 1);     
+        emptyBox(x + 60, y, w, h, 15, 1);     
 
         gotoXY(x, y); cout << "├";
         gotoXY(x + 80, y); cout << "┤";

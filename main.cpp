@@ -44,6 +44,8 @@ int main() {
     list_acc.setListAccountByFile();
     system("cls");
     list_acc.printAllAccount();
-
+    // printBox_(2, 2, 50, 20, "Danh sách tài khoản", "#000000", "#FFFFFF", "#FFFFFF");
+    // emptyBox2(2, 2, 50, 20, "#000000", "#FFFFFF");
+    system("pause");
     return 0;
 }
