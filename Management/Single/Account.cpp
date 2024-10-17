@@ -36,11 +36,11 @@ int Account::getRole() const { return this->role; }
 // Nhập 1 account
 void Account::inputAccount() {
     int x = 60, y = 5, w = 30, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       THÔNG TIN TÀI KHOẢN");
-    box(x, y + 2, w, h, 15, 1, 15, "  ID       : "); 
-    box(x, y + 4, w, h, 15, 1, 15, "  TÀI KHOẢN: "); 
-    box(x, y + 6, w, h, 15, 1, 15, "  MẬT KHẨU : "); 
-    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRÒ  : "); 
+    box_(x, y - 3, w, h, "       THÔNG TIN TÀI KHOẢN", "000000", "E8F9FD", "FF1E00");
+    box(x, y + 2, w, h, "  ID       : ", "000000", "E8F9FD", "E8F9FD"); 
+    box(x, y + 4, w, h, "  TÀI KHOẢN: ", "000000", "E8F9FD", "E8F9FD"); 
+    box(x, y + 6, w, h, "  MẬT KHẨU : ", "000000", "E8F9FD", "E8F9FD"); 
+    box(x, y + 8, w, h, "  VAI TRÒ  : ", "000000", "E8F9FD", "E8F9FD"); 
 
     for(int i = 2; i <= 4; i ++ ){
         gotoXY(x, y + (i*2)); cout << "├";
@@ -97,7 +97,7 @@ void Account::printAccount()
    int x = whereX(), y = whereY();
    gotoXY(x, y);
    cout << this->ID_acc;
-   gotoXY(x + 20, y);
+   gotoXY(x + 15, y);
    cout << this->userName;
    gotoXY(x + 40, y);
    cout << this->password;

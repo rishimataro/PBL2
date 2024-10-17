@@ -57,38 +57,40 @@ void listAccount::saveListAccountToFile() {
 
 // * Display
 void listAccount::printAccountByID() {
-
+    
 }
 
 void listAccount::printAllAccount() {
     int x = 40, y = 5, w = 20, h = 2; // tổng w = 80
-    // cout << this->size() << endl;
-    box_(x, y - 3, 80, h, 12, 14, 12, "DANH SÁCH TẤT CẢ TÀI KHOẢN HIỆN CÓ");
-    box(x, y, w, h, 15, 1, 10, "ID");
-    box(x + 20, y, w, h, 15, 1, 10, "TÀI KHOẢN");
-    box(x + 40, y, w, h, 15, 1, 10, "MẬT KHẨU");
-    box(x + 60, y, w, h, 15, 1, 10, "VAI TRÒ");
 
-    for(int i = 1; i < 4; i++) {
+    box_(x, y - 3, 80, h, " ******************** DANH SÁCH TẤT CẢ TÀI KHOẢN HIỆN CÓ ******************** ", "000000", "FF1E00", "FF1E00" );
+    box(x, y, w - 5, h, "ID", "000000", "E8F9FD", "59CE8F");
+    box(x + 15, y, w + 5, h, "TÀI KHOẢN", "000000", "E8F9FD", "59CE8F");
+    box(x + 40, y, w, h,  "MẬT KHẨU", "000000", "E8F9FD", "59CE8F");
+    box(x + 60, y, w, h, "VAI TRÒ", "000000", "E8F9FD", "59CE8F");
+
+    gotoXY(x + 15, y); cout << "┬"; 
+    for(int i = 2; i < 4; i++) {    
         gotoXY(x + (i * 20), y); cout << "┬";
     }
 
     for(int i = 0; i < this->size(); i++) {
         y += 2;
-        boxNot(x, y, w, h, 15, 1);          
-        boxNot(x + 20, y, w, h, 15, 1);     
-        boxNot(x + 40, y, w, h, 15, 1);     
-        boxNot(x + 60, y, w, h, 15, 1);     
+        emptyBox(x, y, w - 5, h, 15, 1);          
+        emptyBox(x + 15, y, w + 5, h, 15, 1);     
+        emptyBox(x + 40, y, w, h, 15, 1);     
+        emptyBox(x + 60, y, w, h, 15, 1);     
 
         gotoXY(x, y); cout << "├";
         gotoXY(x + 80, y); cout << "┤";
-        gotoXY(x, y);
-        for (int j = 1; j < 4; j++) {
+        gotoXY(x + 15, y); cout << "┼"; 
+        for (int j = 2; j < 4; j++) {
             gotoXY(x + (j * 20), y); cout << "┼"; 
         }
     }
 
-    for(int i = 1; i < 4; i++) {
+    gotoXY(x + 15, y); cout << "┴"; 
+    for(int i = 2; i < 4; i++) {
         gotoXY(x + (i * 20), y); cout << "┴";
     }
 
