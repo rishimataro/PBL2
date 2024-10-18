@@ -130,8 +130,8 @@ vector<string> splitTextIntoLines(const string& text, int boxWidth) {
 //* Hàm vẽ box mà không có nội dung
 void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
 {	
-    boxWidth--;
-    boxHeight--;
+    // boxWidth--;
+    // boxHeight--;
 	cout << setBackgroundColor(backgroundColor);
 	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
 	{
@@ -164,6 +164,8 @@ void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor
 }
 void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
 {	
+    // boxWidth--;
+    // boxHeight--;
 	cout << setBackgroundColor(backgroundColor);
 	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
 	{
@@ -173,18 +175,18 @@ void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColo
 		}
 	}
 	cout << setTextColor(borderColor);
-	for (int x = x; x <= x + boxWidth; x++)
+	for (int ix = x; ix <= x + boxWidth; ix++)
 	{
-        gotoXY(x, y);
+        gotoXY(ix, y);
         cout << "═";
-        gotoXY(x, y + boxHeight);
+        gotoXY(ix, y + boxHeight);
         cout << "═";
     }	
-    for (int y = y; y <= y + boxHeight; y++) 
+    for (int iy = y; iy <= y + boxHeight; iy++) 
 	{
-        gotoXY(x, y);
+        gotoXY(x, iy);
         cout << "║";
-        gotoXY(x + boxWidth, y);
+        gotoXY(x + boxWidth, iy);
         cout << "║";
     }
 	gotoXY(x, y); cout << "╔";

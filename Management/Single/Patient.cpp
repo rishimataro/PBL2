@@ -40,13 +40,23 @@ string Patient::getAddress() const { return this->address; }
 // Nhập 1 bệnh nhân
 void Patient::inputPatient() {
     int x = 60, y = 5, w = 40, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
-    box(x, y + 2, w, h, 15, 1, 15,  "  ID       : "); 
-    box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : "); 
-    box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : "); 
-    box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: "); 
-    box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: ");
-    box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : ");
+    
+    box_(x, y - 3, w, h,"          THÔNG TIN BỆNH NHÂN", "000000", "FF1E00", "FF1E00" );
+    box(x, y + 2, w, h, "  ID       : ", "000000", "FFFFFF", "FFFFFF"); 
+
+    box(x, y + 4, w, h, "  HỌ TÊN   : ",  "000000", "FFFFFF", "FFFFFF"); 
+    box(x, y + 6, w, h, "  SĐT      : ", "000000", "FFFFFF", "FFFFFF");  
+    box(x, y + 8, w, h, "  NGÀY SINH: ", "000000", "FFFFFF", "FFFFFF");   
+    box(x, y + 10, w, h, "  GIỚI TÍNH: ", "000000", "FFFFFF", "FFFFFF");
+    box(x, y + 12, w, h, "  ĐỊA CHỈ  : ", "000000", "FFFFFF", "FFFFFF");
+
+    // box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
+    // box(x, y + 2, w, h, 15, 1, 15,  "  ID       : "); 
+    // box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : "); 
+    // box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : "); 
+    // box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: "); 
+    // box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: ");
+    // box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : ");
 
     for(int i = 2; i <= 6; i ++ ){
         gotoXY(x, y + (i*2)); cout << "├";
@@ -69,13 +79,21 @@ void Patient::inputPatient() {
 void Patient::printPatient() {
     int x = 60, y = 5, w = 40, h = 2;
     string sex_str = this->sex ? "Nam" : "Nữ";
-    box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
-    box(x, y + 2, w, h, 15, 1, 15,  "  ID       : " + this->ID_patient); 
-    box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : " + this->fullName); 
-    box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : " + this->phone); 
-    box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: " + this->dayOfBirth.getDate());
-    box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: " + sex_str);
-    box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : " + this->address);
+    box_(x, y - 3, w, h,"          THÔNG TIN BỆNH NHÂN", "000000", "FFFFFF", "FFFFFF");
+    box(x, y + 2, w, h, "  ID       : " + this->ID_patient, "000000", "FFFFFF", "FFFFFF"); 
+    box(x, y + 4, w, h, "  HỌ TÊN   : " + this->fullName, "000000", "FFFFFF", "FFFFFF"); 
+    box(x, y + 6, w, h, "  SĐT      : " + this->phone, "000000", "FFFFFF", "FFFFFF"); 
+    box(x, y + 8, w, h, "  NGÀY SINH: " + this->dayOfBirth.getDate(), "000000", "FFFFFF", "FFFFFF");
+    box(x, y + 10, w, h, "  GIỚI TÍNH: " + sex_str, "000000", "FFFFFF", "FFFFFF");
+    box(x, y + 12, w, h, "  ĐỊA CHỈ  : " + this->address, "000000", "FFFFFF", "FFFFFF");
+
+    // box_(x, y - 3, w, h, 12, 14, 12, "          THÔNG TIN BỆNH NHÂN");
+    // box(x, y + 2, w, h, 15, 1, 15,  "  ID       : " + this->ID_patient); 
+    // box(x, y + 4, w, h, 15, 1, 15,  "  HỌ TÊN   : " + this->fullName); 
+    // box(x, y + 6, w, h, 15, 1, 15,  "  SĐT      : " + this->phone); 
+    // box(x, y + 8, w, h, 15, 1, 15,  "  NGÀY SINH: " + this->dayOfBirth.getDate());
+    // box(x, y + 10, w, h, 15, 1, 15, "  GIỚI TÍNH: " + sex_str);
+    // box(x, y + 12, w, h, 15, 1, 15, "  ĐỊA CHỈ  : " + this->address);
 
     for(int i = 2; i <= 6; i ++ ){
         gotoXY(x, y + (i*2)); cout << "├";

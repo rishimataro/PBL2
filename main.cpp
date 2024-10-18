@@ -44,6 +44,6 @@ int main() {
     list_acc.setListAccountByFile();
     system("cls");
     list_acc.printAllAccount();
-
+    system("pause");
     return 0;
 }
