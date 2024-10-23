@@ -1,116 +1,122 @@
 #include "./Graphics.h"
 
-//* Lấy tọa độ x của con trỏ hiện tại 
+//* Lấy tọa độ x của con trỏ hiện tại
 int whereX()
 {
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
-		return csbi.dwCursorPosition.X;
-	return -1;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
+        return csbi.dwCursorPosition.X;
+    return -1;
 }
 
-//* Lấy tọa độ y của con trỏ hiện tại 
+//* Lấy tọa độ y của con trỏ hiện tại
 int whereY()
 {
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
-		return csbi.dwCursorPosition.Y;
-	return -1;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
+        return csbi.dwCursorPosition.Y;
+    return -1;
 }
 
 //* Lấy vị trí dòng hiện tại của con trỏ màn hình trong Console
-int getCurrentCursorPositionY(){
+int getCurrentCursorPositionY()
+{
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     return csbi.dwCursorPosition.Y;
 }
 
-//* Dịch con trỏ hiện tại đến điểm có tọa độ (x, y) 
+//* Dịch con trỏ hiện tại đến điểm có tọa độ (x, y)
 void gotoXY(int x, int y)
 {
     HANDLE hConsoleOutput;
-    COORD Cursor_an_Pos = { static_cast<SHORT>(x), static_cast<SHORT>(y) }; // Chuyển kiểu dữ liệu từ int sang SHORT
+    COORD Cursor_an_Pos = {static_cast<SHORT>(x), static_cast<SHORT>(y)}; // Chuyển kiểu dữ liệu từ int sang SHORT
     hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleCursorPosition(hConsoleOutput, Cursor_an_Pos);
 }
 
-//* Đặt màu cho chữ 
+//* Đặt màu cho chữ
 void SetColor(WORD color)
 {
-	HANDLE hConsoleOutput;
-	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hConsoleOutput;
+    hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info;
-	GetConsoleScreenBufferInfo(hConsoleOutput, &screen_buffer_info);
+    CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info;
+    GetConsoleScreenBufferInfo(hConsoleOutput, &screen_buffer_info);
 
-	WORD wAttributes = screen_buffer_info.wAttributes;
-	color &= 0x000f;
-	wAttributes &= 0xfff0;
-	wAttributes |= color;
+    WORD wAttributes = screen_buffer_info.wAttributes;
+    color &= 0x000f;
+    wAttributes &= 0xfff0;
+    wAttributes |= color;
 
-	SetConsoleTextAttribute(hConsoleOutput, wAttributes);
+    SetConsoleTextAttribute(hConsoleOutput, wAttributes);
 }
 
-//* Làm ẩn trỏ chuột 
+//* Làm ẩn trỏ chuột
 void ShowCur(bool CursorVisibility)
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
-	SetConsoleCursorInfo(handle, &cursor);
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursor = {1, CursorVisibility};
+    SetConsoleCursorInfo(handle, &cursor);
 }
 
-//* Trả về mã phím người dùng bấm 
+//* Trả về mã phím người dùng bấm
 int inputKey()
 {
-	if (_kbhit()) //true
-	{
-		int key = _getch();
+    if (_kbhit()) // true
+    {
+        int key = _getch();
 
-		if (key == 224)
-		{
-			key = _getch();
-			return key + 1000;
-		}
+        if (key == 224)
+        {
+            key = _getch();
+            return key + 1000;
+        }
 
-		return key;
-	}
-	else
-	{
-		return KEY_NONE;
-	}
-	return KEY_NONE;
+        return key;
+    }
+    else
+    {
+        return KEY_NONE;
+    }
+    return KEY_NONE;
 }
 
-//* Đặt màu cho chuỗi 
+//* Đặt màu cho chuỗi
 void textcolor(int color)
 {
-	HANDLE mau;
-	mau = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(mau, color);
+    HANDLE mau;
+    mau = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(mau, color);
 }
 
-
-vector<string> splitTextIntoLines(const string& text, int boxWidth) {
+vector<string> splitTextIntoLines(const string &text, int boxWidth)
+{
     vector<string> lines;
     int startIndex = 0;
     int textLength = text.length();
 
-    while (startIndex < textLength) 
+    while (startIndex < textLength)
     {
         // Xác định chiều dài dòng hiện tại
         int endIndex = startIndex + boxWidth;
 
         // Kiểm tra nếu endIndex vượt quá chiều dài của chuỗi
-        if (endIndex >= textLength) {
+        if (endIndex >= textLength)
+        {
             endIndex = textLength;
-        } else {
+        }
+        else
+        {
             // Lùi lại để tìm khoảng trắng gần nhất nếu có
-            while (endIndex > startIndex && text[endIndex] != ' ') {
+            while (endIndex > startIndex && text[endIndex] != ' ')
+            {
                 endIndex--;
             }
 
             // Nếu không tìm thấy khoảng trắng, giữ nguyên chiều dài mặc định
-            if (endIndex == startIndex) {
+            if (endIndex == startIndex)
+            {
                 endIndex = startIndex + boxWidth;
             }
         }
@@ -121,7 +127,8 @@ vector<string> splitTextIntoLines(const string& text, int boxWidth) {
 
         // Bỏ qua dấu cách ở đầu dòng tiếp theo (nếu có)
         startIndex = endIndex;
-        while (startIndex < textLength && text[startIndex] == ' ') {
+        while (startIndex < textLength && text[startIndex] == ' ')
+        {
             startIndex++;
         }
     }
@@ -129,139 +136,171 @@ vector<string> splitTextIntoLines(const string& text, int boxWidth) {
 }
 //* Hàm vẽ box mà không có nội dung
 void emptyBox2(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
-{	
-    boxWidth--;
-    boxHeight--;
-	cout << setBackgroundColor(backgroundColor);
-	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
-	{
-		for(int ix = x + 1; ix <= x + boxWidth - 1; ix++){
-			gotoXY(ix, iy);
-			cout << " ";
-		}
-	}
-	cout << setTextColor(borderColor);
-	for (int ix = x; ix <= x + boxWidth; ix++)
-	{
+{
+    // boxWidth--;
+    // boxHeight--;
+    cout << setBackgroundColor(backgroundColor);
+    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            cout << " ";
+        }
+    }
+    cout << setTextColor(borderColor);
+    for (int ix = x; ix <= x + boxWidth; ix++)
+    {
         gotoXY(ix, y);
         cout << "─";
         gotoXY(ix, y + boxHeight);
         cout << "─";
-    }	
-    for (int iy = y; iy <= y + boxHeight; iy++) 
-	{
+    }
+    for (int iy = y; iy <= y + boxHeight; iy++)
+    {
         gotoXY(x, iy);
         cout << "│";
         gotoXY(x + boxWidth, iy);
         cout << "│";
     }
-	gotoXY(x, y); cout << "┌";
-    gotoXY(x + boxWidth, y); cout << "┐";
-    gotoXY(x, y + boxHeight); cout << "└";
-    gotoXY(x + boxWidth, y + boxHeight); cout << "┘";
+    gotoXY(x, y);
+    cout << "┌";
+    gotoXY(x + boxWidth, y);
+    cout << "┐";
+    gotoXY(x, y + boxHeight);
+    cout << "└";
+    gotoXY(x + boxWidth, y + boxHeight);
+    cout << "┘";
 
-	cout << resetColor();
+    cout << resetColor();
 }
+
 void emptyBox2_(int x, int y, int boxWidth, int boxHeight, string backgroundColor, string borderColor)
-{	
-	cout << setBackgroundColor(backgroundColor);
-	for(int iy = y + 1; iy <= y + boxHeight - 1; iy++)
-	{
-		for(int ix = x + 1; ix <= x + boxWidth - 1; ix++){
-			gotoXY(ix, iy);
-			cout << " ";
-		}
-	}
-	cout << setTextColor(borderColor);
-	for (int x = x; x <= x + boxWidth; x++)
-	{
-        gotoXY(x, y);
+{
+    // boxWidth--;
+    // boxHeight--;
+    cout << setBackgroundColor(backgroundColor);
+    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            cout << " ";
+        }
+    }
+    cout << setTextColor(borderColor);
+    for (int ix = x; ix <= x + boxWidth; ix++)
+    {
+        gotoXY(ix, y);
         cout << "═";
-        gotoXY(x, y + boxHeight);
+        gotoXY(ix, y + boxHeight);
         cout << "═";
-    }	
-    for (int y = y; y <= y + boxHeight; y++) 
-	{
-        gotoXY(x, y);
+    }
+    for (int iy = y; iy <= y + boxHeight; iy++)
+    {
+        gotoXY(x, iy);
         cout << "║";
-        gotoXY(x + boxWidth, y);
+        gotoXY(x + boxWidth, iy);
         cout << "║";
     }
-	gotoXY(x, y); cout << "╔";
-    gotoXY(x + boxWidth, y); cout << "╗";
-    gotoXY(x, y + boxHeight); cout << "╚";
-    gotoXY(x + boxWidth, y + boxHeight); cout << "╝";
+    gotoXY(x, y);
+    cout << "╔";
+    gotoXY(x + boxWidth, y);
+    cout << "╗";
+    gotoXY(x, y + boxHeight);
+    cout << "╚";
+    gotoXY(x + boxWidth, y + boxHeight);
+    cout << "╝";
 
-	cout << resetColor();
+    cout << resetColor();
 }
-void emptyBox(int x, int y, int w, int h, int t_color, int b_color){
-	textcolor(b_color);
-	for(int iy = y + 1; iy <= y + h - 1; iy++){
-		for(int ix = x + 1; ix <= x + w - 1; ix++){
-			gotoXY(ix, iy);
-			cout << " ";
-		}
-	}
-	textcolor(1);
-	SetColor(t_color);
-	for (int ix = x; ix <= x + w; ix++){
+
+void emptyBox(int x, int y, int w, int h, int t_color, int b_color)
+{
+    textcolor(b_color);
+    for (int iy = y + 1; iy <= y + h - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + w - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            cout << " ";
+        }
+    }
+    textcolor(1);
+    SetColor(t_color);
+    for (int ix = x; ix <= x + w; ix++)
+    {
         gotoXY(ix, y);
         cout << "─";
         gotoXY(ix, y + h);
         cout << "─";
     }
 
-    for (int iy = y; iy <= y + h; iy++) {
+    for (int iy = y; iy <= y + h; iy++)
+    {
         gotoXY(x, iy);
         cout << "│";
         gotoXY(x + w, iy);
         cout << "│";
     }
 
-    gotoXY(x, y); cout << "┌";
-    gotoXY(x + w, y); cout << "┐";
-    gotoXY(x, y + h); cout << "└";
-    gotoXY(x + w, y + h); cout << "┘";
+    gotoXY(x, y);
+    cout << "┌";
+    gotoXY(x + w, y);
+    cout << "┐";
+    gotoXY(x, y + h);
+    cout << "└";
+    gotoXY(x + w, y + h);
+    cout << "┘";
 }
 
-void emptyBox_(int x, int y, int w, int h, int t_color, int b_color){
-	textcolor(b_color);
-	for(int iy = y + 1; iy <= y + h - 1; iy++){
-		for(int ix = x + 1; ix <= x + w - 1; ix++){
-			gotoXY(ix, iy);
-			cout << " ";
-		}
-	}
-	textcolor(1);
-	SetColor(t_color);
-	for (int ix = x; ix <= x + w; ix++){
+void emptyBox_(int x, int y, int w, int h, int t_color, int b_color)
+{
+    textcolor(b_color);
+    for (int iy = y + 1; iy <= y + h - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + w - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            cout << " ";
+        }
+    }
+    textcolor(1);
+    SetColor(t_color);
+    for (int ix = x; ix <= x + w; ix++)
+    {
         gotoXY(ix, y);
         cout << "═";
         gotoXY(ix, y + h);
         cout << "═";
     }
 
-    for (int iy = y; iy <= y + h; iy++) {
+    for (int iy = y; iy <= y + h; iy++)
+    {
         gotoXY(x, iy);
         cout << "║";
         gotoXY(x + w, iy);
         cout << "║";
     }
 
-    gotoXY(x, y); cout << "╔";
-    gotoXY(x + w, y); cout << "╗";
-    gotoXY(x, y + h); cout << "╚";
-    gotoXY(x + w, y + h); cout << "╝";
+    gotoXY(x, y);
+    cout << "╔";
+    gotoXY(x + w, y);
+    cout << "╗";
+    gotoXY(x, y + h);
+    cout << "╚";
+    gotoXY(x + w, y + h);
+    cout << "╝";
 }
 
 //* Hàm vẽ box có nội dung
 void printBox(int x, int y, int boxWidth, int boxHeight, string text, string backgroundColor, string borderColor, string textColor)
-{	
-	emptyBox2(x, y, boxWidth, boxHeight, backgroundColor, borderColor);
+{
+    emptyBox2(x, y, boxWidth, boxHeight, backgroundColor, borderColor);
     cout << setBackgroundColor(backgroundColor);
     cout << setTextColor(textColor);
-	int textLength = text.length();
-	 // Ngắt văn bản thành các dòng phù hợp với boxWidth
+    int textLength = text.length();
+    // Ngắt văn bản thành các dòng phù hợp với boxWidth
     vector<string> lines = splitTextIntoLines(text, boxWidth - 2);
     int numLines = lines.size();
     // Tính toán khoảng trống trên và dưới để căn giữa theo chiều dọc
@@ -269,7 +308,7 @@ void printBox(int x, int y, int boxWidth, int boxHeight, string text, string bac
     // int padd = (verticalPadding % 2 == 0)? 0 : 1;
     // In từng dòng văn bản, căn giữa theo chiều ngang
     gotoXY(x, y + verticalPadding);
-    for (const string& line : lines) 
+    for (const string &line : lines)
     {
         int padding = (boxWidth - line.length()) / 2;
         gotoXY(x + padding, whereY());
@@ -280,12 +319,14 @@ void printBox(int x, int y, int boxWidth, int boxHeight, string text, string bac
     gotoXY(0, y + boxHeight + 1);
 }
 
-
-void box(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor) {
+void box(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor)
+{
     cout << setBackgroundColor(backgroundColor);
-    
-    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++) {
-        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++) {
+
+    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++)
+        {
             gotoXY(ix, iy);
             cout << " ";
         }
@@ -296,33 +337,42 @@ void box(int x, int y, int boxWidth, int boxHeight, string content, string backg
     cout << content;
 
     cout << setTextColor(borderColor);
-    for (int ix = x; ix <= x + boxWidth; ix++) {
+    for (int ix = x; ix <= x + boxWidth; ix++)
+    {
         gotoXY(ix, y);
         cout << "─";
         gotoXY(ix, y + boxHeight);
         cout << "─";
     }
 
-    for (int iy = y; iy <= y + boxHeight; iy++) {
+    for (int iy = y; iy <= y + boxHeight; iy++)
+    {
         gotoXY(x, iy);
         cout << "│";
         gotoXY(x + boxWidth, iy);
         cout << "│";
     }
 
-    gotoXY(x, y); cout << "┌";
-    gotoXY(x + boxWidth, y); cout << "┐";
-    gotoXY(x, y + boxHeight); cout << "└";
-    gotoXY(x + boxWidth, y + boxHeight); cout << "┘";
+    gotoXY(x, y);
+    cout << "┌";
+    gotoXY(x + boxWidth, y);
+    cout << "┐";
+    gotoXY(x, y + boxHeight);
+    cout << "└";
+    gotoXY(x + boxWidth, y + boxHeight);
+    cout << "┘";
 
     cout << resetColor();
 }
 
-void box_(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor) {
+void box_(int x, int y, int boxWidth, int boxHeight, string content, string backgroundColor, string borderColor, string textColor)
+{
     cout << setBackgroundColor(backgroundColor);
-    
-    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++) {
-        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++) {
+
+    for (int iy = y + 1; iy <= y + boxHeight - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + boxWidth - 1; ix++)
+        {
             gotoXY(ix, iy);
             cout << " ";
         }
@@ -333,85 +383,245 @@ void box_(int x, int y, int boxWidth, int boxHeight, string content, string back
     cout << content;
 
     cout << setTextColor(borderColor);
-    for (int ix = x; ix <= x + boxWidth; ix++) {
+    for (int ix = x; ix <= x + boxWidth; ix++)
+    {
         gotoXY(ix, y);
         cout << "═";
         gotoXY(ix, y + boxHeight);
         cout << "═";
     }
 
-    for (int iy = y; iy <= y + boxHeight; iy++) {
+    for (int iy = y; iy <= y + boxHeight; iy++)
+    {
         gotoXY(x, iy);
         cout << "║";
         gotoXY(x + boxWidth, iy);
         cout << "║";
     }
 
-    gotoXY(x, y); cout << "╔";
-    gotoXY(x + boxWidth, y); cout << "╗";
-    gotoXY(x, y + boxHeight); cout << "╚";
-    gotoXY(x + boxWidth, y + boxHeight); cout << "╝";
+    gotoXY(x, y);
+    cout << "╔";
+    gotoXY(x + boxWidth, y);
+    cout << "╗";
+    gotoXY(x, y + boxHeight);
+    cout << "╚";
+    gotoXY(x + boxWidth, y + boxHeight);
+    cout << "╝";
 
     cout << resetColor();
 }
 
 //* Hàm di chuyển đối tượng và trả về vị trí mới khi phím Enter được nhấn
-int move(int x, int y, int h, int &yp, int &kt, int soKhung){
-	if(_kbhit()){
-		int c = _getch();
-		if(c == 224){
-			kt = true;
-			c = _getch();
-			if(c == 72 && yp != y){
-				yp -= 2;
-			}else if(c == 72 && yp == y){
-				yp = y + h * (2 - 1);
-			}else if(c == 80 && yp != y + h * (soKhung - 1)){
-				yp += 2;
-			}else if(c == 80 && yp == y + h * (soKhung - 1)){
-				yp = y;
-			} 
-		}else if(c == 13){
-			kt = false;
-			return yp;
-		}
-	}
-	return yp;
+int move(int x, int y, int h, int &yp, int &kt, int soKhung)
+{
+    if (_kbhit())
+    {
+        int c = _getch();
+        if (c == 224)
+        {
+            kt = true;
+            c = _getch();
+            if (c == 72 && yp != y)
+            {
+                yp -= 2;
+            }
+            else if (c == 72 && yp == y)
+            {
+                yp = y + h * (2 - 1);
+            }
+            else if (c == 80 && yp != y + h * (soKhung - 1))
+            {
+                yp += 2;
+            }
+            else if (c == 80 && yp == y + h * (soKhung - 1))
+            {
+                yp = y;
+            }
+        }
+        else if (c == 13)
+        {
+            kt = false;
+            return yp;
+        }
+    }
+    return yp;
 }
-string hexToRgb(string hex) {
+string hexToRgb(string hex)
+{
     int r, g, b;
-    if((hex[0] == '#' && hex.length() == 7))
+    if ((hex[0] == '#' && hex.length() == 7))
     {
         hex.erase(0, 1);
-    }else if(hex.length() != 6)
-    return "0;0;0";
+    }
+    else if (hex.length() != 6)
+        return "0;0;0";
     r = stoi(hex.substr(0, 2), nullptr, 16); // Giá trị đỏ
     g = stoi(hex.substr(2, 2), nullptr, 16); // Giá trị xanh lá
     b = stoi(hex.substr(4, 2), nullptr, 16); // Giá trị xanh dương
     return to_string(r) + ";" + to_string(g) + ";" + to_string(b);
 }
 
-string setTextColor(const string& hexColor) {
+string setTextColor(const string &hexColor)
+{
     return "\x1b[38;2;" + hexToRgb(hexColor) + "m";
 }
-string setTextColor(const int red, const int green, const int blue) {
+
+string setTextColor(const int red, const int green, const int blue)
+{
     return "\x1b[38;2;" + to_string(red) + ";" + to_string(green) + ";" + to_string(blue) + "m";
 }
-string setBackgroundColor(const string& hexColor) {
+
+string setBackgroundColor(const string &hexColor)
+{
     return "\x1b[48;2;" + hexToRgb(hexColor) + "m";
 }
-string setBackgroundColor(const int red, const int green, const int blue) {
+
+string setBackgroundColor(const int red, const int green, const int blue)
+{
     return "\x1b[48;2;" + to_string(red) + ";" + to_string(green) + ";" + to_string(blue) + "m";
 }
-string resetColor() {
+
+string resetColor()
+{
     return "\x1b[0m";
 }
-string setBold() {
+
+string setBold()
+{
     return "\x1b[1m";
 }
-string setUnderline() {
+
+string setUnderline()
+{
     return "\x1b[4m";
 }
-string setItalic() {
+
+string setItalic()
+{
     return "\x1b[3m";
 }
+
+//sự kiện chuột
+inline int setClick(int& a, int& b) {
+	DWORD cNumRead, fdwMode, i;
+	INPUT_RECORD irInBuf[128];
+	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+
+	fdwMode = ENABLE_EXTENDED_FLAGS;
+	if (!SetConsoleMode(hStdin, fdwMode)) {
+		WriteError(const_cast<LPSTR>("SetConsoleMode"));
+		return 1;
+	}
+
+	fdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
+	if (!SetConsoleMode(hStdin, fdwMode)) {
+		WriteError(const_cast<LPSTR>("SetConsoleMode"));
+		return 1;
+	}
+	int tam = 0;
+	while (tam == 0) {
+		if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
+			WriteError(const_cast<LPSTR>("ReadConsoleInput"));
+			return 1;
+		}
+
+		for (i = 0; i < cNumRead; i++) {
+			if (irInBuf[i].EventType == MOUSE_EVENT) {
+				if (irInBuf[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+					int x = irInBuf[i].Event.MouseEvent.dwMousePosition.X;
+					int y = irInBuf[i].Event.MouseEvent.dwMousePosition.Y;
+					a = x;
+					b = y;
+					tam = 1;
+					break;
+				}
+			}
+		}
+	}
+}
+
+//sự kiện bàn phím
+inline int setKeyBoard() {
+	while (true) {
+		if (GetAsyncKeyState(VK_UP) & 0x8000) {
+			return 2; //lên
+		}
+		else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+			return 1; //xuống
+		}
+		else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+			return 3; //TRÁI
+		}
+		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+			return 4; //PHẢI
+		}
+		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+			return 5; //ESC
+		}
+	}
+	return 0;
+}
+
+button::button(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+    : text(text), bgColor(bgColor), textColor(textColor), borderColor(borderColor), x(x), y(y), width(width), height(height)
+{
+}
+
+void button::set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+{
+    this->text = text;
+    this->bgColor = bgColor;
+    this->textColor = textColor;
+    this->borderColor = borderColor;
+    this->x = x;
+    this->y = y;
+    this->width = width;
+    this->height = height;
+}
+void button::draw()
+{
+    printBox(this->x, this->y, this->width, this->height, this->text, this->bgColor, this->borderColor, this->textColor);
+}
+void button::changeColor(string newColor)
+{
+    this->bgColor = newColor;
+    // draw();
+}
+
+void button::changeText(string newText)
+{
+    this->text = newText;
+    // draw();
+}
+void button::changeBorderColor(string newColor)
+{
+    this->borderColor = newColor;
+    // draw();
+}
+
+void button::move(int dx, int dy)
+{
+    this->x += dx;
+    this->y += dy;
+    // draw();
+}
+
+bool button::isClicked(int x, int y)
+{
+    return (x >= this->x && x <= this->x + this->width && y >= this->y && y <= this->y + this->height);
+}
+
+void button::setPosition(int x, int y)
+{
+    this->x = x;
+    this->y = y;
+    // draw();
+}
+
+void button::reSize(int newWidth, int newHeight)
+{
+    this->width = newWidth;
+    this->height = newHeight;
+    // draw();
+}
+button::~button() {}
