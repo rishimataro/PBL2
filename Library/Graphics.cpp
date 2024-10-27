@@ -501,67 +501,6 @@ string setItalic()
     return "\x1b[3m";
 }
 
-//sự kiện chuột
-inline int setClick(int& a, int& b) {
-	DWORD cNumRead, fdwMode, i;
-	INPUT_RECORD irInBuf[128];
-	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-
-	fdwMode = ENABLE_EXTENDED_FLAGS;
-	if (!SetConsoleMode(hStdin, fdwMode)) {
-		WriteError(const_cast<LPSTR>("SetConsoleMode"));
-		return 1;
-	}
-
-	fdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
-	if (!SetConsoleMode(hStdin, fdwMode)) {
-		WriteError(const_cast<LPSTR>("SetConsoleMode"));
-		return 1;
-	}
-	int tam = 0;
-	while (tam == 0) {
-		if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
-			WriteError(const_cast<LPSTR>("ReadConsoleInput"));
-			return 1;
-		}
-
-		for (i = 0; i < cNumRead; i++) {
-			if (irInBuf[i].EventType == MOUSE_EVENT) {
-				if (irInBuf[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
-					int x = irInBuf[i].Event.MouseEvent.dwMousePosition.X;
-					int y = irInBuf[i].Event.MouseEvent.dwMousePosition.Y;
-					a = x;
-					b = y;
-					tam = 1;
-					break;
-				}
-			}
-		}
-	}
-}
-
-//sự kiện bàn phím
-inline int setKeyBoard() {
-	while (true) {
-		if (GetAsyncKeyState(VK_UP) & 0x8000) {
-			return 2; //lên
-		}
-		else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-			return 1; //xuống
-		}
-		else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-			return 3; //TRÁI
-		}
-		else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-			return 4; //PHẢI
-		}
-		else if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
-			return 5; //ESC
-		}
-	}
-	return 0;
-}
-
 button::button(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
     : text(text), bgColor(bgColor), textColor(textColor), borderColor(borderColor), x(x), y(y), width(width), height(height)
 {
@@ -580,7 +519,7 @@ void button::set(string text, string bgColor, string textColor, string borderCol
 }
 void button::draw()
 {
-    printBox(this->x, this->y, this->width, this->height, this->text, this->bgColor, this->borderColor, this->textColor);
+    box(this->x, this->y, this->width, this->height, this->text, this->bgColor, this->borderColor, this->textColor);
 }
 void button::changeColor(string newColor)
 {

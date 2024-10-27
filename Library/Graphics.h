@@ -6,7 +6,9 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
-#include "windows.h" 
+#include <windows.h>
+#include <io.h>
+#include <fcntl.h>
 #define KEY_NONE -1
 using namespace std;
 
@@ -44,10 +46,6 @@ string resetColor();
 string setBold();
 string setUnderline();
 string setItalic();
-
-inline VOID WriteError(LPSTR lpszMessage);
-inline int setClick(int& a, int& b);
-inline int setKeyBoard();
 
 class button
 {   
