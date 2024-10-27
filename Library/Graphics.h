@@ -45,6 +45,10 @@ string setBold();
 string setUnderline();
 string setItalic();
 
+inline VOID WriteError(LPSTR lpszMessage);
+inline int setClick(int& a, int& b);
+inline int setKeyBoard();
+
 class button
 {   
     private:
