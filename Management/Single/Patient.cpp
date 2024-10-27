@@ -26,6 +26,7 @@ void Patient::setID_patient(string ID_patient) { this->ID_patient = ID_patient; 
 void Patient::setFullName(string fullName) { this->fullName = fullName; }
 void Patient::setPhone(string phone) { this->phone = phone; }
 void Patient::setDayOfBirth(Date dayOfBirth) { this->dayOfBirth = dayOfBirth; }
+void Patient::setSex(bool sex) { this->sex = sex; }  // true: nam, false: nữ
 void Patient::setAddress(string address) { this->address = address; }
 
 //* Getter

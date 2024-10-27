@@ -1,11 +1,17 @@
 // #include "./Management/Single/Account.h"
 // #include "./Management/Single/Date.h"
 // #include "./Management/Single/Patient.h"
-#include "./Management/listAccount.h"
-
-int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
+// #include "./Management/listAccount.h"
+#include "./Management/Single/Appoinment.h"
+// #include <fstream>
+// #include <iostream>
+// #include <windows.h>
+// #include <filesystem>
+using namespace std;
+using namespace filesystem;
+;int main() {
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
     
     // Account a;
     // system("cls");
@@ -40,10 +46,27 @@ int main() {
     // p.printPatient();
     // f.close();
 
-    listAccount list_acc;
-    list_acc.setListAccountByFile();
-    system("cls");
-    list_acc.printAllAccount();
+    Patient pp;
+    pp.setID_patient("P006");
+    pp.setAddress("1234 Hà Nội");
+    pp.setFullName("Cháo Thỏ");
+    pp.setPhone("0987654321");
+    pp.setSex(true);
+    // listAccount list_acc;
+    // list_acc.setListAccountByFile();
+    // system("cls");
+    // list_acc.printAllAccount();
+    Appoinment app;
+    Date date(28, 10, 2024);
+    app.setDate(date);
+    app.setTime(2);
+    app.setDescription("Dau dau");
+    app.setPatientID(pp);
+    cout << app.setID() << endl;
+    cout << app.writeToFile() << endl;
+    // // printCalendar(10, 2024);
+
+
     system("pause");
     return 0;
 }

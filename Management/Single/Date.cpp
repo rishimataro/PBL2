@@ -90,6 +90,50 @@ bool Date::isCurrentDate() const {
     return (this->day == currentDay && this->month == currentMonth && this->year == currentYear);
 }
 
+void Date::setCurrentDate()
+{   
+    int day, month, year;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    // Gán giá trị ngày, tháng, năm hiện tại
+    day = ltm->tm_mday;
+    month = ltm->tm_mon + 1; // tm_mon: tháng tính từ 0, nên cần cộng 1
+    year = ltm->tm_year + 1900; // tm_year: năm kể từ 1900
+    this->setDay(day);
+    this->setMonth(month);
+    this->setYear(year);
+}
+
+bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+int getDaysInMonth(int month, int year) {
+    switch (month) {
+        case 1: return 31;
+        case 2: return isLeapYear(year) ? 29 : 28;
+        case 3: return 31;
+        case 4: return 30;
+        case 5: return 31;
+        case 6: return 30;
+        case 7: return 31;
+        case 8: return 31;
+        case 9: return 30;
+        case 10: return 31;
+        case 11: return 30;
+        case 12: return 31;
+        default: return 0;
+    }
+}
+int getStartDayOfMonth(int month, int year) {
+    int d = 1, m = month, y = year;
+    if (m < 3) {
+        m += 12;
+        y -= 1;
+    }
+    return (d + (13 * (m + 1)) / 5 + y + (y / 4) - (y / 100) + (y / 400)) % 7;
+}
+
 /* time_t timer;
 tm * time;
 time(&timer);

@@ -417,3 +417,76 @@ string setUnderline() {
 string setItalic() {
     return "\x1b[3m";
 }
+
+button::button(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+    :text(text), bgColor(bgColor), textColor(textColor), borderColor(borderColor), x(x), y(y), width(width), height(height) 
+{
+    
+}
+
+void button::set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height)
+{
+    this->text = text;
+    this->bgColor = bgColor;
+    this->textColor = textColor;
+    this->borderColor = borderColor;
+    this->x = x;
+    this->y = y;
+    this->width = width;
+    this->height = height;
+}
+void button::draw()
+{
+    box(this->x, this->y, this->width, this->height, this->text, this->bgColor, this->borderColor, this->textColor);
+}
+void button::changeColor(string newColor)
+{
+    this->bgColor = newColor;
+    // draw();
+}
+
+void button::changeText(string newText)
+{
+    this->text = newText;
+    // draw();
+}
+void button::changeBorderColor(string newColor)
+{
+    this->borderColor = newColor;
+    // draw();
+}
+
+void button::move(int dx, int dy)
+{
+    this->x += dx;
+    this->y += dy;
+    // draw();
+}
+
+bool button::isClicked(int x, int y)
+{
+    return (x >= this->x && x <= this->x + this->width && y >= this->y && y <= this->y + this->height);
+}
+
+void button::setPosition(int x, int y)
+ {
+    this->x = x;
+    this->y = y;
+    // draw();
+}
+
+void button::reSize(int newWidth, int newHeight)
+{
+    this->width = newWidth;
+    this->height = newHeight;
+    // draw();
+}
+void button::setClickable(bool newClickable)
+{
+    this->clickable = newClickable;
+    // draw();
+}
+button::~button()
+{
+
+}

@@ -111,24 +111,24 @@ void listAccount::signUp(Account &account) {
 
 }
 void listAccount::signIn(Account &account) {
-
+    
 }
 bool listAccount::checkSignIn(const string& id, const string& password, Account &account) {
-
+    return 0;
 }
 
 // * Check
 bool listAccount::checkID(const string& ID) {
-
+    return 0;
 }
 bool listAccount::checkUserName(const string& userName) {
-
+    return 0;
 }
 bool listAccount::checkPassword(const string& password) {
-
+    return 0;
 }
 bool listAccount::checkRole(const int& role) {
-
+    return 0;
 }
 
 // * Delete
