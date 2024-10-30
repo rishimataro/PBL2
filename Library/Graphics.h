@@ -9,6 +9,7 @@
 #include <windows.h>
 #include <io.h>
 #include <fcntl.h>
+#include "./Mouse.h"
 #define KEY_NONE -1
 using namespace std;
 
@@ -47,27 +48,30 @@ string setBold();
 string setUnderline();
 string setItalic();
 
+
 class button
 {   
     private:
-    string text;
-    string bgColor;
-    string textColor;
-    string borderColor;
-    int x, y, width, height;
+        string text;
+        string bgColor;
+        string textColor;
+        string borderColor;
+        int x, y, width, height;
     public:
-    button(string text = "Button", string bgColor = "E2F1E7", string textColor = "243642", string borderColor = "243642", int x = 0, int y = 0, int width = 8, int height = 3);
-    void set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height);
-    void draw();
-    void handleClick(int x, int y);
-    void changeColor(string newColor);
-    void changeText(string newText);
-    void changeBorderColor(string newColor);
-    void move(int dx, int dy);
-    bool isClicked(int x, int y);
-    void setPosition(int x, int y);
-    void reSize(int newWidth, int newHeight);
-    ~button();
+        button(string text = "Button", string bgColor = "E2F1E7", string textColor = "243642", string borderColor = "243642", int x = 0, int y = 0, int width = 8, int height = 3);
+        void set(string text, string bgColor, string textColor, string borderColor, int x, int y, int width, int height);
+        void draw();
+        void handleClick(int x, int y);
+        void changeColor(string newColor);
+        void changeText(string newText);
+        void changeBorderColor(string newColor);
+        void move(int dx, int dy);
+        bool isClicked(int x, int y);
+        void setPosition(int x, int y);
+        void reSize(int newWidth, int newHeight);
+        ~button();
 };
+
+button* setClick(Point point, button* buttons[], int buttonCount);
 
 #endif

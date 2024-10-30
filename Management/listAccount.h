@@ -12,23 +12,25 @@ class listAccount : public LinkedList<Account>
         ~listAccount();
 
         // * Setter & Getter
+        int setCountRole(int role);
         void setListAccountByFile();
         void saveListAccountToFile();
 
         // * Display
-        void printAccountByID();
+        void printAccountByRole(int role);
         void printAllAccount();
 
         // * Sign Up & Sign In
         void signUp(Account &account);
         void signIn(Account &account);
-        bool checkSignIn(const string& id, const string& password, Account &account);
+        void forgotPassword(Account &account);
+        bool checkSignIn(const string& userName, const string& password, const int& role, Account &account);
         
         // * Check
-        bool checkID(const string& ID);
-        bool checkUserName(const string& userName);
-        bool checkPassword(const string& password);
-        bool checkRole(const int& role);
+        int checkID(const string& ID);
+        int checkUserName(const string& userName);
+        int checkPassword(const string& password);
+        int checkRole(const int& role);
 
         // * Delete
         void removeAccountByID(const string& ID);
@@ -37,7 +39,7 @@ class listAccount : public LinkedList<Account>
         void updateAccountByID(const string& ID);
 
         // * Search
-        void searchAccountByID(const string& id);
+        void searchAccountByID(const string& ID);
         void searchAccountByUserName(const string& userName);
 };
 

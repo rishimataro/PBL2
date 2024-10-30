@@ -2,12 +2,13 @@
 // #include "./Management/Single/Date.h"
 // #include "./Management/Single/Patient.h"
 #include "./Management/listAccount.h"
+// #include "./Library/Header.h"
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     
-    // Account a;
+    Account a;
     // system("cls");
     // a.inputAccount();
     // a.printAccount();
@@ -42,8 +43,36 @@ int main() {
 
     listAccount list_acc;
     list_acc.setListAccountByFile();
-    system("cls");
-    list_acc.printAllAccount();
+    // system("cls");
+    // list_acc.printAllAccount();
+    // list_acc.removeAccountByID("ACC13");
+    // list_acc.setListAccountByFile();
+
+    // system("cls");
+    // list_acc.updateAccountByID("ACC12");
+    
+    // system("cls");
+    // list_acc.printAllAccount();
+
+    // system("cls");
+    // list_acc.searchAccountByID("ACC1");
+    // list_acc.searchAccountByUserName("P");
+    // list_acc.printAccountByRole(1);
+
+    Account acc;
+    // list_acc.signIn(acc);
+    list_acc.signUp(acc);
+    
+    // listAccount list_acc;
+    // list_acc.setListAccountByFile();
+    // system("cls"); // Clear screen to start fresh
+
+    // Test removeAccountByID function
+    // list_acc.removeAccountByID("ACC13");
+    
+    // Optionally, print all accounts to verify removal
+    // system("cls");
+    // list_acc.printAllAccount();
 
     return 0;
 }

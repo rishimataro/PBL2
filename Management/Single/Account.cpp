@@ -1,7 +1,7 @@
 #include "./Account.h"
 
 //* Constructor & Destructor
-Account::Account(string ID_acc, string userName, string password, int role)
+Account::Account(const string ID_acc, string userName, string password, int role)
 {
     this->ID_acc = ID_acc;
     this->userName = userName;
@@ -30,41 +30,28 @@ string Account::getID() const { return this->ID_acc; }
 string Account::getPassword() const { return this->password; }
 string Account::getUserName() const { return this->userName; }
 int Account::getRole() const { return this->role; }
+string Account::getRoleToString() const { 
+    string roleStr;
+    if(this->role == 0) roleStr = "Quản trị viên";
+    else if(this->role == 1) roleStr = "Bác sĩ";
+    else if(this->role == 2) roleStr = "Bệnh nhân";
+    return roleStr; 
+}
 
 //* Function
-
 // Nhập 1 account
 void Account::inputAccount() {
-    int x = 60, y = 5, w = 30, h = 2;
-    box_(x, y - 3, w, h, "       THÔNG TIN TÀI KHOẢN", "000000", "E8F9FD", "FF1E00");
-    box(x, y + 2, w, h, "  ID       : ", "000000", "E8F9FD", "E8F9FD"); 
-    box(x, y + 4, w, h, "  TÀI KHOẢN: ", "000000", "E8F9FD", "E8F9FD"); 
-    box(x, y + 6, w, h, "  MẬT KHẨU : ", "000000", "E8F9FD", "E8F9FD"); 
-    box(x, y + 8, w, h, "  VAI TRÒ  : ", "000000", "E8F9FD", "E8F9FD"); 
-
-    for(int i = 2; i <= 4; i ++ ){
-        gotoXY(x, y + (i*2)); cout << "├";
-        gotoXY(x + w, y + (i*2)); cout << "┤";
-    }
-
-    gotoXY(x + 14, y + 3); cin >> this->ID_acc;
-    gotoXY(x + 14, y + 5); cin >> this->userName;
-    gotoXY(x + 14, y + 7); cin >> this->password;
-    gotoXY(x + 14, y + 9); cin >> this->role;
+    int x = whereX(), y = whereY();
+    cout << setTextColor(BLACK) << setBackgroundColor(WHITE);
+    gotoXY(x + 12, y + 1); cout << this->ID_acc;
+    gotoXY(x + 12, y + 4); cin >> this->userName;
+    gotoXY(x + 12, y + 7); cin >> this->password;
+    gotoXY(x + 12, y + 10); cout << this->getRoleToString();
 }
 
 // Lấy 1 account từ file
 void Account::setAccount(const string& line)
 {
-    // string roleStr;
-    // getline(f, this->ID_acc, ';');
-    // getline(f, this->userName, ';');
-    // getline(f, this->password, ';');
-    // getline(f, roleStr, ';');
-
-    // // Chuyển đổi từ chuỗi sang số nguyên
-    // this->role = stoi(roleStr);
-
     stringstream ss(line);
     string token;
     getline(ss, token, ';'); this->ID_acc = token;
@@ -79,33 +66,45 @@ void Account::saveAccount(fstream &f)
     f << this->ID_acc << ";" << this->userName << ";" << this->password << ";" << this->role << endl;
 }
 
-// In thông tin 1 account
-void Account::printAccount()
+// In thông tin 1 account (ngang)
+void Account::printAccountHorizontal()
 {
-    /* int x = 60, y = 5, w = 30, h = 2;
-    box_(x, y - 3, w, h, 12, 14, 12, "       THÔNG TIN TÀI KHOẢN");
-    box(x, y + 2, w, h, 15, 1, 15, "  ID       : " + this->ID_acc);
-    box(x, y + 4, w, h, 15, 1, 15, "  TÀI KHOẢN: " + this->userName);
-    box(x, y + 6, w, h, 15, 1, 15, "  MẬT KHẨU : " + this->password);
-    box(x, y + 8, w, h, 15, 1, 15, "  VAI TRÒ  : " + to_string(this->role));
-
-    for(int i = 2; i <= 4; i ++ ){
-        gotoXY(x, y + (i*2)); cout << "├";
-        gotoXY(x + w, y + (i*2)); cout << "┤";
-    } */
-
    int x = whereX(), y = whereY();
-   gotoXY(x, y);
+   gotoXY(x + 4, y);
    cout << this->ID_acc;
-   gotoXY(x + 15, y);
+   gotoXY(x + 16, y);
    cout << this->userName;
-   gotoXY(x + 40, y);
+   gotoXY(x + 41, y);
    cout << this->password;
+   gotoXY(x + 61, y);
+   cout << getRoleToString() << endl;
+}
 
-   gotoXY(x + 60, y);
-   string roleStr;
-   if(this->role == 0) roleStr = "Quản trị viên";
-   else if(this->role == 1) roleStr = "Bác sĩ";
-   else roleStr = "Bệnh nhân";
-   cout << roleStr << endl << endl;
+void Account::printAccountVertical() {
+    int x = whereX(), y = whereY();
+    gotoXY(x + 12, y + 1);
+    cout << this->ID_acc;
+    gotoXY(x + 12, y + 4);
+    cout << this->userName;
+    gotoXY(x + 12, y + 7);
+    cout << this->password;
+    gotoXY(x + 12, y + 10);
+    cout << getRoleToString() << endl;
+}
+
+bool Account::operator==(const Account& another) {
+    return this->ID_acc == another.getID() && this->userName == another.getUserName()
+            && this->password == another.getPassword() && this->role == another.getRole();
+}
+
+Account& Account::operator=(const Account& another) {
+    if (this == &another) {
+        return *this; 
+    }
+
+    this->ID_acc = another.getID();
+    this->userName = another.getUserName();
+    this->password = another.getPassword();
+    this->role = another.getRole();
+    return *this;
 }

@@ -564,3 +564,16 @@ void button::reSize(int newWidth, int newHeight)
     // draw();
 }
 button::~button() {}
+
+// Hàm setClick kiểm tra click và trả về button được click
+button* setClick(Point point, button* buttons[], int buttonCount) {
+    int a = point.X;
+    int b = point.Y;
+    
+    for (int i = 0; i < buttonCount; i++) {
+        if (buttons[i]->isClicked(a, b)) {
+            return buttons[i];  // Trả về button đã được click
+        }
+    }
+    return nullptr; // Không có button nào được click
+}
