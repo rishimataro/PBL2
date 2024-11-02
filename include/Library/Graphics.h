@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <Header/Header.h>
 #define KEY_NONE -1
 using namespace std;
 
@@ -69,4 +70,7 @@ class button
     void setClickable(bool newClickable);
     ~button();
 };
+
+button* setClick(Point point, button* buttons[], int buttonCount);
+
 #endif

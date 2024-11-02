@@ -5,13 +5,13 @@
 class Account
 {
     private:
-        string ID_acc;
+        const string ID_acc;
         string userName;
         string password;
         int role;
     public:
         //* Constructor & Destructor
-        Account(string ID_acc = "", string userName = "", string password = "",  int role = 0);
+        Account(const string ID_acc = "", string userName = "", string password = "",  int role = 0);
         Account(const Account &another);
         ~Account();
 
@@ -26,6 +26,7 @@ class Account
         string getPassword() const;
         string getUserName() const;
         int getRole() const;
+        string getRoleToString() const;
 
         //* Function
         // Nhập 1 account
@@ -34,8 +35,14 @@ class Account
         void setAccount(const string& line);    
         // Lưu 1 account vào file
         void saveAccount(fstream &f);
-        // In thông tin 1 account
-        void printAccount();
+        // In thông tin 1 account (ngang)
+        void printAccountHorizontal();
+        // In thông tin 1 account (doc)
+        void printAccountVertical();
+
+        //* Operator
+        bool operator==(const Account& another);
+        Account& operator=(const Account& another);
 };
 
 #endif

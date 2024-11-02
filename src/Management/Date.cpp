@@ -89,7 +89,32 @@ bool Date::isCurrentDate() const {
 
     return (this->day == currentDay && this->month == currentMonth && this->year == currentYear);
 }
+Date& Date::operator=(const Date& date) {
+    this->day = date.day;
+    this->month = date.month;
+    this->year = date.year;
+    return *this;
+}
 
+bool Date::operator<=(const Date& other) const {
+    if (this->year < other.year) return true;
+    if (this->year > other.year) return false;
+
+    if (this->month < other.month) return true;
+    if (this->month > other.month) return false;
+
+    return this->day <= other.day;
+}
+
+bool Date::operator>=(const Date& other) const {
+    if (this->year > other.year) return true;
+    if (this->year < other.year) return false;
+
+    if (this->month > other.month) return true;
+    if (this->month < other.month) return false;
+
+    return this->day >= other.day;
+}
 void Date::setCurrentDate()
 {   
     int day, month, year;
