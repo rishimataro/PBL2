@@ -142,7 +142,7 @@ void listPatient::addPatient(const Patient &patient) {
 int listPatient::checkID(const string& ID) {
     for (int i = 0; i < this->size(); i++)
     {
-        if (this->get(i).getID() == ID)
+        if (this->get(i).getID_patient() == ID)
             return i;
     }
     return 0;
@@ -196,6 +196,12 @@ void listPatient::updatePatientByID(const string& ID) {
 }
 
 //* Search
+string toLowerCase(const string &str)
+{
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
 void listPatient::searchPatient(SearchField field, const string &value)
 {
     if (this->size() == 0) return;

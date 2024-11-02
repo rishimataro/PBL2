@@ -1,5 +1,6 @@
 #include <Management/listAccount.hpp>
 
+
 // * Constructor & Destructor
 listAccount::listAccount()
 {
@@ -702,7 +703,12 @@ SIGNUP:
 }
 
 // * Search (tuong doi)
-
+string toLowerCase(const string &str)
+{
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
 void listAccount::searchAccountByID(const string &ID)
 {
     if (this->size() == 0)
