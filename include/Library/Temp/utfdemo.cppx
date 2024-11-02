@@ -1,0 +1,106 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <conio.h>
+#include <io.h>        // _setmode
+#include <fcntl.h>     // _O_U16TEXT
+#include <sstream>
+#include <locale>
+#include <codecvt>
+using namespace std;
+// Di chuyển con trỏ đến vị trí (x, y)
+void MoveCursor(int x, int y) {
+    COORD coord = {x, y};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+// std::wstring s2ws(const std::string& str)
+// {
+//     using convert_typeX = std::codecvt_utf8<wchar_t>;
+//     std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+//     return converterX.from_bytes(str);
+// }
+
+// std::string ws2s(const std::wstring& wstr)
+// {
+//     using convert_typeX = std::codecvt_utf8<wchar_t>;
+//     std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+//     return converterX.to_bytes(wstr);
+// }
+std::string WStringToUTF8(const std::wstring& wide_string) {
+    if (wide_string.empty()) return std::string();
+
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wide_string[0], 
+                                          (int)wide_string.size(), nullptr, 0, nullptr, nullptr);
+    std::string utf8_string(size_needed, 0);
+    WideCharToMultiByte(CP_UTF8, 0, &wide_string[0], (int)wide_string.size(), 
+                        &utf8_string[0], size_needed, nullptr, nullptr);
+
+    return utf8_string;
+}
+void print_wstring(const std::wstring& wstr) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD written;
+    WriteConsoleW(hConsole, wstr.c_str(), wstr.size(), &written, nullptr);
+}
+int main() {
+    // Thiết lập mã hóa UTF-8 cho console
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    // _setmode(_fileno(stdout), _O_U16TEXT);
+    // std::ios::sync_with_stdio(false);
+    // std::cout.tie();
+    std::wstring input = L"Chuỗi ban đầu";  // Chuỗi mặc định
+    int cursorPos = input.length();  // Vị trí con trỏ ban đầu
+    int x = 0, y = 0;                // Tọa độ màn hình
+
+    // In chuỗi ban đầu ra màn hình
+    // std::wcerr << L"Nhập tiếng Việt: " << input;
+    print_wstring(L"Nhập tiếng Việt: " + input);
+    x += 17;  // Đặt con trỏ sau "Nhập tiếng Việt: "
+    MoveCursor(x + cursorPos, y); // Đặt con trỏ ở cuối chuỗi
+
+    wchar_t ch;
+    while (true) {
+        ch = _getwch();  // Đọc ký tự Unicode
+        _kbhit();
+        if (ch == L'\r') {  // Nhấn Enter để kết thúc chỉnh sửa
+            break;
+        } else if (ch == 224 || ch == 0) {  // Bắt phím mũi tên
+            ch = _getwch();
+            if (ch == 75 && cursorPos > 0) {  // Mũi tên trái
+                cursorPos--;
+                MoveCursor(x + cursorPos, y);
+            } else if (ch == 77 && cursorPos < input.length()) {  // Mũi tên phải
+                cursorPos++;
+                MoveCursor(x + cursorPos, y);
+            }
+        } else if (ch == L'\b' && cursorPos > 0) {  // Backspace
+            input.erase(cursorPos - 1, 1);
+            cursorPos--;
+            MoveCursor(x, y);
+            // std::wcerr << input << L" ";  // Xóa ký tự cuối
+            print_wstring(input + L" ");
+            MoveCursor(x + cursorPos, y);
+        } else if (ch >= 32) {  // Các ký tự in được
+            input.insert(cursorPos, 1, ch);
+            cursorPos++;
+            MoveCursor(x, y);
+            // std::wcerr << input << L" ";  // Cập nhật chuỗi Unicode
+            print_wstring(input + L" ");
+            MoveCursor(x + cursorPos, y);
+        }
+    }
+
+    string str = WStringToUTF8(input);
+
+    // In chuỗi sau khi chỉnh sửa
+    // std::wcerr << L"\nChuỗi đã chỉnh sửa: " << input << std::endl;
+    print_wstring(L"\nChuỗi đã chỉnh sửa: " + input + L"\n");
+    std::cout << u8"Chuỗi utf-8 stdstring: " << str << std::endl;
+    system("pause");
+    return 0;
+}
+
+
