@@ -1,4 +1,4 @@
-#include <Library/Graphics.h>
+#include <Library/Graphics.hpp>
 
 //* Lấy tọa độ x của con trỏ hiện tại 
 int whereX()

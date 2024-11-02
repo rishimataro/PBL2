@@ -1,4 +1,4 @@
-#include "./listPatient.h"
+#include <Management/listPatient.hpp>
 
 //* Constructor & Destructor  
 listPatient::listPatient() {
@@ -74,19 +74,19 @@ void listPatient::savePatientToFile(int index) {
 }
 
 //* Display
-void listPatient::printPatientBySex(bool sex) const {
+void listPatient::printPatientByGender(bool gender) const {
     if(this->size == 0) return;
-    string sex_str = sex ? "Nữ" : "Nam";
+    string gender_str = gender ? "Nữ" : "Nam";
 
     for(int i = 0; i < this->size; i++) {
         Patient patient = this->get(i); 
-        if(patient.getSexToString() == sex_str) {
+        if(patient.getGenderToString() == gender_str) {
             cout << "ID: " << patient.getID_patient() << endl;
             cout << "Họ tên: " << patient.getFullName() << endl;
             cout << "SĐT: " << patient.getPhone() << endl;
             cout << "Ngày sinh: " << patient.getDayOfBirth().getDate() << endl;
             cout << "CCCD: " << patient.getCCCD() << endl;
-            cout << "Giới tính: " << sex_str << endl;
+            cout << "Giới tính: " << gender_str << endl;
             cout << "Địa chỉ: " << patient.getAddress() << endl;
             cout << "------------------------" << endl;
         }
@@ -175,20 +175,20 @@ void listPatient::updatePatientByID(const string& ID) {
         return;
     
     Patient currentPatient = this->get(index);
-    string newFullName, newPhone, newDayOfBirth, newCCCD, newSex, newAddress;
+    string newFullName, newPhone, newDayOfBirth, newCCCD, newgender, newAddress;
 
     cout << "Họ tên: "; cin >> newFullName;
     cout << "SĐT: "; cin >> newPhone;
     cout << "Ngày sinh: "; cin >> newDayOfBirth;    
     cout << "CCCD: "; cin >> newCCCD;    
-    cout << "Giới tính: "; cin >> newSex;    
+    cout << "Giới tính: "; cin >> newgender;    
     cout << "Địa chỉ: "; cin.ignore(); getline(cin, newAddress);
 
     currentPatient.setFullName(newFullName);
     currentPatient.setPhone(newPhone);
     currentPatient.setDayOfBirth(newDayOfBirth);
     currentPatient.setCCCD(newCCCD);
-    currentPatient.setSex(newSex);
+    currentPatient.setGender(newGender);
     currentPatient.setAddress(newAddress);
 
     this->savePatientToFile(index);

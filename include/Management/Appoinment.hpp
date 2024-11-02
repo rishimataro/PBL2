@@ -1,8 +1,8 @@
 #pragma once
-#include <Management/Date.h>
-#include <Management/Patient.h>
-#include <Library/Filelib.h>
-#include <Library/Graphics.h>
+#include <Management/Date.hpp>
+#include <Management/Patient.hpp>
+#include <Library/Filelib.hpp>
+#include <Library/Graphics.hpp>
 #include <filesystem>
 using namespace filesystem;
 

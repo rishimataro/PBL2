@@ -1,10 +1,10 @@
 #ifndef MEDICALRECORD_H
 #define MEDICALRECORD_H
 
-#include <Header/Header.h>
-#include <Management/Date.h>
-#include <Management/Patient.h> // Thêm để sử dụng lớp Patient
-
+#include <Header/Header.hpp>
+#include <Management/Date.hpp>
+#include <Management/Patient.hpp> // Thêm để sử dụng lớp Patient
+#include <Library/Graphics.hpp>
 class MedicalRecord {
 private:
     string ID_record;         // ID bệnh án (MR02)

@@ -1,9 +1,9 @@
 #ifndef LISTPATIENT_H
 #define LISTPATIENT_H
 
-#include "./Single/Patient.h"
-#include "../Template/LinkedList.cpp"
-#include "../Library/Header.h"
+#include <Management/Patient.hpp>
+#include <Template/LinkedList.hpp>
+#include <Header/Header.hpp>
 
 enum class SearchField { ID, FullName, CCCD };
 
@@ -20,7 +20,7 @@ class listPatient : public LinkedList<Patient>
         void savePatientToFile(int index); // lưu file lẻ
 
         //* Display
-        void printPatientBySex(bool sex) const;
+        void printPatientByGender(bool gender) const;
         void printPatientByBirthRange(const string &startDate, const string &endDate);
         void printAllPatient() const;
 

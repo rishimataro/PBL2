@@ -1,8 +1,8 @@
 #include <ftxui/component/component.hpp>        // for Button, Renderer, Input, etc.
 #include <ftxui/component/screen_interactive.hpp> // for ScreenInteractive
 #include <ftxui/dom/elements.hpp>
-#include <Management/Appoinment.h>
-#include <Management/Patient.h>
+#include <Management/Appoinment.hpp>
+#include <Management/Patient.hpp>
 #include <chrono>                               // for system_clock
 #include <iomanip>                              // for put_time
 #include <ctime>                                // for time_t

@@ -1,4 +1,4 @@
-#include "./listMedicalRecord.h"
+#include <Management/listMedicalRecord.hpp>
 
 //* Constructor & Destructor  
 listMedicalRecord::listMedicalRecord() {
@@ -57,7 +57,7 @@ void listMedicalRecord::saveListMedicalRecordToFile() {
 
 void listMedicalRecord::saveMedicalRecordToFile(int index) {
     string path = "./Database/MedicalRecordDB/";
-    string fileName = path + this->get(index).getRecordID() + ".txt"; // Cần định nghĩa hàm getRecordID trong lớp MedicalRecord
+    string fileName = path + this->get(index).getID_record() + ".txt"; // Cần định nghĩa hàm getRecordID trong lớp MedicalRecord
     fstream fout;
     fout.open(fileName, ios::out);
 

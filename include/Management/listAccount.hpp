@@ -1,8 +1,8 @@
 #ifndef LISTACCOUNT_H
 #define LISTACCOUNT_H
-#include <Management/Account.h>
+#include <Management/Account.hpp>
 #include <Template/LinkedList.hpp>
-#include <Header/Header.h>
+#include <Header/Header.hpp>
 
 class listAccount : public LinkedList<Account>
 {

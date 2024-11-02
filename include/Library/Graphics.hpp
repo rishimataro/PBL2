@@ -7,7 +7,8 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <Header/Header.h>
+#include <Header/Header.hpp>
+#include <Library/Mouse.hpp>
 #define KEY_NONE -1
 using namespace std;
 

@@ -1,11 +1,11 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H   
-#include <Header/Header.h>
-
+#include <Header/Header.hpp>
+#include <Library/Graphics.hpp>
 class Account
 {
     private:
-        const string ID_acc;
+        string ID_acc;
         string userName;
         string password;
         int role;

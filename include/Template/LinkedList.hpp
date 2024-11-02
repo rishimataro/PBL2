@@ -55,6 +55,9 @@ class LinkedList
         // Lấy kích thước
         int size();
 
+        // Cập nhật Node
+        void set(int index, T value);
+
         // In danh sách
         void display();
 };

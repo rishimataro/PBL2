@@ -1,9 +1,9 @@
 #ifndef LISTMEDICALRECORD_H
 #define LISTMEDICALRECORD_H
 
-#include "./Single/MedicalRecord.h"
-#include "../Template/LinkedList.cpp"
-#include "../Library/Header.h"
+#include <Management/MedicalRecord.hpp>
+#include <Template/LinkedList.hpp>
+#include <Header/Header.hpp>
 
 enum class SearchField { RecordID, PatientID, Symptoms };
 

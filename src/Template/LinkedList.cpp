@@ -185,6 +185,24 @@ T LinkedList<T>::get(int index) {
     return T();
 }
 
+template<class T>
+void LinkedList<T>::set(int index, T value) {
+    if (isEmpty() || index < 0 || index >= count) {
+        throw out_of_range("Index out of range");
+    }
+
+    Node<T>* current = head;
+    int idx = 0;
+    do {
+        if (idx == index) {
+            current->data = value;
+            return;
+        }
+        current = current->next;
+        idx++;
+    } while (current != head);
+}
+
 // Lấy kích thước
 template<class T>
 int LinkedList<T>::size() { 

@@ -29,28 +29,34 @@ target_include_directories(header_lib
 #     include/Library/Header.h    
 # )
 add_library(lib
-    include/Library/Filelib.h
-    include/Library/Graphics.h
-    include/Library/Mouse.hpp
-    src/Library/Filelib.cpp
-    src/Library/Graphics.cpp
-    src/Library/Mouse.cpp
+    # include/Library/Filelib.h
+    # include/Library/Graphics.h
+    # include/Library/Mouse.hpp
+    # src/Library/Filelib.cpp
+    # src/Library/Graphics.cpp
+    # src/Library/Mouse.cpp
+    include/Library/*.hpp
+    src/Library/*cpp
 )
 target_include_directories(lib 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
 add_library(manag
-    include/Management/Account.h
-    include/Management/Appoinment.h
-    include/Management/Date.h
-    include/Management/listAccount.h
-    include/Management/Patient.h
-    src/Management/Account.cpp
-    src/Management/Appoinment.cpp
-    src/Management/Date.cpp
-    src/Management/listAccount.cpp
-    src/Management/Patient.cpp
+    # include/Management/Account.h
+    # include/Management/Appoinment.h
+    # include/Management/Date.h
+    # include/Management/listAccount.h
+    # include/Management/Patient.h
+    # src/Management/Account.cpp
+    # src/Management/Appoinment.cpp
+    # src/Management/Date.cpp
+    # src/Management/listAccount.cpp
+    # src/Management/Patient.cpp
+    # include/Management/*.h
+    include/Management/*.hpp
+    src/Management/*.cpp
 )
 target_include_directories(manag 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -75,6 +81,8 @@ target_include_directories(ui
 target_link_libraries(lib
     # PUBLIC stdc++fs
     PUBLIC header_lib)
+
+
 target_link_libraries(manag
     # PRIVATE header_lib
     PRIVATE lib
@@ -91,7 +99,7 @@ target_link_libraries(ui
     PRIVATE ftxui::screen
     PRIVATE ftxui::dom
     PRIVATE ftxui::component
-)  
+) 
 target_link_libraries(main
     # PRIVATE header_lib
     PRIVATE lib

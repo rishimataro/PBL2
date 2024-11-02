@@ -1,4 +1,4 @@
-#include "./MedicalRecord.h"
+#include <Management/MedicalRecord.hpp>
 
 // Constructor & Destructor
 MedicalRecord::MedicalRecord(string ID_record, string ID_patient, Patient* patient, string symptoms, string diagnosis, string dateOfRecord) {
@@ -62,7 +62,7 @@ void MedicalRecord::printMedicalRecord() {
         gotoXY(x + 41, y);
         cout << patient->getFullName();
         gotoXY(x + 61, y);
-        cout << patient->getSexToString();
+        cout << patient->getGenderToString();
     }
 
     gotoXY(x + 81, y);
