@@ -5,7 +5,7 @@
 #include <ftxui/component/component.hpp>        // for Button, Renderer, Input, etc.
 #include <ftxui/component/screen_interactive.hpp> // for ScreenInteractive
 #include <ftxui/dom/elements.hpp>
-#include <Management/Appoinment.h>
+#include <Management/Appoinment.hpp>
 #include <Interface/Patient_interface.hpp>
 // #include <fstream>
 // #include <iostream>
@@ -51,7 +51,7 @@ using namespace std;
     // f.close();
 
     Patient pp;
-    pp.setID_patient("P006");
+    pp.setID_patient("P06");
     pp.setAddress("1234 Hà Nội");
     pp.setFullName("Cháo Thỏ");
     pp.setPhone("0987654321");

@@ -86,17 +86,34 @@ CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Interface\Patient_interface.cpp -o CMakeFiles\ui.dir\src\Interface\Patient_interface.cpp.s
 
+CMakeFiles/ui.dir/src/Interface/Login.cpp.obj: CMakeFiles/ui.dir/flags.make
+CMakeFiles/ui.dir/src/Interface/Login.cpp.obj: CMakeFiles/ui.dir/includes_CXX.rsp
+CMakeFiles/ui.dir/src/Interface/Login.cpp.obj: D:/Test_Code/PBL/PBL2/src/Interface/Login.cpp
+CMakeFiles/ui.dir/src/Interface/Login.cpp.obj: CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ui.dir/src/Interface/Login.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ui.dir/src/Interface/Login.cpp.obj -MF CMakeFiles\ui.dir\src\Interface\Login.cpp.obj.d -o CMakeFiles\ui.dir\src\Interface\Login.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Interface\Login.cpp
+
+CMakeFiles/ui.dir/src/Interface/Login.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ui.dir/src/Interface/Login.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\src\Interface\Login.cpp > CMakeFiles\ui.dir\src\Interface\Login.cpp.i
+
+CMakeFiles/ui.dir/src/Interface/Login.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ui.dir/src/Interface/Login.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Interface\Login.cpp -o CMakeFiles\ui.dir\src\Interface\Login.cpp.s
+
 # Object files for target ui
 ui_OBJECTS = \
-"CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj"
+"CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj" \
+"CMakeFiles/ui.dir/src/Interface/Login.cpp.obj"
 
 # External object files for target ui
 ui_EXTERNAL_OBJECTS =
 
 libui.a: CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj
+libui.a: CMakeFiles/ui.dir/src/Interface/Login.cpp.obj
 libui.a: CMakeFiles/ui.dir/build.make
 libui.a: CMakeFiles/ui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libui.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libui.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\ui.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ui.dir\link.txt --verbose=$(VERBOSE)
 

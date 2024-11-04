@@ -308,6 +308,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Interface/Login.obj: src/Interface/Login.cpp.obj
+.PHONY : src/Interface/Login.obj
+
+# target to build an object file
+src/Interface/Login.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Login.cpp.obj
+.PHONY : src/Interface/Login.cpp.obj
+
+src/Interface/Login.i: src/Interface/Login.cpp.i
+.PHONY : src/Interface/Login.i
+
+# target to preprocess a source file
+src/Interface/Login.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Login.cpp.i
+.PHONY : src/Interface/Login.cpp.i
+
+src/Interface/Login.s: src/Interface/Login.cpp.s
+.PHONY : src/Interface/Login.s
+
+# target to generate assembly for a file
+src/Interface/Login.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Login.cpp.s
+.PHONY : src/Interface/Login.cpp.s
+
 src/Interface/Patient_interface.obj: src/Interface/Patient_interface.cpp.obj
 .PHONY : src/Interface/Patient_interface.obj
 
@@ -573,6 +597,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/Interface/Login.obj
+	@echo ... src/Interface/Login.i
+	@echo ... src/Interface/Login.s
 	@echo ... src/Interface/Patient_interface.obj
 	@echo ... src/Interface/Patient_interface.i
 	@echo ... src/Interface/Patient_interface.s

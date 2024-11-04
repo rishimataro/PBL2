@@ -1,4 +1,13 @@
 #include <Management/Account.hpp>
+int safe_stoi(const std::string &str) {
+    try {
+        return std::stoi(str);
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
+        return 0; // Giá trị mặc định hoặc xử lý lỗi
+    }
+}
+
 //* Constructor & Destructor
 Account::Account(const string ID_acc, string userName, string password, int role)
 {
@@ -56,7 +65,7 @@ void Account::setAccount(const string& line)
     getline(ss, token, ';'); this->ID_acc = token;
     getline(ss, token, ';'); this->userName = token;
     getline(ss, token, ';'); this->password = token;
-    getline(ss, token, ';'); this->role = stoi(token);
+    getline(ss, token, ';'); this->role = safe_stoi(token);
 }
 
 // Lưu 1 account vào file

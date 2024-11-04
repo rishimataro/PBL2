@@ -1,4 +1,12 @@
 #include <Management/Date.hpp>
+// int safe_stoi(const std::string &str) {
+//     try {
+//         return std::stoi(str);
+//     } catch (const std::invalid_argument& e) {
+//         std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
+//         return 0; // Giá trị mặc định hoặc xử lý lỗi
+//     }
+// }
 
 // Constructors & Destructors
 Date::Date(int day, int month, int year) {
@@ -20,6 +28,8 @@ void Date::setDay(const int& day) { this->day = day; }
 void Date::setMonth(const int& month) { this->month = month; }
 void Date::setYear(const int& year) { this->year = year; }
 void Date::setDate(const string& date) {
+    if (date == "") return;
+    
     string day_str, month_str, year_str;
     size_t found = date.find('/');
     if (found != string::npos) {
@@ -34,6 +44,7 @@ void Date::setDate(const string& date) {
     this->month = stoi(month_str);
     this->year = stoi(year_str);
 }
+
 // Getters
 int Date::getDay() const { return this->day; }
 int Date::getMonth() const { return this->month; }
@@ -89,6 +100,7 @@ bool Date::isCurrentDate() const {
 
     return (this->day == currentDay && this->month == currentMonth && this->year == currentYear);
 }
+
 Date& Date::operator=(const Date& date) {
     this->day = date.day;
     this->month = date.month;
@@ -114,20 +126,6 @@ bool Date::operator>=(const Date& other) const {
     if (this->month < other.month) return false;
 
     return this->day >= other.day;
-}
-void Date::setCurrentDate()
-{   
-    int day, month, year;
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-
-    // Gán giá trị ngày, tháng, năm hiện tại
-    day = ltm->tm_mday;
-    month = ltm->tm_mon + 1; // tm_mon: tháng tính từ 0, nên cần cộng 1
-    year = ltm->tm_year + 1900; // tm_year: năm kể từ 1900
-    this->setDay(day);
-    this->setMonth(month);
-    this->setYear(year);
 }
 
 bool isLeapYear(int year) {

@@ -23,3 +23,12 @@ using namespace std;
 #define GREY "686D76"
 #define ORANGE "FF8225"
 #define PURPLE "615EFC"
+
+// int safe_stoi(const std::string &str) {
+//     try {
+//         return std::stoi(str);
+//     } catch (const std::invalid_argument& e) {
+//         std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
+//         return 0; // Giá trị mặc định hoặc xử lý lỗi
+//     }
+// }

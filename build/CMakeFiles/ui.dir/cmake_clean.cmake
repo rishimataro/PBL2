@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj"
+  "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj.d"
   "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj"
   "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj.d"
   "libui.a"

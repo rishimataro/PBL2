@@ -1,4 +1,12 @@
 #include <Interface/Patient_interface.hpp>
+int safe_stoi(const std::string &str) {
+    try {
+        return std::stoi(str);
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
+        return 0; // Giá trị mặc định hoặc xử lý lỗi
+    }
+}
 
 std::wstring FormatDate(const std::tm& date) {
     std::wstringstream ss;
@@ -21,9 +29,9 @@ bool ValidateDate(const std::string& date) {
         return false;
     }
 
-    int day = std::stoi(date.substr(0, 2));
-    int month = std::stoi(date.substr(3, 2));
-    int year = std::stoi(date.substr(6, 4));
+    int day = safe_stoi(date.substr(0, 2));
+    int month = safe_stoi(date.substr(3, 2));
+    int year = safe_stoi(date.substr(6, 4));
 
     if (month == 2) {
         bool is_leap_year = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
