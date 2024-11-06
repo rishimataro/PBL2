@@ -21,13 +21,12 @@ listPatient::~listPatient() {
     this->head = NULL;
 }
 
-//* Setter & Getter
-void listPatient::setListPatientByFile() {
+//* Read & Write
+bool listPatient::readListPatientFromFile() {
     fstream fin;
-    fin.open("./Database/PatientDB/patient.txt", ios::in);
+    fin.open("../Database/PatientDB/patient.txt", ios::in);
 
-    if (!fin.is_open())
-        return;
+    if (!fin.is_open()) return false;
 
     string line;
     while (getline(fin, line))
@@ -36,122 +35,190 @@ void listPatient::setListPatientByFile() {
             continue;
 
         Patient patient;
-        cout << 1 << endl;
-        patient.setPatient(line);
+        patient.readPatientFromFile(line);
         this->append(patient);
     }
     fin.close();
+    return true;
 }
 
-void listPatient::saveListPatientToFile() {
-    fstream fout;
-    fout.open("./Database/PatientDB/patient.txt", ios::out);
+bool listPatient::writeListPatientToFile(bool check) {
+    string file_path = "../Database/PatientDB/patient.txt";
+    char ch;
 
-    if (!fout.is_open())
-        return;
-
-    for (int i = 0; i < this->size(); i++)
-    {
-        this->get(i).saveAllPatient(fout);
+    ifstream fi(file_path); 
+    if (fi.is_open()) {
+        fi.seekg(-1, ios::end);
+        fi.get(ch); 
+        if (ch != '\n' && ch != '\0') {
+            ofstream temp(file_path, ios::app);
+            temp << "\n";
+            temp.close();
+        }
+        fi.close();
     }
 
-    fout.close();
-    cout << "Lưu thành công!" << endl;
+    ofstream fo(file_path, ios::app);
+    if (!fo.is_open()) {
+        return false;
+    }
+
+    if (check) {
+        Patient patient;
+        for (int i = 0; i < this->size(); i++) {
+            patient = this->get(i);
+            patient.writePatientToFile_all(fo);
+        }
+    } else {
+        Patient patient = this->get(this->size() - 1);
+        patient.writePatientToFile_all(fo);
+    }
+
+    fo.close();
+
+    return true;
 }
 
-void listPatient::savePatientToFile(int index) {
-    string path = "./Database/PatientDB/";
+bool listPatient::writePatientToFile(int index) {
+    string path = "../Database/PatientDB/";
     string fileName = path + this->get(index).getID_patient() + ".txt";
+    // fileName = absolute(fileName);
+    
     fstream fout;
     fout.open(fileName, ios::out);
 
     if (!fout.is_open()) {
-        return;
+        return false;
     }
 
-    this->get(index).savePatient(fout);
+    this->get(index).writePatientToFile(fout);
     fout.close();
+    return true;
 }
 
-//* Display
-void listPatient::printPatientByGender(bool gender) const {
-    if(this->size == 0) return;
-    string gender_str = gender ? "Nữ" : "Nam";
+//* Setter & Getter
+vector<Patient> listPatient::setPatientByGender(bool gender) {
+    vector<Patient> result;
+    if(this->size() == 0) return result;
 
-    for(int i = 0; i < this->size; i++) {
+    for(int i = 0; i < this->size(); i++) {
         Patient patient = this->get(i); 
-        if(patient.getGenderToString() == gender_str) {
-            cout << "ID: " << patient.getID_patient() << endl;
-            cout << "Họ tên: " << patient.getFullName() << endl;
-            cout << "SĐT: " << patient.getPhone() << endl;
-            cout << "Ngày sinh: " << patient.getDayOfBirth().getDate() << endl;
-            cout << "CCCD: " << patient.getCCCD() << endl;
-            cout << "Giới tính: " << gender_str << endl;
-            cout << "Địa chỉ: " << patient.getAddress() << endl;
-            cout << "------------------------" << endl;
+        if(patient.getGender() == gender) {
+            result.push_back(patient);
         }
-    }   
+    }
+
+    return result;
 }
 
-
-void listPatient::printPatientByBirthRange(const string &startDate, const string &endDate) {
-    if (this->size() == 0) return;
-
-    Patient patient;
-    Date birthDate;
+vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, const string &endDate) {
+    vector<Patient> result;
+    if (this->size() == 0) return result;
 
     Date startDateObj, endDateObj;
     startDateObj.setDate(startDate);
     endDateObj.setDate(endDate);
 
-    cout << "Danh sách bệnh nhân có ngày sinh từ " << startDate << " đến " << endDate << endl;
+    int left = 0, right = this->size() - 1;
 
-    bool found = false;
-    for (int i = 0; i < this->size(); i++) {
-        patient = this->get(i);
-        birthDate = patient.getDayOfBirth();
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        Date birthDate = this->get(mid).getDayOfBirth();
 
         if (birthDate >= startDateObj && birthDate <= endDateObj) {
-            patient.printPatientHorizontal();
-            found = true;
+            result.push_back(this->get(mid));
+
+            int temp = mid - 1;
+            while (temp >= left && this->get(temp).getDayOfBirth() >= startDateObj && this->get(temp).getDayOfBirth() <= endDateObj) {
+                result.push_back(this->get(temp));
+                temp--;
+            }
+            temp = mid + 1;
+            while (temp <= right && this->get(temp).getDayOfBirth() >= startDateObj && this->get(temp).getDayOfBirth() <= endDateObj) {
+                result.push_back(this->get(temp));
+                temp++;
+            }
+            break;
         }
+
+        if (birthDate < startDateObj)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
 
-    if (!found) {
-        cout << "Không tìm thấy bệnh nhân nào trong khoảng ngày sinh này." << endl;
-    }
+    return result;
 }
 
-void listPatient::printAllPatient() const {
-    if (this->size() == 0) return;
+vector<Patient> listPatient::setAllPatient() {
+    vector<Patient> result;
+    if (this->size() == 0) return result;
 
-    for(int i = 0; i < this->size; i++) {
-        Patient patient = this->get(i);
-        patient.printPatientHorizontal();
-        cout << "------------------------" << endl;
-    }   
+    result.reserve(this->size());
+    for(int i = 0; i < this->size(); i++) {
+        result.push_back(this->get(i));
+    }
+    return result;
 }
 
 //* Add
-void listPatient::addPatient(const Patient &patient) {
-    this->append(patient);
-    cout << "Thêm thành công!" << endl;
+void listPatient::addPatient() {
+    Patient newPatient;
+    string newFullName, newPhone, newDayOfBirth, newCCCD, newGender, newAddress;
+    bool newGender_bool;
+
+ADD:
+    cout << "Họ tên: "; getline(cin, newFullName);
+    cout << "SĐT: "; cin >> newPhone;
+    cout << "Ngày sinh: "; cin.ignore(); getline(cin, newDayOfBirth);
+    cout << "CCCD: "; cin >> newCCCD;
+    cout << "Giới tính: "; cin >> newGender; newGender_bool = (newGender == "Nam") ? false : true;
+    cout << "Địa chỉ: "; cin.ignore(); getline(cin, newAddress);
+
+    cout << "Bạn có muốn thêm bệnh nhân này không? (Y/N): ";
+    char choice;
+    cin >> choice;
+
+    if (choice == 'N' || choice == 'n') return;
+    else if (choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
+        cout << "Lựa chọn không hợp lệ. Vui lòng nhập lại." << endl;
+        goto ADD;
+    }
+    else if (choice == 'Y' || choice == 'y') {
+        newPatient.setID_patient();
+        newPatient.setFullName(newFullName);
+        newPatient.setPhone(newPhone);
+        newPatient.setDayOfBirth(newDayOfBirth);
+        newPatient.setCCCD(newCCCD);
+        newPatient.setGender(newGender_bool);
+        newPatient.setAddress(newAddress);
+
+        this->append(newPatient);
+        this->writePatientToFile(this->size() - 1);
+        this->writeListPatientToFile(false);
+        return;
+    }
 }
 
 //* Check
 int listPatient::checkID(const string& ID) {
-    for (int i = 0; i < this->size(); i++)
-    {
-        if (this->get(i).getID_patient() == ID)
-            return i;
+    int left = 0, right = this->size() - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        string midID = this->get(mid).getID_patient();
+        if (midID == ID)
+            return mid;
+        if (midID < ID)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
-    return 0;
+    return -1;
 }
-
 
 //* Delete
 void listPatient::removePatientByID(const string& ID) {
-    Node<Account> *current = this->head;
+    Node<Patient> *current = this->head;
     if (current == NULL)
         return;
     
@@ -160,13 +227,13 @@ void listPatient::removePatientByID(const string& ID) {
         return;
     
     this->remove(index);
-    cout << "Xóa thành công!" << endl;
+
     return;
 }
 
 //* Update
 void listPatient::updatePatientByID(const string& ID) {
-    Node<Account> *current = this->head;
+    Node<Patient> *current = this->head;
     if (current == NULL)
         return;
     
@@ -175,23 +242,24 @@ void listPatient::updatePatientByID(const string& ID) {
         return;
     
     Patient currentPatient = this->get(index);
-    string newFullName, newPhone, newDayOfBirth, newCCCD, newgender, newAddress;
+    string newFullName, newPhone, newDayOfBirth, newCCCD, newGender, newAddress;
+    bool newGender_bool;
 
-    cout << "Họ tên: "; cin >> newFullName;
-    cout << "SĐT: "; cin >> newPhone;
-    cout << "Ngày sinh: "; cin >> newDayOfBirth;    
-    cout << "CCCD: "; cin >> newCCCD;    
-    cout << "Giới tính: "; cin >> newgender;    
+    cout << "Họ tên: "; cin.ignore(); getline(cin, newFullName);
+    cout << "SĐT: "; cin >> newPhone;   
+    cout << "Ngày sinh: "; cin.ignore(); getline(cin, newDayOfBirth);    
+    cout << "CCCD: "; cin >> newCCCD;   
+    cout << "Giới tính: "; cin >> newGender; newGender_bool = (newGender == "Nam") ? false : true;
     cout << "Địa chỉ: "; cin.ignore(); getline(cin, newAddress);
 
     currentPatient.setFullName(newFullName);
     currentPatient.setPhone(newPhone);
     currentPatient.setDayOfBirth(newDayOfBirth);
     currentPatient.setCCCD(newCCCD);
-    currentPatient.setGender(newGender);
+    currentPatient.setGender(newGender_bool);
     currentPatient.setAddress(newAddress);
 
-    this->savePatientToFile(index);
+    this->writePatientToFile(index);
     return;
 }
 
@@ -202,38 +270,49 @@ string toLowerCase(const string &str)
     transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }
-void listPatient::searchPatient(SearchField field, const string &value)
-{
-    if (this->size() == 0) return;
+vector<Patient> listPatient::searchPatient(SearchField field, const string& value) {
+    vector<Patient> result;
+    if (this->size() == 0) return result;
 
-    bool found = false;
     string lowerValue = toLowerCase(value);
-    string fieldValue;
+    int left = 0, right = this->size() - 1;
 
-    for (int i = 0; i < this->size(); i++)
-    {
-        switch (field)
-        {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        string fieldValue;
+
+        switch (field) {
             case SearchField::ID:
-                fieldValue = toLowerCase(this->get(i).getID_patient());
+                fieldValue = toLowerCase(this->get(mid).getID_patient());
                 break;
             case SearchField::FullName:
-                fieldValue = toLowerCase(this->get(i).getFullName());
+                fieldValue = toLowerCase(this->get(mid).getFullName());
                 break;
             case SearchField::CCCD:
-                fieldValue = toLowerCase(this->get(i).getCCCD());
+                fieldValue = toLowerCase(this->get(mid).getCCCD());
                 break;
         }
 
-        if (fieldValue.find(lowerValue) == 0)
-        {
-            this->get(i).printPatientHorizontal();
-            found = true;
+        if (fieldValue.find(lowerValue) == 0) {
+            result.push_back(this->get(mid));
+            int temp = mid - 1;
+            while (temp >= left && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0) {
+                result.push_back(this->get(temp));
+                temp--;
+            }
+            temp = mid + 1;
+            while (temp <= right && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0) {
+                result.push_back(this->get(temp));
+                temp++;
+            }
+            break;
         }
+
+        if (fieldValue < lowerValue)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
 
-    if (!found)
-    {
-        cout << "Không tìm thấy bệnh nhân phù hợp!" << endl;
-    }
+    return result;
 }
