@@ -128,6 +128,26 @@ bool Date::operator>=(const Date& other) const {
     return this->day >= other.day;
 }
 
+bool Date::operator<(const Date& other) const {
+    if (this->year < other.year) return true;
+    if (this->year > other.year) return false;
+
+    if (this->month < other.month) return true;
+    if (this->month > other.month) return false;
+
+    return this->day < other.day;
+}
+
+bool Date::operator>(const Date& other) const {
+    if (this->year > other.year) return true;
+    if (this->year < other.year) return false;
+
+    if (this->month > other.month) return true;
+    if (this->month < other.month) return false;
+
+    return this->day > other.day;
+}
+
 bool isLeapYear(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
@@ -156,55 +176,3 @@ int getStartDayOfMonth(int month, int year) {
     }
     return (d + (13 * (m + 1)) / 5 + y + (y / 4) - (y / 100) + (y / 400)) % 7;
 }
-
-/* time_t timer;
-tm * time;
-time(&timer);
-time = localtime(&timer);
-
-date = time->tm_mday;
-month = months[time->tm_mon];
-day = days[time->tm_wday];
-year = time->tm_year + BASE_YEAR; */
-
-/* std::string months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-std::string days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri",
-                      "Sat"};
- 
-class Date{
-    // Private Members
-    private:
-        std::string month;
-        std::string day;
-        int date;
-        int year;
-    // Public Members
-    public:
-        // Default Constructor
-        Date() { 
-                const int BASE_YEAR = 1900;
-                time_t timer;
-                tm * time;
-                std::time(&timer);
-                time = localtime(&timer);
-                date = time->tm_mday;
-                month = months[time->tm_mon];
-                day = days[time->tm_wday];
-                year = time->tm_year + BASE_YEAR;
-        }
-        void printDate(void) { 
-            std::cout << "Current date " 
-                      << this->month << " " << this->day << " "
-                      << this->date  << " " << this->year;
-        }
-        // Destructor
-        ~Date() {}
-};
- 
-int main()
-{
-    Date d;
- 
-    d.printDate();
-} */
