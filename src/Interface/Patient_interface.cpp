@@ -1,19 +1,20 @@
 #include <Interface/Patient_interface.hpp>
-int safe_stoi(const std::string &str) {
+
+int safe_stoi(const string &str) {
     try {
-        return std::stoi(str);
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
-        return 0; // Giá trị mặc định hoặc xử lý lỗi
+        return stoi(str);
+    } catch (const invalid_argument& e) {
+        cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << endl;
+        return 0;
     }
 }
 
-std::wstring FormatDate(const std::tm& date) {
-    std::wstringstream ss;
-    ss << std::put_time(&date, L"%d/%m");
+wstring FormatDate(const tm& date) {
+    wstringstream ss;
+    ss << put_time(&date, L"%d/%m");
     return ss.str();
 }
-Component Wrap(std::string name, Component component) {
+Component Wrap(string name, Component component) {
   return Renderer(component, [name, component] {
     return hbox({
                text(name) | size(WIDTH, EQUAL, 20),
@@ -23,9 +24,9 @@ Component Wrap(std::string name, Component component) {
            xflex;
   });
 }
-bool ValidateDate(const std::string& date) {
-    std::regex date_pattern(R"(^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$)");
-    if (!std::regex_match(date, date_pattern)) {
+bool ValidateDate(const string& date) {
+    regex date_pattern(R"(^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$)");
+    if (!regex_match(date, date_pattern)) {
         return false;
     }
 
@@ -82,7 +83,7 @@ Component Patientdisplay(Patient& patient)
     Component input_phone_number = Input(&phoneNumber, "Nhập số điện thoại");
     input_phone_number = Wrap("Số điện thoại", input_phone_number);
     input_phone_number |= CatchEvent([&](Event event) {
-    return event.is_character() && !std::isdigit(event.character()[0]);
+    return event.is_character() && !isdigit(event.character()[0]);
     });
     input_phone_number |= CatchEvent([&](Event event) {
     return event.is_character() && phoneNumber.size() > 10;
@@ -98,6 +99,7 @@ Component Patientdisplay(Patient& patient)
             validity_message
         })
     );
+
     // input_dob = Wrap("Ngày sinh", input_dob);
     // Component input_dateofbirth = Renderer([&] {
     //     return vbox({
@@ -106,6 +108,7 @@ Component Patientdisplay(Patient& patient)
     //     });
     // });
     // input_dateofbirth = Wrap("Ngày sinh", input_dateofbirth);
+    
     Component input_address = Input(&address, "Nhập địa chỉ");
     input_address = Wrap("Địa chỉ", input_address);
     //-------Text-----------
