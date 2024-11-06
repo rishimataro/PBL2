@@ -80,7 +80,7 @@ bool Appoinment::writeToFile()
 
     fo.open(file_path, ios::app);
     if (!fo.is_open()) {
-        return false; // File không mở
+        return false;
     }
     data.append(this->ID + ";");
     data.append(to_string(this->date.getDay()) + ";");
@@ -91,6 +91,7 @@ bool Appoinment::writeToFile()
     fo.close();
     return true;
 }
+
 Appoinment::~Appoinment(){}
 
 //Chưa xong
