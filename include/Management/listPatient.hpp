@@ -14,18 +14,18 @@ class listPatient : public LinkedList<Patient>
         listPatient();
         ~listPatient();
 
-        //* Setter & Getter
-        void setListPatientByFile();
-        void saveListPatientToFile(); // lưu file tổng
-        void savePatientToFile(int index); // lưu file lẻ
+        // * Read & Write
+        bool readListPatientFromFile();
+        bool writeListPatientToFile(bool check); // lưu file tổng, check = true: lưu file tổng, check = false: lưu file lẻ
+        bool writePatientToFile(int index); // lưu file lẻ
 
-        //* Display
-        void printPatientByGender(bool gender) const;
-        void printPatientByBirthRange(const string &startDate, const string &endDate);
-        void printAllPatient() const;
+        //* Setter & Getter
+        vector<Patient> setPatientByGender(bool gender);
+        vector<Patient> setPatientByBirthRange(const string &startDate, const string &endDate);
+        vector<Patient> setAllPatient();
 
         //* Add
-        void addPatient(const Patient &patient);
+        void addPatient();
         
         //* Check
         int checkID(const string& ID);
@@ -37,11 +37,7 @@ class listPatient : public LinkedList<Patient>
         void updatePatientByID(const string& ID);
 
         //* Search
-        void searchPatient(SearchField field, const string& value);
-
-        // LinkedList<Patient> searchPatientByID(const string& ID) const;
-        // LinkedList<Patient> searchPatientByFullName(const string& fullName) const;
-        // LinkedList<Patient> searchPatientByCCCD(const string& CCCD) const;
+        vector<Patient> searchPatient(SearchField field, const string& value);
 };
 
 #endif

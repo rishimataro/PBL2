@@ -3,6 +3,10 @@
 #include <Header/Header.hpp>
 #include <Management/Date.hpp>
 #include <Library/Graphics.hpp>
+#include <Library/Filelib.hpp>
+#include <filesystem>
+using namespace filesystem;
+
 class Patient
 {
     private:
@@ -20,10 +24,10 @@ class Patient
         ~Patient();
 
         //* Setter
-        void setID_patient(string ID_patient);
+        bool setID_patient();
         void setFullName(string fullName);
         void setPhone(string phone);
-        void setDayOfBirth(Date dayOfBirth);
+        void setDayOfBirth(string dayOfBirth);
         void setCCCD(string CCCD);
         void setGender(bool gender);
         void setAddress(string address);
@@ -40,14 +44,15 @@ class Patient
 
         //* Function
         // Nhập 1 bệnh nhân
-        void inputPatient();
+        // void inputPatient();
         // In thông tin 1 bệnh nhân
-        void printPatientHorizontal();
+        // void printPatient();
+        
         // Lưu 1 bệnh nhân vào file
-        void saveAllPatient(fstream& f);
-        void savePatient(fstream& f);
+        bool writePatientToFile_all(ofstream& fout);
+        bool writePatientToFile(fstream& f);
         // Lấy 1 bệnh nhân từ file
-        void setPatient(const string& line);
+        void readPatientFromFile(const string& line);
 };
 
 #endif
