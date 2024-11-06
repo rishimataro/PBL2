@@ -51,7 +51,7 @@ add_library(ftxui::screen STATIC IMPORTED)
 
 set_target_properties(ftxui::screen PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "D:/Test_Code/PBL/PBL2/ftxui/include"
+  INTERFACE_INCLUDE_DIRECTORIES "F:/03_PBL2/PBL2/CODE/ftxui/include"
 )
 
 # Create imported target ftxui::dom
@@ -59,7 +59,7 @@ add_library(ftxui::dom STATIC IMPORTED)
 
 set_target_properties(ftxui::dom PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "D:/Test_Code/PBL/PBL2/ftxui/include"
+  INTERFACE_INCLUDE_DIRECTORIES "F:/03_PBL2/PBL2/CODE/ftxui/include"
   INTERFACE_LINK_LIBRARIES "ftxui::screen"
 )
 
@@ -68,29 +68,29 @@ add_library(ftxui::component STATIC IMPORTED)
 
 set_target_properties(ftxui::component PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
-  INTERFACE_INCLUDE_DIRECTORIES "D:/Test_Code/PBL/PBL2/ftxui/include"
+  INTERFACE_INCLUDE_DIRECTORIES "F:/03_PBL2/PBL2/CODE/ftxui/include"
   INTERFACE_LINK_LIBRARIES "ftxui::dom;Threads::Threads"
 )
 
-# Import target "ftxui::screen" for configuration "Debug"
-set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+# Import target "ftxui::screen" for configuration ""
+set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(ftxui::screen PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "D:/Test_Code/PBL/PBL2/build/ftxui/libftxui-screen.a"
+  IMPORTED_LINK_INTERFACE_LANGUAGES_NOCONFIG "CXX"
+  IMPORTED_LOCATION_NOCONFIG "F:/03_PBL2/PBL2/CODE/build/ftxui/libftxui-screen.a"
   )
 
-# Import target "ftxui::dom" for configuration "Debug"
-set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+# Import target "ftxui::dom" for configuration ""
+set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(ftxui::dom PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "D:/Test_Code/PBL/PBL2/build/ftxui/libftxui-dom.a"
+  IMPORTED_LINK_INTERFACE_LANGUAGES_NOCONFIG "CXX"
+  IMPORTED_LOCATION_NOCONFIG "F:/03_PBL2/PBL2/CODE/build/ftxui/libftxui-dom.a"
   )
 
-# Import target "ftxui::component" for configuration "Debug"
-set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+# Import target "ftxui::component" for configuration ""
+set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(ftxui::component PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "D:/Test_Code/PBL/PBL2/build/ftxui/libftxui-component.a"
+  IMPORTED_LINK_INTERFACE_LANGUAGES_NOCONFIG "CXX"
+  IMPORTED_LOCATION_NOCONFIG "F:/03_PBL2/PBL2/CODE/build/ftxui/libftxui-component.a"
   )
 
 # This file does not depend on other imported targets which have
