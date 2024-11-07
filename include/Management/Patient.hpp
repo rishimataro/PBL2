@@ -52,7 +52,7 @@ class Patient
         bool writePatientToFile_all(ofstream& fout);
         bool writePatientToFile(fstream& f);
         // Lấy 1 bệnh nhân từ file
-        void readPatientFromFile(const string& line);
+        void readPatientFromFile(fstream& f);
 };
 
 #endif

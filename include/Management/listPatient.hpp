@@ -4,6 +4,7 @@
 #include <Management/Patient.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
+#include <cstdio>
 
 enum class SearchField { ID, FullName, CCCD };
 
@@ -25,7 +26,7 @@ class listPatient : public LinkedList<Patient>
         vector<Patient> setAllPatient();
 
         //* Add
-        void addPatient();
+        void addPatient(const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
         
         //* Check
         int checkID(const string& ID);
@@ -34,7 +35,7 @@ class listPatient : public LinkedList<Patient>
         void removePatientByID(const string& ID);
 
         //* Update
-        void updatePatientByID(const string& ID);
+        void updatePatientByID(const string& ID, const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
 
         //* Search
         vector<Patient> searchPatient(SearchField field, const string& value);
