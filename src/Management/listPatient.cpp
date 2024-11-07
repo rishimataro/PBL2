@@ -23,20 +23,26 @@ listPatient::~listPatient() {
 
 //* Read & Write
 bool listPatient::readListPatientFromFile() {
-    fstream fin;
-    fin.open("../Database/PatientDB/patient.txt", ios::in);
+    string file_path = "../Database/PatientDB/patient.txt";
+    fstream fin, patientFile;
+    Patient patient;
 
+    fin.open(file_path, ios::in);
     if (!fin.is_open()) return false;
 
-    string line;
-    while (getline(fin, line))
-    {
-        if (line.empty())
-            continue;
+    string id;
+    while (getline(fin, id)) {
+        if (id.empty()) continue;
 
-        Patient patient;
-        patient.readPatientFromFile(line);
+        file_path = "../Database/PatientDB/" + id + ".txt";
+        patientFile.open(file_path, ios::in);
+
+        if (!patientFile.is_open()) continue;
+
+        patient.readPatientFromFile(patientFile);
         this->append(patient);
+
+        patientFile.close();
     }
     fin.close();
     return true;
@@ -63,14 +69,14 @@ bool listPatient::writeListPatientToFile(bool check) {
         return false;
     }
 
-    if (check) {
-        Patient patient;
+    Patient patient;
+    if (check) {    
         for (int i = 0; i < this->size(); i++) {
             patient = this->get(i);
             patient.writePatientToFile_all(fo);
         }
     } else {
-        Patient patient = this->get(this->size() - 1);
+        patient = this->get(this->size() - 1);
         patient.writePatientToFile_all(fo);
     }
 
@@ -82,7 +88,6 @@ bool listPatient::writeListPatientToFile(bool check) {
 bool listPatient::writePatientToFile(int index) {
     string path = "../Database/PatientDB/";
     string fileName = path + this->get(index).getID_patient() + ".txt";
-    // fileName = absolute(fileName);
     
     fstream fout;
     fout.open(fileName, ios::out);
@@ -107,7 +112,6 @@ vector<Patient> listPatient::setPatientByGender(bool gender) {
             result.push_back(patient);
         }
     }
-
     return result;
 }
 
@@ -162,42 +166,25 @@ vector<Patient> listPatient::setAllPatient() {
 }
 
 //* Add
-void listPatient::addPatient() {
+void listPatient::addPatient(const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress) {
     Patient newPatient;
-    string newFullName, newPhone, newDayOfBirth, newCCCD, newGender, newAddress;
-    bool newGender_bool;
 
-ADD:
-    cout << "Họ tên: "; getline(cin, newFullName);
-    cout << "SĐT: "; cin >> newPhone;
-    cout << "Ngày sinh: "; cin.ignore(); getline(cin, newDayOfBirth);
-    cout << "CCCD: "; cin >> newCCCD;
-    cout << "Giới tính: "; cin >> newGender; newGender_bool = (newGender == "Nam") ? false : true;
-    cout << "Địa chỉ: "; cin.ignore(); getline(cin, newAddress);
+    newPatient.setID_patient();
+    newPatient.setFullName(newFullName);
+    newPatient.setPhone(newPhone);
+    newPatient.setDayOfBirth(newDayOfBirth);
+    newPatient.setCCCD(newCCCD);
 
-    cout << "Bạn có muốn thêm bệnh nhân này không? (Y/N): ";
-    char choice;
-    cin >> choice;
+    // bool genderBool = newGender == "Nam" ? false : true;
+    newPatient.setGender(newGender == "Nữ");
+    newPatient.setAddress(newAddress);
 
-    if (choice == 'N' || choice == 'n') return;
-    else if (choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
-        cout << "Lựa chọn không hợp lệ. Vui lòng nhập lại." << endl;
-        goto ADD;
-    }
-    else if (choice == 'Y' || choice == 'y') {
-        newPatient.setID_patient();
-        newPatient.setFullName(newFullName);
-        newPatient.setPhone(newPhone);
-        newPatient.setDayOfBirth(newDayOfBirth);
-        newPatient.setCCCD(newCCCD);
-        newPatient.setGender(newGender_bool);
-        newPatient.setAddress(newAddress);
+    this->append(newPatient);
+    this->writePatientToFile(this->size() - 1);
+    this->writeListPatientToFile(false);
 
-        this->append(newPatient);
-        this->writePatientToFile(this->size() - 1);
-        this->writeListPatientToFile(false);
-        return;
-    }
+    return;
+
 }
 
 //* Check
@@ -232,7 +219,7 @@ void listPatient::removePatientByID(const string& ID) {
 }
 
 //* Update
-void listPatient::updatePatientByID(const string& ID) {
+void listPatient::updatePatientByID(const string& ID, const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress) {   
     Node<Patient> *current = this->head;
     if (current == NULL)
         return;
@@ -242,23 +229,17 @@ void listPatient::updatePatientByID(const string& ID) {
         return;
     
     Patient currentPatient = this->get(index);
-    string newFullName, newPhone, newDayOfBirth, newCCCD, newGender, newAddress;
-    bool newGender_bool;
-
-    cout << "Họ tên: "; cin.ignore(); getline(cin, newFullName);
-    cout << "SĐT: "; cin >> newPhone;   
-    cout << "Ngày sinh: "; cin.ignore(); getline(cin, newDayOfBirth);    
-    cout << "CCCD: "; cin >> newCCCD;   
-    cout << "Giới tính: "; cin >> newGender; newGender_bool = (newGender == "Nam") ? false : true;
-    cout << "Địa chỉ: "; cin.ignore(); getline(cin, newAddress);
+    string file_path = "../Database/PatientDB/" + currentPatient.getID_patient() + ".txt";
+    if (std::remove(file_path.c_str()) != 0) return;
 
     currentPatient.setFullName(newFullName);
-    currentPatient.setPhone(newPhone);
-    currentPatient.setDayOfBirth(newDayOfBirth);
+    currentPatient.setPhone(newPhone);  
+    currentPatient.setDayOfBirth(newDayOfBirth);    
     currentPatient.setCCCD(newCCCD);
-    currentPatient.setGender(newGender_bool);
+    currentPatient.setGender(newGender == "Nữ");
     currentPatient.setAddress(newAddress);
 
+    this->set(index, currentPatient);
     this->writePatientToFile(index);
     return;
 }
