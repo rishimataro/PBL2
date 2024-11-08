@@ -52,8 +52,8 @@ add_library(manag
     src/Management/Date.cpp
     src/Management/listAccount.cpp
     # src/Management/listMedicalRecord.cpp
-    # src/Management/listPatient.cpp
     src/Management/Patient.cpp
+    src/Management/listPatient.cpp
 )
 target_include_directories(manag 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -108,4 +108,3 @@ target_link_libraries(main
     PRIVATE ftxui::dom
     PRIVATE ftxui::component
 )
- 

@@ -5,7 +5,7 @@ std::string FormatDate(const std::tm& date) {
     ss << std::put_time(&date, "%d/%m");
     return ss.str();
 }
-Component Wrap(std::string name, Component component) {
+Component Wrap(string name, Component component) {
   return Renderer(component, [name, component] {
     return hbox({
                text(name) | size(WIDTH, EQUAL, 20),
@@ -15,9 +15,9 @@ Component Wrap(std::string name, Component component) {
            xflex;
   });
 }
-bool ValidateDate(const std::string& date) {
-    std::regex date_pattern(R"(^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$)");
-    if (!std::regex_match(date, date_pattern)) {
+bool ValidateDate(const string& date) {
+    regex date_pattern(R"(^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$)");
+    if (!regex_match(date, date_pattern)) {
         return false;
     }
 
@@ -86,7 +86,7 @@ void Patientdisplay(Patient& patient)
     Component input_phone_number = Input(&phoneNumber, "Nhập số điện thoại");
     input_phone_number = Wrap("Số điện thoại", input_phone_number);
     input_phone_number |= CatchEvent([&](Event event) {
-    return event.is_character() && !std::isdigit(event.character()[0]);
+    return event.is_character() && !isdigit(event.character()[0]);
     });
     input_phone_number |= CatchEvent([&](Event event) {
     return event.is_character() && phoneNumber.size() > 10;

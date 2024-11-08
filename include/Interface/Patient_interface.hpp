@@ -20,6 +20,7 @@ enum class Patient_State {
   View_appoinments,
   Prescription,
 };
+
 // extern Patient_State current_patient_state = Patient_State::MainScreen;
 ButtonOption btn_style1();
 ButtonOption btn_style2();
