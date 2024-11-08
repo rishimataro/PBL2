@@ -115,9 +115,7 @@ void Patientdisplay(Patient& patient)
     Component submit_button = Button("Lưu thông tin", [&]() {
         patient.setFullName(full_name);
         patient.setPhone(phoneNumber);
-        Date dateOfBirth;
-        dateOfBirth.setDate(DOB);  // Parse date string to Date object;
-        patient.setDayOfBirth(dateOfBirth);
+        patient.setDayOfBirth(DOB);
         patient.setAddress(address);
         screen.ExitLoopClosure()();
     }, btn_style1());
