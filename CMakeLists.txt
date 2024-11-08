@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(ftxui)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/ftxui/cmake" ${CMAKE_MODULE_PATH})
+
+set(DATA_PATH "${CMAKE_SOURCE_DIR}/Database")
+add_definitions(-DDATA_PATH="${DATA_PATH}")
 # Tạo executable từ tệp nguồn
 add_executable(main main.cpp)
 

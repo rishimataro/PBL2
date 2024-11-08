@@ -23,7 +23,7 @@ using namespace std;
 #define GREY "686D76"
 #define ORANGE "FF8225"
 #define PURPLE "615EFC"
-
+#define DATA_PATH_MACRO(x) DATA_PATH "/" x
 // int safe_stoi(const std::string &str) {
 //     try {
 //         return std::stoi(str);
