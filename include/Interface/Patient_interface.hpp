@@ -12,6 +12,7 @@
 using namespace ftxui;
 using namespace std::chrono;
 // auto screen = ScreenInteractive::Fullscreen();
+
 std::string FormatDate(const std::tm& date);
 enum class Patient_State {
   MainScreen,

@@ -35,13 +35,13 @@ void Appoinment::readFromFile()
 }
 bool Appoinment::setID()
 {   
-    path file_path = "./Database/AppoinmentDB/";
+    path file_path = DATA_PATH "AppoinmentDB/";
     file_path.append(to_string(this->date.getYear()) + "_" + to_string(this->date.getMonth()) + ".txt");
     file_path = absolute(file_path);
     cout << file_path << endl;
     fstream fi;
     fi.open(file_path);
-
+    string date = this->date.getDate();
     int maxID = 0;
     if (!fi.is_open()) {
         maxID = 0;

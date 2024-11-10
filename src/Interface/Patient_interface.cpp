@@ -1,9 +1,64 @@
 #include <Interface/Patient_interface.hpp>
+string splitText(string text, int boxWidth) {
+    vector<string> lines;
+    int startIndex = 0;
+    int textLength = text.length();
 
+    while (startIndex < textLength) 
+    {
+        // Xác định chiều dài dòng hiện tại
+        int endIndex = startIndex + boxWidth;
+
+        // Kiểm tra nếu endIndex vượt quá chiều dài của chuỗi
+        if (endIndex >= textLength) {
+            endIndex = textLength;
+        } else {
+            // Lùi lại để tìm khoảng trắng gần nhất nếu có
+            while (endIndex > startIndex && text[endIndex] != ' ') {
+                endIndex--;
+            }
+
+            // Nếu không tìm thấy khoảng trắng, giữ nguyên chiều dài mặc định
+            if (endIndex == startIndex) {
+                endIndex = startIndex + boxWidth;
+            }
+        }
+
+        // Lấy đoạn văn bản từ startIndex đến endIndex
+        string line = text.substr(startIndex, endIndex - startIndex);
+        lines.push_back(line);
+
+        // Bỏ qua dấu cách ở đầu dòng tiếp theo (nếu có)
+        startIndex = endIndex;
+        while (startIndex < textLength && text[startIndex] == ' ') {
+            startIndex++;
+        }
+    }
+    string result = "";
+    for (auto& line : lines) {
+      result += line + "\n";
+    }
+    return result;
+}
+void unSplitText(string& text) {
+  for (int i = 0; i < text.length() - 1; i++)
+  {
+    if (text[i] == '\n' && text[i + 1] != '\n')
+    {
+      text.erase(i, 1);
+      i--;
+    }
+  }
+}
 std::string FormatDate(const std::tm& date) {
     std::stringstream ss;
     ss << std::put_time(&date, "%d/%m");
     return ss.str();
+}
+std::string Date_to_string(const tm &timeStruct) {
+    char buffer[11]; // Đủ để chứa chuỗi định dạng "dd/mm/yyyy" + ký tự null
+    strftime(buffer, sizeof(buffer), "%d/%m/%Y", &timeStruct);
+    return std::string(buffer);
 }
 Component Wrap(string name, Component component) {
   return Renderer(component, [name, component] {
@@ -74,6 +129,7 @@ void Patientdisplay(Patient& patient)
     string address = patient.getAddress();
     string ID = patient.getID_patient();
 
+    
     //-----radiobox-----------
     int gender_index = (is_female)? 1 : 0;
     vector<string> gender_labels = {"Nam", "Nữ"};
@@ -176,9 +232,11 @@ void Appoinment_UI(Patient& patient)
     "07:30 - 08:30", "08:30 - 09:30", "09:30 - 10:30", "10:30 - 11:30",
     "13:30 - 14:30", "14:30 - 15:30", "15:30 - 16:30", "16:30 - 17:00"
     };
+    string scr_date;
+    string scr_time;
     auto screen = ScreenInteractive::FullscreenAlternateScreen();
     int current_page = 0;
-    int total_pages = 3;
+    int total_pages = 4;
     // Ngày hiện tại
     auto now = system_clock::now();
     auto current_time = system_clock::to_time_t(now);
@@ -318,16 +376,82 @@ void Appoinment_UI(Patient& patient)
             }) | center,
         });
     });
-    string symptom;
-    InputOption symptom_input_options = InputOption::Spacious();
+    string symptom = "";
+    InputOption symptom_input_options = InputOption::Default();
     symptom_input_options.multiline = true;
-    Component InputSymptom = Input(symptom, "Nhập triệu chứng:", symptom_input_options) | xflex | size(HEIGHT, GREATER_THAN, 15);
-    // InputSymptom = Container::Horizontal({InputSymptom})|size(HEIGHT, GREATER_THAN, 15) | size(WIDTH, EQUAL, 98);
+    // symptom_input_options.content = &symptom;
+    Component InputSymptom = Input(&symptom, "Nhập triệu chứng:", symptom_input_options) | xflex | size(HEIGHT, GREATER_THAN, 15);
     Component symptom_Layout = Renderer(InputSymptom, [&] {
         return vbox({
-            text("Hãy cho chúng tôi biết tình vấn đề của bạn!") | center | bold,
+            text("Hãy cho chúng tôi biết tình tình trạng của bạn!") | center | bold,
             separator(),
-            InputSymptom->Render()
+            InputSymptom->Render() | border,
+        }) | size(WIDTH, EQUAL, 100) | size(HEIGHT, GREATER_THAN, 15) | border | hcenter;
+
+    });
+
+    // Xác nhận thông tin
+
+    Component Patient_id = Wrap("Mã bệnh nhân:", Renderer([&]{
+        return text(patient.getID_patient());
+    }));
+    Component Full_name =  Wrap("Họ và tên:", Renderer([&](){
+        return text(patient.getFullName());
+    }));
+    Component Phone_number = Wrap("Số điện thoại:", Renderer([&]{
+        return text(patient.getPhone());
+    }));
+    Component DOB = Wrap("Ngày sinh:", Renderer([&](){
+        return text(patient.getDayOfBirth().getDate());
+    }));
+    Component CCCD = Wrap("CCCD:", Renderer([&](){
+        return text(patient.getCCCD());
+    }));
+    string Gender = (patient.getGender() ? "Nữ" : "Nam");
+    Component Patient_gender = Wrap("Giới tính:", Renderer([&](){
+        return text(Gender);
+    }));
+    Component Address = Wrap("Địa chỉ:", Renderer([&](){
+        return text(patient.getAddress());
+    }));
+    
+    Component a_Date = Wrap("Ngày khám:", Renderer([&](){
+        return text(scr_date);
+    }));
+    Component a_Time = Wrap("Giờ khám:", Renderer([&](){
+        return text(scr_time);
+    }));
+    Component Symptom_text = Wrap("Triệu chứng:", Renderer([&](){
+        return paragraph(symptom);
+    }));
+    Component Appoinment_info = Container::Vertical({
+        Patient_id,
+        Full_name,
+        Phone_number,
+        DOB,
+        CCCD,
+        Patient_gender,
+        Address,
+        a_Date,
+        a_Time,
+        Symptom_text,
+    });
+    Component Appoinment_info_layout = Renderer(Appoinment_info, [&] {
+        return vbox({
+            text("Xác nhận thông tin lịch khám") | center | bold,
+            separator(),
+            Patient_id->Render(),
+            Full_name->Render(),
+            Phone_number->Render(),
+            DOB->Render(),
+            CCCD->Render(),
+            Patient_gender->Render(),
+            Address->Render(),
+            separator(),
+            a_Date->Render(),
+            a_Time->Render(),
+            Symptom_text->Render(),
+            separator(),
         }) | size(WIDTH, EQUAL, 100) | size(HEIGHT, GREATER_THAN, 15) | border | hcenter;
     });
 
@@ -337,6 +461,7 @@ void Appoinment_UI(Patient& patient)
             select_date_layout, 
             select_time_layout,
             symptom_Layout,
+            Appoinment_info_layout,
             // back_button
         },
         &current_page
@@ -346,6 +471,15 @@ void Appoinment_UI(Patient& patient)
         page_btn
     });
     Component main_layout = Renderer(main_container, [&] {
+        screen.Post([&](){
+            if (selected_day >= 0 && selected_time >= 0) {
+            auto selected_date = current_date;
+            selected_date.tm_mday += selected_day;
+            mktime(&selected_date);
+            scr_date = Date_to_string(selected_date);
+            scr_time = time_slots[selected_time];
+        }
+        });
         return vbox({
             pages_container->Render(),
             separator(),
@@ -356,8 +490,25 @@ void Appoinment_UI(Patient& patient)
             }) | center
         });
     });
+    
+    // auto renderer = Renderer([&](){
+    //     symptom = splitText(symptom, 20);
+    //     return main_layout;
+    // });
+    // screen.PostEvent([&](){
+    //     symptom = splitText(symptom, 20);
+    //     cout << "test" << endl;
+    // });
     screen.Loop(main_layout);
-
+    if (selected_day >= 0 && selected_time >= 0) {
+        auto selected_date = current_date;
+        selected_date.tm_mday += selected_day;
+        mktime(&selected_date);
+        std::cout << "Ngày đã chọn: "
+                   << std::put_time(&selected_date, "%d/%m/%Y") << "\n";
+        std::cout << "Thời gian: " << time_slots[selected_time] << "\n";
+    }
+    system("pause");
 }
 void Patient_UI(Patient& patient)
 {   
@@ -372,7 +523,7 @@ void Patient_UI(Patient& patient)
     auto dat_lich = ftxui::Button("Đặt Lịch Khám", [&] {Appoinment_UI(patient); }, btn_style2());
     auto xem_sua_xoa_lich = ftxui::Button("Lịch khám Bệnh", [&] { }, btn_style2());
     auto lich_su_kham = ftxui::Button("Lịch Sử Khám Bệnh", [&] { }, btn_style2());
-    auto thoat = ftxui::Button("  Thoát  ", [&] { screen.ExitLoopClosure()(); }, btn_style1());
+    auto thoat = ftxui::Button("  Đăng xuất  ", [&] { screen.ExitLoopClosure()(); }, btn_style1());
     auto main_page_layout = ftxui::Container::Vertical({
         greeting,
         xem_sua_thong_tin,
@@ -396,22 +547,5 @@ void Patient_UI(Patient& patient)
     });
 
     screen.Loop(main_page);
-    // while(true)
-    // {
-    //     switch(state)
-    //     {
-    //         case Patient_State::Info:
-    //             Patientdisplay(patient);
-    //             state = Patient_State::MainScreen;
-    //             break;
-    //         case Patient_State::Appoinment:
-    //             Appoinment_UI(patient);
-    //             state = Patient_State::MainScreen;
-    //             break;
-    //         case Patient_State::MainScreen:
-    //             screen.Loop(main_page);
-    //             break;
-    //     }
-    // }
     
 }
