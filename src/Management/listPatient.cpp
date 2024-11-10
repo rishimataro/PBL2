@@ -65,9 +65,7 @@ bool listPatient::writeListPatientToFile(bool check) {
     }
 
     ofstream fo(file_path, ios::app);
-    if (!fo.is_open()) {
-        return false;
-    }
+    if (!fo.is_open()) return false;
 
     Patient patient;
     if (check) {    

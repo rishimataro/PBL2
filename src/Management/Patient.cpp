@@ -127,7 +127,7 @@ bool Patient::writePatientToFile(fstream& f) {
     data.append(this->phone + "\n");
     data.append(this->dayOfBirth.getDate() + "\n");
     data.append(this->CCCD + "\n");
-    data.append(this->gender + "\n");
+    data.append(to_string(this->gender) + "\n");
     data.append(this->address + "\n");
 
     f << data;
