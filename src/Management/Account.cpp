@@ -47,19 +47,8 @@ string Account::getRoleToString() const {
 }
 
 //* Function
-// Nhập 1 account
-void Account::inputAccount() {
-    int x = whereX(), y = whereY();
-
-    gotoXY(x + 12, y + 1); cout << this->ID_acc;
-    gotoXY(x + 12, y + 4); cin >> this->userName;
-    gotoXY(x + 12, y + 7); cin >> this->password;
-    gotoXY(x + 12, y + 10); cout << this->getRoleToString();
-}
-
 // Lấy 1 account từ file
-void Account::setAccount(const string& line)
-{
+void Account::readPatientFromFile(const string& line) {
     stringstream ss(line);
     string token;
     getline(ss, token, ';'); this->ID_acc = token;
@@ -69,35 +58,15 @@ void Account::setAccount(const string& line)
 }
 
 // Lưu 1 account vào file
-void Account::saveAccount(fstream &f)
-{
-    f << this->ID_acc << ";" << this->userName << ";" << this->password << ";" << this->role << endl;
-}
+void Account::writeAccountToFile(ofstream &f) {
+    string data;
 
-// In thông tin 1 account (ngang)
-void Account::printAccountHorizontal()
-{
-   int x = whereX(), y = whereY();
-   gotoXY(x + 4, y);
-   cout << this->ID_acc;
-   gotoXY(x + 16, y);
-   cout << this->userName;
-   gotoXY(x + 41, y);
-   cout << this->password;
-   gotoXY(x + 61, y);
-   cout << getRoleToString() << endl;
-}
+    data.append(this->ID_acc + ";");
+    data.append(this->userName + ";");
+    data.append(this->password + ";");
+    data.append(to_string(this->role) + "\n");
 
-void Account::printAccountVertical() {
-    int x = whereX(), y = whereY();
-    gotoXY(x + 12, y + 1);
-    cout << this->ID_acc;
-    gotoXY(x + 12, y + 4);
-    cout << this->userName;
-    gotoXY(x + 12, y + 7);
-    cout << this->password;
-    gotoXY(x + 12, y + 10);
-    cout << getRoleToString() << endl;
+    f << data;
 }
 
 bool Account::operator==(const Account& another) {
