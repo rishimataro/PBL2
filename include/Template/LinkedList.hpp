@@ -52,6 +52,8 @@ class LinkedList
 
         // Lấy Node: lấy giá trị tại vị trí index
         T get(int index) const;
+        T begin() const;
+        T end() const;
 
         // Lấy kích thước
         int size() const;
@@ -246,6 +248,16 @@ T LinkedList<T>::get(int index) const {
     } while(current != head);
 
     return T();
+}
+
+template<class T>
+T LinkedList<T>::begin() const {
+    return head->data;
+}
+
+template<class T>   
+T LinkedList<T>::end() const {
+    return head->prev->data;
 }
 
 template<class T>
