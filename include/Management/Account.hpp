@@ -2,6 +2,7 @@
 #define ACCOUNT_H   
 #include <Header/Header.hpp>
 #include <Library/Graphics.hpp>
+
 class Account
 {
     private:
@@ -29,16 +30,10 @@ class Account
         string getRoleToString() const;
 
         //* Function
-        // Nhập 1 account
-        void inputAccount();
         // Lấy 1 account từ file
-        void setAccount(const string& line);    
+        void readPatientFromFile(const string& line);    
         // Lưu 1 account vào file
-        void saveAccount(fstream &f);
-        // In thông tin 1 account (ngang)
-        void printAccountHorizontal();
-        // In thông tin 1 account (doc)
-        void printAccountVertical();
+        void writeAccountToFile(ofstream &f);
 
         //* Operator
         bool operator==(const Account& another);
