@@ -5,19 +5,11 @@
 #include <Management/listPatient.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
-#include <unordered_map>  // Đảm bảo thêm thư viện này
 
 enum class SearchField { ID, UserName};
 
 class listAccount : public LinkedList<Account>
 {
-    
-    private:
-    
-        std::unordered_map<std::string, Account> idMap;          // Bảng băm lưu trữ theo ID
-        std::unordered_map<std::string, Account> userNameMap
-        ;    // Bảng băm lưu trữ theo UserName
-
     public:
         // * Constructor & Destructor  
         listAccount();
@@ -38,6 +30,7 @@ class listAccount : public LinkedList<Account>
         bool checkSignIn(const string& userName, const string& password, const int& role, Account &account);
         
         // * Check
+        int checkCCCD(const string& CCCD);
         int checkID(const string& ID);
         int checkUserName(const string& userName);
         int checkPassword(const string& password);
@@ -51,7 +44,5 @@ class listAccount : public LinkedList<Account>
 
         // * Search
         vector<Account> searchAccount(SearchField field, const string& value);
-        // vector<Account> searchAccountByID(const string& ID);
 };
-        Patient getPatientInfoByID(const string& patientID);
 #endif
