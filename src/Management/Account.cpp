@@ -1,20 +1,22 @@
 #include <Management/Account.hpp>
-int safe_stoi(const std::string &str) {
+
+int safe_stoi(const string &str) {
     try {
-        return std::stoi(str);
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << std::endl;
-        return 0; // Giá trị mặc định hoặc xử lý lỗi
+        return stoi(str);
+    } catch (const invalid_argument& e) {
+        cerr << "Lỗi: Chuỗi không hợp lệ để chuyển đổi thành số nguyên: " << e.what() << endl;
+        return 0;
     }
 }
 
 //* Constructor & Destructor
-Account::Account(const string ID_acc, string userName, string password, int role)
+Account::Account(const string ID_acc, string userName, string password, int role, const Patient& patient)
 {
     this->ID_acc = ID_acc;
     this->userName = userName;
     this->password = password;
     this->role = role;
+    this->patient = patient;
 }
 
 Account::Account(const Account &another)
@@ -23,12 +25,51 @@ Account::Account(const Account &another)
     this->userName = another.userName;
     this->password = another.password;
     this->role = another.role;
+    this->patient = another.patient;
 }
 
 Account::~Account() {}
 
 //* Setter
-void Account::setID(const string &ID_acc) { this->ID_acc = ID_acc; }
+void Account::setID() {
+    path file_path = "../Database/PatientDB/account.txt";
+    file_path = absolute(file_path);
+
+    ifstream fi(file_path);
+
+    int maxID = 0;
+    if (!fi.is_open()) {
+        return;
+    } else {
+        if (fi.peek() == ifstream::traits_type::eof()) {
+            maxID = 0;
+        } else {
+            string temp;
+            fi.seekg(-1, ios::end);
+
+            // Move to the start of the last line
+            while (fi.tellg() > 0 && fi.peek() != '\n') {
+                fi.seekg(-1, ios::cur);
+            }
+            if (fi.tellg() != 0) {
+                fi.seekg(1, ios::cur);
+            }
+
+            getline(fi, temp, ';');
+            if (!temp.empty() && temp.substr(0, 3) == "ACC") {
+                maxID = stoi(temp.substr(3));
+            }
+        }
+    }
+
+    maxID++;
+    string id = "ACC" + to_string(maxID);
+
+    this->ID_patient = id;
+
+    fi.close();
+}
+
 void Account::setPassword(const string &password) { this->password = password; }
 void Account::setUserName(const string &userName) { this->userName = userName; }
 void Account::setRole(const int &role) { this->role = role; }
@@ -41,9 +82,11 @@ int Account::getRole() const { return this->role; }
 string Account::getRoleToString() const { 
     string roleStr;
     if(this->role == 0) roleStr = "Quản trị viên";
-    else if(this->role == 1) roleStr = "Bác sĩ";
-    else if(this->role == 2) roleStr = "Bệnh nhân";
+    else if(this->role == 1) roleStr = "Bệnh nhân";
     return roleStr; 
+}
+string Account::getCCCD() const {
+    return this->patient.getCCCD();
 }
 
 //* Function
