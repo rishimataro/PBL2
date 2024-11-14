@@ -54,15 +54,16 @@ void loginUI()
             listPatient patients;
             patients.readListPatientFromFile();
             string pt_id = account.getID_patient();
-            // vector<Patient> ls_Patients = patients.searchPatient(SearchField::ID, account.getID_patient());
+            vector<Patient> ls_Patients = patients.searchPatient(SearchField::ID, account.getID_patient());
+            Patient_UI(ls_Patients[0]);
             // login_msg = account.getID_patient();
-            vector<Patient> ls_Patients = patients.setAllPatient();
-            for (auto& pt : ls_Patients) {
-                if (pt.getID_patient() == pt_id) {
-                    Patient_UI(pt);
-                    break;
-                }
-            }
+            // vector<Patient> ls_Patients = patients.setAllPatient();
+            // for (auto& pt : ls_Patients) {
+            //     if (pt.getID_patient() == pt_id) {
+            //         Patient_UI(pt);
+            //         break;
+            //     }
+            // }
                 // login_msg = ls_Patients.empty() ? "Không tìm thấy bệnh nhân nào!" : "Có bệnh nhân!";
             // login_msg = ls_Patients[0].getFullName();
         }

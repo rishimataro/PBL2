@@ -17,7 +17,7 @@ class Node
 };
 
 template <class T>
-::Node<T>::Node(T val) : data(val), next(NULL), prev(NULL) {}
+Node<T>::Node(T val) : data(val), next(NULL), prev(NULL) {}
 
 template <class T>
 class LinkedList

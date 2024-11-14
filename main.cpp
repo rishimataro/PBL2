@@ -36,7 +36,11 @@ int main() {
     // list.readListPatientFromFile();
     // vector<Patient> Patients = list.setAllPatient();
     // vector<Patient> Patients = list.searchPatient(SearchField::ID, "P3");
-    // cout << Patients.size() << endl;
+    // for (auto& p : Patients)
+    // {
+    //     cout << p.getFullName() << endl;
+
+    // }
     // Patient_UI(Patients[0]);
 
     // vector<Appoinment> apps = searchAppoinments(Patients[0]);
@@ -58,14 +62,14 @@ int main() {
     // listPatient list;   
     // bool check = list.readListPatientFromFile();
 
-    // if (check) {
-    //     cout << "Read file successfully" << endl;
-    // } else {
-    //     cout << "Read file failed" << endl;
-    // }
+    // // if (check) {
+    // //     cout << "Read file successfully" << endl;
+    // // } else {
+    // //     cout << "Read file failed" << endl;
+    // // }
 
-    // // // list.addPatient();
-    // vector<Patient> result = list.setPatientByBirthRange("01/01/2005", "31/12/2005");
+    // // // // list.addPatient();
+    // vector<Patient> result = list.setPatientByBirthRange("12/01/2005", "01/07/2005");
     // cout << result.size() << " patient(s) found." << endl;
     // for(const auto& p : result) {
     //     cout << p.getFullName() << endl;
