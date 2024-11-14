@@ -524,6 +524,30 @@ src/Management/Patient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/Patient.cpp.s
 .PHONY : src/Management/Patient.cpp.s
 
+src/Management/listAccount.obj: src/Management/listAccount.cpp.obj
+.PHONY : src/Management/listAccount.obj
+
+# target to build an object file
+src/Management/listAccount.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj
+.PHONY : src/Management/listAccount.cpp.obj
+
+src/Management/listAccount.i: src/Management/listAccount.cpp.i
+.PHONY : src/Management/listAccount.i
+
+# target to preprocess a source file
+src/Management/listAccount.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.i
+.PHONY : src/Management/listAccount.cpp.i
+
+src/Management/listAccount.s: src/Management/listAccount.cpp.s
+.PHONY : src/Management/listAccount.s
+
+# target to generate assembly for a file
+src/Management/listAccount.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.s
+.PHONY : src/Management/listAccount.cpp.s
+
 src/Management/listPatient.obj: src/Management/listPatient.cpp.obj
 .PHONY : src/Management/listPatient.obj
 
@@ -624,6 +648,9 @@ help:
 	@echo ... src/Management/Patient.obj
 	@echo ... src/Management/Patient.i
 	@echo ... src/Management/Patient.s
+	@echo ... src/Management/listAccount.obj
+	@echo ... src/Management/listAccount.i
+	@echo ... src/Management/listAccount.s
 	@echo ... src/Management/listPatient.obj
 	@echo ... src/Management/listPatient.i
 	@echo ... src/Management/listPatient.s

@@ -1,5 +1,11 @@
 #include <Management/listPatient.hpp>
 
+string toLowerCase(const string &str)
+{
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
 //* Constructor & Destructor
 listPatient::listPatient()
 {
@@ -278,10 +284,55 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
 }
 
 //* Search
-string toLowerCase(const string &str)
+vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
 {
-    string result = str;
-    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    vector<Patient> result;
+    if (this->size() == 0)
+        return result;
+
+    string lowerValue = toLowerCase(value);
+    int left = 0, right = this->size() - 1;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        string fieldValue;
+        switch (field)
+        {
+        case SearchField::ID:
+            fieldValue = toLowerCase(this->get(mid).getID_patient());
+            break;
+        case SearchField::FullName:
+            fieldValue = toLowerCase(this->get(mid).getFullName());
+            break;
+        case SearchField::CCCD:
+            fieldValue = toLowerCase(this->get(mid).getCCCD());
+            break;
+        }
+
+        if (fieldValue.find(lowerValue) == 0)
+        {
+            result.push_back(this->get(mid));
+            int temp = mid - 1;
+            while (temp >= left && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0)
+            {
+                result.push_back(this->get(temp));
+                temp--;
+            }
+            temp = mid + 1;
+            while (temp <= right && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0)
+            {
+                result.push_back(this->get(temp));
+                temp++;
+            }
+            break;
+        }
+
+        if (fieldValue < lowerValue)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
     return result;
 }
 // vector<Patient> listPatient::searchPatient(SearchField field, const string &value)

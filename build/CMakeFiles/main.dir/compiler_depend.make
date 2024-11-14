@@ -534,7 +534,6 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Test_Code/PBL/PBL2/main.cpp \
   D:/Test_Code/PBL/PBL2/include/Library/Filelib.hpp \
   D:/Test_Code/PBL/PBL2/include/Library/Graphics.hpp \
   D:/Test_Code/PBL/PBL2/include/Library/Mouse.hpp \
-  D:/Test_Code/PBL/PBL2/include/Management/Account.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Appoinment.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Date.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Patient.hpp \
@@ -574,8 +573,6 @@ C:/msys64/mingw64/include/_mingw_secapi.h:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/x86gprintrin.h:
 
 C:/msys64/mingw64/include/windef.h:
-
-D:/Test_Code/PBL/PBL2/include/Management/Account.hpp:
 
 C:/msys64/mingw64/include/c++/14.2.0/debug/assertions.h:
 

@@ -74,44 +74,6 @@ string Patient::getGenderToString() const { return (this->gender) ? "Nữ" : "Na
 string Patient::getAddress() const { return this->address; }
 
 //* Function
-// Nhập 1 bệnh nhân
-// void Patient::inputPatient() {
-//     int x = whereX(), y = whereY();
-//     string gender_str;
-
-//     gotoXY(x + 12, y + 1); cout << this->ID_patient;
-//     gotoXY(x + 12, y + 4); cin.ignore(); getline(cin, this->fullName);
-//     gotoXY(x + 12, y + 7); cin >> this->phone;
-//     gotoXY(x + 12, y + 10); dayOfBirth.inputDate();
-//     gotoXY(x + 12, y + 13); cin >> this->CCCD;
-
-//     gotoXY(x + 12, y + 16); cin >> gender_str;
-//     if(gender_str == "Nam") this->gender = true;
-//     else this->gender = false;
-
-//     gotoXY(x + 12, y + 19); cin.ignore(); getline(cin, this->address);
-// }
-
-// In thông tin 1 bệnh nhân
-// void Patient::printPatient() {
-//     int x = whereX(), y = whereY();
-//     string gender_str = this->gender ? "Nam" : "Nữ";
-
-//     gotoXY(x + 4, y);
-//     cout << this->ID_patient;
-//     gotoXY(x + 16, y);
-//     cout << this->fullName;
-//     gotoXY(x + 41, y);
-//     cout << this->phone;
-//     gotoXY(x + 61, y);
-//     cout << this->dayOfBirth.getDate();
-//     gotoXY(x + 81, y);
-//     cout << this->CCCD;
-//     gotoXY(x + 101, y);
-//     cout << gender_str;
-//     gotoXY(x + 121, y);
-//     cout << this->address << endl;
-// }
 
 // Lưu 1 bệnh nhân vào file
 bool Patient::writePatientToFile_all(ofstream& fout) {

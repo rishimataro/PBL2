@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/manag.dir/src/Management/Date.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/Patient.cpp.obj.d"
+  "CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj"
+  "CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj.d"
   "libmanag.a"
