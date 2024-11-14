@@ -25,11 +25,21 @@ int main() {
     listPatient list;
     list.readListPatientFromFile();
 
-    vector<Patient> result = list.setPatientByBirthRange("01/01/1999", "01/01/2007");
+    vector<Patient> result = list.setPatientByBirthRange("01/07/2005", "31/12/2005");
+    if (result.size() == 0)
+    {
+        cout << "Không tìm thấy bệnh nhân nào" << endl;
+    }
     for (int i = 0; i < result.size(); i++)
     {
         cout << result[i].getFullName() << endl;
     }
+
+    // vector<Patient> result2 = list.searchPatient(SearchField::ID, "P3");
+    // for (int i = 0; i < result2.size(); i++)
+    // {
+    //     cout << result2[i].getID_patient() << "; " << result2[i].getFullName() << endl;
+    // }
 
     system("pause");
     return 0;
