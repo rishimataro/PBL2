@@ -730,7 +730,6 @@ void Appoinment_UI(Patient& patient)
 }
 void Patient_UI(Patient& patient)
 {   
-    Patient_State state = Patient_State::MainScreen;
     // Tạo màn hình giao diện
     auto screen = ftxui::ScreenInteractive::Fullscreen();
     std::string patient_name = patient.getFullName(); // Tên bệnh nhân

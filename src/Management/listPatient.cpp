@@ -273,7 +273,7 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
 
 //* Search
 vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
-{
+{   
     vector<Patient> result;
     if (this->size() == 0)
         return result;

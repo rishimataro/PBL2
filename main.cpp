@@ -8,8 +8,9 @@
 #include <Management/Appoinment.hpp>
 #include <Management/listPatient.hpp>
 #include <Management/Patient.hpp>
-#include "Interface/Patient_interface.hpp"
+// #include "Interface/Patient_interface.hpp"
 #include "Management/Date.hpp"
+#include "Interface/Login.hpp"
 // #include <fstream>
 // #include <iostream>
 // #include <windows.h>
@@ -21,7 +22,7 @@ using namespace std;
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-
+    loginUI();
     // Patient pp;
     // pp.setID_patient();
     // pp.setAddress("1234 Hà Nội");
@@ -30,10 +31,14 @@ int main() {
     // pp.setCCCD("0001234567");
     // pp.setDayOfBirth("15/07/2005");
     // pp.setGender(true);
-    listPatient list;
-    list.readListPatientFromFile();
-    vector<Patient> Patients = list.setAllPatient();
-    Patient_UI(Patients[0]);
+
+    // listPatient list;
+    // list.readListPatientFromFile();
+    // vector<Patient> Patients = list.setAllPatient();
+    // vector<Patient> Patients = list.searchPatient(SearchField::ID, "P3");
+    // cout << Patients.size() << endl;
+    // Patient_UI(Patients[0]);
+
     // vector<Appoinment> apps = searchAppoinments(Patients[0]);
     // {   
     //     Appoinment app = apps[0];
@@ -59,9 +64,9 @@ int main() {
     //     cout << "Read file failed" << endl;
     // }
 
-    // // list.addPatient();
-    // vector<Patient> result = list.setPatientByBirthRange("01/01/2005", "01/03/2005");
-
+    // // // list.addPatient();
+    // vector<Patient> result = list.setPatientByBirthRange("01/01/2005", "31/12/2005");
+    // cout << result.size() << " patient(s) found." << endl;
     // for(const auto& p : result) {
     //     cout << p.getFullName() << endl;
     // }
@@ -78,7 +83,7 @@ int main() {
     //     cout << p.getFullName() << endl;
     // }
 
-    // system("pause");
+    system("pause");
     return 0;
 }
 
