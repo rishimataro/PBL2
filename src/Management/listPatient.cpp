@@ -276,7 +276,7 @@ vector<Patient> listPatient::searchPatient(SearchField field, const string &valu
             break;
         }
 
-        if (fieldValue.find(lowerValue) != 0)
+        if (fieldValue.find(lowerValue) == 0)
         {
             result.push_back(this->get(i));
         }
