@@ -1,12 +1,6 @@
 #include <Management/listAccount.hpp>
 #include <unordered_map>
 
-string toLowerCase(const string &str)
-{
-    string result = str;
-    transform(result.begin(), result.end(), result.begin(), ::tolower);
-    return result;
-}
 // * Constructor & Destructor
 listAccount::listAccount()
 {

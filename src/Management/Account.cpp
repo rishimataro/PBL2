@@ -140,14 +140,6 @@ void Account::writeAccountToFile(ofstream &f) {
         oss << ";" << this->ID_patient;
     }
     f << oss.str() << endl;
-    string data;
-
-    data.append(this->ID_acc + ";");
-    data.append(this->userName + ";");
-    data.append(this->password + ";");
-    data.append(to_string(this->role) + "\n");
-
-    f << data;
 }
 
 bool Account::operator==(const Account& another) {

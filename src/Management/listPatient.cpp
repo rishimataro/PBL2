@@ -1,11 +1,5 @@
 #include <Management/listPatient.hpp>
 
-string toLowerCase(const string &str)
-{
-    string result = str;
-    transform(result.begin(), result.end(), result.begin(), ::tolower);
-    return result;
-}
 //* Constructor & Destructor
 listPatient::listPatient()
 {
@@ -67,21 +61,16 @@ bool listPatient::writeListPatientToFile(bool check)
     string file_path = "../Database/PatientDB/patient.txt";
     char ch;
 
-    ifstream fi(file_path);
-    if (fi.is_open())
+    ofstream fo;
+    if (check)
     {
-        fi.seekg(-1, ios::end);
-        fi.get(ch);
-        if (ch != '\n' && ch != '\0')
-        {
-            ofstream temp(file_path, ios::app);
-            temp << "\n";
-            temp.close();
-        }
-        fi.close();
+        fo.open(file_path, ios::trunc); 
+    }
+    else
+    {
+        fo.open(file_path, ios::app);  
     }
 
-    ofstream fo(file_path, ios::app);
     if (!fo.is_open())
         return false;
 
@@ -182,7 +171,6 @@ vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, con
         else
             right = mid - 1;
     }
-
     return result;
 }
 
@@ -335,34 +323,3 @@ vector<Patient> listPatient::searchPatient(SearchField field, const string &valu
     }
     return result;
 }
-// vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
-// {
-//     vector<Account> result;
-//     if(this->size() == 0) return result;
-//     string lowerValue = toLowerCase(value);
-
-//     if (field == SearchField::ID)
-//     {
-//         for (const auto &entry : idMap)
-//         {
-//             string fieldValue = toLowerCase(entry.first);
-//             if (fieldValue.find(lowerValue) == 0)  
-//             {
-//                 result.push_back(entry.second);
-//             }
-//         }
-//     }
-//     else if (field == SearchField::UserName)
-//     {
-//         for (const auto &entry : userNameMap)
-//         {
-//             string fieldValue = toLowerCase(entry.first); 
-//             if (fieldValue.find(lowerValue) == 0)     
-//             {
-//                 result.push_back(entry.second);
-//             }
-//         }
-//     }
-
-//     return result;
-// }
