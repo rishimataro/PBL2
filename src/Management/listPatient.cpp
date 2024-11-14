@@ -133,47 +133,27 @@ vector<Patient> listPatient::setPatientByGender(bool gender)
 vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, const string &endDate)
 {
     vector<Patient> result;
-    if (this->size() == 0)
-        return result;
 
+    // Chuyển đổi startDate và endDate thành đối tượng Date
     Date startDateObj, endDateObj;
     startDateObj.setDate(startDate);
     endDateObj.setDate(endDate);
 
-    int left = 0, right = this->size() - 1;
-
-    while (left <= right)
+    // Duyệt qua danh sách bệnh nhân và tìm những bệnh nhân có ngày sinh trong phạm vi
+    for (int i = 0; i < this->size(); i++)
     {
-        int mid = left + (right - left) / 2;
-        Date birthDate = this->get(mid).getDayOfBirth();
+        // Lấy ngày sinh của bệnh nhân
+        Date currentPatientDate = this->get(i).getDayOfBirth();
 
-        if (birthDate >= startDateObj && birthDate <= endDateObj)
+        // Kiểm tra nếu ngày sinh của bệnh nhân trong khoảng startDate và endDate
+        if (currentPatientDate >= startDateObj && currentPatientDate <= endDateObj)
         {
-            result.push_back(this->get(mid));
-
-            int temp = mid - 1;
-            while (temp >= left && this->get(temp).getDayOfBirth() >= startDateObj && this->get(temp).getDayOfBirth() <= endDateObj)
-            {
-                result.push_back(this->get(temp));
-                temp--;
-            }
-            temp = mid + 1;
-            while (temp <= right && this->get(temp).getDayOfBirth() >= startDateObj && this->get(temp).getDayOfBirth() <= endDateObj)
-            {
-                result.push_back(this->get(temp));
-                temp++;
-            }
-            break;
+            result.push_back(this->get(i));
         }
-
-        if (birthDate < startDateObj)
-            left = mid + 1;
-        else
-            right = mid - 1;
     }
+
     return result;
 }
-
 vector<Patient> listPatient::setAllPatient()
 {
     vector<Patient> result;
@@ -279,47 +259,28 @@ vector<Patient> listPatient::searchPatient(SearchField field, const string &valu
         return result;
 
     string lowerValue = toLowerCase(value);
-    int left = 0, right = this->size() - 1;
 
-    while (left <= right)
+    for (int i = 0; i < this->size(); i++)
     {
-        int mid = left + (right - left) / 2;
         string fieldValue;
         switch (field)
         {
         case SearchField::ID:
-            fieldValue = toLowerCase(this->get(mid).getID_patient());
+            fieldValue = toLowerCase(this->get(i).getID_patient());
             break;
         case SearchField::FullName:
-            fieldValue = toLowerCase(this->get(mid).getFullName());
+            fieldValue = toLowerCase(this->get(i).getFullName());
             break;
         case SearchField::CCCD:
-            fieldValue = toLowerCase(this->get(mid).getCCCD());
+            fieldValue = toLowerCase(this->get(i).getCCCD());
             break;
         }
 
-        if (fieldValue.find(lowerValue) == 0)
+        if (fieldValue.find(lowerValue) != 0)
         {
-            result.push_back(this->get(mid));
-            int temp = mid - 1;
-            while (temp >= left && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0)
-            {
-                result.push_back(this->get(temp));
-                temp--;
-            }
-            temp = mid + 1;
-            while (temp <= right && toLowerCase(this->get(temp).getID_patient()).find(lowerValue) == 0)
-            {
-                result.push_back(this->get(temp));
-                temp++;
-            }
-            break;
+            result.push_back(this->get(i));
         }
-
-        if (fieldValue < lowerValue)
-            left = mid + 1;
-        else
-            right = mid - 1;
     }
+
     return result;
 }

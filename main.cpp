@@ -22,6 +22,14 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     
+    listPatient list;
+    list.readListPatientFromFile();
+
+    vector<Patient> result = list.setPatientByBirthRange("01/01/1999", "01/01/2007");
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout << result[i].getFullName() << endl;
+    }
 
     system("pause");
     return 0;
