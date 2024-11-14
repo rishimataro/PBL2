@@ -25,6 +25,25 @@ Appoinment::Appoinment(Patient& patient, const Date& date, int time, const strin
     this->time = time;
     this->description = description;
 }
+bool Appoinment::UpdateStatus(const bool& Status, const bool& isProcessed)
+{   
+    map<string, vector<string>> lichKham;
+    DocFileLich(lichKham);
+    this->status = Status;
+    this->isProcessed = isProcessed;
+    for(string& lk : lichKham[this->getDate().getDate()])
+    {
+        if (lk.find(this->ID) == 0)
+        {
+            int pos = lk.length() - 1;
+            lk.replace(pos - 2, 1, (this->status? "1" : "0"));
+            lk.replace(pos, 1, (this->isProcessed? "1" : "0"));
+            GhiFileLich(lichKham);
+            return true;
+        }
+    }
+    return false;
+}
 
 void Appoinment::setDate(Date date)
 {

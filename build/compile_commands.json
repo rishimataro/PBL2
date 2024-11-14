@@ -1,12 +1,6 @@
 [
 {
   "directory": "D:/Test_Code/PBL/PBL2/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe  @CMakeFiles/template.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\template.dir\\src\\Template\\LinkedList.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Template\\LinkedList.cpp",
-  "file": "D:/Test_Code/PBL/PBL2/src/Template/LinkedList.cpp",
-  "output": "CMakeFiles/template.dir/src/Template/LinkedList.cpp.obj"
-},
-{
-  "directory": "D:/Test_Code/PBL/PBL2/build",
   "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/lib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\lib.dir\\src\\Library\\Filelib.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Library\\Filelib.cpp",
   "file": "D:/Test_Code/PBL/PBL2/src/Library/Filelib.cpp",
   "output": "CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj"
@@ -22,6 +16,12 @@
   "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/lib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\lib.dir\\src\\Library\\Mouse.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Library\\Mouse.cpp",
   "file": "D:/Test_Code/PBL/PBL2/src/Library/Mouse.cpp",
   "output": "CMakeFiles/lib.dir/src/Library/Mouse.cpp.obj"
+},
+{
+  "directory": "D:/Test_Code/PBL/PBL2/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe  @CMakeFiles/template.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\template.dir\\src\\Template\\LinkedList.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Template\\LinkedList.cpp",
+  "file": "D:/Test_Code/PBL/PBL2/src/Template/LinkedList.cpp",
+  "output": "CMakeFiles/template.dir/src/Template/LinkedList.cpp.obj"
 },
 {
   "directory": "D:/Test_Code/PBL/PBL2/build",

@@ -62,14 +62,14 @@ int main() {
     // listPatient list;   
     // bool check = list.readListPatientFromFile();
 
-    // // if (check) {
-    // //     cout << "Read file successfully" << endl;
-    // // } else {
-    // //     cout << "Read file failed" << endl;
-    // // }
+    // // // if (check) {
+    // // //     cout << "Read file successfully" << endl;
+    // // // } else {
+    // // //     cout << "Read file failed" << endl;
+    // // // }
 
     // // // // list.addPatient();
-    // vector<Patient> result = list.setPatientByBirthRange("12/01/2005", "01/07/2005");
+    // vector<Patient> result = list.setPatientByBirthRange("12/01/2005", "01/12/2005");
     // cout << result.size() << " patient(s) found." << endl;
     // for(const auto& p : result) {
     //     cout << p.getFullName() << endl;

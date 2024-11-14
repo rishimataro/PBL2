@@ -166,12 +166,12 @@ ftxui/examples/clean:
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/screen.dir/all
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/manag.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/ui.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/lib.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
 CMakeFiles/main.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
@@ -234,10 +234,10 @@ CMakeFiles/lib.dir/clean:
 # Target rules for target CMakeFiles/manag.dir
 
 # All Build rule for target.
-CMakeFiles/manag.dir/all: CMakeFiles/template.dir/all
-CMakeFiles/manag.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/manag.dir/all: ftxui/CMakeFiles/screen.dir/all
 CMakeFiles/manag.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/manag.dir/all: CMakeFiles/lib.dir/all
+CMakeFiles/manag.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/manag.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/build
@@ -300,11 +300,11 @@ CMakeFiles/template.dir/clean:
 # Target rules for target CMakeFiles/ui.dir
 
 # All Build rule for target.
-CMakeFiles/ui.dir/all: CMakeFiles/manag.dir/all
-CMakeFiles/ui.dir/all: CMakeFiles/template.dir/all
-CMakeFiles/ui.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/ui.dir/all: ftxui/CMakeFiles/screen.dir/all
 CMakeFiles/ui.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/ui.dir/all: CMakeFiles/lib.dir/all
+CMakeFiles/ui.dir/all: CMakeFiles/manag.dir/all
+CMakeFiles/ui.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/ui.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/build

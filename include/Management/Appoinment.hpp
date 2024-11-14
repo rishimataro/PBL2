@@ -22,6 +22,7 @@ class Appoinment
         Appoinment();
         void copy(const Appoinment& app);
         Appoinment(Patient& patient, const Date& date, int time, const string& description);
+        bool UpdateStatus(const bool& Status = 1, const bool& isProcessed = 0);
         void setDate(Date date);
         void setTime(int time);
         void setPatientID(const Patient& patient);

@@ -240,33 +240,32 @@ void P_Appoinment_info_UI(Patient& patient)
     std::vector<Appoinment> danhSachLich = searchAppoinments(patient.getID_patient());
     // Component Appoinment_cancel_renderer;
     //ID  Ngày  Thời gian
-    vector<string> App_list;
+    // vector<string> App_list;
     Element header_text = text("Danh sách lịch khám") | bold | center;
     Element tb_text = text("   Mã lịch khám   Ngày   Thời gian") | bold;
-    for(auto& app : danhSachLich)
-    {
-        App_list.push_back(app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()));
-    }
+    // for(auto& app : danhSachLich)
+    // {
+    //     App_list.push_back("  " + app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()) + (app.getStatus()? "Còn hiệu lực" : "Đã hủy"));
+    // }
     int selected = 1;
     int popup_level = 0;
-    Appoinment selected_app;
+    Appoinment *selected_app;
     auto Create_App_cancel = [&screen, &patient](Appoinment& app) {
     
     };
     Component Menu_app_list = Container::Vertical({});
     
-    for(int i = 0; i < App_list.size(); i++)
+    for(auto& app : danhSachLich)
     {   
-        auto tmp_btn = Button(App_list[i], [&, i]() {
-            selected_app = danhSachLich[i]; // gán lịch khám đã chọn
-            selected = i;
+        auto tmp_btn = Button(("  " + app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()) + "            " + (app.getStatus()? "Hiệu lực" : " Đã hủy")), [&]() {
+            selected_app = &app; // gán lịch khám đã chọn
             popup_level = 1;
         }, Btn_animated_opt1());
         Menu_app_list->Add(tmp_btn);
     
     }
     // Menu_app_list->;
-    Component exit_btn = Button("Thoát", [&]{
+    Component exit_btn = Button("Quay lại", [&]{
         screen.ExitLoopClosure()();
     }, btn_style1());
     Component Menu_app = Container::Vertical({
@@ -274,21 +273,26 @@ void P_Appoinment_info_UI(Patient& patient)
         exit_btn,
     });
     auto menu_app_list_renderer = Renderer(Menu_app, [&] {
-        return vbox({
+        return window(
             text("Danh sách lịch khám") | bold | center,
-            separator(),
+            vbox({
+            // separator(),
             hbox({
                 text("Mã lịch khám"), 
                 separatorEmpty() | size(WIDTH, EQUAL, 10), 
                 text("Ngày"), 
                 separatorEmpty() | size(WIDTH, EQUAL, 13), 
-                text("Giờ khám")
+                text("Giờ khám"),
+                separatorEmpty() | size(WIDTH, EQUAL, 13),
+                text("Trạng thái"),
+                // separatorEmpty() | size(WIDTH, EQUAL, 10),
             }) | bold,
             separator(),
             Menu_app_list->Render(),
             separator(),
             exit_btn->Render() | hcenter,
-        })| border;
+            })
+        );
     });
     
 
@@ -315,22 +319,22 @@ void P_Appoinment_info_UI(Patient& patient)
         return text(patient.getAddress());
     }));
     Component a_ID = Wrap("Mã lịch khám:", Renderer([&](){
-        return text(selected_app.getID());
+        return text((*selected_app).getID());
     }));
     Component a_Date = Wrap("Ngày khám:", Renderer([&](){
-        return text(selected_app.getDate().getDate());
+        return text((*selected_app).getDate().getDate());
     }));
     Component a_Time = Wrap("Giờ khám:", Renderer([&](){
-        return text(GioKham(selected_app.getTime()));
+        return text(GioKham((*selected_app).getTime()));
     }));
     Component Symptom_text = Wrap("Triệu chứng:", Renderer([&](){
-        return paragraph(selected_app.getDescription());
+        return paragraph((*selected_app).getDescription());
     }));
     Component status_text = Wrap("Hiệu lực:", Renderer([&](){
-        return text(selected_app.getStatus()? "Còn hiệu lực" : "Đã hủy");
+        return text((*selected_app).getStatus()? "Hiệu lực" : "Đã hủy");
     }));
     Component is_Processed = Wrap("Trạng thái khám: ", Renderer([&](){
-        return text(selected_app.getIsProcessed()? "Đã khám" : "Chưa khám");
+        return text((*selected_app).getIsProcessed()? "Đã khám" : "Chưa khám");
     }));
     auto app_cancel_btn = Button("Hủy lịch khám", [&](){
             // selected_app.setStatus(false);
@@ -366,41 +370,42 @@ void P_Appoinment_info_UI(Patient& patient)
         cancel_app,
     });
     auto Appoinment_cancel_renderer = Renderer(popup_container, [&] {
-        return vbox({
+        return window(
             text("Thông tin lịch khám") | bold | center,
-            separator(),
-            Patient_id->Render(),
-            Full_name->Render(),
-            DOB->Render(),
-            CCCD->Render(),
-            Patient_gender->Render(),
-            Address->Render(),
-            separator(),
-            a_ID->Render(),
-            a_Date->Render(),
-            a_Time->Render(),
-            Symptom_text->Render(),
-            separator(),
-            status_text->Render(),
-            is_Processed->Render(),
-            separator(),
-            // cancel_app->Render() | hcenter,
-            hbox({
-                app_cancel_btn->Render(),
-                separatorEmpty() | size(WIDTH, EQUAL, 6),  // Add empty space for separator
-                app_exit_btn->Render(),
-            })| size(HEIGHT, EQUAL, 3) | hcenter,
-            // app_exit_btn->Render() | hcenter,
-        }) | border;
+            vbox({
+                separator(),
+                Patient_id->Render(),
+                Full_name->Render(),
+                DOB->Render(),
+                CCCD->Render(),
+                Patient_gender->Render(),
+                Address->Render(),
+                separator(),
+                a_ID->Render(),
+                a_Date->Render(),
+                a_Time->Render(),
+                Symptom_text->Render(),
+                separator(),
+                status_text->Render(),
+                is_Processed->Render(),
+                separator(),
+                // cancel_app->Render() | hcenter,
+                hbox({
+                    app_cancel_btn->Render(),
+                    separatorEmpty() | size(WIDTH, EQUAL, 6),  // Add empty space for separator
+                    app_exit_btn->Render(),
+                })| size(HEIGHT, EQUAL, 3) | hcenter,
+                // app_exit_btn->Render() | hcenter,
+            })
+        );
     });
             // screen.Loop(Appoinment_cancel_renderer);
     string Confirm_msg;
     Component confirm_btn = Button("Xác nhận", [&](){ 
-        selected_app.setStatus(0);
+        (*selected_app).UpdateStatus(0, 0);
         Confirm_msg = "Hủy lịch khám thành công!";
         // popup_level = 1;
     }, btn_style1());
-
     Component cancel_btn = Button("Quay lại", [&](){ 
         popup_level = 1;
         Confirm_msg = "";
@@ -410,18 +415,20 @@ void P_Appoinment_info_UI(Patient& patient)
             confirm_btn,
     });
     Component cancel_confirm_renderer = Renderer(cancel_confirm_container, [&] {
-        return vbox({
+        return window(
             text("Xác nhận hủy lịch khám") | bold | center,
-            separator(),
-            text("Thao tác hủy sẽ không thể hoàn tác, vui lòng xác nhận trước khi hủy.") | color(Color::Red) | hcenter,
-            hbox({
-                cancel_btn->Render(),
-                separatorEmpty() | size(WIDTH, EQUAL, 10),  // Add empty space for separator,
-                confirm_btn->Render(),
-            }) | hcenter,
-            separator(),
-            text(Confirm_msg)| color(Color::Green) | hcenter,
-        }) | border | center;
+            vbox({
+                separator(),
+                text("Thao tác hủy sẽ không thể hoàn tác, vui lòng xác nhận trước khi hủy.") | color(Color::Red) | hcenter,
+                hbox({
+                    cancel_btn->Render(),
+                    separatorEmpty() | size(WIDTH, EQUAL, 10),  // Add empty space for separator,
+                    confirm_btn->Render(),
+                }) | hcenter,
+                separator(),
+                text(Confirm_msg)| color(Color::Green) | hcenter,
+            })
+        );
     });
 
     auto main_container = Container::Tab(
@@ -432,20 +439,19 @@ void P_Appoinment_info_UI(Patient& patient)
         },
         &popup_level
     );
-    auto main_renderer = Renderer(main_container, [&] {
+    Component main_renderer = Renderer(main_container, [&] {
         Element showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter;
         if (popup_level == 1) {
             showing = dbox({
-                // showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
-                showing,
+                showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
+                // showing,
                 Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60)| bgcolor(Color::Black) | clear_under | hcenter,
         });
         }
         if (popup_level == 2) {
             showing = dbox({
-                showing,
-                // showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
-                // Appoinment_cancel_renderer->Render() | size(HEIGHT, EQUAL, 20) | size(WIDTH, LESS_THAN, 80)| size(WIDTH, GREATER_THAN, 60)| bgcolor(Color::Black) | clear_under | hcenter,
+                showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
+                Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60)| bgcolor(Color::Black) | clear_under | hcenter,
                 cancel_confirm_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60) | bgcolor(Color::Black) | clear_under | hcenter | size(HEIGHT, EQUAL, 8),
             });
         }
