@@ -2,12 +2,15 @@
 #include <unordered_map>
 
 // * Constructor & Destructor
-listAccount::listAccount() {
+listAccount::listAccount()
+{
     this->head = NULL;
 }
 
-listAccount::~listAccount() {
-    if (this->head == NULL) return;
+listAccount::~listAccount()
+{
+    if (this->head == NULL)
+        return;
 
     Node<Account> *current = this->head;
     Node<Account> *tail = this->head->prev;
@@ -23,24 +26,54 @@ listAccount::~listAccount() {
 }
 
 // * Setter & Getter
-int listAccount::setCoif (accountsByRole.find(role) != accountsByRole.end()) {
-            return accountsByRole[role].size();
+int listAccount::setCountRole(int role)
+{
+    int left = 0;
+    int right = this->size() - 1;
+    int count = 0;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (this->get(mid).getRole() < role)
+        {
+            left = mid + 1;
         }
-        return 0;
+        else if (this->get(mid).getRole() > role)
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            int start = mid;
+            while (start >= 0 && this->get(start).getRole() == role)
+            {
+                count++;
+                start--;
+            }
+            int end = mid + 1;
+            while (end < this->size() && this->get(end).getRole() == role)
+            {
+                count++;
+                end++;
+            }
+            break;
+        }
     }
+
     return count;
 }
 
-// ! Sửa lại hàm này
 // * done
 bool listAccount::readListAccountFromFile()
 {
     string file_path = "./Database/AccountDB/account.txt";
-    fstream fin;
+    ifstream fin;
     Account account;
 
     fin.open(file_path, ios::in);
-    if (!fin.is_open()) return false;
+    if (!fin.is_open())
+        return false;
 
     string line;
     while (getline(fin, line))
@@ -50,21 +83,18 @@ bool listAccount::readListAccountFromFile()
 
         account.readAccountFromFile(line);
         this->append(account);
-        idMap[account.getID()] = account;
-        userNameMap[account.getUserName()] = account;
     }
     fin.close();
     return true;
 }
 
-// ! Sửa lại hàm này
 //* done
 bool listAccount::writeListAccountToFile(bool check)
 {
     string file_path = "./Database/AccountDB/account.txt";
     char ch;
 
-    ifstream fi(file_path);
+    ifstream fi(file_path, ios::in | ios::binary);
     if (fi.is_open())
     {
         fi.seekg(-1, ios::end);
@@ -79,7 +109,8 @@ bool listAccount::writeListAccountToFile(bool check)
     }
 
     ofstream fo(file_path, ios::app);
-    if (!fo.is_open()) return false;
+    if (!fo.is_open())
+        return false;
 
     Account account;
     if (check)
@@ -100,80 +131,70 @@ bool listAccount::writeListAccountToFile(bool check)
     return true;
 }
 
-// ! Sửa lại hàm này
 //* done
 vector<Account> listAccount::setAccountByRole(int role)
 {
     vector<Account> result;
-    if(this->size() == 0) return result;
+    if (this->size() == 0)
+        return result;
 
     copy_if(this->begin(), this->end(), back_inserter(result),
-                 [role](const Account& account) { return account.getRole() == role; });
+            [role](const Account &account)
+            { return account.getRole() == role; });
 
     return result;
 }
 
-// ! Sửa lại hàm này
 //* done
 vector<Account> listAccount::setAllAccount()
 {
     vector<Account> result;
-    if(this->size() == 0) return result;
+    if (this->size() == 0)
+        return result;
 
     copy(this->begin(), this->end(), back_inserter(result));
     return result;
 }
 
 // * Sign Up & Sign In
-// string enterPassword()
-// {
-//     string pw;
-//     char ch;
-//     while ((ch = _getch()) != '\r')
-//     {
-//         if (ch == '\b' && pw.length() > 0)
-//         {
-//             cout << "\b \b";
-//             pw.pop_back();
-//         }
-//         else if (ch != '\b')
-//         {
-//             cout << "●";
-//             pw.push_back(ch);
-//         }
-//     }
-//     return pw;
-// }
+// Đăng ký tài khoản: thêm account vào listAccount
+int listAccount::signUp(Account &account, const string &tmpUserName, const string &tmpPassword, const int &tmpRole)
+{
+    if(checkUserName(tmpUserName) != -1) return -1;
 
-// ! Sửa lại hàm này
-// Đăng ký tài khoản
-void listAccount::signUp(Account &account, const string& tmpUserName, const string& tmpPassword, const int& tmpRole) {
-    account.setUserName(tmpUserName);
-    account.setPassword(tmpPassword);
-    account.setRole(tmpRole);
-    this->append(account);
-    idMap[account.getID()] = account;
-    userNameMap[account.getUserName()] = account;
+    Account newAccount;
+    newAccount.setID();
+    newAccount.setUserName(tmpUserName);
+    newAccount.setPassword(tmpPassword);
+    newAccount.setRole(tmpRole);
+
+    this->append(newAccount);
+    this->writeListAccountToFile(false);
+
+    return newAccount.getRole();
+
+    //! Sau hàm này gọi hàm addPatient() để nhập thông tin bệnh nhân
 }
 
-// ! Sửa lại hàm này
-void listAccount::signIn(Account &account, const string& tmpUserName, const string& tmpPassword, const int& tmpRole) {
-    auto it = userNameMap.find(tmpUserName);
-    if (it != userNameMap.end() && it->second.getPassword() == tmpPassword && it->second.getRole() == tmpRole) {
-        account = it->second;
-    }
+// Đăng nhập: kiểm tra thông tin đăng nhập
+int listAccount::signIn(Account &account, const string &tmpUserName, const string &tmpPassword, const int &tmpRole)
+{
+    if (checkSignIn(tmpUserName, tmpPassword, tmpRole, account)) return account.getRole();
+    return false;
 }
 
 bool listAccount::checkSignIn(const string &userName, const string &password, const int &role, Account &account)
 {
     auto it = find_if(this->begin(), this->end(),
-                           [&userName, &password, &role](const Account &acc) {
-                               return acc.getUserName() == userName && 
-                                      acc.getPassword() == password && 
-                                      acc.getRole() == role;
-                           });
-    
-    if (it != this->end()) {
+                      [&userName, &password, &role](const Account &acc)
+                      {
+                          return acc.getUserName() == userName &&
+                                 acc.getPassword() == password &&
+                                 acc.getRole() == role;
+                      });
+
+    if (it != this->end())
+    {
         account = *it;
         return true;
     }
@@ -181,22 +202,48 @@ bool listAccount::checkSignIn(const string &userName, const string &password, co
     return false;
 }
 
-// ! Sửa lại hàm này
-void listAccount::forgotPassword(Account &account, const string &tmpUser) {
-    auto it = userNameMap.find(tmpUser);
-    if (it != userNameMap.end() && tmpPass == tmpRePass) {
-        it->second.setPassword(tmpPass);
-        account = it->second;
-        this->saveListAccountToFile();
-    }
+void listAccount::forgotPassword(Account &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass)
+{
+    int index = checkCCCD(tmpCCCD);
+    if (index == -1)
+        return;
+
+    Account currentAccount = this->get(index);
+    if (this->checkUserName(tmpUser) == -1 || this->checkCCCD(tmpCCCD) == -1)
+        return;
+
+    if (tmpPass != tmpRePass)
+        return;
+
+    currentAccount.setPassword(tmpPass);
+    this->set(index, currentAccount);
+    this->writeListAccountToFile(true);
+    
+    return;
 }
 
 // * Check
+int listAccount::checkCCCD(const string &CCCD) {
+    int left = 0, right = this->size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (this->get(mid).getCCCD() == CCCD)
+            return mid;
+        else if (this->get(mid).getCCCD() < CCCD)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+
 int listAccount::checkID(const string &ID)
 {
     int left = 0, right = this->size() - 1;
 
-    while (left <= right) {
+    while (left <= right)
+    {
         int mid = left + (right - left) / 2;
         if (this->get(mid).getID() == ID)
             return mid;
@@ -208,51 +255,57 @@ int listAccount::checkID(const string &ID)
     return -1;
 }
 
- int listAccount::checkUserName(const std::string &userName) {
-        int left = 0, right = this->size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (this->get(mid).getUserName() == userName)
-                return mid;
-            else if (this->get(mid).getUserName() < userName)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
+int listAccount::checkUserName(const std::string &userName)
+{
+    int left = 0, right = this->size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (this->get(mid).getUserName() == userName)
+            return mid;
+        else if (this->get(mid).getUserName() < userName)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
+    return -1;
+}
 
-    int listAccount::checkPassword(const std::string &password) {
-        int left = 0, right = this->size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (this->get(mid).getPassword() == password)
-                return mid;
-            else if (this->get(mid).getPassword() < password)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
+int listAccount::checkPassword(const std::string &password)
+{
+    int left = 0, right = this->size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (this->get(mid).getPassword() == password)
+            return mid;
+        else if (this->get(mid).getPassword() < password)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
+    return -1;
+}
 
-    int listAccount::checkRole(const int &role) {
-        int left = 0, right = this->size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (this->get(mid).getRole() == role)
-                return mid;
-            else if (this->get(mid).getRole() < role)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
+int listAccount::checkRole(const int &role)
+{
+    int left = 0, right = this->size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (this->get(mid).getRole() == role)
+            return mid;
+        else if (this->get(mid).getRole() < role)
+            left = mid + 1;
+        else
+            right = mid - 1;
     }
-};
+    return -1;
+}
+
 // * Delete
-// ! Sửa lại hàm này
-void listAccount::removeAccountByID(const string &ID) {
+void listAccount::removeAccountByID(const string &ID)
+{
     Node<Account> *current = this->head;
     if (current == NULL)
         return;
@@ -267,8 +320,8 @@ void listAccount::removeAccountByID(const string &ID) {
 }
 
 //* Update Account
-// ! Sửa lại hàm này
-void listAccount::updateAccountByID(const string &ID, const string &newUserName, const string &newPwd) {
+void listAccount::updateAccountByID(const string &ID, const string &newUserName, const string &newPwd)
+{
     Node<Account> *current = this->head;
     if (current == NULL)
         return;
@@ -298,11 +351,11 @@ string toLowerCase(const string &str)
     return result;
 }
 
-// ! Sửa lại hàm này
 vector<Account> listAccount::searchAccount(SearchField field, const string &value)
 {
     vector<Account> result;
-    if (this->size() == 0) return result;
+    if (this->size() == 0)
+        return result;
 
     string lowerValue = toLowerCase(value);
 
@@ -328,6 +381,6 @@ vector<Account> listAccount::searchAccount(SearchField field, const string &valu
             }
         }
     }
-    
+
     return result;
 }
