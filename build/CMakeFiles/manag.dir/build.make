@@ -116,26 +116,11 @@ CMakeFiles/manag.dir/src/Management/Date.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/Date.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\Date.cpp -o CMakeFiles\manag.dir\src\Management\Date.cpp.s
 
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj: CMakeFiles/manag.dir/flags.make
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/listAccount.cpp
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj -MF CMakeFiles\manag.dir\src\Management\listAccount.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\listAccount.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\listAccount.cpp
-
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/manag.dir/src/Management/listAccount.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\src\Management\listAccount.cpp > CMakeFiles\manag.dir\src\Management\listAccount.cpp.i
-
-CMakeFiles/manag.dir/src/Management/listAccount.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/listAccount.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\listAccount.cpp -o CMakeFiles\manag.dir\src\Management\listAccount.cpp.s
-
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/flags.make
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/Patient.cpp
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/Patient.cpp.obj -MF CMakeFiles\manag.dir\src\Management\Patient.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\Patient.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\Patient.cpp
 
 CMakeFiles/manag.dir/src/Management/Patient.cpp.i: cmake_force
@@ -146,13 +131,28 @@ CMakeFiles/manag.dir/src/Management/Patient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/Patient.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\Patient.cpp -o CMakeFiles\manag.dir\src\Management\Patient.cpp.s
 
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/flags.make
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/listPatient.cpp
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj -MF CMakeFiles\manag.dir\src\Management\listPatient.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\listPatient.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\listPatient.cpp
+
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/manag.dir/src/Management/listPatient.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\src\Management\listPatient.cpp > CMakeFiles\manag.dir\src\Management\listPatient.cpp.i
+
+CMakeFiles/manag.dir/src/Management/listPatient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/listPatient.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\listPatient.cpp -o CMakeFiles\manag.dir\src\Management\listPatient.cpp.s
+
 # Object files for target manag
 manag_OBJECTS = \
 "CMakeFiles/manag.dir/src/Management/Account.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/Date.cpp.obj" \
-"CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj" \
-"CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
+"CMakeFiles/manag.dir/src/Management/Patient.cpp.obj" \
+"CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
 
 # External object files for target manag
 manag_EXTERNAL_OBJECTS =
@@ -160,8 +160,8 @@ manag_EXTERNAL_OBJECTS =
 libmanag.a: CMakeFiles/manag.dir/src/Management/Account.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Date.cpp.obj
-libmanag.a: CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Patient.cpp.obj
+libmanag.a: CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/build.make
 libmanag.a: CMakeFiles/manag.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libmanag.a"

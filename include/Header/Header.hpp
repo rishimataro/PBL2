@@ -8,7 +8,10 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <unordered_map> // Hash table
 // #include <Library/Graphics.hpp>
 // #include <Library/Mouse.hpp>
 #define BASE_YEAR 1900
+<<<<<<< HEAD
 using namespace std;
+

@@ -32,6 +32,8 @@ class Date
         Date& operator=(const Date& date);  
         bool operator<=(const Date& other) const;
         bool operator>=(const Date& other) const;
+        bool operator<(const Date& other) const;
+        bool operator>(const Date& other) const;
 };
 
 bool isLeapYear(int year);

@@ -8,12 +8,13 @@
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "DATA_PATH=\"${workspaceFolder}/Database/\""
             ],
             "windowsSdkVersion": "10.0.22621.0",
             "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
             "cStandard": "c17",
-            "intelliSenseMode": "windows-msvc-x64",
+            "intelliSenseMode": "${default}",
             "cppStandard": "c++17"
         }
     ],

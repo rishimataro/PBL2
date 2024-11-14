@@ -6,5 +6,5 @@ CXX_DEFINES = -DFTXUI_MICROSOFT_TERMINAL_FALLBACK -DUNICODE -D_UNICODE
 
 CXX_INCLUDES = @CMakeFiles/dom.dir/includes_CXX.rsp
 
-CXX_FLAGS = -g -std=gnu++17
+CXX_FLAGS = -std=gnu++17
 

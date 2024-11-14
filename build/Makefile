@@ -524,29 +524,29 @@ src/Management/Patient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/Patient.cpp.s
 .PHONY : src/Management/Patient.cpp.s
 
-src/Management/listAccount.obj: src/Management/listAccount.cpp.obj
-.PHONY : src/Management/listAccount.obj
+src/Management/listPatient.obj: src/Management/listPatient.cpp.obj
+.PHONY : src/Management/listPatient.obj
 
 # target to build an object file
-src/Management/listAccount.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj
-.PHONY : src/Management/listAccount.cpp.obj
+src/Management/listPatient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj
+.PHONY : src/Management/listPatient.cpp.obj
 
-src/Management/listAccount.i: src/Management/listAccount.cpp.i
-.PHONY : src/Management/listAccount.i
+src/Management/listPatient.i: src/Management/listPatient.cpp.i
+.PHONY : src/Management/listPatient.i
 
 # target to preprocess a source file
-src/Management/listAccount.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.i
-.PHONY : src/Management/listAccount.cpp.i
+src/Management/listPatient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listPatient.cpp.i
+.PHONY : src/Management/listPatient.cpp.i
 
-src/Management/listAccount.s: src/Management/listAccount.cpp.s
-.PHONY : src/Management/listAccount.s
+src/Management/listPatient.s: src/Management/listPatient.cpp.s
+.PHONY : src/Management/listPatient.s
 
 # target to generate assembly for a file
-src/Management/listAccount.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.s
-.PHONY : src/Management/listAccount.cpp.s
+src/Management/listPatient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listPatient.cpp.s
+.PHONY : src/Management/listPatient.cpp.s
 
 src/Template/LinkedList.obj: src/Template/LinkedList.cpp.obj
 .PHONY : src/Template/LinkedList.obj
@@ -624,9 +624,9 @@ help:
 	@echo ... src/Management/Patient.obj
 	@echo ... src/Management/Patient.i
 	@echo ... src/Management/Patient.s
-	@echo ... src/Management/listAccount.obj
-	@echo ... src/Management/listAccount.i
-	@echo ... src/Management/listAccount.s
+	@echo ... src/Management/listPatient.obj
+	@echo ... src/Management/listPatient.i
+	@echo ... src/Management/listPatient.s
 	@echo ... src/Template/LinkedList.obj
 	@echo ... src/Template/LinkedList.i
 	@echo ... src/Template/LinkedList.s

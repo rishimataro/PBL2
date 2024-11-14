@@ -61,6 +61,7 @@ bool listPatient::writeListPatientToFile(bool check)
     string file_path = "../Database/PatientDB/patient.txt";
     char ch;
 
+<<<<<<< HEAD
     ofstream fo;
     if (check)
     {
@@ -71,6 +72,23 @@ bool listPatient::writeListPatientToFile(bool check)
         fo.open(file_path, ios::app);  
     }
 
+=======
+    ifstream fi(file_path);
+    if (fi.is_open())
+    {
+        fi.seekg(-1, ios::end);
+        fi.get(ch);
+        if (ch != '\n' && ch != '\0')
+        {
+            ofstream temp(file_path, ios::app);
+            temp << "\n";
+            temp.close();
+        }
+        fi.close();
+    }
+
+    ofstream fo(file_path, ios::app);
+>>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
     if (!fo.is_open())
         return false;
 
@@ -165,12 +183,22 @@ vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, con
             }
             break;
         }
+<<<<<<< HEAD
 
         if (birthDate < startDateObj)
             left = mid + 1;
         else
             right = mid - 1;
     }
+=======
+
+        if (birthDate < startDateObj)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+
+>>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
     return result;
 }
 
@@ -274,6 +302,7 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
 //* Search
 vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
 {
+<<<<<<< HEAD
     vector<Patient> result;
     if (this->size() == 0)
         return result;
@@ -323,3 +352,40 @@ vector<Patient> listPatient::searchPatient(SearchField field, const string &valu
     }
     return result;
 }
+=======
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
+// vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
+// {
+//     vector<Account> result;
+//     if(this->size() == 0) return result;
+//     string lowerValue = toLowerCase(value);
+
+//     if (field == SearchField::ID)
+//     {
+//         for (const auto &entry : idMap)
+//         {
+//             string fieldValue = toLowerCase(entry.first);
+//             if (fieldValue.find(lowerValue) == 0)  
+//             {
+//                 result.push_back(entry.second);
+//             }
+//         }
+//     }
+//     else if (field == SearchField::UserName)
+//     {
+//         for (const auto &entry : userNameMap)
+//         {
+//             string fieldValue = toLowerCase(entry.first); 
+//             if (fieldValue.find(lowerValue) == 0)     
+//             {
+//                 result.push_back(entry.second);
+//             }
+//         }
+//     }
+
+//     return result;
+// }
+>>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c

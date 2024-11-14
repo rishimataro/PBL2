@@ -78,6 +78,7 @@ string Account::getRoleToString() const {
     return roleStr; 
 }
 
+<<<<<<< HEAD
 string Account::getID_patient() const { return this->ID_patient; }
 
 string Account::getCCCD() const {
@@ -118,6 +119,11 @@ string Account::getCCCD() const {
 //* Function
 // Lấy 1 account từ file
 void Account::readAccountFromFile(const string& line) {
+=======
+//* Function
+// Lấy 1 account từ file
+void Account::readPatientFromFile(const string& line) {
+>>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
     stringstream ss(line);
     string token;
     getline(ss, token, ';'); this->ID_acc = token;
@@ -134,12 +140,23 @@ void Account::readAccountFromFile(const string& line) {
 
 // Lưu 1 account vào file
 void Account::writeAccountToFile(ofstream &f) {
+<<<<<<< HEAD
     ostringstream oss;
     oss << this->ID_acc << ";" << this->userName << ";" << this->password << ";" << this->role;
     if (this->role == 1) {
         oss << ";" << this->ID_patient;
     }
     f << oss.str() << endl;
+=======
+    string data;
+
+    data.append(this->ID_acc + ";");
+    data.append(this->userName + ";");
+    data.append(this->password + ";");
+    data.append(to_string(this->role) + "\n");
+
+    f << data;
+>>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
 }
 
 bool Account::operator==(const Account& another) {

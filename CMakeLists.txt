@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(PBL2_NTNT_HLP
 )
 # Xuất tệp lệnh biên dịch
-# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Thiết lập tiêu chuẩn C++17
 set(CMAKE_CXX_STANDARD 17)
@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(ftxui)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/ftxui/cmake" ${CMAKE_MODULE_PATH})
+
+
 # Tạo executable từ tệp nguồn
 add_executable(main main.cpp)
 
@@ -19,6 +21,9 @@ add_library(header_lib INTERFACE)
 target_include_directories(header_lib 
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/Header
 )
+set(DATA_PATH "${CMAKE_SOURCE_DIR}/Database/")
+# add_definitions(-DDATA_PATH="${DATA_PATH}")
+target_compile_definitions(header_lib INTERFACE DATA_PATH=\"${DATA_PATH}\")
 
 # Thêm file thư viện lib
 add_library(lib
@@ -47,10 +52,10 @@ add_library(manag
     src/Management/Account.cpp
     src/Management/Appoinment.cpp
     src/Management/Date.cpp
-    src/Management/listAccount.cpp
+    # src/Management/listAccount.cpp
     # src/Management/listMedicalRecord.cpp
-    # src/Management/listPatient.cpp
     src/Management/Patient.cpp
+    src/Management/listPatient.cpp
 )
 target_include_directories(manag 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -74,6 +79,7 @@ target_include_directories(ui
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
 target_link_libraries(lib
     PUBLIC header_lib)
 
@@ -105,4 +111,3 @@ target_link_libraries(main
     PRIVATE ftxui::dom
     PRIVATE ftxui::component
 )
- 
