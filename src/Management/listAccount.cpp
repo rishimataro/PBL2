@@ -2,7 +2,8 @@
 #include <unordered_map>
 
 // * Constructor & Destructor
-listAccount::listAccount() {
+listAccount::listAccount()
+{
     this->head = NULL;
 }
 
@@ -59,6 +60,7 @@ int listAccount::setCountRole(int role)
             break;
         }
     }
+
     return count;
 }
 
@@ -81,8 +83,6 @@ bool listAccount::readListAccountFromFile()
 
         account.readAccountFromFile(line);
         this->append(account);
-        idMap[account.getID()] = account;
-        userNameMap[account.getUserName()] = account;
     }
     fin.close();
     return true;
@@ -127,6 +127,7 @@ bool listAccount::writeListAccountToFile(bool check)
     fo.close();
     return true;
 }
+
 
 //* done
 vector<Account> listAccount::setAccountByRole(int role)
@@ -196,7 +197,6 @@ bool listAccount::checkSignIn(const string &userName, const string &password, Ac
             return true;
         }
     }
-
     return false;
 }
 
@@ -297,20 +297,6 @@ int listAccount::checkRole(const int &role)
     return -1;
 }
 
-    int listAccount::checkRole(const int &role) {
-        int left = 0, right = this->size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (this->get(mid).getRole() == role)
-                return mid;
-            else if (this->get(mid).getRole() < role)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
-    }
-};
 // * Delete
 void listAccount::removeAccountByID(const string &ID)
 {

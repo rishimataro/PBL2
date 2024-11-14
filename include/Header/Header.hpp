@@ -14,4 +14,3 @@
 #define BASE_YEAR 1900
 <<<<<<< HEAD
 using namespace std;
-
