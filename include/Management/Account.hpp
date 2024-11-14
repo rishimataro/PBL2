@@ -2,10 +2,7 @@
 #define ACCOUNT_H   
 #include <Header/Header.hpp>
 #include <Library/Graphics.hpp>
-<<<<<<< HEAD
 #include <Management/Patient.hpp>
-=======
->>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
 
 class Account
 {
@@ -39,11 +36,7 @@ class Account
 
         //* Function
         // Lấy 1 account từ file
-<<<<<<< HEAD
         void readAccountFromFile(const string& line);    
-=======
-        void readPatientFromFile(const string& line);    
->>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
         // Lưu 1 account vào file
         void writeAccountToFile(ofstream &f);
 

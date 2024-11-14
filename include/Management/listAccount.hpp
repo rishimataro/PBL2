@@ -34,18 +34,11 @@ class listAccount : public LinkedList<Account>
         vector<Account> setAllAccount();
 
         // * Sign Up & Sign In
-<<<<<<< HEAD
         int signUp(Account &account, const string &tmpUserName, const string &tmpPassword);
         int signIn(Account &account, const string &tmpUserName, const string &tmpPassword);
         int forgotPassword(Account &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass);
         bool checkSignIn(const string &userName, const string &password, Account &account);
-=======
-        int signUp(Account &account, const string& tmpUserName, const string& tmpPassword, const int& tmpRole);
-        int signIn(Account &account, const string& tmpUserName, const string& tmpPassword, const int& tmpRole);
-        void forgotPassword(Account &account, const string& tmpUser, const string& tmpPass, const string& tmpRePass);
-        bool checkSignIn(const string& userName, const string& password, const int& role, Account &account);
->>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
-        
+
         // * Check
         int checkCCCD(const string& CCCD);
         int checkID(const string& ID);

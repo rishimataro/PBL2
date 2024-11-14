@@ -4,10 +4,6 @@
 #include <Management/Patient.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
-<<<<<<< HEAD
-=======
-#include "Management/Account.hpp"
->>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
 #include <cstdio>
 
 enum class SearchField { ID, FullName, CCCD };
