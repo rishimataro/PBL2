@@ -10,14 +10,14 @@ int safe_stoi(const string &str) {
 }
 
 //* Constructor & Destructor
-Account::Account(const string ID_acc, string userName, string password, int role, const Patient& patient)
-{
-    this->ID_acc = ID_acc;
-    this->userName = userName;
-    this->password = password;
-    this->role = role;
-    this->patient = patient;
-}
+// Account::Account(const string ID_acc, string userName, string password, int role, const Patient& patient)
+// {
+//     this->ID_acc = ID_acc;
+//     this->userName = userName;
+//     this->password = password;
+//     this->role = role;
+//     this->patient = patient;
+// }
 
 Account::Account(const Account &another)
 {
@@ -31,44 +31,44 @@ Account::Account(const Account &another)
 Account::~Account() {}
 
 //* Setter
-void Account::setID() {
-    path file_path = "../Database/PatientDB/account.txt";
-    file_path = absolute(file_path);
+// void Account::setID() {
+//     path file_path = "../Database/PatientDB/account.txt";
+//     file_path = absolute(file_path);
 
-    ifstream fi(file_path);
+//     ifstream fi(file_path);
 
-    int maxID = 0;
-    if (!fi.is_open()) {
-        return;
-    } else {
-        if (fi.peek() == ifstream::traits_type::eof()) {
-            maxID = 0;
-        } else {
-            string temp;
-            fi.seekg(-1, ios::end);
+//     int maxID = 0;
+//     if (!fi.is_open()) {
+//         return;
+//     } else {
+//         if (fi.peek() == ifstream::traits_type::eof()) {
+//             maxID = 0;
+//         } else {
+//             string temp;
+//             fi.seekg(-1, ios::end);
 
-            // Move to the start of the last line
-            while (fi.tellg() > 0 && fi.peek() != '\n') {
-                fi.seekg(-1, ios::cur);
-            }
-            if (fi.tellg() != 0) {
-                fi.seekg(1, ios::cur);
-            }
+//             // Move to the start of the last line
+//             while (fi.tellg() > 0 && fi.peek() != '\n') {
+//                 fi.seekg(-1, ios::cur);
+//             }
+//             if (fi.tellg() != 0) {
+//                 fi.seekg(1, ios::cur);
+//             }
 
-            getline(fi, temp, ';');
-            if (!temp.empty() && temp.substr(0, 3) == "ACC") {
-                maxID = stoi(temp.substr(3));
-            }
-        }
-    }
+//             getline(fi, temp, ';');
+//             if (!temp.empty() && temp.substr(0, 3) == "ACC") {
+//                 maxID = stoi(temp.substr(3));
+//             }
+//         }
+//     }
 
-    maxID++;
-    string id = "ACC" + to_string(maxID);
+//     maxID++;
+//     string id = "ACC" + to_string(maxID);
 
-    this->ID_patient = id;
+//     this->ID_patient = id;
 
-    fi.close();
-}
+//     fi.close();
+// }
 
 void Account::setPassword(const string &password) { this->password = password; }
 void Account::setUserName(const string &userName) { this->userName = userName; }
