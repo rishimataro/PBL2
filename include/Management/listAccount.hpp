@@ -1,8 +1,12 @@
 #ifndef LISTACCOUNT_H
 #define LISTACCOUNT_H
+
 #include <Management/Account.hpp>
+#include <Management/listPatient.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
+
+enum class SearchField_acc { ID, UserName};
 
 class listAccount : public LinkedList<Account>
 {
@@ -13,20 +17,20 @@ class listAccount : public LinkedList<Account>
 
         // * Setter & Getter
         int setCountRole(int role);
-        void setListAccountByFile();
-        void saveListAccountToFile();
+        bool readListAccountFromFile();
+        bool writeListAccountToFile(bool check);
 
-        // * Display
-        void printAccountByRole(int role);
-        void printAllAccount();
+        vector<Account> setAccountByRole(int role);
+        vector<Account> setAllAccount();
 
         // * Sign Up & Sign In
-        void signUp(Account &account);
-        void signIn(Account &account);
-        void forgotPassword(Account &account);
-        bool checkSignIn(const string& userName, const string& password, const int& role, Account &account);
+        int signUp(Account &account, const string &tmpUserName, const string &tmpPassword);
+        int signIn(Account &account, const string &tmpUserName, const string &tmpPassword);
+        int forgotPassword(Account &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass);
+        bool checkSignIn(const string &userName, const string &password, Account &account);
         
         // * Check
+        int checkCCCD(const string& CCCD);
         int checkID(const string& ID);
         int checkUserName(const string& userName);
         int checkPassword(const string& password);
@@ -36,11 +40,9 @@ class listAccount : public LinkedList<Account>
         void removeAccountByID(const string& ID);
 
         // * Update
-        void updateAccountByID(const string& ID);
+        void updateAccountByID(const string &ID, const string &newUserName, const string &newPwd);
 
         // * Search
-        void searchAccountByID(const string& ID);
-        void searchAccountByUserName(const string& userName);
+        vector<Account> searchAccount(SearchField_acc field, const string& value);
 };
-
 #endif
