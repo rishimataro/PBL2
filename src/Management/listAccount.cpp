@@ -341,82 +341,31 @@ void listAccount::updateAccountByID(const string &ID, const string &newUserName,
 vector<Account> listAccount::searchAccount(SearchField_acc field, const string &value)
 {
     vector<Account> result;
+
     if (this->size() == 0)
         return result;
 
     string lowerValue = toLowerCase(value);
-    int left = 0, right = this->size() - 1;
 
-    while (left <= right)
+    for (int i = 0; i < this->size(); i++)
     {
-        int mid = left + (right - left) / 2;
         string fieldValue;
+        
         switch (field)
         {
         case SearchField_acc::ID:
-            fieldValue = toLowerCase(this->get(mid).getID());
+            fieldValue = toLowerCase(this->get(i).getID());
             break;
         case SearchField_acc::UserName:
-            fieldValue = toLowerCase(this->get(mid).getUserName());
+            fieldValue = toLowerCase(this->get(i).getUserName());
             break;
         }
 
         if (fieldValue.find(lowerValue) == 0)
         {
-            result.push_back(this->get(mid));
-            int temp = mid - 1;
-            while (temp >= left)
-            {
-                string tempFieldValue;
-                switch (field)
-                {
-                case SearchField_acc::ID:
-                    tempFieldValue = toLowerCase(this->get(temp).getID());
-                    break;
-                case SearchField_acc::UserName:
-                    tempFieldValue = toLowerCase(this->get(temp).getUserName());
-                    break;
-                }
-                if (tempFieldValue.find(lowerValue) == 0)
-                {
-                    result.push_back(this->get(temp));
-                    temp--;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            temp = mid + 1;
-            while (temp <= right)
-            {
-                string tempFieldValue;
-                switch (field)
-                {
-                case SearchField_acc::ID:
-                    tempFieldValue = toLowerCase(this->get(temp).getID());
-                    break;
-                case SearchField_acc::UserName:
-                    tempFieldValue = toLowerCase(this->get(temp).getUserName());
-                    break;
-                }
-                if (tempFieldValue.find(lowerValue) == 0)
-                {
-                    result.push_back(this->get(temp));
-                    temp++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            break;
+            result.push_back(this->get(i));
         }
-
-        if (fieldValue < lowerValue)
-            left = mid + 1;
-        else
-            right = mid - 1;
     }
+
     return result;
 }
