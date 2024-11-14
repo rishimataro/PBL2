@@ -7,8 +7,6 @@
 #include <Header/Header.hpp>
 #include <unordered_map>  // Đảm bảo thêm thư viện này
 
-enum class SearchField { ID, UserName};
-
 enum class SearchField_acc { ID, UserName};
 
 class listAccount : public LinkedList<Account>
@@ -53,13 +51,6 @@ class listAccount : public LinkedList<Account>
         void updateAccountByID(const string &ID, const string &newUserName, const string &newPwd);
 
         // * Search
-<<<<<<< HEAD
         vector<Account> searchAccount(SearchField_acc field, const string& value);
 };
-=======
-        vector<Account> searchAccount(SearchField field, const string& value);
-        // vector<Account> searchAccountByID(const string& ID);
-};
-        Patient getPatientInfoByID(const string& patientID);
->>>>>>> 91cbe2779d8b4925c2749e7fd4ddbfd0996ea21c
 #endif
