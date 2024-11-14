@@ -1,4 +1,5 @@
 #include <Management/Patient.hpp>
+
 Patient::Patient(string ID_patient, string fullName, string phone, string dayOfBirthStr, string CCCD, bool gender, string address) {
     this->ID_patient = ID_patient;
     this->fullName = fullName;
@@ -22,10 +23,42 @@ Patient::Patient(const Patient &patient) {
 Patient::~Patient() { }
 
 //* Setter
-void Patient::setID_patient(string ID_patient) { this->ID_patient = ID_patient; }
+bool Patient::setID_patient() { 
+    path file_path = "../Database/PatientDB/patient.txt";
+    file_path = absolute(file_path);
+    
+    fstream fi;
+    fi.open(file_path, ios::in);
+
+    int maxID = 0;
+    if (!fi.is_open()) {
+        return false;
+    } else {
+        if (isFileEmpty(fi)) {
+            maxID = 0;
+        } else {
+            string temp;
+            moveToEndOfLastLine(fi);
+            getline(fi, temp, ';');
+            if (!temp.empty() && temp[0] == 'P') {
+                maxID = stoi(temp.substr(1));
+            }
+        }
+    }
+
+    maxID++;
+    string id = to_string(maxID);
+    id = "P" + id;
+    
+    this->ID_patient = id;
+
+    fi.close();
+    return true;
+}
+
 void Patient::setFullName(string fullName) { this->fullName = fullName; }
 void Patient::setPhone(string phone) { this->phone = phone; }
-void Patient::setDayOfBirth(Date dayOfBirth) { this->dayOfBirth = dayOfBirth; }
+void Patient::setDayOfBirth(string dayOfBirth) { this->dayOfBirth.setDate(dayOfBirth); }
 void Patient::setCCCD(string CCCD) { this->CCCD = CCCD; }
 void Patient::setGender(bool gender) { this->gender = gender; }
 void Patient::setAddress(string address) { this->address = address; }
@@ -42,69 +75,80 @@ string Patient::getAddress() const { return this->address; }
 
 //* Function
 // Nhập 1 bệnh nhân
-void Patient::inputPatient() {
-    int x = whereX(), y = whereY();
-    string gender_str;
+// void Patient::inputPatient() {
+//     int x = whereX(), y = whereY();
+//     string gender_str;
 
-    gotoXY(x + 12, y + 1); cout << this->ID_patient;
-    gotoXY(x + 12, y + 4); cin.ignore(); getline(cin, this->fullName);
-    gotoXY(x + 12, y + 7); cin >> this->phone;
-    gotoXY(x + 12, y + 10); dayOfBirth.inputDate();
-    gotoXY(x + 12, y + 13); cin >> this->CCCD;
+//     gotoXY(x + 12, y + 1); cout << this->ID_patient;
+//     gotoXY(x + 12, y + 4); cin.ignore(); getline(cin, this->fullName);
+//     gotoXY(x + 12, y + 7); cin >> this->phone;
+//     gotoXY(x + 12, y + 10); dayOfBirth.inputDate();
+//     gotoXY(x + 12, y + 13); cin >> this->CCCD;
 
-    gotoXY(x + 12, y + 16); cin >> gender_str;
-    if(gender_str == "Nam") this->gender = true;
-    else this->gender = false;
+//     gotoXY(x + 12, y + 16); cin >> gender_str;
+//     if(gender_str == "Nam") this->gender = true;
+//     else this->gender = false;
 
-    gotoXY(x + 12, y + 19); cin.ignore(); getline(cin, this->address);
-}
+//     gotoXY(x + 12, y + 19); cin.ignore(); getline(cin, this->address);
+// }
 
 // In thông tin 1 bệnh nhân
-void Patient::printPatientHorizontal() {
-    int x = whereX(), y = whereY();
-    string gender_str = this->gender ? "Nam" : "Nữ";
+// void Patient::printPatient() {
+//     int x = whereX(), y = whereY();
+//     string gender_str = this->gender ? "Nam" : "Nữ";
 
-    gotoXY(x + 4, y);
-    cout << this->ID_patient;
-    gotoXY(x + 16, y);
-    cout << this->fullName;
-    gotoXY(x + 41, y);
-    cout << this->phone;
-    gotoXY(x + 61, y);
-    cout << this->dayOfBirth.getDate();
-    gotoXY(x + 81, y);
-    cout << this->CCCD;
-    gotoXY(x + 101, y);
-    cout << gender_str;
-    gotoXY(x + 121, y);
-    cout << this->address << endl;
-}
+//     gotoXY(x + 4, y);
+//     cout << this->ID_patient;
+//     gotoXY(x + 16, y);
+//     cout << this->fullName;
+//     gotoXY(x + 41, y);
+//     cout << this->phone;
+//     gotoXY(x + 61, y);
+//     cout << this->dayOfBirth.getDate();
+//     gotoXY(x + 81, y);
+//     cout << this->CCCD;
+//     gotoXY(x + 101, y);
+//     cout << gender_str;
+//     gotoXY(x + 121, y);
+//     cout << this->address << endl;
+// }
 
 // Lưu 1 bệnh nhân vào file
-void Patient::saveAllPatient(fstream& f) {
-    f << this->ID_patient << ";" << this->fullName << ";" << this->phone << ";" <<
-            this->dayOfBirth.getDate() << ";" << this->CCCD << ";" << this->gender << ";" << this->address << endl;
+bool Patient::writePatientToFile_all(ofstream& fout) {
+    fout << this->ID_patient << endl;
+    return true;
 }
 
-void Patient::savePatient(fstream& f) {
-    f << this->ID_patient << endl;
-    f << this->fullName << endl;
-    f << this->phone << endl;
-    f << this->dayOfBirth.getDate() << endl;
-    f << this->CCCD << endl;
-    f << this->getGenderToString() << endl;
-    f << this->address << endl;
+bool Patient::writePatientToFile(fstream& f) {
+    string data;
+
+    data.append(this->ID_patient + "\n");
+    data.append(this->fullName + "\n");
+    data.append(this->phone + "\n");
+    data.append(this->dayOfBirth.getDate() + "\n");
+    data.append(this->CCCD + "\n");
+    data.append(to_string(this->gender) + "\n");
+    data.append(this->address + "\n");
+
+    f << data;
+
+    return true;
 }
 
 // Lấy 1 bệnh nhân từ file
-void Patient::setPatient(const string& line) {
-    stringstream ss(line);
-    string token;
-    getline(ss, token, ';'); this->ID_patient = token;
-    getline(ss, token, ';'); this->fullName = token;
-    getline(ss, token, ';'); this->phone = token;
-    getline(ss, token, ';'); this->dayOfBirth.setDate(token);
-    getline(ss, token, ';'); this->CCCD = token;
-    getline(ss, token, ';'); this->gender = (token == "Nữ") ? true : false;
-    getline(ss, token, ';'); this->address = token;
+void Patient::readPatientFromFile(fstream& f) {
+    string dayOfBirthStr, genderStr;
+    getline(f, this->ID_patient);
+    getline(f, this->fullName);
+    getline(f, this->phone);
+    
+    getline(f, dayOfBirthStr);
+    this->dayOfBirth.setDate(dayOfBirthStr);
+    
+    getline(f, this->CCCD);
+
+    getline(f, genderStr);
+    this->gender = genderStr == "1" ? true : false;
+
+    getline(f, this->address);
 }
