@@ -21,7 +21,7 @@ add_library(header_lib INTERFACE)
 target_include_directories(header_lib 
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/Header
 )
-set(DATA_PATH "${CMAKE_SOURCE_DIR}/Database")
+set(DATA_PATH "${CMAKE_SOURCE_DIR}/Database/")
 # add_definitions(-DDATA_PATH="${DATA_PATH}")
 target_compile_definitions(header_lib INTERFACE DATA_PATH=\"${DATA_PATH}\")
 
@@ -52,7 +52,7 @@ add_library(manag
     src/Management/Account.cpp
     src/Management/Appoinment.cpp
     src/Management/Date.cpp
-    src/Management/listAccount.cpp
+    # src/Management/listAccount.cpp
     # src/Management/listMedicalRecord.cpp
     src/Management/Patient.cpp
     src/Management/listPatient.cpp

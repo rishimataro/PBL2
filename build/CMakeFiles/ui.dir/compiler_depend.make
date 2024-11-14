@@ -1046,7 +1046,8 @@ CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj: D:/Test_Code/PBL/PBL2
   D:/Test_Code/PBL/PBL2/include/Library/Mouse.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Appoinment.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Date.hpp \
-  D:/Test_Code/PBL/PBL2/include/Management/Patient.hpp
+  D:/Test_Code/PBL/PBL2/include/Management/Patient.hpp \
+  D:/Test_Code/PBL/PBL2/include/Management/Date.hpp
 
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.h:

@@ -3,6 +3,7 @@
 #include <ftxui/dom/elements.hpp>
 #include <Management/Appoinment.hpp>
 #include <Management/Patient.hpp>
+#include "Management/date.hpp"
 #include <chrono>                               // for system_clock
 #include <iomanip>                              // for put_time
 #include <ctime>                                // for time_t
@@ -28,6 +29,7 @@ ButtonOption btn_style2();
 Component Wrap(std::string name, Component component);
 bool ValidateDate(const std::string& date);
 void Patientdisplay(Patient& patient);
+void P_Appoinment_info_UI(Patient& patient);
 void Appoinment_UI(Patient& patient);
 string Greeting(const std::string& name);
 void Patient_UI(Patient& patient);

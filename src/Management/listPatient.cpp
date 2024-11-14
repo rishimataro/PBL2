@@ -284,34 +284,34 @@ string toLowerCase(const string &str)
     transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }
-vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
-{
-    vector<Account> result;
-    if(this->size() == 0) return result;
-    string lowerValue = toLowerCase(value);
+// vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
+// {
+//     vector<Account> result;
+//     if(this->size() == 0) return result;
+//     string lowerValue = toLowerCase(value);
 
-    if (field == SearchField::ID)
-    {
-        for (const auto &entry : idMap)
-        {
-            string fieldValue = toLowerCase(entry.first);
-            if (fieldValue.find(lowerValue) == 0)  
-            {
-                result.push_back(entry.second);
-            }
-        }
-    }
-    else if (field == SearchField::UserName)
-    {
-        for (const auto &entry : userNameMap)
-        {
-            string fieldValue = toLowerCase(entry.first); 
-            if (fieldValue.find(lowerValue) == 0)     
-            {
-                result.push_back(entry.second);
-            }
-        }
-    }
+//     if (field == SearchField::ID)
+//     {
+//         for (const auto &entry : idMap)
+//         {
+//             string fieldValue = toLowerCase(entry.first);
+//             if (fieldValue.find(lowerValue) == 0)  
+//             {
+//                 result.push_back(entry.second);
+//             }
+//         }
+//     }
+//     else if (field == SearchField::UserName)
+//     {
+//         for (const auto &entry : userNameMap)
+//         {
+//             string fieldValue = toLowerCase(entry.first); 
+//             if (fieldValue.find(lowerValue) == 0)     
+//             {
+//                 result.push_back(entry.second);
+//             }
+//         }
+//     }
 
-    return result;
-}
+//     return result;
+// }

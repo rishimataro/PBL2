@@ -117,7 +117,18 @@ ButtonOption btn_style2()
   };
   return option;
 }
-
+ButtonOption Btn_animated_opt1()
+{
+  auto option = ButtonOption::Animated();
+  option.transform = [](const EntryState& s) {
+    auto element = text(s.label);
+    if (s.focused) {
+      element |= bold;
+    }
+    return element;
+  };
+  return option;
+}
 void Patientdisplay(Patient& patient)
 {   
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
@@ -223,6 +234,191 @@ string Greeting(const std::string& name)
     if(hour < 18) return "Chào buổi chiều, " + name + ".";
     return "Chào buổi tối, " + name + ".";
 }
+void P_Appoinment_info_UI(Patient& patient)
+{
+    auto screen = ScreenInteractive::TerminalOutput();
+    std::vector<Appoinment> danhSachLich = searchAppoinments(patient.getID_patient());
+    // Component Appoinment_cancel_renderer;
+    //ID  Ngày  Thời gian
+    vector<string> App_list;
+    Element header_text = text("Danh sách lịch khám") | bold | center;
+    Element tb_text = text("   Mã lịch khám   Ngày   Thời gian") | bold;
+    for(auto& app : danhSachLich)
+    {
+        App_list.push_back(app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()));
+    }
+    int selected = 1;
+    int popup_level = 0;
+    Appoinment selected_app;
+    auto Create_App_cancel = [&screen, &patient](Appoinment& app) {
+    
+    };
+    Component Menu_app_list = Container::Vertical({});
+    
+    for(int i = 0; i < App_list.size(); i++)
+    {   
+        auto tmp_btn = Button(App_list[i], [&, i]() {
+            selected_app = danhSachLich[i]; // gán lịch khám đã chọn
+            selected = i;
+            popup_level = 1;
+        }, Btn_animated_opt1());
+        Menu_app_list->Add(tmp_btn);
+    
+    }
+    // Menu_app_list->;
+    Component exit_btn = Button("Thoát", [&]{
+        screen.ExitLoopClosure()();
+    }, btn_style1());
+    Component Menu_app = Container::Vertical({
+        Menu_app_list,
+        exit_btn,
+    });
+    auto menu_app_list_renderer = Renderer(Menu_app, [&] {
+        return vbox({
+            text("Danh sách lịch khám") | bold | center,
+            separator(),
+            hbox({
+                text("Mã lịch khám"), 
+                separatorEmpty() | size(WIDTH, EQUAL, 10), 
+                text("Ngày"), 
+                separatorEmpty() | size(WIDTH, EQUAL, 13), 
+                text("Giờ khám")
+            }) | bold,
+            separator(),
+            Menu_app_list->Render(),
+            separator(),
+            exit_btn->Render() | hcenter,
+        })| border;
+    });
+    
+
+    Component Patient_id = Wrap("Mã bệnh nhân:", Renderer([&]{
+        return text(patient.getID_patient());
+    }));
+    Component Full_name =  Wrap("Họ và tên:", Renderer([&](){
+        return text(patient.getFullName());
+    }));
+    Component Phone_number = Wrap("Số điện thoại:", Renderer([&]{
+        return text(patient.getPhone());
+    }));
+    Component DOB = Wrap("Ngày sinh:", Renderer([&](){
+        return text(patient.getDayOfBirth().getDate());
+    }));
+    Component CCCD = Wrap("CCCD:", Renderer([&](){
+        return text(patient.getCCCD());
+    }));
+    string Gender = (patient.getGender() ? "Nữ" : "Nam");
+    Component Patient_gender = Wrap("Giới tính:", Renderer([&](){
+        return text(Gender);
+    }));
+    Component Address = Wrap("Địa chỉ:", Renderer([&](){
+        return text(patient.getAddress());
+    }));
+    Component a_ID = Wrap("Mã lịch khám:", Renderer([&](){
+        return text(selected_app.getID());
+    }));
+    Component a_Date = Wrap("Ngày khám:", Renderer([&](){
+        return text(selected_app.getDate().getDate());
+    }));
+    Component a_Time = Wrap("Giờ khám:", Renderer([&](){
+        return text(GioKham(selected_app.getTime()));
+    }));
+    Component Symptom_text = Wrap("Triệu chứng:", Renderer([&](){
+        return paragraph(selected_app.getDescription());
+    }));
+    Component status_text = Wrap("Hiệu lực:", Renderer([&](){
+        return text(selected_app.getStatus()? "Còn hiệu lực" : "Đã hủy");
+    }));
+    Component is_Processed = Wrap("Trạng thái khám: ", Renderer([&](){
+        return text(selected_app.getIsProcessed()? "Đã khám" : "Chưa khám");
+    }));
+    auto app_cancel_btn = Button("Hủy lịch khám", [&](){
+            selected_app.setStatus(false);
+            popup_level;
+        });
+    auto app_exit_btn = Button("Thoát", [&](){
+        popup_level = 0;
+        }, btn_style1());
+    //Xem và hủy lịch khám
+    auto cancel_app = Container::Horizontal({
+        app_cancel_btn,
+        // Renderer([&](){
+        //     return separatorEmpty() | size(WIDTH, EQUAL, 10);
+        // }),
+        app_exit_btn
+    });
+    Component Appoinment_info = Container::Vertical({
+        Patient_id,
+        Full_name,
+        Phone_number,
+        DOB,
+        CCCD,
+        Patient_gender,
+        Address,
+        a_ID,
+        a_Date,
+        a_Time,
+        Symptom_text,
+        status_text,
+        is_Processed,
+        // cancel_app,
+        // app_exit_btn,
+    });
+    auto popup_container = Container::Vertical({
+        Appoinment_info,
+        cancel_app,
+    });
+    auto Appoinment_cancel_renderer = Renderer(popup_container, [&] {
+        return vbox({
+            text("Thông tin lịch khám") | bold | center,
+            separator(),
+            Patient_id->Render(),
+            Full_name->Render(),
+            DOB->Render(),
+            CCCD->Render(),
+            Patient_gender->Render(),
+            Address->Render(),
+            separator(),
+            a_ID->Render(),
+            a_Date->Render(),
+            a_Time->Render(),
+            Symptom_text->Render(),
+            separator(),
+            status_text->Render(),
+            is_Processed->Render(),
+            separator(),
+            // cancel_app->Render() | hcenter,
+            hbox({
+                app_cancel_btn->Render(),
+                separatorEmpty() | size(WIDTH, EQUAL, 10),  // Add empty space for separator
+                app_exit_btn->Render(),
+            }) | hcenter,
+            // app_exit_btn->Render() | hcenter,
+        }) | border;
+    });
+            // screen.Loop(Appoinment_cancel_renderer);
+    auto main_container = Container::Tab(
+        {
+            menu_app_list_renderer,
+            Appoinment_cancel_renderer,
+        },
+        &popup_level
+    );
+    auto main_renderer = Renderer(main_container, [&] {
+        Element showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter;
+        if (popup_level == 1) {
+            showing = dbox({
+                menu_app_list_renderer->Render() | size(WIDTH, LESS_THAN, 80) | size(WIDTH, GREATER_THAN, 60),
+                // showing,
+                Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 80)| size(WIDTH, GREATER_THAN, 60) | clear_under | align_right,
+        });
+        }
+        // Element showing = Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 80) | size(WIDTH, GREATER_THAN, 60);
+        return showing;
+    });
+    screen.Loop(main_renderer);
+    // std::cout << "Selected element = " << selected << std::endl;
+}
 
 void Appoinment_UI(Patient& patient)
 {
@@ -234,6 +430,8 @@ void Appoinment_UI(Patient& patient)
     };
     string scr_date;
     string scr_time;
+    string symptom = "";
+
     auto screen = ScreenInteractive::FullscreenAlternateScreen();
     int current_page = 0;
     int total_pages = 4;
@@ -295,8 +493,14 @@ void Appoinment_UI(Patient& patient)
         if (current_page > 0) current_page--;
     });
     prev_page_btn = Container::Horizontal({prev_page_btn});
-    Component end_button = Button("Kết thúc", 
-        screen.ExitLoopClosure() // Thoát khỏi vòng lặp giao diện
+    Component end_button = Button("Kết thúc", [&]{
+        screen.ExitLoopClosure()();
+        Date dd;
+        dd.setDate(scr_date);
+        // Thêm code xử lý đặt lịch khám và thông báo đã đặt lịch thành công
+        Appoinment app(patient, dd, selected_time, symptom);
+        app.ThemLichKham();
+    }
     );
     end_button = Container::Horizontal({end_button});
     //Các nút
@@ -331,10 +535,7 @@ void Appoinment_UI(Patient& patient)
             vbox(week_elements),
         });
     });
-
-
     std::vector<Component> time_buttons;
-
     for (int i = 0; i < time_slots.size(); ++i) {
         auto time_button = Button(
             time_slots[i],
@@ -376,10 +577,8 @@ void Appoinment_UI(Patient& patient)
             }) | center,
         });
     });
-    string symptom = "";
     InputOption symptom_input_options = InputOption::Default();
     symptom_input_options.multiline = true;
-    // symptom_input_options.content = &symptom;
     Component InputSymptom = Input(&symptom, "Nhập triệu chứng:", symptom_input_options) | xflex | size(HEIGHT, GREATER_THAN, 15);
     Component symptom_Layout = Renderer(InputSymptom, [&] {
         return vbox({
@@ -491,24 +690,7 @@ void Appoinment_UI(Patient& patient)
         });
     });
     
-    // auto renderer = Renderer([&](){
-    //     symptom = splitText(symptom, 20);
-    //     return main_layout;
-    // });
-    // screen.PostEvent([&](){
-    //     symptom = splitText(symptom, 20);
-    //     cout << "test" << endl;
-    // });
     screen.Loop(main_layout);
-    if (selected_day >= 0 && selected_time >= 0) {
-        auto selected_date = current_date;
-        selected_date.tm_mday += selected_day;
-        mktime(&selected_date);
-        std::cout << "Ngày đã chọn: "
-                   << std::put_time(&selected_date, "%d/%m/%Y") << "\n";
-        std::cout << "Thời gian: " << time_slots[selected_time] << "\n";
-    }
-    system("pause");
 }
 void Patient_UI(Patient& patient)
 {   
@@ -521,7 +703,7 @@ void Patient_UI(Patient& patient)
     auto greeting = ftxui::Renderer([&] { return ftxui::text(Greeting(patient_name)); });
     auto xem_sua_thong_tin = ftxui::Button("Xem/Sửa Thông Tin", [&] {Patientdisplay(patient); }, btn_style2()) ;
     auto dat_lich = ftxui::Button("Đặt Lịch Khám", [&] {Appoinment_UI(patient); }, btn_style2());
-    auto xem_sua_xoa_lich = ftxui::Button("Lịch khám Bệnh", [&] { }, btn_style2());
+    auto xem_sua_xoa_lich = ftxui::Button("Lịch khám Bệnh", [&] { P_Appoinment_info_UI(patient); }, btn_style2());
     auto lich_su_kham = ftxui::Button("Lịch Sử Khám Bệnh", [&] { }, btn_style2());
     auto thoat = ftxui::Button("  Đăng xuất  ", [&] { screen.ExitLoopClosure()(); }, btn_style1());
     auto main_page_layout = ftxui::Container::Vertical({
