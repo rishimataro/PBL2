@@ -10,13 +10,13 @@ int safe_stoi(const string &str) {
 }
 
 //* Constructor & Destructor
-Account::Account(const string ID_acc, string userName, string password, int role, const Patient& patient)
+Account::Account(const string ID_acc, string userName, string password, int role, string ID_patient)
 {
     this->ID_acc = ID_acc;
     this->userName = userName;
     this->password = password;
     this->role = role;
-    this->patient = patient;
+    this->ID_patient = ID_patient;
 }
 
 Account::Account(const Account &another)
@@ -25,47 +25,38 @@ Account::Account(const Account &another)
     this->userName = another.userName;
     this->password = another.password;
     this->role = another.role;
-    this->patient = another.patient;
+    this->ID_patient = another.ID_patient;
 }
 
 Account::~Account() {}
 
 //* Setter
 void Account::setID() {
-    path file_path = "../Database/PatientDB/account.txt";
+    path file_path = "../Database/AccountDB/account.txt";
     file_path = absolute(file_path);
 
     ifstream fi(file_path);
 
     int maxID = 0;
+
     if (!fi.is_open()) {
         return;
-    } else {
-        if (fi.peek() == ifstream::traits_type::eof()) {
-            maxID = 0;
-        } else {
-            string temp;
-            fi.seekg(-1, ios::end);
+    }
 
-            // Move to the start of the last line
-            while (fi.tellg() > 0 && fi.peek() != '\n') {
-                fi.seekg(-1, ios::cur);
-            }
-            if (fi.tellg() != 0) {
-                fi.seekg(1, ios::cur);
-            }
-
-            getline(fi, temp, ';');
-            if (!temp.empty() && temp.substr(0, 3) == "ACC") {
-                maxID = stoi(temp.substr(3));
+    string line;
+    while (getline(fi, line)) {
+        size_t pos = line.find(';');
+        if (pos != string::npos) {
+            string id_str = line.substr(0, pos);
+            if (id_str.size() > 3 && id_str.substr(0, 3) == "ACC") {
+                int currentID = stoi(id_str.substr(3));
+                maxID = max(maxID, currentID);
             }
         }
     }
 
     maxID++;
-    string id = "ACC" + to_string(maxID);
-
-    this->ID_patient = id;
+    this->ID_acc = "ACC" + to_string(maxID);
 
     fi.close();
 }
@@ -73,6 +64,7 @@ void Account::setID() {
 void Account::setPassword(const string &password) { this->password = password; }
 void Account::setUserName(const string &userName) { this->userName = userName; }
 void Account::setRole(const int &role) { this->role = role; }
+void Account::setID_patient(const string &ID_patient) { this->ID_patient = ID_patient; }
 
 //* Getter
 string Account::getID() const { return this->ID_acc; }
@@ -85,46 +77,88 @@ string Account::getRoleToString() const {
     else if(this->role == 1) roleStr = "Bệnh nhân";
     return roleStr; 
 }
+
+string Account::getID_patient() const { return this->ID_patient; }
+
 string Account::getCCCD() const {
-    return this->patient.getCCCD();
+    if(this->role != 1) {
+        return "";
+    }
+
+    string file_path = "../Database/PatientDB/" + this->ID_patient + ".txt";
+
+    ifstream fi;
+    fi.open(file_path);
+    string CCCD;
+
+    if (!fi.is_open()) {
+        cerr << "Không thể mở file " << file_path << endl;
+        return "";
+    }
+
+    string line;
+    int lineCount = 0;
+    while (getline(fi, line)) {
+        lineCount++;
+        if (lineCount == 5) {
+            CCCD = line;
+            break;
+        }
+    }
+
+    fi.close();
+
+    if (lineCount < 5) {
+        return "";
+    }
+
+    return CCCD;
 }
 
 //* Function
 // Lấy 1 account từ file
-void Account::readPatientFromFile(const string& line) {
+void Account::readAccountFromFile(const string& line) {
     stringstream ss(line);
     string token;
     getline(ss, token, ';'); this->ID_acc = token;
     getline(ss, token, ';'); this->userName = token;
     getline(ss, token, ';'); this->password = token;
     getline(ss, token, ';'); this->role = safe_stoi(token);
+    if(this->role == 1) {
+        getline(ss, token, ';'); this->ID_patient = token;
+    }
+    else {
+        this->ID_patient = "";
+    }
 }
 
 // Lưu 1 account vào file
 void Account::writeAccountToFile(ofstream &f) {
-    string data;
-
-    data.append(this->ID_acc + ";");
-    data.append(this->userName + ";");
-    data.append(this->password + ";");
-    data.append(to_string(this->role) + "\n");
-
-    f << data;
+    ostringstream oss;
+    oss << this->ID_acc << ";" << this->userName << ";" << this->password << ";" << this->role;
+    if (this->role == 1) {
+        oss << ";" << this->ID_patient;
+    }
+    f << oss.str() << endl;
 }
 
 bool Account::operator==(const Account& another) {
     return this->ID_acc == another.getID() && this->userName == another.getUserName()
-            && this->password == another.getPassword() && this->role == another.getRole();
+            && this->password == another.getPassword() && this->role == another.getRole() && this->ID_patient == another.getID_patient();
+}
+
+bool Account::operator!=(const Account& another) {
+    return !(*this == another);
 }
 
 Account& Account::operator=(const Account& another) {
     if (this == &another) {
         return *this; 
     }
-
     this->ID_acc = another.getID();
     this->userName = another.getUserName();
     this->password = another.getPassword();
     this->role = another.getRole();
+    this->ID_patient = another.getID_patient();
     return *this;
 }

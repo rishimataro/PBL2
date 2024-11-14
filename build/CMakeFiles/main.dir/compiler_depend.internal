@@ -508,8 +508,10 @@ CMakeFiles/main.dir/main.cpp.obj
  F:/03_PBL2/PBL2/CODE/include/Library/Filelib.hpp
  F:/03_PBL2/PBL2/CODE/include/Library/Graphics.hpp
  F:/03_PBL2/PBL2/CODE/include/Library/Mouse.hpp
+ F:/03_PBL2/PBL2/CODE/include/Management/Account.hpp
  F:/03_PBL2/PBL2/CODE/include/Management/Date.hpp
  F:/03_PBL2/PBL2/CODE/include/Management/Patient.hpp
+ F:/03_PBL2/PBL2/CODE/include/Management/listAccount.hpp
  F:/03_PBL2/PBL2/CODE/include/Management/listPatient.hpp
  F:/03_PBL2/PBL2/CODE/include/Template/LinkedList.hpp
 

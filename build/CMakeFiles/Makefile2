@@ -171,8 +171,8 @@ CMakeFiles/main.dir/all: CMakeFiles/manag.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/ui.dir/all
 CMakeFiles/main.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
 CMakeFiles/main.dir/all: ftxui/CMakeFiles/component.dir/all
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=70,71 "Built target main"
@@ -237,8 +237,8 @@ CMakeFiles/lib.dir/clean:
 CMakeFiles/manag.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/manag.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/manag.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/manag.dir/all: ftxui/CMakeFiles/dom.dir/all
 CMakeFiles/manag.dir/all: ftxui/CMakeFiles/component.dir/all
+CMakeFiles/manag.dir/all: ftxui/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=72,73,74,75,76,77,78 "Built target manag"
@@ -304,8 +304,8 @@ CMakeFiles/ui.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/ui.dir/all: CMakeFiles/manag.dir/all
 CMakeFiles/ui.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/ui.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/ui.dir/all: ftxui/CMakeFiles/dom.dir/all
 CMakeFiles/ui.dir/all: ftxui/CMakeFiles/component.dir/all
+CMakeFiles/ui.dir/all: ftxui/CMakeFiles/dom.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=89,90,91 "Built target ui"
