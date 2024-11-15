@@ -217,6 +217,10 @@ void listPatient::removePatientByID(const string &ID)
         return;
 
     this->remove(index);
+    this->writeListPatientToFile(true);
+    string file_path = "../Database/PatientDB/" + ID + ".txt";
+    if (std::remove(file_path.c_str()) != 0)
+        return; 
 
     return;
 }

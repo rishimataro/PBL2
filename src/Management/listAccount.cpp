@@ -309,6 +309,7 @@ void listAccount::removeAccountByID(const string &ID)
         return;
 
     this->remove(index);
+    this->writeListAccountToFile(true);
 
     return;
 }

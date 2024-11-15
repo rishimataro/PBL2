@@ -19,3 +19,4 @@ Rối loạn kinh nguyệt;Khám phụ khoa, yêu cầu siêu âm nếu cần v�
 Phát ban;Khám da liễu, yêu cầu xét nghiệm máu và kê thuốc điều trị viêm nhiễm da
 Sưng tấy khớp;Khám xương khớp, yêu cầu xét nghiệm máu để kiểm tra viêm khớp và kê thuốc giảm viêm
 Viêm họng;Khám họng, kê thuốc kháng sinh nếu có nhiễm trùng, giảm đau họng bằng thuốc và nước muối ấm
+Đau lưng;Nghỉ ngơi và sử dụng thuốc giảm đau

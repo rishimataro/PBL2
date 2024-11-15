@@ -27,22 +27,16 @@ int main()
     SetConsoleCP(CP_UTF8);
 
     listMedicalRecord listMR;
+    listMR.loadSymptomSolutionsFromFile();
 
-    // Kiểm tra nếu danh sách ban đầu rỗng
-    if (listMR.size() == 0)
-        std::cout << "Test 1: Danh sách rỗng.\n";
-    else
-        std::cout << "Test 1: Danh sách không rỗng.\n";
+    cout << "Danh sách triệu chứng và giải pháp sau khi tải từ file:\n";
+    for (const auto& entry : listMR.getSymptomSolutions()) {
+        cout << "Triệu chứng: " << entry.first << ", Giải pháp: " << entry.second << "\n";
+    }
+    cout << "------------------------------------------------------------\n";
 
-    // Kiểm tra đọc bản ghi y tế từ file
-    bool readSuccess = listMR.readListMedicalRecordFromFile();
-    if (readSuccess)
-        std::cout << "Test 2: Đọc bản ghi y tế từ file thành công.\n";
-    else
-        std::cout << "Test 2: Đọc bản ghi y tế từ file thất bại.\n";
-
-    
-
+    cout << "Diagnosis: Sốt => " << listMR.analyzeDiagnosisAndProvideSolutions("Sốt") << endl;
+    cout << "Diagnosis: Ho khan => " << listMR.analyzeDiagnosisAndProvideSolutions("Ho khan") << endl;
     system("pause");
     return 0;
 }

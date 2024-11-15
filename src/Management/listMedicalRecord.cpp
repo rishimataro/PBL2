@@ -217,6 +217,10 @@ bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
         return false;
 
     this->remove(index);
+    this->writeListMedicalRecordToFile(true);
+    string file_path = "../Database/Medical_recordDB/" + recordID + ".txt";
+    if (std::remove(file_path.c_str()) != 0)
+        return false;
 
     return true;
 }
@@ -285,49 +289,41 @@ void listMedicalRecord::loadSymptomSolutionsFromFile() {
     string line;
     while (getline(file, line)) {
         istringstream stream(line);
-        string symptom, solution;
-        getline(stream, symptom, ';');
+        string diagnosis, solution;
+        getline(stream, diagnosis, ';');
         getline(stream, solution);
-        symptomSolutions[symptom] = solution;
+        symptomSolutions[diagnosis] = solution;
     }
 
     file.close();
 }
 
-void listMedicalRecord::appendSymptomSolutionToFile(const string& symptom, const string& solution) {
+map<string, string> listMedicalRecord::getSymptomSolutions() {
+    return symptomSolutions;
+}
+
+bool listMedicalRecord::appendDiagnosisSolutionToFile(const string& diagnosis, const string& solution) {
+    this->symptomSolutions[diagnosis] = solution;
+
     path file_path = "../Database/Medical_recordDB/symptom_solutions.txt";
     file_path = absolute(file_path);
+
     ofstream file;
     file.open(file_path, ios::app);
 
-    if (!file.is_open()) return;
+    if (!file.is_open()) return false;
 
-    file << symptom << ";" << solution << "\n";
+    file << diagnosis << ";" << solution << "\n";
 
     file.close();
+    return true;
 }
 
-map<string, int> listMedicalRecord::analyzeSymptomsAndProvideSolutions() {
-    map<string, int> symptomFrequency;
-    for (const MedicalRecord& record : this->setAllMedicalRecords()) {
-        istringstream symptomsStream(record.getSymptoms());
-        string symptom;
-        while (getline(symptomsStream, symptom, ',')) {
-            symptomFrequency[symptom]++;
-        }
+string listMedicalRecord::analyzeDiagnosisAndProvideSolutions(const string& diagnosis) {
+    auto it = symptomSolutions.find(diagnosis);
+    if (it != symptomSolutions.end()) {
+        return it->second;
+    } else {
+        return "No solution available for this diagnosis.";
     }
-
-    return symptomFrequency;
-
-    // * Chạy giao diện thì viết cái này hen
-    // for (const auto& entry : symptomFrequency) {
-    //     cout << "Triệu chứng: " << entry.first << ", Số lần gặp: " << entry.second << "\n";
-        
-    //     auto it = symptomSolutions.find(entry.first);
-    //     if (it != symptomSolutions.end()) {
-    //         cout << "Giải pháp: " << it->second << "\n";
-    //     } else {
-    //         cout << "Giải pháp chưa có.\n";
-    //     }
-    // }
 }

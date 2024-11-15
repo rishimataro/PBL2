@@ -33,10 +33,11 @@ public:
     vector<MedicalRecord> searchMedicalRecord(SearchField_MR field, const string& value);
 
     // ! Chưa test
-    // Phân tích các triệu chứng phổ biến và đưa ra giải pháp
-    map<string, int> analyzeSymptomsAndProvideSolutions(); 
-    void appendSymptomSolutionToFile(const string& symptom, const string& solution);
+    // Phân tích các bệnh phổ biến và đưa ra giải pháp
+    string analyzeDiagnosisAndProvideSolutions(const string& diagnosis);
+    bool appendDiagnosisSolutionToFile(const string& diagnosis, const string& solution);
     void loadSymptomSolutionsFromFile();
+    map<string, string> getSymptomSolutions();
 
 private:
     map<string, string> symptomSolutions;
