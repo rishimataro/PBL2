@@ -3,32 +3,33 @@
 
 #include <Header/Header.hpp>
 #include <Management/Date.hpp>
-#include <Management/Patient.hpp> // Thêm để sử dụng lớp Patient
+#include <Management/Patient.hpp>
 #include <Library/Graphics.hpp>
+#include <Library/Filelib.hpp>
+#include <filesystem>
+using namespace filesystem;
+
 class MedicalRecord {
 private:
-    string ID_record;         // ID bệnh án (MR02)
-    string ID_patient;        // ID bệnh nhân (P2)
-    Patient* patient;        // Con trỏ tới đối tượng Patient
-    string symptoms;         // Triệu chứng
-    string diagnosis;        // Chẩn đoán bệnh
-    Date dateOfRecord;       // Ngày ghi nhận bệnh án
+    string ID_record; 
+    string ID_patient; 
+    Patient* patient;        
+    string symptoms; // triệu chứng        
+    string diagnosis; // chuẩn đoán
+    Date dateOfRecord;       
 
 public:
-    // Constructor & Destructor
     MedicalRecord(string ID_record = "", string ID_patient = "", Patient* patient = nullptr, string symptoms = "", string diagnosis = "", string dateOfRecord = "");
     MedicalRecord(const MedicalRecord &record);
     ~MedicalRecord();
 
-    // Setters
-    void setID_record(const string &id);
+    bool setID_record();
     void setID_patient(const string &id);
     void setSymptoms(const string &sym);
     void setDiagnosis(const string &diag);
-    void setDateOfRecord(const Date &date);
+    void setDateOfRecord(const string &date);
     void setPatient(Patient* patient);
 
-    // Getters
     string getID_record() const;
     string getID_patient() const;
     string getSymptoms() const;
@@ -36,16 +37,12 @@ public:
     Date getDateOfRecord() const;
     Patient* getPatient() const;
 
-    // Methods to input and display the medical record
-    void inputMedicalRecord();
-    void printMedicalRecord();
+    // operator
+    MedicalRecord& operator=(const MedicalRecord &record);
 
-    // Method to set data from a line of text (for loading from file)
-    void setMedicalRecord(const string &line);
-
-    // Method to save the medical record to a file
-    void saveAllMedicalRecord(fstream &f);
-    void saveMedicalRecord(fstream &f);
+    bool writeMedicalRecordToFile(fstream &f);
+    bool writeMedicalRecordToFile_all(ofstream &fout);
+    void readMedicalRecordFromFile(fstream &f);
 };
 
 #endif
