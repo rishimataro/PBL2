@@ -192,17 +192,10 @@ void listPatient::addPatient(const string &newFullName, const string &newPhone, 
 //* Check
 int listPatient::checkID(const string &ID)
 {
-    int left = 0, right = this->size() - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        string midID = this->get(mid).getID_patient();
-        if (midID == ID)
-            return mid;
-        if (midID < ID)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    for(int i = 0; i < this->size(); i++) {
+        if(this->get(i).getID_patient() == ID) {
+            return i;
+        }
     }
     return -1;
 }
@@ -215,7 +208,7 @@ void listPatient::removePatientByID(const string &ID)
         return;
 
     int index = this->checkID(ID);
-    if (index == 0)
+    if (index == -1)
         return;
 
     this->remove(index);
@@ -231,7 +224,7 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
         return;
 
     int index = this->checkID(ID);
-    if (index == 0)
+    if (index == -1)
         return;
 
     Patient currentPatient = this->get(index);

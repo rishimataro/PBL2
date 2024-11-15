@@ -60,7 +60,7 @@ void signup_UI()
             int signup_return = accounts.signUp(account, username, password);
             if (signup_return == -1) {
                 // signup_announce_msg = "Tên đăng nhập đã tồn tại.";
-                signup_announce_msg = accounts.end().getID();
+                signup_announce_msg = accounts.end().getUserName();
                 return;
             }
             if (signup_return == 1) {

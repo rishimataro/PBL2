@@ -162,7 +162,7 @@ vector<Account> listAccount::setAllAccount()
 // Đăng ký tài khoản: thêm account vào listAccount
 int listAccount::signUp(Account &account, const string &tmpUserName, const string &tmpPassword)
 {
-    if (checkUserName(tmpUserName) == -1)
+    if (checkUserName(tmpUserName) != -1)
         return -1;
  
     Account newAccount;
