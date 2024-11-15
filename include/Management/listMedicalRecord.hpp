@@ -1,49 +1,45 @@
 #ifndef LISTMEDICALRECORD_H
 #define LISTMEDICALRECORD_H
-
 #include <Management/MedicalRecord.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
 
-enum class SearchField { RecordID, PatientID, Symptoms };
+enum class SearchField_MR { RecordID, PatientID, Diagnosis};
 
 class listMedicalRecord : public LinkedList<MedicalRecord>
 {
 public:
-    //* Constructor & Destructor  
     listMedicalRecord();
     ~listMedicalRecord();
 
-    //* Setter & Getter
-    void setListMedicalRecordByFile(); 
-    void saveListMedicalRecordToFile();
-    void saveMedicalRecordToFile(int index);
+    bool readListMedicalRecordFromFile();
+    bool writeListMedicalRecordToFile(bool check);
+    bool writeMedicalRecordToFile(int index);
 
-    //* Display
-    void printAllMedicalRecords() const;
-    void printMedicalRecordsByPatientID(const string& patientID) const;
-    void printMedicalRecordsByDiagnosis(const string& diagnosis) const;
-    void printMedicalRecordsByRecordRange(const Date &startDate, const Date &endDate) const;
+    vector<MedicalRecord> setAllMedicalRecords();
+    vector<MedicalRecord> setMedicalRecordsByPatientID(const string& patientID);
+    vector<MedicalRecord> setMedicalRecordsByDiagnosis(const string& diagnosis);
+    vector<MedicalRecord> setMedicalRecordsByRecordRange(const string &startDate, const string &endDate);
+    vector<pair<string, int>> setDiagnosisCount(); // Thống kê số lượng chẩn đoán theo bệnh phổ biến
 
-    //* Add
-    void addMedicalRecord(const MedicalRecord &record);
+    void addMedicalRecord(const string& patientID, const string& symptoms, const string& diagnosis, const string& dateOfRecord);
 
-    //* Check
     int checkRecordID(const string& recordID);
 
-    //* Delete
-    void removeMedicalRecordByID(const string& recordID);
+    bool removeMedicalRecordByID(const string& recordID);
 
-    //* Update
-    void updateMedicalRecordByID(const string& recordID);
+    void updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms);
 
-    //* Search
-    void searchMedicalRecord(SearchField field, const string& value);
+    vector<MedicalRecord> searchMedicalRecord(SearchField_MR field, const string& value);
 
-    //* Statistics
-    void generateStatistics();  // Tạo thống kê về bệnh án
-    void displayMostCommonSymptoms() const;  // Hiển thị triệu chứng phổ biến nhất
-    void displayDiagnosisCount() const;  // Hiển thị số lượng chẩn đoán theo bệnh
+    // Phân tích các bệnh phổ biến và đưa ra giải pháp
+    string analyzeDiagnosisAndProvideSolutions(const string& diagnosis);
+    bool appendDiagnosisSolutionToFile(const string& diagnosis, const string& solution);
+    void loadSymptomSolutionsFromFile();
+    map<string, string> getSymptomSolutions();
+
+private:
+    map<string, string> symptomSolutions;
 };
 
 #endif

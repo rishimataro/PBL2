@@ -308,6 +308,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Interface/Admin_interface.obj: src/Interface/Admin_interface.cpp.obj
+.PHONY : src/Interface/Admin_interface.obj
+
+# target to build an object file
+src/Interface/Admin_interface.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj
+.PHONY : src/Interface/Admin_interface.cpp.obj
+
+src/Interface/Admin_interface.i: src/Interface/Admin_interface.cpp.i
+.PHONY : src/Interface/Admin_interface.i
+
+# target to preprocess a source file
+src/Interface/Admin_interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.i
+.PHONY : src/Interface/Admin_interface.cpp.i
+
+src/Interface/Admin_interface.s: src/Interface/Admin_interface.cpp.s
+.PHONY : src/Interface/Admin_interface.s
+
+# target to generate assembly for a file
+src/Interface/Admin_interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.s
+.PHONY : src/Interface/Admin_interface.cpp.s
+
 src/Interface/Login.obj: src/Interface/Login.cpp.obj
 .PHONY : src/Interface/Login.obj
 
@@ -500,6 +524,30 @@ src/Management/Date.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/Date.cpp.s
 .PHONY : src/Management/Date.cpp.s
 
+src/Management/MedicalRecord.obj: src/Management/MedicalRecord.cpp.obj
+.PHONY : src/Management/MedicalRecord.obj
+
+# target to build an object file
+src/Management/MedicalRecord.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj
+.PHONY : src/Management/MedicalRecord.cpp.obj
+
+src/Management/MedicalRecord.i: src/Management/MedicalRecord.cpp.i
+.PHONY : src/Management/MedicalRecord.i
+
+# target to preprocess a source file
+src/Management/MedicalRecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.i
+.PHONY : src/Management/MedicalRecord.cpp.i
+
+src/Management/MedicalRecord.s: src/Management/MedicalRecord.cpp.s
+.PHONY : src/Management/MedicalRecord.s
+
+# target to generate assembly for a file
+src/Management/MedicalRecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.s
+.PHONY : src/Management/MedicalRecord.cpp.s
+
 src/Management/Patient.obj: src/Management/Patient.cpp.obj
 .PHONY : src/Management/Patient.obj
 
@@ -547,6 +595,30 @@ src/Management/listAccount.s: src/Management/listAccount.cpp.s
 src/Management/listAccount.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.s
 .PHONY : src/Management/listAccount.cpp.s
+
+src/Management/listMedicalRecord.obj: src/Management/listMedicalRecord.cpp.obj
+.PHONY : src/Management/listMedicalRecord.obj
+
+# target to build an object file
+src/Management/listMedicalRecord.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj
+.PHONY : src/Management/listMedicalRecord.cpp.obj
+
+src/Management/listMedicalRecord.i: src/Management/listMedicalRecord.cpp.i
+.PHONY : src/Management/listMedicalRecord.i
+
+# target to preprocess a source file
+src/Management/listMedicalRecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.i
+.PHONY : src/Management/listMedicalRecord.cpp.i
+
+src/Management/listMedicalRecord.s: src/Management/listMedicalRecord.cpp.s
+.PHONY : src/Management/listMedicalRecord.s
+
+# target to generate assembly for a file
+src/Management/listMedicalRecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.s
+.PHONY : src/Management/listMedicalRecord.cpp.s
 
 src/Management/listPatient.obj: src/Management/listPatient.cpp.obj
 .PHONY : src/Management/listPatient.obj
@@ -621,6 +693,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/Interface/Admin_interface.obj
+	@echo ... src/Interface/Admin_interface.i
+	@echo ... src/Interface/Admin_interface.s
 	@echo ... src/Interface/Login.obj
 	@echo ... src/Interface/Login.i
 	@echo ... src/Interface/Login.s
@@ -645,12 +720,18 @@ help:
 	@echo ... src/Management/Date.obj
 	@echo ... src/Management/Date.i
 	@echo ... src/Management/Date.s
+	@echo ... src/Management/MedicalRecord.obj
+	@echo ... src/Management/MedicalRecord.i
+	@echo ... src/Management/MedicalRecord.s
 	@echo ... src/Management/Patient.obj
 	@echo ... src/Management/Patient.i
 	@echo ... src/Management/Patient.s
 	@echo ... src/Management/listAccount.obj
 	@echo ... src/Management/listAccount.i
 	@echo ... src/Management/listAccount.s
+	@echo ... src/Management/listMedicalRecord.obj
+	@echo ... src/Management/listMedicalRecord.i
+	@echo ... src/Management/listMedicalRecord.s
 	@echo ... src/Management/listPatient.obj
 	@echo ... src/Management/listPatient.i
 	@echo ... src/Management/listPatient.s

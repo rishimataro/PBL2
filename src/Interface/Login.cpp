@@ -114,10 +114,6 @@ void signup_UI()
     }) | size(WIDTH, EQUAL, 80) | size(HEIGHT, EQUAL, 10) | border | hcenter;
     screen.Loop(signup_renderer);
 }
-void login_process(const string& username, const string& password, listAccount& accounts)
-{
-
-}
 void loginUI()
 {   
     string username, password;
@@ -153,17 +149,10 @@ void loginUI()
             string pt_id = account.getID_patient();
             vector<Patient> ls_Patients = patients.searchPatient(SearchField::ID, account.getID_patient());
             Patient_UI(ls_Patients[0]);
-            // login_msg = account.getID_patient();
-            // vector<Patient> ls_Patients = patients.setAllPatient();
-            // for (auto& pt : ls_Patients) {
-            //     if (pt.getID_patient() == pt_id) {
-            //         Patient_UI(pt);
-            //         break;
-            //     }
-            // }
-                // login_msg = ls_Patients.empty() ? "Không tìm thấy bệnh nhân nào!" : "Có bệnh nhân!";
-            // login_msg = ls_Patients[0].getFullName();
+        }else if(login_result == 0) {
+            Admin_UI();
         }
+
 
     });
     Component switch_signUP = Button("Đăng ký", [] {

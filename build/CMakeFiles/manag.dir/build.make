@@ -131,11 +131,41 @@ CMakeFiles/manag.dir/src/Management/listAccount.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/listAccount.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\listAccount.cpp -o CMakeFiles\manag.dir\src\Management\listAccount.cpp.s
 
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj: CMakeFiles/manag.dir/flags.make
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/listMedicalRecord.cpp
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj -MF CMakeFiles\manag.dir\src\Management\listMedicalRecord.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\listMedicalRecord.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\listMedicalRecord.cpp
+
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\src\Management\listMedicalRecord.cpp > CMakeFiles\manag.dir\src\Management\listMedicalRecord.cpp.i
+
+CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\listMedicalRecord.cpp -o CMakeFiles\manag.dir\src\Management\listMedicalRecord.cpp.s
+
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj: CMakeFiles/manag.dir/flags.make
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/MedicalRecord.cpp
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj -MF CMakeFiles\manag.dir\src\Management\MedicalRecord.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\MedicalRecord.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\MedicalRecord.cpp
+
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\src\Management\MedicalRecord.cpp > CMakeFiles\manag.dir\src\Management\MedicalRecord.cpp.i
+
+CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\src\Management\MedicalRecord.cpp -o CMakeFiles\manag.dir\src\Management\MedicalRecord.cpp.s
+
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/flags.make
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/Patient.cpp
 CMakeFiles/manag.dir/src/Management/Patient.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/manag.dir/src/Management/Patient.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/Patient.cpp.obj -MF CMakeFiles\manag.dir\src\Management\Patient.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\Patient.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\Patient.cpp
 
 CMakeFiles/manag.dir/src/Management/Patient.cpp.i: cmake_force
@@ -150,7 +180,7 @@ CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/fl
 CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/includes_CXX.rsp
 CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: D:/Test_Code/PBL/PBL2/src/Management/listPatient.cpp
 CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj: CMakeFiles/manag.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj -MF CMakeFiles\manag.dir\src\Management\listPatient.cpp.obj.d -o CMakeFiles\manag.dir\src\Management\listPatient.cpp.obj -c D:\Test_Code\PBL\PBL2\src\Management\listPatient.cpp
 
 CMakeFiles/manag.dir/src/Management/listPatient.cpp.i: cmake_force
@@ -167,6 +197,8 @@ manag_OBJECTS = \
 "CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/Date.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj" \
+"CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj" \
+"CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/Patient.cpp.obj" \
 "CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"
 
@@ -177,11 +209,13 @@ libmanag.a: CMakeFiles/manag.dir/src/Management/Account.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Date.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj
+libmanag.a: CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj
+libmanag.a: CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/Patient.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj
 libmanag.a: CMakeFiles/manag.dir/build.make
 libmanag.a: CMakeFiles/manag.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libmanag.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libmanag.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\manag.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\manag.dir\link.txt --verbose=$(VERBOSE)
 

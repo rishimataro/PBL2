@@ -1,0 +1,21 @@
+Sốt;Xác định nguyên nhân, kê đơn thuốc hạ sốt và hướng dẫn bệnh nhân nghỉ ngơi
+Ho khan;Khám phổi, chỉ định thuốc giảm ho và uống nước ấm
+Đau đầu;Khám thần kinh, kê thuốc giảm đau và hướng dẫn bệnh nhân nghỉ ngơi
+Khó thở;Khám hô hấp, theo dõi mức độ khó thở và yêu cầu xét nghiệm chức năng hô hấp
+Đau bụng;Khám bụng, yêu cầu siêu âm và xét nghiệm nếu cần thiết, kê thuốc giảm đau
+Buồn nôn;Khám dạ dày, kê thuốc chống nôn và hướng dẫn chế độ ăn nhẹ
+Chóng mặt;Khám thần kinh, yêu cầu xét nghiệm chức năng tiền đình, kê thuốc hỗ trợ
+Đau lưng;Khám cơ xương khớp, kê thuốc giảm đau và hướng dẫn các bài tập vận động
+Mệt mỏi;Xác định nguyên nhân (thiếu máu, nhiễm trùng, rối loạn tuyến giáp), điều trị theo nguyên nhân
+Ho có đờm;Khám hô hấp, kê thuốc giảm ho và điều trị nhiễm trùng đường hô hấp nếu có
+Cảm lạnh;Hướng dẫn bệnh nhân uống nước ấm, nghỉ ngơi và kê thuốc hạ sốt nếu cần
+Viêm họng;Khám họng, kê thuốc kháng sinh nếu có nhiễm trùng, giảm đau họng bằng thuốc và nước muối ấm
+Táo bón;Khám tiêu hóa, kê thuốc nhuận tràng và khuyên bệnh nhân uống nhiều nước, tăng cường chất xơ
+Tiêu chảy;Khám tiêu hóa, kê thuốc cầm tiêu chảy, yêu cầu xét nghiệm phân nếu cần
+Đau cơ;Khám cơ xương khớp, kê thuốc giảm đau và hướng dẫn các bài tập giãn cơ
+Chảy máu cam;Khám mũi, yêu cầu kiểm tra tình trạng huyết áp và kê thuốc nếu cần thiết
+Rối loạn kinh nguyệt;Khám phụ khoa, yêu cầu siêu âm nếu cần và kê thuốc điều trị rối loạn nội tiết
+Đau ngực;Khám tim mạch, yêu cầu làm điện tâm đồ, siêu âm tim và kê thuốc giảm đau nếu cần
+Phát ban;Khám da liễu, yêu cầu xét nghiệm máu và kê thuốc điều trị viêm nhiễm da
+Sưng tấy khớp;Khám xương khớp, yêu cầu xét nghiệm máu để kiểm tra viêm khớp và kê thuốc giảm viêm
+Viêm họng;Khám họng, kê thuốc kháng sinh nếu có nhiễm trùng, giảm đau họng bằng thuốc và nước muối ấm

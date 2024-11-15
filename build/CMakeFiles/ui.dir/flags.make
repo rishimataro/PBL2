@@ -6,5 +6,5 @@ CXX_DEFINES = -DDATA_PATH=\"D:/Test_Code/PBL/PBL2/Database/\"
 
 CXX_INCLUDES = @CMakeFiles/ui.dir/includes_CXX.rsp
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGS = -std=gnu++23
 

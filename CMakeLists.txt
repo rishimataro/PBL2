@@ -5,8 +5,8 @@ project(PBL2_NTNT_HLP
 # Xuất tệp lệnh biên dịch
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Thiết lập tiêu chuẩn C++17
-set(CMAKE_CXX_STANDARD 17)
+# Thiết lập tiêu chuẩn C++23
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -46,14 +46,16 @@ add_library(manag
     include/Management/Appoinment.hpp
     include/Management/Date.hpp
     include/Management/listAccount.hpp
-    # include/Management/listMedicalRecord.hpp
+    include/Management/listMedicalRecord.hpp
+    include/Management/MedicalRecord.hpp
     include/Management/listPatient.hpp
     include/Management/Patient.hpp
     src/Management/Account.cpp
     src/Management/Appoinment.cpp
     src/Management/Date.cpp
     src/Management/listAccount.cpp
-    # src/Management/listMedicalRecord.cpp
+    src/Management/listMedicalRecord.cpp
+    src/Management/MedicalRecord.cpp
     src/Management/Patient.cpp
     src/Management/listPatient.cpp
 )
@@ -72,8 +74,10 @@ target_include_directories(template
 add_library(ui
     include/Interface/Patient_interface.hpp
     include/Interface/Login.hpp
+    include/Interface/Admin_interface.hpp
     src/Interface/Patient_interface.cpp
     src/Interface/Login.cpp
+    src/Interface/Admin_interface.cpp
 )
 target_include_directories(ui
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
