@@ -133,19 +133,17 @@ vector<Patient> listPatient::setPatientByGender(bool gender)
 vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, const string &endDate)
 {
     vector<Patient> result;
+    if(this->size() == 0)
+        return result;
 
-    // Chuyển đổi startDate và endDate thành đối tượng Date
     Date startDateObj, endDateObj;
     startDateObj.setDate(startDate);
     endDateObj.setDate(endDate);
 
-    // Duyệt qua danh sách bệnh nhân và tìm những bệnh nhân có ngày sinh trong phạm vi
     for (int i = 0; i < this->size(); i++)
     {
-        // Lấy ngày sinh của bệnh nhân
         Date currentPatientDate = this->get(i).getDayOfBirth();
 
-        // Kiểm tra nếu ngày sinh của bệnh nhân trong khoảng startDate và endDate
         if (currentPatientDate >= startDateObj && currentPatientDate <= endDateObj)
         {
             result.push_back(this->get(i));
@@ -231,7 +229,7 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
         return;
 
     int index = this->checkID(ID);
-    if (index == 0)
+    if (index == -1)
         return;
 
     Patient currentPatient = this->get(index);
@@ -252,19 +250,16 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
 }
 
 //* Search
-vector<Patient> listPatient::searchPatient(SearchField field, const string &value)
-{   
+vector<Patient> listPatient::searchPatient(SearchField field, const string &value) {
     vector<Patient> result;
     if (this->size() == 0)
         return result;
 
     string lowerValue = toLowerCase(value);
 
-    for (int i = 0; i < this->size(); i++)
-    {
+    for (int i = 0; i < this->size(); i++) {
         string fieldValue;
-        switch (field)
-        {
+        switch (field) {
         case SearchField::ID:
             fieldValue = toLowerCase(this->get(i).getID_patient());
             break;
@@ -276,8 +271,7 @@ vector<Patient> listPatient::searchPatient(SearchField field, const string &valu
             break;
         }
 
-        if (fieldValue.find(lowerValue) == 0)
-        {
+        if (fieldValue.find(lowerValue) == 0) {
             result.push_back(this->get(i));
         }
     }

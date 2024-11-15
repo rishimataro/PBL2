@@ -1,6 +1,5 @@
 #include <Management/MedicalRecord.hpp>
 
-// Constructor & Destructor
 MedicalRecord::MedicalRecord(string ID_record, string ID_patient, Patient* patient, string symptoms, string diagnosis, string dateOfRecord) {
     this->ID_record = ID_record;
     this->ID_patient = ID_patient;
@@ -21,15 +20,47 @@ MedicalRecord::MedicalRecord(const MedicalRecord &record) {
 
 MedicalRecord::~MedicalRecord() {}
 
-// Setters
-void MedicalRecord::setID_record(const string &id) { this->ID_record = id; }
+bool MedicalRecord::setID_record() {
+    path file_path = "../Database/Medical_recordDB/medical_record.txt";
+    file_path = absolute(file_path);
+    
+    fstream fi;
+    fi.open(file_path, ios::in);
+
+    if (!fi.is_open()) {
+        return false;
+    }
+
+    int maxID = 1;
+    
+    if (isFileEmpty(fi)) {
+        maxID = 0;
+    } else {
+        string temp;
+        moveToEndOfLastLine(fi);
+        getline(fi, temp);
+
+        if (!temp.empty() && temp.substr(0, 2) == "MR") {
+            maxID = stoi(temp.substr(2));
+        }
+    }
+
+    maxID++;
+    string id = "MR" + to_string(maxID);
+
+    this->ID_record = id;
+
+    fi.close();
+    return true;
+}
+
+
 void MedicalRecord::setID_patient(const string &id) { this->ID_patient = id; }
 void MedicalRecord::setSymptoms(const string &sym) { this->symptoms = sym; }
 void MedicalRecord::setDiagnosis(const string &diag) { this->diagnosis = diag; }
-void MedicalRecord::setDateOfRecord(const Date &date) { this->dateOfRecord = date; }
+void MedicalRecord::setDateOfRecord(const string &date) { this->dateOfRecord.setDate(date); }
 void MedicalRecord::setPatient(Patient* patient) { this->patient = patient; }
 
-// Getters
 string MedicalRecord::getID_record() const { return this->ID_record; }
 string MedicalRecord::getID_patient() const { return this->ID_patient; }
 string MedicalRecord::getSymptoms() const { return this->symptoms; }
@@ -37,65 +68,47 @@ string MedicalRecord::getDiagnosis() const { return this->diagnosis; }
 Date MedicalRecord::getDateOfRecord() const { return this->dateOfRecord; }
 Patient* MedicalRecord::getPatient() const { return this->patient; }
 
-// Nhập thông tin bệnh án
-void MedicalRecord::inputMedicalRecord() {
-    int x = whereX(), y = whereY();
-
-    gotoXY(x + 12, y + 1); cout << this->ID_record;
-    gotoXY(x + 12, y + 4); cout << this->ID_patient;
-    gotoXY(x + 12, y + 7); cin.ignore(); getline(cin, this->symptoms);
-    gotoXY(x + 12, y + 10); cin.ignore(); getline(cin, this->diagnosis);
-    gotoXY(x + 12, y + 13); this->dateOfRecord.inputDate();
-
-}
-
-// In thông tin bệnh án
-void MedicalRecord::printMedicalRecord() {
-    int x = whereX(), y = whereY();
-
-    gotoXY(x + 4, y);
-    cout << this->ID_record;
-    gotoXY(x + 16, y);
-    cout << this->ID_patient;
-
-    if(this->patient != NULL) {
-        gotoXY(x + 41, y);
-        cout << patient->getFullName();
-        gotoXY(x + 61, y);
-        cout << patient->getGenderToString();
+MedicalRecord& MedicalRecord::operator=(const MedicalRecord &record) {
+    if (this == &record) {
+        return *this;
     }
 
-    gotoXY(x + 81, y);
-    cout << this->symptoms;
-    gotoXY(x + 101, y);
-    cout << this->diagnosis;
-    gotoXY(x + 121, y);
-    cout << this->dateOfRecord.getDate() << endl;
+    this->ID_record = record.ID_record;
+    this->ID_patient = record.ID_patient;
+    this->symptoms = record.symptoms;
+    this->diagnosis = record.diagnosis;
+    this->dateOfRecord = record.dateOfRecord;
+    this->patient = record.patient;
+
+    return *this;
 }
 
-// Thiết lập thông tin bệnh án từ một dòng văn bản
-void MedicalRecord::setMedicalRecord(const string &line) {
-    stringstream ss(line);
-    string token;
+bool MedicalRecord::writeMedicalRecordToFile(fstream &f) {
+    string data;
 
-    getline(ss, token, ';'); this->ID_record = token;
-    getline(ss, token, ';'); this->ID_patient = token;
-    getline(ss, token, ';'); this->symptoms = token;
-    getline(ss, token, ';'); this->diagnosis = token;
-    getline(ss, token, ';'); this->dateOfRecord.setDate(token);
+    data.append(this->ID_record + "\n");
+    data.append(this->ID_patient + "\n");
+    data.append(this->symptoms + "\n");
+    data.append(this->diagnosis + "\n");
+    data.append(this->dateOfRecord.getDate() + "\n");
+
+    f << data;
+
+    return true;
 }
 
-// Lưu thông tin bệnh án vào file
-void MedicalRecord::saveMedicalRecord(fstream &f) {
-    f << this->ID_record << endl;
-    f << this->ID_patient << endl;
-    f << this->symptoms << endl;
-    f << this->diagnosis << endl;
-    f << this->dateOfRecord.getDate() << endl;
+bool MedicalRecord::writeMedicalRecordToFile_all(ofstream &fout) {
+    fout << this->ID_record << endl;
+    return true;
 }
 
-// Lưu tất cả bệnh án vào file
-void MedicalRecord::saveAllMedicalRecord(fstream &f) {
-    f << this->ID_record << ";" << this->ID_patient << ";" << this->symptoms << ";" 
-      << this->diagnosis << ";" << this->dateOfRecord.getDate() << endl;
+void MedicalRecord::readMedicalRecordFromFile(fstream &f) {
+    string dateOfRecordStr;
+    getline(f, this->ID_record);
+    getline(f, this->ID_patient);
+    getline(f, this->symptoms);
+    getline(f, this->diagnosis);
+    
+    getline(f, dateOfRecordStr);
+    this->dateOfRecord.setDate(dateOfRecordStr);
 }

@@ -1,8 +1,8 @@
 #include <Management/listMedicalRecord.hpp>
 
-//* Constructor & Destructor  
 listMedicalRecord::listMedicalRecord() {
-    this->head = NULL;  // Khởi tạo danh sách rỗng
+    this->head = NULL;
+    loadSymptomSolutionsFromFile();
 }
 
 listMedicalRecord::~listMedicalRecord() {
@@ -20,285 +20,314 @@ listMedicalRecord::~listMedicalRecord() {
     this->head = NULL;
 }
 
-//* Setter & Getter
-void listMedicalRecord::setListMedicalRecordByFile() {
-    fstream fin;
-    fin.open("./Database/MedicalRecordDB/medicalRecords.txt", ios::in);
+bool listMedicalRecord::readListMedicalRecordFromFile() {
+    string file_path = "../Database/Medical_recordDB/medical_record.txt";
+    fstream fin, recordFile;
+    MedicalRecord record;
 
+    fin.open(file_path, ios::in);
     if (!fin.is_open())
-        return;
+        return false;
 
-    string line;
-    while (getline(fin, line)) {
-        if (line.empty())
+    string id;
+    while (getline(fin, id)) {
+        if (id.empty())
             continue;
 
-        MedicalRecord record;
-        record.setMedicalRecord(line); // Cần định nghĩa hàm setMedicalRecord trong lớp MedicalRecord
-        this->addMedicalRecord(record);
+        file_path = "../Database/Medical_recordDB/" + id + ".txt";
+        recordFile.open(file_path, ios::in);
+
+        if (!recordFile.is_open())
+            continue;
+
+        record.readMedicalRecordFromFile(recordFile);
+        this->append(record);
+
+        recordFile.close();
     }
     fin.close();
+    return true;
 }
 
-void listMedicalRecord::saveListMedicalRecordToFile() {
-    fstream fout;
-    fout.open("./Database/MedicalRecordDB/medicalRecords.txt", ios::out);
+bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
+    string file_path = "../Database/Medical_recordDB/medical_record.txt";
+    char ch;
 
-    if (!fout.is_open())
-        return;
-
-    for (int i = 0; i < this->size(); i++) {
-        this->get(i).saveAllMedicalRecord(fout); // Cần định nghĩa hàm saveAllMedicalRecord trong lớp MedicalRecord
+    ifstream fi(file_path);
+    if (fi.is_open()) {
+        fi.seekg(-1, ios::end);
+        fi.get(ch);
+        if (ch != '\n' && ch != '\0') {
+            ofstream temp(file_path, ios::app);
+            temp << "\n";
+            temp.close();
+        }
+        fi.close();
     }
 
-    fout.close();
-    cout << "Lưu thành công!" << endl;
+    ofstream fo;
+    if (check) {
+        fo.open(file_path, ios::trunc); 
+    } else {
+        fo.open(file_path, ios::app);  
+    }
+
+    if (!fo.is_open())
+        return false;
+
+    MedicalRecord record;
+    if (check) {
+        for (int i = 0; i < this->size(); i++) {
+            record = this->get(i);
+            record.writeMedicalRecordToFile_all(fo);
+        }
+    } else {
+        record = this->get(this->size() - 1);
+        record.writeMedicalRecordToFile_all(fo);
+    }
+
+    fo.close();
+    return true;
 }
 
-void listMedicalRecord::saveMedicalRecordToFile(int index) {
-    string path = "./Database/MedicalRecordDB/";
-    string fileName = path + this->get(index).getID_record() + ".txt"; // Cần định nghĩa hàm getRecordID trong lớp MedicalRecord
+bool listMedicalRecord::writeMedicalRecordToFile(int index) {
+    string fileName = "../Database/Medical_recordDB/" + this->get(index).getID_record() + ".txt";
+
     fstream fout;
     fout.open(fileName, ios::out);
 
     if (!fout.is_open()) {
-        return;
+        return false;
     }
 
-    this->get(index).saveMedicalRecord(fout); // Cần định nghĩa hàm saveMedicalRecord trong lớp MedicalRecord
+    this->get(index).writeMedicalRecordToFile(fout);
     fout.close();
+    return true;
 }
 
-//* Display
-void listMedicalRecord::printAllMedicalRecords() const {
-    if (this->size() == 0) return;
+vector<MedicalRecord> listMedicalRecord::setAllMedicalRecords() {
+    vector<MedicalRecord> records;
+    if (this->size() == 0) return records;
 
     for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
-        record.printMedicalRecordHorizontal(); // Cần định nghĩa hàm printMedicalRecordHorizontal trong lớp MedicalRecord
-        cout << "------------------------" << endl;
+        records.push_back(this->get(i));
     }
+    return records;
 }
 
-void listMedicalRecord::printMedicalRecordsByPatientID(const string& patientID) const {
-    if (this->size() == 0) return;
+vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByPatientID(const string& patientID) {
+    vector<MedicalRecord> records;
+    if (this->size() == 0) return records;
 
-    bool found = false;
     for (int i = 0; i < this->size(); i++) {
         MedicalRecord record = this->get(i);
-        if (record.getPatientID() == patientID) { // Cần định nghĩa hàm getPatientID trong lớp MedicalRecord
-            record.printMedicalRecordHorizontal();
-            found = true;
+        if (record.getID_patient() == patientID) {
+            records.push_back(record);
+        }
+    }
+    return records;
+}
+
+vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByDiagnosis(const string& diagnosis) {
+    vector<MedicalRecord> records;
+    if (this->size() == 0) return records;
+
+    for (int i = 0; i < this->size(); i++) {
+        MedicalRecord record = this->get(i);
+        if (record.getDiagnosis() == diagnosis) {
+            records.push_back(record);
+        }
+    }
+    return records;
+}
+
+vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByRecordRange(const string &startDate, const string &endDate) {
+    vector<MedicalRecord> records;
+    if (this->size() == 0) return records;
+
+    Date startDateObj, endDateObj;
+    startDateObj.setDate(startDate);
+    endDateObj.setDate(endDate);
+
+    for (int i = 0; i < this->size(); i++) {
+        Date currentRecordDate = this->get(i).getDateOfRecord();
+        if (currentRecordDate >= startDateObj && currentRecordDate <= endDateObj) {
+            records.push_back(this->get(i));
         }
     }
 
-    if (!found) {
-        cout << "Không tìm thấy bệnh án cho bệnh nhân ID: " << patientID << endl;
-    }
+    return records;
 }
 
-void listMedicalRecord::printMedicalRecordsByDiagnosis(const string& diagnosis) const {
-    if (this->size() == 0) return;
+vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
+    vector<pair<string, int>> diagnosisCount;
+    if (this->size() == 0) return diagnosisCount;
 
-    bool found = false;
+    map<string, int> diagnosisMap;
+
     for (int i = 0; i < this->size(); i++) {
         MedicalRecord record = this->get(i);
-        if (record.getDiagnosis() == diagnosis) { // Cần định nghĩa hàm getDiagnosis trong lớp MedicalRecord
-            record.printMedicalRecordHorizontal();
-            found = true;
-        }
+        string diagnosis = record.getDiagnosis();
+        diagnosisMap[diagnosis]++;
     }
 
-    if (!found) {
-        cout << "Không tìm thấy bệnh án với chẩn đoán: " << diagnosis << endl;
+    for (const auto& pair : diagnosisMap) {
+        diagnosisCount.push_back(pair);
     }
+
+    return diagnosisCount;
 }
 
-void listMedicalRecord::printMedicalRecordsByRecordRange(const Date &startDate, const Date &endDate) const {
-    if (this->size() == 0) return;
+void listMedicalRecord::addMedicalRecord(const string& patientID, Patient* patient, const string& symptoms, const string& diagnosis, const string& dateOfRecord) {
+    MedicalRecord newRecord;
 
-    bool found = false;
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
-        Date recordDate = record.getDate(); // Cần định nghĩa hàm getDate trong lớp MedicalRecord
+    newRecord.setID_record();
+    newRecord.setID_patient(patientID);
+    newRecord.setPatient(patient);
+    newRecord.setSymptoms(symptoms);
+    newRecord.setDiagnosis(diagnosis);
+    newRecord.setDateOfRecord(dateOfRecord);
 
-        if (recordDate >= startDate && recordDate <= endDate) {
-            record.printMedicalRecordHorizontal();
-            found = true;
-        }
-    }
-
-    if (!found) {
-        cout << "Không tìm thấy bệnh án trong khoảng thời gian này." << endl;
-    }
+    this->append(newRecord);
+    this->writeMedicalRecordToFile(this->size() - 1);
+    this->writeListMedicalRecordToFile(false);
 }
 
-//* Add
-void listMedicalRecord::addMedicalRecord(const MedicalRecord &record) {
-    this->append(record); // Cần đảm bảo hàm append đã được định nghĩa trong lớp LinkedList
-    cout << "Thêm bệnh án thành công!" << endl;
-}
-
-//* Check
 int listMedicalRecord::checkRecordID(const string& recordID) {
+    Node<MedicalRecord> *current = this->head;
+    if (current == NULL)
+        return -1;
+
     for (int i = 0; i < this->size(); i++) {
-        if (this->get(i).getRecordID() == recordID) { // Cần định nghĩa hàm getRecordID trong lớp MedicalRecord
+        if (current->data.getID_record() == recordID)
             return i;
-        }
+        current = current->next;
     }
-    return -1; // Trả về -1 nếu không tìm thấy
+
+    return -1;
 }
 
-//* Delete
-void listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
+bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
+    Node<MedicalRecord> *current = this->head;
+    if (current == NULL)
+        return false;
+
     int index = this->checkRecordID(recordID);
-    if (index == -1) {
-        cout << "Không tìm thấy bệnh án với ID: " << recordID << endl;
-        return;
-    }
+    if (index == -1)
+        return false;
 
-    this->remove(index); // Cần đảm bảo hàm remove đã được định nghĩa trong lớp LinkedList
-    cout << "Xóa bệnh án thành công!" << endl;
+    this->remove(index);
+
+    return true;
 }
 
-//* Update
-void listMedicalRecord::updateMedicalRecordByID(const string& recordID) {
+void listMedicalRecord::updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms) {
+    Node<MedicalRecord> *current = this->head;
+    if (current == NULL)
+        return;
+
     int index = this->checkRecordID(recordID);
-    if (index == -1) {
-        cout << "Không tìm thấy bệnh án với ID: " << recordID << endl;
+    if (index == -1)
         return;
-    }
 
-    MedicalRecord currentRecord = this->get(index);
-    // Thực hiện cập nhật thông tin cho currentRecord...
-    // Ví dụ:
-    string newDiagnosis;
-    cout << "Nhập chẩn đoán mới: ";
-    cin >> newDiagnosis;
-    currentRecord.setDiagnosis(newDiagnosis); // Cần định nghĩa hàm setDiagnosis trong lớp MedicalRecord
+    MedicalRecord curMR = this->get(index);
+    string file_path = "../Database/Medical_recordDB/" + curMR.getID_record() + ".txt";
+    if (std::remove(file_path.c_str()) != 0)
+        return;
 
-    this->saveMedicalRecordToFile(index); // Lưu lại thông tin bệnh án đã cập nhật
+    curMR.setDiagnosis(newDiagnosis);
+    curMR.setSymptoms(newSymptoms);
+
+    this->set(index, curMR);
+    this->writeMedicalRecordToFile(index);
+
+    return;
 }
 
-//* Search
-void listMedicalRecord::searchMedicalRecord(SearchField field, const string& value) {
-    if (this->size() == 0) return;
+vector<MedicalRecord> listMedicalRecord::searchMedicalRecord(SearchField_MR field, const string& value) {
+    vector<MedicalRecord> result;
+    if (this->size() == 0)
+        return result;
 
-    bool found = false;
+    string lowerValue = toLowerCase(value);
+
     for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
         string fieldValue;
-
         switch (field) {
-            case SearchField::RecordID:
-                fieldValue = record.getRecordID(); // Cần định nghĩa hàm getRecordID trong lớp MedicalRecord
-                break;
-            case SearchField::PatientID:
-                fieldValue = record.getPatientID(); // Cần định nghĩa hàm getPatientID trong lớp MedicalRecord
-                break;
-            case SearchField::Symptoms:
-                fieldValue = record.getSymptoms(); // Cần định nghĩa hàm getSymptoms trong lớp MedicalRecord
-                break;
+        case SearchField_MR::RecordID:
+            fieldValue = toLowerCase(this->get(i).getID_record());
+            break;
+        case SearchField_MR::PatientID:
+            fieldValue = toLowerCase(this->get(i).getID_patient());
+            break;
+        case SearchField_MR::Diagnosis:
+            fieldValue = toLowerCase(this->get(i).getDiagnosis());
+            break;
         }
 
-        if (fieldValue.find(value) != string::npos) {
-            record.printMedicalRecordHorizontal();
-            found = true;
+        if (fieldValue.find(lowerValue) == 0) {
+            result.push_back(this->get(i));
         }
     }
 
-    if (!found) {
-        cout << "Không tìm thấy bệnh án phù hợp!" << endl;
-    }
+    return result;
 }
 
-//* Statistics
-void listMedicalRecord::generateStatistics() {
-    if (this->size() == 0) {
-        cout << "Không có dữ liệu để thống kê!" << endl;
-        return;
+void listMedicalRecord::loadSymptomSolutionsFromFile() {
+    path file_path = "../Database/Medical_recordDB/symptom_solutions.txt";
+    file_path = absolute(file_path);
+
+    ifstream file;
+    file.open(file_path);
+
+    if (!file.is_open()) return;
+
+    string line;
+    while (getline(file, line)) {
+        istringstream stream(line);
+        string symptom, solution;
+        getline(stream, symptom, ';');
+        getline(stream, solution);
+        symptomSolutions[symptom] = solution;
     }
 
-    int totalRecords = this->size();
-    map<string, int> diagnosisCount;
-    map<string, int> symptomsCount;
+    file.close();
+}
 
-    for (int i = 0; i < totalRecords; i++) {
-        MedicalRecord record = this->get(i);
-        string diagnosis = record.getDiagnosis(); // Cần định nghĩa hàm getDiagnosis trong lớp MedicalRecord
-        string symptoms = record.getSymptoms(); // Cần định nghĩa hàm getSymptoms trong lớp MedicalRecord
+void listMedicalRecord::appendSymptomSolutionToFile(const string& symptom, const string& solution) {
+    path file_path = "../Database/Medical_recordDB/symptom_solutions.txt";
+    file_path = absolute(file_path);
+    ofstream file;
+    file.open(file_path, ios::app);
 
-        diagnosisCount[diagnosis]++;
-        // Tách triệu chứng thành từng phần và đếm
-        istringstream iss(symptoms);
+    if (!file.is_open()) return;
+
+    file << symptom << ";" << solution << "\n";
+
+    file.close();
+}
+
+map<string, int> listMedicalRecord::analyzeSymptomsAndProvideSolutions() {
+    map<string, int> symptomFrequency;
+    for (const MedicalRecord& record : this->setAllMedicalRecords()) {
+        istringstream symptomsStream(record.getSymptoms());
         string symptom;
-        while (iss >> symptom) {
-            symptomsCount[symptom]++;
+        while (getline(symptomsStream, symptom, ',')) {
+            symptomFrequency[symptom]++;
         }
     }
 
-    cout << "Tổng số bệnh án: " << totalRecords << endl;
-    cout << "Số lượng chẩn đoán theo bệnh:" << endl;
-    for (const auto& pair : diagnosisCount) {
-        cout << "Chẩn đoán: " << pair.first << ", Số lượng: " << pair.second << endl;
-    }
+    return symptomFrequency;
 
-    cout << "Số triệu chứng phổ biến:" << endl;
-    for (const auto& pair : symptomsCount) {
-        cout << "Triệu chứng: " << pair.first << ", Số lượng: " << pair.second << endl;
-    }
+    // * Chạy giao diện thì viết cái này hen
+    // for (const auto& entry : symptomFrequency) {
+    //     cout << "Triệu chứng: " << entry.first << ", Số lần gặp: " << entry.second << "\n";
+        
+    //     auto it = symptomSolutions.find(entry.first);
+    //     if (it != symptomSolutions.end()) {
+    //         cout << "Giải pháp: " << it->second << "\n";
+    //     } else {
+    //         cout << "Giải pháp chưa có.\n";
+    //     }
+    // }
 }
-
-void listMedicalRecord::displayMostCommonSymptoms() const {
-    if (this->size() == 0) {
-        cout << "Không có dữ liệu để hiển thị!" << endl;
-        return;
-    }
-
-    map<string, int> symptomsCount;
-
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
-        string symptoms = record.getSymptoms(); // Cần định nghĩa hàm getSymptoms trong lớp MedicalRecord
-
-        istringstream iss(symptoms);
-        string symptom;
-        while (iss >> symptom) {
-            symptomsCount[symptom]++;
-        }
-    }
-
-    // Tìm triệu chứng phổ biến nhất
-    string mostCommonSymptom;
-    int maxCount = 0;
-
-    for (const auto& pair : symptomsCount) {
-        if (pair.second > maxCount) {
-            maxCount = pair.second;
-            mostCommonSymptom = pair.first;
-        }
-    }
-
-    cout << "Triệu chứng phổ biến nhất: " << mostCommonSymptom << " (Số lượng: " << maxCount << ")" << endl;
-}
-
-void listMedicalRecord::displayDiagnosisCount() const {
-    if (this->size() == 0) {
-        cout << "Không có dữ liệu để hiển thị!" << endl;
-        return;
-    }
-
-    map<string, int> diagnosisCount;
-
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
-        string diagnosis = record.getDiagnosis(); // Cần định nghĩa hàm getDiagnosis trong lớp MedicalRecord
-        diagnosisCount[diagnosis]++;
-    }
-
-    cout << "Số lượng chẩn đoán theo bệnh:" << endl;
-    for (const auto& pair : diagnosisCount) {
-        cout << "Chẩn đoán: " << pair.first << ", Số lượng: " << pair.second << endl;
-    }
-}
-

@@ -39,7 +39,7 @@ bool Patient::setID_patient() {
         } else {
             string temp;
             moveToEndOfLastLine(fi);
-            getline(fi, temp, ';');
+            getline(fi, temp);
             if (!temp.empty() && temp[0] == 'P') {
                 maxID = stoi(temp.substr(1));
             }
