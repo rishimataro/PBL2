@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
+CMAKE_COMMAND = C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
+RM = C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\Test_Code\PBL\PBL2
+CMAKE_SOURCE_DIR = F:\03_PBL2\PBL2\CODE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\Test_Code\PBL\PBL2\build
+CMAKE_BINARY_DIR = F:\03_PBL2\PBL2\CODE\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = D:\Test_Code\PBL\PBL2\build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackConfig.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cpack.exe --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -77,7 +77,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake D:/Test_Code/PBL/PBL2/build/CPackSourceConfig.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cpack.exe --config ./CPackSourceConfig.cmake F:/03_PBL2/PBL2/CODE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -87,7 +87,7 @@ package_source/fast: package_source
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	"C:\Program Files\CMake\bin\cmake-gui.exe" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake-gui.exe -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -97,7 +97,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -116,44 +116,44 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Test_Code\PBL\PBL2\build\CMakeFiles D:\Test_Code\PBL\PBL2\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\03_PBL2\PBL2\CODE\build\CMakeFiles F:\03_PBL2\PBL2\CODE\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Test_Code\PBL\PBL2\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\03_PBL2\PBL2\CODE\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -500,6 +500,30 @@ src/Management/Date.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/Date.cpp.s
 .PHONY : src/Management/Date.cpp.s
 
+src/Management/MedicalRecord.obj: src/Management/MedicalRecord.cpp.obj
+.PHONY : src/Management/MedicalRecord.obj
+
+# target to build an object file
+src/Management/MedicalRecord.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.obj
+.PHONY : src/Management/MedicalRecord.cpp.obj
+
+src/Management/MedicalRecord.i: src/Management/MedicalRecord.cpp.i
+.PHONY : src/Management/MedicalRecord.i
+
+# target to preprocess a source file
+src/Management/MedicalRecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.i
+.PHONY : src/Management/MedicalRecord.cpp.i
+
+src/Management/MedicalRecord.s: src/Management/MedicalRecord.cpp.s
+.PHONY : src/Management/MedicalRecord.s
+
+# target to generate assembly for a file
+src/Management/MedicalRecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/MedicalRecord.cpp.s
+.PHONY : src/Management/MedicalRecord.cpp.s
+
 src/Management/Patient.obj: src/Management/Patient.cpp.obj
 .PHONY : src/Management/Patient.obj
 
@@ -547,6 +571,30 @@ src/Management/listAccount.s: src/Management/listAccount.cpp.s
 src/Management/listAccount.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listAccount.cpp.s
 .PHONY : src/Management/listAccount.cpp.s
+
+src/Management/listMedicalRecord.obj: src/Management/listMedicalRecord.cpp.obj
+.PHONY : src/Management/listMedicalRecord.obj
+
+# target to build an object file
+src/Management/listMedicalRecord.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj
+.PHONY : src/Management/listMedicalRecord.cpp.obj
+
+src/Management/listMedicalRecord.i: src/Management/listMedicalRecord.cpp.i
+.PHONY : src/Management/listMedicalRecord.i
+
+# target to preprocess a source file
+src/Management/listMedicalRecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.i
+.PHONY : src/Management/listMedicalRecord.cpp.i
+
+src/Management/listMedicalRecord.s: src/Management/listMedicalRecord.cpp.s
+.PHONY : src/Management/listMedicalRecord.s
+
+# target to generate assembly for a file
+src/Management/listMedicalRecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.s
+.PHONY : src/Management/listMedicalRecord.cpp.s
 
 src/Management/listPatient.obj: src/Management/listPatient.cpp.obj
 .PHONY : src/Management/listPatient.obj
@@ -645,12 +693,18 @@ help:
 	@echo ... src/Management/Date.obj
 	@echo ... src/Management/Date.i
 	@echo ... src/Management/Date.s
+	@echo ... src/Management/MedicalRecord.obj
+	@echo ... src/Management/MedicalRecord.i
+	@echo ... src/Management/MedicalRecord.s
 	@echo ... src/Management/Patient.obj
 	@echo ... src/Management/Patient.i
 	@echo ... src/Management/Patient.s
 	@echo ... src/Management/listAccount.obj
 	@echo ... src/Management/listAccount.i
 	@echo ... src/Management/listAccount.s
+	@echo ... src/Management/listMedicalRecord.obj
+	@echo ... src/Management/listMedicalRecord.i
+	@echo ... src/Management/listMedicalRecord.s
 	@echo ... src/Management/listPatient.obj
 	@echo ... src/Management/listPatient.i
 	@echo ... src/Management/listPatient.s

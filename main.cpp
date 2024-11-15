@@ -2,12 +2,14 @@
 // #include "./Management/Single/Date.h"
 // #include "./Management/Single/Patient.h"
 // #include "./Management/listAccount.h"
-#include <ftxui/component/component.hpp>        // for Button, Renderer, Input, etc.
+#include <ftxui/component/component.hpp>          // for Button, Renderer, Input, etc.
 #include <ftxui/component/screen_interactive.hpp> // for ScreenInteractive
 #include <ftxui/dom/elements.hpp>
-#include <Management/Appoinment.hpp>
+// #include <Management/Appoinment.hpp>
 #include <Management/listPatient.hpp>
 #include <Management/Patient.hpp>
+#include <Management/listMedicalRecord.hpp>
+#include <Management/MedicalRecord.hpp>
 // #include "Interface/Patient_interface.hpp"
 #include "Management/Date.hpp"
 #include "Interface/Login.hpp"
@@ -19,75 +21,28 @@
 using namespace std;
 // using namespace filesystem;
 
-int main() {
+int main()
+{
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    loginUI();
-    // Patient pp;
-    // pp.setID_patient();
-    // pp.setAddress("1234 Hà Nội");
-    // pp.setFullName("Cháo Thỏ");
-    // pp.setPhone("0987654321");
-    // pp.setCCCD("0001234567");
-    // pp.setDayOfBirth("15/07/2005");
-    // pp.setGender(true);
 
-    // listPatient list;
-    // list.readListPatientFromFile();
-    // vector<Patient> Patients = list.setAllPatient();
-    // vector<Patient> Patients = list.searchPatient(SearchField::ID, "P3");
-    // for (auto& p : Patients)
-    // {
-    //     cout << p.getFullName() << endl;
+    listMedicalRecord listMR;
 
-    // }
-    // Patient_UI(Patients[0]);
+    // Kiểm tra nếu danh sách ban đầu rỗng
+    if (listMR.size() == 0)
+        std::cout << "Test 1: Danh sách rỗng.\n";
+    else
+        std::cout << "Test 1: Danh sách không rỗng.\n";
 
-    // vector<Appoinment> apps = searchAppoinments(Patients[0]);
-    // {   
-    //     Appoinment app = apps[0];
-    //     cout << "ID: " << app.getID() << ", Ngày khám: " << app.getDate().getDate() << ", ID bệnh nhân: " << app.getPatientID() << ", Giờ khám: " << GioKham(app.getTime());
-    //     cout << ", Triệu chứng: " << app.getDescription() << ", Trạng thái: " << (app.getStatus() ? "Hiệu lực" : "Đã hủy") << ", Trạng thái khám: " << (app.getIsProcessed() ? "Đã khám" : "Chưa khám") << endl;
-    // }
-    // path file_path = DATA_PATH "AppoinmentDB";
-    // file_path.append("2024_11.txt");
-    // file_path = absolute(file_path);
-    // cout << "File path: " << file_path << endl;
-    // Date dd;
-    // dd.setDate("16/11/2024");
-    // Appoinment app(Patients[0], dd, 1, "Đau bụng");
-    // app.ThemLichKham();
-    // Component xxx = Patientdisplay(pp);
+    // Kiểm tra đọc bản ghi y tế từ file
+    bool readSuccess = listMR.readListMedicalRecordFromFile();
+    if (readSuccess)
+        std::cout << "Test 2: Đọc bản ghi y tế từ file thành công.\n";
+    else
+        std::cout << "Test 2: Đọc bản ghi y tế từ file thất bại.\n";
 
-    // listPatient list;   
-    // bool check = list.readListPatientFromFile();
-
-    // // if (check) {
-    // //     cout << "Read file successfully" << endl;
-    // // } else {
-    // //     cout << "Read file failed" << endl;
-    // // }
-
-    // // // // list.addPatient();
-    // vector<Patient> result = list.setPatientByBirthRange("12/01/2005", "01/07/2005");
-    // cout << result.size() << " patient(s) found." << endl;
-    // for(const auto& p : result) {
-    //     cout << p.getFullName() << endl;
-    // }
-
-    // cout << "----------------" << endl;
-    // result = list.setAllPatient();
-    // for(const auto& p : result) {
-    //     cout << p.getFullName() << endl;
-    // }
     
-    // cout << "----------------" << endl;
-    // result = list.searchPatient(SearchField::FullName, "Ng");
-    // for(const auto& p : result) {
-    //     cout << p.getFullName() << endl;
-    // }
 
     system("pause");
     return 0;
 }
-

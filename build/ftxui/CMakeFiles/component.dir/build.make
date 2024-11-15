@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
+CMAKE_COMMAND = C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
+RM = C:\cmake-3.31.0-rc3-windows-x86_64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\Test_Code\PBL\PBL2
+CMAKE_SOURCE_DIR = F:\03_PBL2\PBL2\CODE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\Test_Code\PBL\PBL2\build
+CMAKE_BINARY_DIR = F:\03_PBL2\PBL2\CODE\build
 
 # Include any dependencies generated for this target.
 include ftxui/CMakeFiles/component.dir/depend.make
@@ -73,363 +73,363 @@ ftxui/CMakeFiles/component.dir/codegen:
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/animation.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/animation.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\animation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\animation.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/animation.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\animation.cpp > CMakeFiles\component.dir\src\ftxui\component\animation.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\animation.cpp > CMakeFiles\component.dir\src\ftxui\component\animation.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/animation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/animation.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\animation.cpp -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\animation.cpp -o CMakeFiles\component.dir\src\ftxui\component\animation.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/button.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/button.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\button.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\button.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/button.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\button.cpp > CMakeFiles\component.dir\src\ftxui\component\button.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\button.cpp > CMakeFiles\component.dir\src\ftxui\component\button.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/button.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/button.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\button.cpp -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\button.cpp -o CMakeFiles\component.dir\src\ftxui\component\button.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/catch_event.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/catch_event.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\catch_event.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\catch_event.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\catch_event.cpp > CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\catch_event.cpp > CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/catch_event.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\catch_event.cpp -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\catch_event.cpp -o CMakeFiles\component.dir\src\ftxui\component\catch_event.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/checkbox.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/checkbox.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\checkbox.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\checkbox.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\checkbox.cpp > CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\checkbox.cpp > CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/checkbox.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\checkbox.cpp -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\checkbox.cpp -o CMakeFiles\component.dir\src\ftxui\component\checkbox.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/collapsible.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/collapsible.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\collapsible.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\collapsible.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\collapsible.cpp > CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\collapsible.cpp > CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/collapsible.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\collapsible.cpp -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\collapsible.cpp -o CMakeFiles\component.dir\src\ftxui\component\collapsible.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/component.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/component.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/component.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component.cpp > CMakeFiles\component.dir\src\ftxui\component\component.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component.cpp > CMakeFiles\component.dir\src\ftxui\component\component.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/component.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component.cpp -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component.cpp -o CMakeFiles\component.dir\src\ftxui\component\component.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/component_options.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/component_options.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component_options.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component_options.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component_options.cpp > CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component_options.cpp > CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\component_options.cpp -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\component_options.cpp -o CMakeFiles\component.dir\src\ftxui\component\component_options.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/container.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/container.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\container.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\container.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/container.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\container.cpp > CMakeFiles\component.dir\src\ftxui\component\container.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\container.cpp > CMakeFiles\component.dir\src\ftxui\component\container.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/container.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/container.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\container.cpp -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\container.cpp -o CMakeFiles\component.dir\src\ftxui\component\container.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/dropdown.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/dropdown.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\dropdown.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\dropdown.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\dropdown.cpp > CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\dropdown.cpp > CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/dropdown.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\dropdown.cpp -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\dropdown.cpp -o CMakeFiles\component.dir\src\ftxui\component\dropdown.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/event.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/event.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\event.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\event.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/event.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\event.cpp > CMakeFiles\component.dir\src\ftxui\component\event.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\event.cpp > CMakeFiles\component.dir\src\ftxui\component\event.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/event.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/event.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\event.cpp -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\event.cpp -o CMakeFiles\component.dir\src\ftxui\component\event.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/hoverable.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/hoverable.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\hoverable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\hoverable.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\hoverable.cpp > CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\hoverable.cpp > CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/hoverable.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\hoverable.cpp -o CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\hoverable.cpp -o CMakeFiles\component.dir\src\ftxui\component\hoverable.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/input.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/input.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\input.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\input.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/input.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\input.cpp > CMakeFiles\component.dir\src\ftxui\component\input.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\input.cpp > CMakeFiles\component.dir\src\ftxui\component\input.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/input.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/input.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\input.cpp -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\input.cpp -o CMakeFiles\component.dir\src\ftxui\component\input.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/loop.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/loop.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\loop.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\loop.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/loop.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\loop.cpp > CMakeFiles\component.dir\src\ftxui\component\loop.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\loop.cpp > CMakeFiles\component.dir\src\ftxui\component\loop.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/loop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/loop.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\loop.cpp -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\loop.cpp -o CMakeFiles\component.dir\src\ftxui\component\loop.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/maybe.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/maybe.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\maybe.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\maybe.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\maybe.cpp > CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\maybe.cpp > CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/maybe.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\maybe.cpp -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\maybe.cpp -o CMakeFiles\component.dir\src\ftxui\component\maybe.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/menu.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/menu.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\menu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\menu.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/menu.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\menu.cpp > CMakeFiles\component.dir\src\ftxui\component\menu.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\menu.cpp > CMakeFiles\component.dir\src\ftxui\component\menu.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/menu.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\menu.cpp -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\menu.cpp -o CMakeFiles\component.dir\src\ftxui\component\menu.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/modal.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/modal.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\modal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\modal.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\modal.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/modal.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\modal.cpp > CMakeFiles\component.dir\src\ftxui\component\modal.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\modal.cpp > CMakeFiles\component.dir\src\ftxui\component\modal.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/modal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/modal.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\modal.cpp -o CMakeFiles\component.dir\src\ftxui\component\modal.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\modal.cpp -o CMakeFiles\component.dir\src\ftxui\component\modal.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/radiobox.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/radiobox.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\radiobox.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\radiobox.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\radiobox.cpp > CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\radiobox.cpp > CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/radiobox.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\radiobox.cpp -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\radiobox.cpp -o CMakeFiles\component.dir\src\ftxui\component\radiobox.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/renderer.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/renderer.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\renderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\renderer.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\renderer.cpp > CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\renderer.cpp > CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/renderer.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\renderer.cpp -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\renderer.cpp -o CMakeFiles\component.dir\src\ftxui\component\renderer.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/resizable_split.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/resizable_split.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\resizable_split.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\resizable_split.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\resizable_split.cpp > CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\resizable_split.cpp > CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/resizable_split.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\resizable_split.cpp -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\resizable_split.cpp -o CMakeFiles\component.dir\src\ftxui\component\resizable_split.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/screen_interactive.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/screen_interactive.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\screen_interactive.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\screen_interactive.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\screen_interactive.cpp > CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\screen_interactive.cpp > CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/screen_interactive.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\screen_interactive.cpp -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\screen_interactive.cpp -o CMakeFiles\component.dir\src\ftxui\component\screen_interactive.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/slider.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/slider.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\slider.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\slider.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/slider.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\slider.cpp > CMakeFiles\component.dir\src\ftxui\component\slider.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\slider.cpp > CMakeFiles\component.dir\src\ftxui\component\slider.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/slider.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\slider.cpp -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\slider.cpp -o CMakeFiles\component.dir\src\ftxui\component\slider.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/terminal_input_parser.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/terminal_input_parser.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\terminal_input_parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\terminal_input_parser.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\terminal_input_parser.cpp > CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\terminal_input_parser.cpp > CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/terminal_input_parser.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\terminal_input_parser.cpp -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\terminal_input_parser.cpp -o CMakeFiles\component.dir\src\ftxui\component\terminal_input_parser.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/util.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/util.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\util.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/util.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\util.cpp > CMakeFiles\component.dir\src\ftxui\component\util.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\util.cpp > CMakeFiles\component.dir\src\ftxui\component\util.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/util.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\util.cpp -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\util.cpp -o CMakeFiles\component.dir\src\ftxui\component\util.cpp.s
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: ftxui/CMakeFiles/component.dir/flags.make
 ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: ftxui/CMakeFiles/component.dir/includes_CXX.rsp
-ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: D:/Test_Code/PBL/PBL2/ftxui/src/ftxui/component/window.cpp
+ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: F:/03_PBL2/PBL2/CODE/ftxui/src/ftxui/component/window.cpp
 ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj: ftxui/CMakeFiles/component.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj -c D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj -MF CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj.d -o CMakeFiles\component.dir\src\ftxui\component\window.cpp.obj -c F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\window.cpp
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/component.dir/src/ftxui/component/window.cpp.i"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\window.cpp > CMakeFiles\component.dir\src\ftxui\component\window.cpp.i
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\window.cpp > CMakeFiles\component.dir\src\ftxui\component\window.cpp.i
 
 ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/component.dir/src/ftxui/component/window.cpp.s"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Test_Code\PBL\PBL2\ftxui\src\ftxui\component\window.cpp -o CMakeFiles\component.dir\src\ftxui\component\window.cpp.s
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\03_PBL2\PBL2\CODE\ftxui\src\ftxui\component\window.cpp -o CMakeFiles\component.dir\src\ftxui\component\window.cpp.s
 
 # Object files for target component
 component_OBJECTS = \
@@ -487,19 +487,19 @@ ftxui/libftxui-component.a: ftxui/CMakeFiles/component.dir/src/ftxui/component/u
 ftxui/libftxui-component.a: ftxui/CMakeFiles/component.dir/src/ftxui/component/window.cpp.obj
 ftxui/libftxui-component.a: ftxui/CMakeFiles/component.dir/build.make
 ftxui/libftxui-component.a: ftxui/CMakeFiles/component.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Test_Code\PBL\PBL2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX static library libftxui-component.a"
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && $(CMAKE_COMMAND) -P CMakeFiles\component.dir\cmake_clean_target.cmake
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\component.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=F:\03_PBL2\PBL2\CODE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX static library libftxui-component.a"
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && $(CMAKE_COMMAND) -P CMakeFiles\component.dir\cmake_clean_target.cmake
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\component.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 ftxui/CMakeFiles/component.dir/build: ftxui/libftxui-component.a
 .PHONY : ftxui/CMakeFiles/component.dir/build
 
 ftxui/CMakeFiles/component.dir/clean:
-	cd /d D:\Test_Code\PBL\PBL2\build\ftxui && $(CMAKE_COMMAND) -P CMakeFiles\component.dir\cmake_clean.cmake
+	cd /d F:\03_PBL2\PBL2\CODE\build\ftxui && $(CMAKE_COMMAND) -P CMakeFiles\component.dir\cmake_clean.cmake
 .PHONY : ftxui/CMakeFiles/component.dir/clean
 
 ftxui/CMakeFiles/component.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\Test_Code\PBL\PBL2 D:\Test_Code\PBL\PBL2\ftxui D:\Test_Code\PBL\PBL2\build D:\Test_Code\PBL\PBL2\build\ftxui D:\Test_Code\PBL\PBL2\build\ftxui\CMakeFiles\component.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" F:\03_PBL2\PBL2\CODE F:\03_PBL2\PBL2\CODE\ftxui F:\03_PBL2\PBL2\CODE\build F:\03_PBL2\PBL2\CODE\build\ftxui F:\03_PBL2\PBL2\CODE\build\ftxui\CMakeFiles\component.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : ftxui/CMakeFiles/component.dir/depend
 

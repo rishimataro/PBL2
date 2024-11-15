@@ -46,14 +46,16 @@ add_library(manag
     include/Management/Appoinment.hpp
     include/Management/Date.hpp
     include/Management/listAccount.hpp
-    # include/Management/listMedicalRecord.hpp
+    include/Management/listMedicalRecord.hpp
+    include/Management/MedicalRecord.hpp
     include/Management/listPatient.hpp
     include/Management/Patient.hpp
     src/Management/Account.cpp
     src/Management/Appoinment.cpp
     src/Management/Date.cpp
     src/Management/listAccount.cpp
-    # src/Management/listMedicalRecord.cpp
+    src/Management/listMedicalRecord.cpp
+    src/Management/MedicalRecord.cpp
     src/Management/Patient.cpp
     src/Management/listPatient.cpp
 )
