@@ -123,7 +123,7 @@ ButtonOption Btn_animated_opt1()
   option.transform = [](const EntryState& s) {
     auto element = text(s.label);
     if (s.focused) {
-      element |= bold;
+      element |= inverted;
     }
     return element;
   };
@@ -139,7 +139,7 @@ void Patientdisplay(Patient& patient)
     string phoneNumber = patient.getPhone();
     string address = patient.getAddress();
     string ID = patient.getID_patient();
-
+    string CCCD = patient.getCCCD();
     
     //-----radiobox-----------
     int gender_index = (is_female)? 1 : 0;
@@ -169,6 +169,14 @@ void Patientdisplay(Patient& patient)
             validity_message
         })
     );
+    Component input_CCCD = Input(&CCCD, "Số định danh:");
+    input_CCCD = Wrap("Mã định danh", input_CCCD);
+    input_CCCD |= CatchEvent([&](Event event) {
+    return event.is_character() && !isdigit(event.character()[0]);
+    });
+    input_CCCD |= CatchEvent([&](Event event) {
+    return event.is_character() && CCCD.size() > 12;
+    });
     Component input_address = Input(&address, "Nhập địa chỉ");
     input_address = Wrap("Địa chỉ", input_address);
     //-------Text-----------
@@ -184,6 +192,8 @@ void Patientdisplay(Patient& patient)
         patient.setPhone(phoneNumber);
         patient.setDayOfBirth(DOB);
         patient.setAddress(address);
+        patient.setGender(gender_index);
+        patient.setCCCD(CCCD);
         screen.ExitLoopClosure()();
     }, btn_style1());
     //--------Layout-----------
@@ -192,6 +202,7 @@ void Patientdisplay(Patient& patient)
         input_full_name,
         input_dateofbirth,
         gender_radiobox,
+        input_CCCD,
         input_phone_number,
         input_address,
         Container::Horizontal({
@@ -210,6 +221,8 @@ void Patientdisplay(Patient& patient)
             input_dateofbirth->Render(),
             separator(),
             gender_radiobox->Render(),
+            separator(),
+            input_CCCD->Render(),
             separator(),
             input_phone_number->Render(),
             separator(),
@@ -273,9 +286,9 @@ void P_Appoinment_info_UI(Patient& patient)
         exit_btn,
     });
     auto menu_app_list_renderer = Renderer(Menu_app, [&] {
-        return window(
-            text("Danh sách lịch khám") | bold | center,
-            vbox({
+        // return window(
+            // text("Danh sách lịch khám") | bold | center,
+        return vbox({
             // separator(),
             hbox({
                 text("Mã lịch khám"), 
@@ -286,12 +299,12 @@ void P_Appoinment_info_UI(Patient& patient)
                 separatorEmpty() | size(WIDTH, EQUAL, 13),
                 text("Trạng thái"),
                 // separatorEmpty() | size(WIDTH, EQUAL, 10),
-            }) | bold,
+            }),
             separator(),
             Menu_app_list->Render(),
             separator(),
             exit_btn->Render() | hcenter,
-            })
+            }//)
         );
     });
     
@@ -370,9 +383,9 @@ void P_Appoinment_info_UI(Patient& patient)
         cancel_app,
     });
     auto Appoinment_cancel_renderer = Renderer(popup_container, [&] {
-        return window(
-            text("Thông tin lịch khám") | bold | center,
-            vbox({
+        // return window(
+            // text("Thông tin lịch khám") | bold | center,
+        return    vbox({
                 separator(),
                 Patient_id->Render(),
                 Full_name->Render(),
@@ -396,7 +409,7 @@ void P_Appoinment_info_UI(Patient& patient)
                     app_exit_btn->Render(),
                 })| size(HEIGHT, EQUAL, 3) | hcenter,
                 // app_exit_btn->Render() | hcenter,
-            })
+            }//)
         );
     });
             // screen.Loop(Appoinment_cancel_renderer);
@@ -415,9 +428,9 @@ void P_Appoinment_info_UI(Patient& patient)
             confirm_btn,
     });
     Component cancel_confirm_renderer = Renderer(cancel_confirm_container, [&] {
-        return window(
-            text("Xác nhận hủy lịch khám") | bold | center,
-            vbox({
+        // return window(
+        //     text("Xác nhận hủy lịch khám") | bold | center,
+        return vbox({
                 separator(),
                 text("Thao tác hủy sẽ không thể hoàn tác, vui lòng xác nhận trước khi hủy.") | color(Color::Red) | hcenter,
                 hbox({
@@ -427,39 +440,67 @@ void P_Appoinment_info_UI(Patient& patient)
                 }) | hcenter,
                 separator(),
                 text(Confirm_msg)| color(Color::Green) | hcenter,
-            })
-        );
+            });
     });
-
+    auto window_1 = Window({
+        .inner = menu_app_list_renderer,
+        .title = "Danh sách lịch khám",
+        .width = 100,
+        .height = 20,
+    });
+    auto window_2 = Window({
+        .inner = Appoinment_cancel_renderer,
+        .title = "Thông tin lịch khám",
+        .width = 70,
+        .height = 21,
+    });
+    auto window_3 = Window({
+        .inner = cancel_confirm_renderer,
+        .title = "Xác nhận hủy lịch khám",
+        .width = 70,
+        .height = 8,
+    });
     auto main_container = Container::Tab(
         {
-            menu_app_list_renderer,
-            Appoinment_cancel_renderer,
-            cancel_confirm_renderer,
+            window_1,
+            window_2,
+            window_3,
         },
         &popup_level
     );
+    // Component window_container;
+    // screen.Loop(window_container);
+    // auto main_container = Container::Tab(
+    //     {
+    //         menu_app_list_renderer,
+    //         Appoinment_cancel_renderer,
+    //         cancel_confirm_renderer,
+    //     },
+    //     &popup_level
+    // );
     Component main_renderer = Renderer(main_container, [&] {
-        Element showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter;
+        Element showing = window_1->Render() | bgcolor(Color::Black);
         if (popup_level == 1) {
             showing = dbox({
-                showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
+                // showing = window_1->Render(),
                 // showing,
-                Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60)| bgcolor(Color::Black) | clear_under | hcenter,
+                window_1->Render() | bgcolor(Color::Black),
+                window_2->Render() | bgcolor(Color::Black),
         });
         }
         if (popup_level == 2) {
             showing = dbox({
-                showing = menu_app_list_renderer->Render() | size(WIDTH, EQUAL, 80) | hcenter,
-                Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60)| bgcolor(Color::Black) | clear_under | hcenter,
-                cancel_confirm_renderer->Render() | size(WIDTH, LESS_THAN, 70)| size(WIDTH, GREATER_THAN, 60) | bgcolor(Color::Black) | clear_under | hcenter | size(HEIGHT, EQUAL, 8),
+                // showing = window_1->Render(),
+                // window_2->Render(),
+                window_1->Render() | bgcolor(Color::Black),
+                window_2->Render() | bgcolor(Color::Black),
+                window_3->Render() | bgcolor(Color::Black),
             });
         }
         // Element showing = Appoinment_cancel_renderer->Render() | size(WIDTH, LESS_THAN, 80) | size(WIDTH, GREATER_THAN, 60);
         return showing;
     });
     screen.Loop(main_renderer);
-    // std::cout << "Selected element = " << selected << std::endl;
 }
 
 void Appoinment_UI(Patient& patient)

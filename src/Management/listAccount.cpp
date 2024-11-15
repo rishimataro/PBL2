@@ -162,7 +162,7 @@ vector<Account> listAccount::setAllAccount()
 // Đăng ký tài khoản: thêm account vào listAccount
 int listAccount::signUp(Account &account, const string &tmpUserName, const string &tmpPassword)
 {
-    if (checkUserName(tmpUserName) != -1)
+    if (checkUserName(tmpUserName) == -1)
         return -1;
  
     Account newAccount;
@@ -173,7 +173,7 @@ int listAccount::signUp(Account &account, const string &tmpUserName, const strin
 
     this->append(newAccount);
     this->writeListAccountToFile(false);
-
+    account = this->end();
     return 1;
     //! Sau hàm này gọi hàm addPatient() để nhập thông tin bệnh nhân, 
     //! và gọi setID_patient(setID()) để set ID_patient cho account
@@ -234,65 +234,40 @@ int listAccount::checkCCCD(const string &CCCD)
 
 int listAccount::checkID(const string &ID)
 {
-    int left = 0, right = this->size() - 1;
-
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (this->get(mid).getID() == ID)
-            return mid;
-        else if (this->get(mid).getID() < ID)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    for(int i = 0; i < this->size(); i++) {
+        if(this->get(i).getID() == ID) {
+            return i;
+        }
     }
     return -1;
 }
 
 int listAccount::checkUserName(const string &userName)
 {
-    int left = 0, right = this->size() - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (this->get(mid).getUserName() == userName)
-            return mid;
-        else if (this->get(mid).getUserName() < userName)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    for(int i = 0; i < this->size(); i++) {
+        if(this->get(i).getUserName() == userName) {
+            return i;
+        }
     }
     return -1;
 }
 
 int listAccount::checkPassword(const string &password)
 {
-    int left = 0, right = this->size() - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (this->get(mid).getPassword() == password)
-            return mid;
-        else if (this->get(mid).getPassword() < password)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    for(int i = 0; i < this->size(); i++) {
+        if(this->get(i).getPassword() == password) {
+            return i;
+        }
     }
     return -1;
 }
 
 int listAccount::checkRole(const int &role)
 {
-    int left = 0, right = this->size() - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (this->get(mid).getRole() == role)
-            return mid;
-        else if (this->get(mid).getRole() < role)
-            left = mid + 1;
-        else
-            right = mid - 1;
+    for(int i = 0; i < this->size(); i++) {
+        if(this->get(i).getRole() == role) {
+            return i;
+        }
     }
     return -1;
 }

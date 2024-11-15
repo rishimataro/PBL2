@@ -1,21 +1,118 @@
 #include <Interface/Login.hpp>
+bool valid_password(const string& password) {
+    if (password.length() < 8) {
+        return false;
+    }
+    if (!regex_search(password, regex("[a-zA-Z]"))) {
+        return false;
+    }
+    if (!regex_search(password, regex("[0-9]"))) {
+        return false;
+    }
+    if (!regex_search(password, regex("[!@#$%^&*()_+=-\\[\\]{};':\"\\\\|,.<>/?]"))) {
+        return false;
+    }
+    return true;
+    
+}
 void signup_UI()
 {   
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
     string username, password, confirm_password;
-    Component username_input = Input(username, "Tên đăng nhập: ");
+    Component username_input = Input(&username, "Tên đăng nhập: ");
     InputOption input_password_option;
     input_password_option.password = true;
-    
+    string signup_msg[] = {
+        "Vui lòng điền đầy đủ thông tin!",
+        "Mật khẩu phải có ít nhất 8 ký tự và bao gồm chữ cái, số và ký tự đặc biệt."
+        "Mật khẩu phải khác tên đăng nhập."
+        "Vui lòng nhập lại mật khẩu đúng."
+        "Tên đăng nhập đã tồn tại."
+    };
+    string signup_announce_msg;
     // input_password_option.multiline = false;
-    Component password_input = Input(password, "Mật khẩu: ", input_password_option);
-    Component confirm_password_input = Input(confirm_password, "Xác nhận mật khẩu: ", input_password_option);
+    Component password_input = Input(&password, "Mật khẩu: ", input_password_option);
+    Component confirm_password_input = Input(&confirm_password, "Xác nhận mật khẩu: ", input_password_option);
     Component signup_button = Button("Đăng ký", [&] {
         // Perform signup logic here
+        if (username.empty() || password.empty() || confirm_password.empty()) {
+            signup_announce_msg = "Vui lòng điền đầy đủ thông tin!";
+            return;
+        }else
+        if (password!= confirm_password) {
+            signup_announce_msg = "Vui lòng nhập lại mật khẩu đúng.";
+            return;
+        }else
+        if (!valid_password(password)) {
+            signup_announce_msg = "Mật khẩu phải có ít nhất 8 ký tự và bao gồm chữ cái, số và ký tự đặc biệt.";
+            return;
+        }else
+        if (password == username) {
+            signup_announce_msg = "Mật khẩu phải khác tên đăng nhập.";
+            return;
+        }
+        else
+        {
+
+            Account account;
+            listAccount accounts;
+            accounts.readListAccountFromFile();
+            int signup_return = accounts.signUp(account, username, password);
+            if (signup_return == -1) {
+                // signup_announce_msg = "Tên đăng nhập đã tồn tại.";
+                signup_announce_msg = accounts.end().getID();
+                return;
+            }
+            if (signup_return == 1) {
+                signup_announce_msg = "Đăng ký thành công!";
+                listPatient patients;
+                patients.readListPatientFromFile();
+                Patient patient;
+                patient.setID_patient();
+                Patientdisplay(patient);
+                patients.append(patient);
+
+                patients.writeListPatientToFile(1);
+                // patients.writeListPatientToFile(0);
+                patients.writePatientToFile(patients.size() - 1);
+                account.setID_patient(patient.getID_patient());
+                accounts.set(accounts.size() - 1, account);
+                accounts.writeListAccountToFile(1);
+                // screen.ExitLoopClosure()();
+                return;
+            }
+        }
+
     });
-    Component exit_button = Button("Quay lại", [] {
+    Component exit_button = Button("Quay lại", [&] {
         // Exit the application
+        screen.ExitLoopClosure()();
     });
+    Component Signup_container = Container::Vertical({
+        username_input,
+        password_input,
+        confirm_password_input,
+        Container::Horizontal({
+            exit_button,
+            signup_button,
+        }),
+    });
+    Component signup_renderer = Renderer(Signup_container, [&](){
+        return vbox({
+            text("Đăng ký tài khoản") | hcenter,
+            separator(),
+            username_input->Render(),
+            password_input->Render(),
+            confirm_password_input->Render(),
+            text(signup_announce_msg) | hcenter,
+            separator(),
+            hbox({
+                exit_button->Render(),
+                signup_button->Render(),
+            }),
+        });
+    }) | size(WIDTH, EQUAL, 80) | size(HEIGHT, EQUAL, 10) | border | hcenter;
+    screen.Loop(signup_renderer);
 }
 void login_process(const string& username, const string& password, listAccount& accounts)
 {
@@ -69,16 +166,17 @@ void loginUI()
         }
 
     });
-    Component switch_button = Button("Đăng ký", [] {
+    Component switch_signUP = Button("Đăng ký", [] {
         // Navigate to registration screen
+        signup_UI();
     });
-    Component exit_button = Button("Exit", [&] { exit(1); });
+    Component exit_button = Button("Exit", [&] { screen.ExitLoopClosure()(); });
 
     auto container = Container::Vertical(Components{
         username_input,
         password_input,
         login_button,
-        switch_button,
+        switch_signUP,
         exit_button,
         Renderer(
             [&] { return text(login_msg) | bold | color(Color::Red); }),
@@ -94,7 +192,7 @@ void loginUI()
                    hbox({
                        login_button->Render() |
                            size(WIDTH, EQUAL, 25) | center,
-                       switch_button->Render() |
+                       switch_signUP->Render() |
                            size(WIDTH, EQUAL, 25) | center,
                    }),
                    exit_button->Render() |
