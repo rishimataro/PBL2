@@ -9,7 +9,8 @@
 #include <filesystem>
 using namespace filesystem;
 
-class MedicalRecord {
+class MedicalRecord : public Patient
+{
 private:
     string ID_record; 
     string ID_patient;       
