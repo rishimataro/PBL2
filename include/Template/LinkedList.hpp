@@ -65,6 +65,8 @@ class LinkedList
 
         // In danh sách
         void display();
+
+        void forEach(void (*func)(T));
 };
 
 template <class T>
@@ -348,4 +350,18 @@ void LinkedList<T>::display()
         current = current->next;
     } while (current != head);
     cout << endl;
+}
+
+template <class T>
+void LinkedList<T>::forEach(void (*func)(T))
+{
+    if (isEmpty())
+        return;
+
+    Node<T> *current = head;
+    do
+    {
+        func(current->data);
+        current = current->next;
+    } while (current != head);
 }

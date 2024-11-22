@@ -14,7 +14,6 @@ public:
 
     bool readListMedicalRecordFromFile();
     bool writeListMedicalRecordToFile(bool check);
-    bool writeMedicalRecordToFile(int index);
 
     vector<MedicalRecord> setAllMedicalRecords();
     vector<MedicalRecord> setMedicalRecordsByPatientID(const string& patientID);
@@ -28,7 +27,7 @@ public:
 
     bool removeMedicalRecordByID(const string& recordID);
 
-    void updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms);
+    bool updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms);
 
     vector<MedicalRecord> searchMedicalRecord(SearchField_MR field, const string& value);
 

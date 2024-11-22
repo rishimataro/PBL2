@@ -42,17 +42,11 @@ class Patient
         string getGenderToString() const;
         string getAddress() const;
 
-        //* Function
-        // Nhập 1 bệnh nhân
-        // void inputPatient();
-        // In thông tin 1 bệnh nhân
-        // void printPatient();
         
         // Lưu 1 bệnh nhân vào file
-        bool writePatientToFile_all(ofstream& fout);
-        bool writePatientToFile(fstream& f);
+        bool writePatientToFile(ofstream& fout);
         // Lấy 1 bệnh nhân từ file
-        void readPatientFromFile(fstream& f);
+        void readPatientFromFile(const string &line);   
 };
 
 #endif

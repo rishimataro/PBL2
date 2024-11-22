@@ -18,7 +18,6 @@ class listPatient : public LinkedList<Patient>
         // * Read & Write
         bool readListPatientFromFile();
         bool writeListPatientToFile(bool check); // lưu file tổng, check = true: lưu file tổng, check = false: lưu file lẻ
-        bool writePatientToFile(int index); // lưu file lẻ
 
         //* Setter & Getter
         vector<Patient> setPatientByGender(bool gender);
@@ -32,10 +31,10 @@ class listPatient : public LinkedList<Patient>
         int checkID(const string& ID);
 
         //* Delete
-        void removePatientByID(const string& ID);
+        bool removePatientByID(const string& ID);
 
         //* Update
-        void updatePatientByID(const string& ID, const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
+        bool updatePatientByID(const string& ID, const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
 
         //* Search
         vector<Patient> searchPatient(SearchField field, const string& value);
