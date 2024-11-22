@@ -112,11 +112,9 @@ bool listAccount::writeListAccountToFile(bool check)
     Account account;
     if (check)
     {
-        for (int i = 0; i < this->size(); i++)
-        {
-            account = this->get(i);
+        forEach([&](Account account) {
             account.writeAccountToFile(fo);
-        }
+        });
     }
     else
     {
@@ -135,12 +133,13 @@ vector<Account> listAccount::setAccountByRole(int role)
     vector<Account> result;
     if (this->size() == 0)
         return result;
-
-    for(int i = 0; i < this->size(); i++) {
-        if(this->get(i).getRole() == role) {
-            result.push_back(this->get(i));
+    
+    forEach([&](Account account) {
+        if(account.getRole() == role) {
+            result.push_back(account);
         }
-    }
+    });
+
     return result;
 }
 
@@ -151,9 +150,9 @@ vector<Account> listAccount::setAllAccount()
     if (this->size() == 0)
         return result;
 
-    for (int i = 0; i < this->size(); i++) {
-        result.push_back(this->get(i));
-    }
+    forEach([&](Account account) {
+        result.push_back(account);
+    });
 
     return result;
 }
@@ -189,14 +188,14 @@ int listAccount::signIn(Account &account, const string &tmpUserName, const strin
 
 bool listAccount::checkSignIn(const string &userName, const string &password, Account &account)
 {
-    for (int i = 0; i < this->size(); i++)
-    {
-        if (this->get(i).getUserName() == userName && this->get(i).getPassword() == password)
+    forEach([&](Account account) {
+        if (account.getUserName() == userName && account.getPassword() == password)
         {
-            account = this->get(i);
+            account = account;
             return true;
         }
-    }
+    });
+
     return false;
 }
 
@@ -300,6 +299,31 @@ void listAccount::updateAccountByID(const string &ID, const string &newUserName,
     if (index == 0)
         return;
 
+    fstream file;
+    string file_path = "../Database/AccountDB/account.txt";
+    file.open(file_path, ios::in | ios::out);
+    if (!file.is_open()) return false;
+
+    string line;
+    bool updated = false;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string accountID;
+        getline(ss, accountID, ';');
+
+        if (accountID == ID) {
+            file.seekp(file.tellg() - line.length() - 1);
+            file << ID < ";" << newUserName << ";" << newPwd << endl;
+            updated = true;
+            break;
+        }
+    }
+
+    if (!updated) return false;
+    
+    file.close();
+
     Account currentAccount = this->get(index);
     string file_path = "../Database/AccountDB/account.txt";
     if (std::remove(file_path.c_str()) != 0)
@@ -309,7 +333,6 @@ void listAccount::updateAccountByID(const string &ID, const string &newUserName,
     currentAccount.setPassword(newPwd);
 
     this->set(index, currentAccount);
-    this->writeListAccountToFile(true);
     return;
 }
 

@@ -81,10 +81,10 @@ MedicalRecord& MedicalRecord::operator=(const MedicalRecord &record) {
 bool MedicalRecord::writeMedicalRecordToFile(fstream &f) {
     string data;
 
-    data.append(this->ID_record + "\n");
-    data.append(this->ID_patient + "\n");
-    data.append(this->symptoms + "\n");
-    data.append(this->diagnosis + "\n");
+    data.append(this->ID_record + ";");
+    data.append(this->ID_patient + ";");
+    data.append(this->symptoms + ";");
+    data.append(this->diagnosis + ";");
     data.append(this->dateOfRecord.getDate() + "\n");
 
     f << data;
@@ -92,17 +92,17 @@ bool MedicalRecord::writeMedicalRecordToFile(fstream &f) {
     return true;
 }
 
-bool MedicalRecord::writeMedicalRecordToFile_all(ofstream &fout) {
-    fout << this->ID_record << endl;
+bool MedicalRecord::writeMedicalRecordToFile(ofstream &fout) {
+    fout << this->ID_record << ";" << this->ID_patient << ";" << this->symptoms << ";" << this->diagnosis << ";" << this->dateOfRecord.getDate() << endl;
     return true;
 }
 
 void MedicalRecord::readMedicalRecordFromFile(fstream &f) {
     string dateOfRecordStr;
-    getline(f, this->ID_record);
-    getline(f, this->ID_patient);
-    getline(f, this->symptoms);
-    getline(f, this->diagnosis);
+    getline(f, this->ID_record, ';');
+    getline(f, this->ID_patient, ';');
+    getline(f, this->symptoms, ';');
+    getline(f, this->diagnosis, ';');   
     
     getline(f, dateOfRecordStr);
     this->dateOfRecord.setDate(dateOfRecordStr);

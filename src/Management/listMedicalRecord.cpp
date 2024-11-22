@@ -66,42 +66,22 @@ bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
     }
 
     ofstream fo;
-    if (check) {
-        fo.open(file_path, ios::trunc); 
-    } else {
-        fo.open(file_path, ios::app);  
-    }
+    check ? fo.open(file_path, ios::trunc) : fo.open(file_path, ios::app);
 
     if (!fo.is_open())
         return false;
 
     MedicalRecord record;
     if (check) {
-        for (int i = 0; i < this->size(); i++) {
-            record = this->get(i);
-            record.writeMedicalRecordToFile_all(fo);
-        }
+        forEach([&](MedicalRecord record) {
+            fo << record.getID_record() << "\n";
+        });
     } else {
         record = this->get(this->size() - 1);
-        record.writeMedicalRecordToFile_all(fo);
+        record.writeMedicalRecordToFile(fo);
     }
 
     fo.close();
-    return true;
-}
-
-bool listMedicalRecord::writeMedicalRecordToFile(int index) {
-    string fileName = "../Database/Medical_recordDB/" + this->get(index).getID_record() + ".txt";
-
-    fstream fout;
-    fout.open(fileName, ios::out);
-
-    if (!fout.is_open()) {
-        return false;
-    }
-
-    this->get(index).writeMedicalRecordToFile(fout);
-    fout.close();
     return true;
 }
 
@@ -109,9 +89,9 @@ vector<MedicalRecord> listMedicalRecord::setAllMedicalRecords() {
     vector<MedicalRecord> records;
     if (this->size() == 0) return records;
 
-    for (int i = 0; i < this->size(); i++) {
-        records.push_back(this->get(i));
-    }
+    forEach([&](MedicalRecord record) {
+        records.push_back(record);
+    });
     return records;
 }
 
@@ -119,12 +99,11 @@ vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByPatientID(const stri
     vector<MedicalRecord> records;
     if (this->size() == 0) return records;
 
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
+    forEach([&](MedicalRecord record) {
         if (record.getID_patient() == patientID) {
             records.push_back(record);
         }
-    }
+    });
     return records;
 }
 
@@ -132,12 +111,11 @@ vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByDiagnosis(const stri
     vector<MedicalRecord> records;
     if (this->size() == 0) return records;
 
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
+    forEach([&](MedicalRecord record) {
         if (record.getDiagnosis() == diagnosis) {
             records.push_back(record);
         }
-    }
+    });
     return records;
 }
 
@@ -149,12 +127,12 @@ vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByRecordRange(const st
     startDateObj.setDate(startDate);
     endDateObj.setDate(endDate);
 
-    for (int i = 0; i < this->size(); i++) {
-        Date currentRecordDate = this->get(i).getDateOfRecord();
+    forEach([&](MedicalRecord record) {
+        Date currentRecordDate = record.getDateOfRecord();
         if (currentRecordDate >= startDateObj && currentRecordDate <= endDateObj) {
-            records.push_back(this->get(i));
+            records.push_back(record);
         }
-    }
+    });
 
     return records;
 }
@@ -165,11 +143,10 @@ vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
 
     map<string, int> diagnosisMap;
 
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = this->get(i);
+    forEach([&](MedicalRecord record) {
         string diagnosis = record.getDiagnosis();
         diagnosisMap[diagnosis]++;
-    }
+    });
 
     for (const auto& pair : diagnosisMap) {
         diagnosisCount.push_back(pair);
@@ -217,9 +194,6 @@ bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
 
     this->remove(index);
     this->writeListMedicalRecordToFile(true);
-    string file_path = "../Database/Medical_recordDB/" + recordID + ".txt";
-    if (std::remove(file_path.c_str()) != 0)
-        return false;
 
     return true;
 }
@@ -233,17 +207,32 @@ void listMedicalRecord::updateMedicalRecordByID(const string& recordID, const st
     if (index == -1)
         return;
 
-    MedicalRecord curMR = this->get(index);
-    string file_path = "../Database/Medical_recordDB/" + curMR.getID_record() + ".txt";
-    if (std::remove(file_path.c_str()) != 0)
-        return;
+    string file_path = "../Database/Medical_recordDB/medical_record.txt";
+    fstream file;
+    file.open(file_path, ios::in | ios::out);
+    if (!file.is_open()) return;
 
+    string line;
+    bool updated = false;
+
+    while(getline(file, line)) {
+        if (line == recordID) {
+            file.seekp(file.tellg() - line.length() - 1);
+            file << recordID << ";" << newDiagnosis << ";" << newSymptoms << endl;
+            updated = true;
+            break;
+        }
+    }
+
+    if (!updated) return;
+
+    file.close();
+
+    MedicalRecord curMR = this->get(index);
     curMR.setDiagnosis(newDiagnosis);
     curMR.setSymptoms(newSymptoms);
 
     this->set(index, curMR);
-    this->writeMedicalRecordToFile(index);
-
     return;
 }
 

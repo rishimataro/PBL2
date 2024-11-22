@@ -73,81 +73,26 @@ bool Patient::getGender() const { return this->gender; }
 string Patient::getGenderToString() const { return (this->gender) ? "Nữ" : "Nam"; }
 string Patient::getAddress() const { return this->address; }
 
-//* Function
-// Nhập 1 bệnh nhân
-// void Patient::inputPatient() {
-//     int x = whereX(), y = whereY();
-//     string gender_str;
-
-//     gotoXY(x + 12, y + 1); cout << this->ID_patient;
-//     gotoXY(x + 12, y + 4); cin.ignore(); getline(cin, this->fullName);
-//     gotoXY(x + 12, y + 7); cin >> this->phone;
-//     gotoXY(x + 12, y + 10); dayOfBirth.inputDate();
-//     gotoXY(x + 12, y + 13); cin >> this->CCCD;
-
-//     gotoXY(x + 12, y + 16); cin >> gender_str;
-//     if(gender_str == "Nam") this->gender = true;
-//     else this->gender = false;
-
-//     gotoXY(x + 12, y + 19); cin.ignore(); getline(cin, this->address);
-// }
-
-// In thông tin 1 bệnh nhân
-// void Patient::printPatient() {
-//     int x = whereX(), y = whereY();
-//     string gender_str = this->gender ? "Nam" : "Nữ";
-
-//     gotoXY(x + 4, y);
-//     cout << this->ID_patient;
-//     gotoXY(x + 16, y);
-//     cout << this->fullName;
-//     gotoXY(x + 41, y);
-//     cout << this->phone;
-//     gotoXY(x + 61, y);
-//     cout << this->dayOfBirth.getDate();
-//     gotoXY(x + 81, y);
-//     cout << this->CCCD;
-//     gotoXY(x + 101, y);
-//     cout << gender_str;
-//     gotoXY(x + 121, y);
-//     cout << this->address << endl;
-// }
-
 // Lưu 1 bệnh nhân vào file
 bool Patient::writePatientToFile_all(ofstream& fout) {
-    fout << this->ID_patient << endl;
-    return true;
-}
+    fout << this->ID_patient << ";" << this->fullName << ";" << this->phone 
+         << ";" << this->dayOfBirth.getDate() << ";" << this->CCCD << ";" << this->gender << ";" << this->address << endl;
+   return true;
 
-bool Patient::writePatientToFile(fstream& f) {
-    string data;
-
-    data.append(this->ID_patient + "\n");
-    data.append(this->fullName + "\n");
-    data.append(this->phone + "\n");
-    data.append(this->dayOfBirth.getDate() + "\n");
-    data.append(this->CCCD + "\n");
-    data.append(to_string(this->gender) + "\n");
-    data.append(this->address + "\n");
-
-    f << data;
-
-    return true;
-}
 
 // Lấy 1 bệnh nhân từ file
-void Patient::readPatientFromFile(fstream& f) {
+void Patient::readPatientFromFile(const string &line) {
     string dayOfBirthStr, genderStr;
-    getline(f, this->ID_patient);
-    getline(f, this->fullName);
-    getline(f, this->phone);
-    
-    getline(f, dayOfBirthStr);
-    this->dayOfBirth.setDate(dayOfBirthStr);
-    
-    getline(f, this->CCCD);
+    getline(f, this->ID_patient, ';');
+    getline(f, this->fullName, ';');
+    getline(f, this->phone, ';');
 
-    getline(f, genderStr);
+    getline(f, dayOfBirthStr, ';');
+    this->dayOfBirth.setDate(dayOfBirthStr);
+    getline(f, this->CCCD, ';');
+    getline(f, genderStr, ';');
+    
+    getline(f, genderStr, ';');
     this->gender = genderStr == "1" ? true : false;
 
     getline(f, this->address);

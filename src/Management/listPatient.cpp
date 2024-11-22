@@ -34,23 +34,16 @@ bool listPatient::readListPatientFromFile()
     fin.open(file_path, ios::in);
     if (!fin.is_open())
         return false;
-
-    string id;
-    while (getline(fin, id))
+    
+    Patient p;
+    string line;
+    while (getline(fin, line))
     {
-        if (id.empty())
-            continue;
+        if (line.empty())
+            break;
 
-        file_path = "../Database/PatientDB/" + id + ".txt";
-        patientFile.open(file_path, ios::in);
-
-        if (!patientFile.is_open())
-            continue;
-
-        patient.readPatientFromFile(patientFile);
-        this->append(patient);
-
-        patientFile.close();
+        p.readPatientFromFile(line);
+        this->append(p);
     }
     fin.close();
     return true;
@@ -62,14 +55,7 @@ bool listPatient::writeListPatientToFile(bool check)
     char ch;
 
     ofstream fo;
-    if (check)
-    {
-        fo.open(file_path, ios::trunc); 
-    }
-    else
-    {
-        fo.open(file_path, ios::app);  
-    }
+    check ? fo.open(file_path, ios::trunc) : fo.open(file_path, ios::app);
 
     if (!fo.is_open())
         return false;
@@ -80,35 +66,17 @@ bool listPatient::writeListPatientToFile(bool check)
         for (int i = 0; i < this->size(); i++)
         {
             patient = this->get(i);
-            patient.writePatientToFile_all(fo);
+            patient.writePatientToFile(fo);
         }
     }
     else
     {
         patient = this->get(this->size() - 1);
-        patient.writePatientToFile_all(fo);
+        patient.writePatientToFile(fo);
     }
 
     fo.close();
 
-    return true;
-}
-
-bool listPatient::writePatientToFile(int index)
-{
-    string path = "../Database/PatientDB/";
-    string fileName = path + this->get(index).getID_patient() + ".txt";
-
-    fstream fout;
-    fout.open(fileName, ios::out);
-
-    if (!fout.is_open())
-    {
-        return false;
-    }
-
-    this->get(index).writePatientToFile(fout);
-    fout.close();
     return true;
 }
 
@@ -119,14 +87,10 @@ vector<Patient> listPatient::setPatientByGender(bool gender)
     if (this->size() == 0)
         return result;
 
-    for (int i = 0; i < this->size(); i++)
-    {
-        Patient patient = this->get(i);
-        if (patient.getGender() == gender)
-        {
+    forEach([&](Patient patient) {
+        if (patient.getGender())
             result.push_back(patient);
-        }
-    }
+    });
     return result;
 }
 
@@ -140,15 +104,11 @@ vector<Patient> listPatient::setPatientByBirthRange(const string &startDate, con
     startDateObj.setDate(startDate);
     endDateObj.setDate(endDate);
 
-    for (int i = 0; i < this->size(); i++)
-    {
-        Date currentPatientDate = this->get(i).getDayOfBirth();
-
+    forEach([&](Patient patient) {
+        Date currentPatientDate = patient.getDayOfBirth();
         if (currentPatientDate >= startDateObj && currentPatientDate <= endDateObj)
-        {
-            result.push_back(this->get(i));
-        }
-    }
+            result.push_back(patient);
+    });
 
     return result;
 }
@@ -158,11 +118,9 @@ vector<Patient> listPatient::setAllPatient()
     if (this->size() == 0)
         return result;
 
-    result.reserve(this->size());
-    for (int i = 0; i < this->size(); i++)
-    {
-        result.push_back(this->get(i));
-    }
+    forEach([&](Patient patient) {
+        result.push_back(patient);
+    });
     return result;
 }
 
@@ -199,41 +157,50 @@ int listPatient::checkID(const string &ID)
 }
 
 //* Delete
-void listPatient::removePatientByID(const string &ID)
+bool listPatient::removePatientByID(const string &ID)
 {
     Node<Patient> *current = this->head;
-    if (current == NULL)
-        return;
+    if (current == NULL) return false;
 
     int index = this->checkID(ID);
-    if (index == 0)
-        return;
+    if (index == 0) return false;
 
     this->remove(index);
     this->writeListPatientToFile(true);
-    string file_path = "../Database/PatientDB/" + ID + ".txt";
-    if (std::remove(file_path.c_str()) != 0)
-        return; 
 
-    return;
+    return true;
 }
 
 //* Update
-void listPatient::updatePatientByID(const string &ID, const string &newFullName, const string &newPhone, const string &newDayOfBirth, const string &newCCCD, const string &newGender, const string &newAddress)
-{
-    Node<Patient> *current = this->head;
-    if (current == NULL)
-        return;
+bool listPatient::updatePatientByID(const string &ID, const string &newFullName, const string &newPhone, const string &newDayOfBirth, const string &newCCCD, const string &newGender, const string &newAddress) {
 
-    int index = this->checkID(ID);
-    if (index == -1)
-        return;
+    fstream file;
+    string file_path = "../Database/PatientDB/patient.txt";
+    file.open(file_path, ios::in | ios::out);
+
+    if (!file.is_open()) return false;
+
+    string line;
+    bool updated = false;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string patientID;
+        getline(ss, patientID, ';');
+
+        if (patientID == ID) {
+            file.seekp(file.tellg() - line.length() - 1);
+            file << ID << ";" << newFullName << ";" << newPhone << ";" << newDayOfBirth << ";" << newCCCD << ";" << (newGender == "Nữ" ? "Nữ" : "Nam") << ";" << newAddress << endl;
+            updated = true;
+            break;
+        }
+    }
+
+    if (!updated) return false;
+    
+    file.close();
 
     Patient currentPatient = this->get(index);
-    string file_path = "../Database/PatientDB/" + currentPatient.getID_patient() + ".txt";
-    if (std::remove(file_path.c_str()) != 0)
-        return;
-
     currentPatient.setFullName(newFullName);
     currentPatient.setPhone(newPhone);
     currentPatient.setDayOfBirth(newDayOfBirth);
@@ -242,8 +209,7 @@ void listPatient::updatePatientByID(const string &ID, const string &newFullName,
     currentPatient.setAddress(newAddress);
 
     this->set(index, currentPatient);
-    this->writePatientToFile(index);
-    return;
+    return true;
 }
 
 //* Search
