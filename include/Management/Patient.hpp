@@ -41,7 +41,6 @@ class Patient
         bool getGender() const;
         string getGenderToString() const;
         string getAddress() const;
-
         
         // Lưu 1 bệnh nhân vào file
         bool writePatientToFile(ofstream& fout);
