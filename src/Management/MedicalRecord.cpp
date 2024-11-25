@@ -78,7 +78,7 @@ MedicalRecord& MedicalRecord::operator=(const MedicalRecord &record) {
     return *this;
 }
 
-bool MedicalRecord::writeMedicalRecordToFile(fstream &f) {
+bool MedicalRecord::writeMedicalRecordToFile(ofstream &f) {
     string data;
 
     data.append(this->ID_record + ";");
@@ -92,18 +92,22 @@ bool MedicalRecord::writeMedicalRecordToFile(fstream &f) {
     return true;
 }
 
-bool MedicalRecord::writeMedicalRecordToFile(ofstream &fout) {
-    fout << this->ID_record << ";" << this->ID_patient << ";" << this->symptoms << ";" << this->diagnosis << ";" << this->dateOfRecord.getDate() << endl;
-    return true;
-}
+void MedicalRecord::readMedicalRecordFromFile(const string &line) {
+    stringstream ss(line);
+    string temp;
 
-void MedicalRecord::readMedicalRecordFromFile(fstream &f) {
-    string dateOfRecordStr;
-    getline(f, this->ID_record, ';');
-    getline(f, this->ID_patient, ';');
-    getline(f, this->symptoms, ';');
-    getline(f, this->diagnosis, ';');   
-    
-    getline(f, dateOfRecordStr);
-    this->dateOfRecord.setDate(dateOfRecordStr);
+    getline(ss, temp, ';');
+    this->ID_record = temp;
+
+    getline(ss, temp, ';');
+    this->ID_patient = temp;
+
+    getline(ss, temp, ';');
+    this->symptoms = temp;
+
+    getline(ss, temp, ';');
+    this->diagnosis = temp;
+
+    getline(ss, temp, ';');
+    this->dateOfRecord.setDate(temp);
 }

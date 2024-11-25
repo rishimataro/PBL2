@@ -74,26 +74,34 @@ string Patient::getGenderToString() const { return (this->gender) ? "Nữ" : "Na
 string Patient::getAddress() const { return this->address; }
 
 // Lưu 1 bệnh nhân vào file
-bool Patient::writePatientToFile_all(ofstream& fout) {
+bool Patient::writePatientToFile(ofstream& fout) {
     fout << this->ID_patient << ";" << this->fullName << ";" << this->phone 
          << ";" << this->dayOfBirth.getDate() << ";" << this->CCCD << ";" << this->gender << ";" << this->address << endl;
    return true;
-
+}
 
 // Lấy 1 bệnh nhân từ file
 void Patient::readPatientFromFile(const string &line) {
-    string dayOfBirthStr, genderStr;
-    getline(f, this->ID_patient, ';');
-    getline(f, this->fullName, ';');
-    getline(f, this->phone, ';');
+    istringstream stream(line);
+    string tmp;
+    getline(stream, tmp, ';');
+    this->ID_patient = tmp;
 
-    getline(f, dayOfBirthStr, ';');
-    this->dayOfBirth.setDate(dayOfBirthStr);
-    getline(f, this->CCCD, ';');
-    getline(f, genderStr, ';');
-    
-    getline(f, genderStr, ';');
-    this->gender = genderStr == "1" ? true : false;
+    getline(stream, tmp, ';');
+    this->fullName = tmp;
 
-    getline(f, this->address);
+    getline(stream, tmp, ';');
+    this->phone = tmp;
+
+    getline(stream, tmp, ';');
+    this->dayOfBirth.setDate(tmp);
+
+    getline(stream, tmp, ';');
+    this->CCCD = tmp;
+
+    getline(stream, tmp, ';');
+    this->gender = (tmp == "1") ? true : false;
+
+    getline(stream, tmp);
+    this->address = tmp;
 }
