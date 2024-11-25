@@ -12,7 +12,7 @@ using namespace std;
 using namespace ftxui;
 
 // bool validateDate(const std::string& date_);
-void Analyse_UI();
+void Statistics();
 void QLBA_UI();
 void QLBN_UI();
 void Admin_UI();

@@ -45,9 +45,9 @@ class Appoinment
         Appoinment& operator=(const Appoinment& app);
         // void readFromFile(ifstream& file);
         ~Appoinment();
-    private:
         void DocFileLich(std::map<std::string, std::vector<std::string>>& lichKham);
         void GhiFileLich(const std::map<std::string, std::vector<std::string>>& lichKham);
+    // private:
 };
 vector<Appoinment> searchAppoinments(const Patient& patient);
 string GioKham(int time_slot);

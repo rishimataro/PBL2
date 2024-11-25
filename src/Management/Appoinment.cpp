@@ -244,6 +244,67 @@ bool NamTrongKhoangThoiGian(const std::string& ngay, const struct tm& ngayBatDau
 
     return tKiemTra >= tBatDau && tKiemTra <= tKetThuc;
 }
+// vector<Appoinment> searchTodayAppoinments()
+// {
+//     vector<Appoinment> result;
+//     //Ngày hiện tại
+//     time_t currentTime = time(0);
+//     struct tm currentDate = *localtime(&currentTime);
+
+//     //Ngày kết thúc (30 ngày sau)
+//     struct tm endDate = currentDate;
+//     endDate.tm_mday += 30;
+//     mktime(&endDate);
+//     Date today_date;
+
+//      // Lặp qua các file theo tháng để tìm kiếm
+//     for (int i = 0; i <= 1; ++i) {
+//         struct tm searching_month = currentDate;
+//         searching_month.tm_mon += i;
+//         mktime(&searching_month);
+
+//         path file_path = DATA_PATH "AppoinmentDB";
+//         file_path.append(to_string(searching_month.tm_year + 1900) + "_" + (searching_month.tm_mon + 1 < 10 ? "0" : "") + to_string(searching_month.tm_mon) + ".txt");
+//         file_path = absolute(file_path);
+//         ifstream file(file_path);
+//         string line;
+//         string curDate;
+//         if (file.is_open()) {
+//             while (std::getline(file, line)) {
+//                 if (line.empty() || line == "---") continue;
+
+//                 // Kiểm tra nếu là dòng ngày mới
+//                 if (line.find("/") != std::string::npos) {
+//                     curDate = line;
+//                     // if()
+//                 } else if (!curDate.empty() &&
+//                            NamTrongKhoangThoiGian(curDate, currentDate, endDate)) {
+                          
+//                             stringstream ss(line);
+//                             Date dd;
+//                             dd.setDate(curDate);
+//                             Appoinment app;
+//                             string tmp;
+//                             app.setDate(dd);
+//                             getline(ss, tmp, ';');
+//                             app.setID(tmp);
+//                             getline(ss, tmp, ';');
+//                             app.setPatientID(tmp);
+//                             getline(ss, tmp, ';');
+//                             app.setTime(stoi(tmp));
+//                             getline(ss, tmp, ';');
+//                             app.setDescription(tmp);
+//                             getline(ss, tmp, ';');
+//                             app.setStatus(stoi(tmp));
+//                             app.setIsProcessed(line[line.length() - 1] - '0');
+//                     result.push_back(app);
+//                 }
+//             }
+//             file.close();
+//         }
+//     }
+//     return result;
+// }
 vector<Appoinment> searchAppoinments(const Patient& patient)
 {
     vector<Appoinment> result;

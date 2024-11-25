@@ -25,8 +25,8 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    // loginUI();
-    Admin_UI();
+    loginUI();
+    // Admin_UI();
 
     // listMedicalRecord listMR;
 

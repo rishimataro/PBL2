@@ -38,7 +38,78 @@ string create_med_record_title(const MedicalRecord& record) {
     return (record.getID_record() + "    " + record.getID_patient() + "    " + pt.getFullName() + "      " + record.getDateOfRecord().getDate());
     // return "test";
 }
-void Analyse_UI()
+// void Kham_benh()
+// {
+//     auto screen = ScreenInteractive::TerminalOutput();
+//     map<string, vector<string>> lichKham;
+//     Date today;
+//     today.setCurrentDate();
+//     Appoinment app_s;
+//     app_s.setDate(today);
+//     app_s.DocFileLich(lichKham);
+//     vector<Appoinment> danhSachLich;
+//     // if(lichKham.find(today.getDate())!= lichKham.end())
+//     // {
+//     //     danhSachLich = lichKham[today.getDate()];
+//     // }
+//     // Component Appoinment_cancel_renderer;
+//     //ID  Ngày  Thời gian
+//     // vector<string> App_list;
+//     Element header_text = text("Danh sách lịch khám") | bold | center;
+//     Element tb_text = text("   Mã lịch khám   Ngày   Thời gian") | bold;
+//     // for(auto& app : danhSachLich)
+//     // {
+//     //     App_list.push_back("  " + app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()) + (app.getStatus()? "Còn hiệu lực" : "Đã hủy"));
+//     // }
+//     int selected = 1;
+//     int popup_level = 0;
+//     Appoinment *selected_app;
+//     // auto Create_App_cancel = [&screen, &patient](Appoinment& app) {
+    
+//     // };
+//     Component Menu_app_list = Container::Vertical({});
+    
+//     for(auto& app : danhSachLich)
+//     {   
+//         auto tmp_btn = Button(("  " + app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()) + "            " + (app.getStatus()? "Hiệu lực" : " Đã hủy")), [&]() {
+//             selected_app = &app; // gán lịch khám đã chọn
+//             popup_level = 1;
+//         }, Btn_animated_opt1());
+//         Menu_app_list->Add(tmp_btn);
+    
+//     }
+//     // Menu_app_list->;
+//     Component exit_btn = Button("Quay lại", [&]{
+//         screen.ExitLoopClosure()();
+//     }, btn_style1());
+//     Component Menu_app = Container::Vertical({
+//         Menu_app_list,
+//         exit_btn,
+//     });
+//     auto menu_app_list_renderer = Renderer(Menu_app, [&] {
+//         // return window(
+//             // text("Danh sách lịch khám") | bold | center,
+//         return vbox({
+//             // separator(),
+//             hbox({
+//                 text("Mã lịch khám"), 
+//                 separatorEmpty() | size(WIDTH, EQUAL, 10), 
+//                 text("Ngày"), 
+//                 separatorEmpty() | size(WIDTH, EQUAL, 13), 
+//                 text("Giờ khám"),
+//                 separatorEmpty() | size(WIDTH, EQUAL, 13),
+//                 text("Trạng thái"),
+//                 // separatorEmpty() | size(WIDTH, EQUAL, 10),
+//             }),
+//             separator(),
+//             Menu_app_list->Render(),
+//             separator(),
+//             exit_btn->Render() | hcenter,
+//             }//)
+//         );
+//     });
+// }
+void Statistics()
 {
     listMedicalRecord M_records;
     M_records.readListMedicalRecordFromFile();
@@ -352,7 +423,7 @@ void Admin_UI()
     Component QL_taikhoan = Button("Quản lý tài khoản", [&]() { });
     Component QL_benhAn = Button("Quản lý bệnh án", [&]() { QLBA_UI(); });
     Component Kham_benh = Button("Khám bệnh", [&]() { });
-    Component ThongKe = Button("Thống kê", [&]() { Analyse_UI();});
+    Component ThongKe = Button("Thống kê", [&]() { Statistics();});
     Component Thoat = Button("Đăng xuất", [&]() { screen.ExitLoopClosure()(); });
     
     Component layout = Container::Vertical({

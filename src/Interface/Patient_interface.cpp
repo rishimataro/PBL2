@@ -896,14 +896,14 @@ void Med_record_UI(Patient& patient)
 
     Component window_1 = Window({
         .inner = Menu_MR_list,
-        .title = "Danh sách đơn thuốc",
+        .title = "Lịch sử khám bệnh",
         .left = 20,
         .width = 80,
         .height = 50,
     });
     Component window_2 = Window({
         .inner = popup_renderer,
-        .title = "Chi tiết đơn thuốc",
+        .title = "Chi tiết lịch sử khám",
         .left = 20,
         .width = 80,
         .height = 30,
