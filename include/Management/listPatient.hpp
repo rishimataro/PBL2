@@ -20,9 +20,9 @@ class listPatient : public LinkedList<Patient>
         bool writeListPatientToFile(bool check); // lưu file tổng, check = true: lưu file tổng, check = false: lưu file lẻ
 
         //* Setter & Getter
-        vector<Patient> setPatientByGender(bool gender);
-        vector<Patient> setPatientByBirthRange(const string &startDate, const string &endDate);
-        vector<Patient> setAllPatient();
+        vector<Patient*> setPatientByGender(bool gender);
+        vector<Patient*> setPatientByBirthRange(const string &startDate, const string &endDate);
+        vector<Patient*> setAllPatient();
 
         //* Add
         void addPatient(const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
@@ -37,7 +37,7 @@ class listPatient : public LinkedList<Patient>
         bool updatePatientByID(const string& ID, const string& newFullName, const string& newPhone, const string& newDayOfBirth, const string& newCCCD, const string& newGender, const string& newAddress);
 
         //* Search
-        vector<Patient> searchPatient(SearchField field, const string& value);
+        vector<Patient*> searchPatient(SearchField field, const string& value);
 };
 
 #endif
