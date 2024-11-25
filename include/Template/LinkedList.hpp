@@ -1,135 +1,117 @@
-// #include <Template/LinkedList.hpp>
-// #include "../Library/Header.h"
 #pragma once
 #include <iostream>
 #include <string>
+#include <functional>
+#include <memory>
 using namespace std;
 
 template <class T>
 class Node
 {
-    public:
-        T data;
-        Node *next;
-        Node *prev;
+public:
+    T* data;
+    unique_ptr<Node> next;
+    Node* prev;
 
-        Node(T val);
+    Node(T* val);
+    ~Node();
 };
 
 template <class T>
-::Node<T>::Node(T val) : data(val), next(NULL), prev(NULL) {}
+Node<T>::Node(T* val) : data(val), next(nullptr), prev(nullptr) {}
+
+template <class T>
+Node<T>::~Node()
+{
+    delete data; // Giải phóng bộ nhớ của data
+}
 
 template <class T>
 class LinkedList
 {
-    protected:
-        Node<T> *head;
-        int count;
+protected:
+    unique_ptr<Node<T>> head;
+    Node<T>* tail;
+    int count;
 
-    public:
-        LinkedList();
-        ~LinkedList();
+public:
+    LinkedList();
+    ~LinkedList();
 
-        // Kiểm tra danh sách rỗng
-        bool isEmpty() const;
-
-        // Thêm Node: đầu danh sách
-        void prepend(T value);
-        // Thêm Node: cuối danh sách
-        void append(T value);
-        // Thêm Node: tại vị trí pos
-        void insertAt(T value, int position);
-
-        // Xóa Node: đầu danh sách
-        void removeFront();
-        // Xóa Node: cuối danh sách
-        void removeBack();
-        // Xóa Node: tại vị trí pos
-        void remove(int position);
-        // Xóa toàn bộ danh sách
-        void clear();
-
-        // Tìm Node: trả về vị trí tìm thấy, ngược lại trả về -1
-        int find(T value);
-
-        // Lấy Node: lấy giá trị tại vị trí index
-        T get(int index) const;
-        T begin() const;
-        T end() const;
-
-        // Lấy kích thước
-        int size() const;
-
-        // Cập nhật Node
-        void set(int index, T value);
-
-        // In danh sách
-        void display();
-
-        void forEach(void (*func)(T));
+    bool isEmpty() const;
+    void prepend(T* value);
+    void append(T* value);
+    void insertAt(T* value, int position);
+    void removeFront();
+    void removeBack();
+    void remove(int position);
+    void clear();
+    void removeIf(const function<bool(const T&)>& predicate);
+    T* find(const function<bool(const T&)>& predicate);
+    T* get(int index) const;
+    T* begin() const;
+    T* end() const;
+    int size() const;
+    void set(int index, T* value);
+    void display();
+    void forEach(void (*func)(T*));
 };
 
 template <class T>
-LinkedList<T>::LinkedList() : head(NULL), count(0) {}
+LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr), count(0) {}
 
 template <class T>
 LinkedList<T>::~LinkedList() { clear(); }
 
-// Kiểm tra danh sách rỗng
 template <class T>
 bool LinkedList<T>::isEmpty() const
 {
-    return head == NULL;
+    return head == nullptr;
 }
 
-// Thêm Node: đầu danh sách
 template <class T>
-void LinkedList<T>::prepend(T value)
+void LinkedList<T>::prepend(T* value)
 {
-    Node<T> *newNode = new Node<T>(value);
+    auto newNode = make_unique<Node<T>>(value);
     if (isEmpty())
     {
-        head = newNode;
-        head->next = head;
-        head->prev = head;
+        head = move(newNode);
+        head->next = nullptr;
+        head->prev = nullptr;
+        tail = head.get();
     }
     else
     {
-        Node<T> *tail = head->prev;
-        newNode->next = head;
-        newNode->prev = tail;
-        head->prev = newNode;
-        tail->next = newNode;
-        head = newNode;
+        newNode->next = move(head);
+        newNode->prev = nullptr;
+        head->prev = newNode.get();
+        head = move(newNode);
     }
     count++;
 }
 
-// Thêm Node: cuối danh sách
 template <class T>
-void LinkedList<T>::append(T value)
+void LinkedList<T>::append(T* value)
 {
-    Node<T> *newNode = new Node<T>(value);
+    auto newNode = make_unique<Node<T>>(value);
     if (isEmpty())
     {
-        head = newNode;
-        head->next = head;
-        head->prev = head;
+        head = move(newNode);
+        head->next = nullptr;
+        head->prev = nullptr;
+        tail = head.get();
     }
     else
     {
-        Node<T> *tail = head->prev;
-        tail->next = newNode;
-        newNode->prev = tail;
-        newNode->next = head;
-        head->prev = newNode;
+        tail->next = move(newNode);
+        tail->next->prev = tail;
+        tail = tail->next.get();
     }
     count++;
 }
 
-// Thêm Node: tại vị trí pos
 template <class T>
-void LinkedList<T>::insertAt(T value, int position)
+void LinkedList<T>::insertAt(T* value, int position)
 {
     if (position < 0 || position > count)
         return;
@@ -144,70 +126,61 @@ void LinkedList<T>::insertAt(T value, int position)
     }
     else
     {
-        Node<T> *newNode = new Node<T>(value);
-        Node<T> *current = head;
+        Node<T>* current = head.get();
         for (int i = 0; i < position - 1; i++)
         {
-            current = current->next;
+            current = current->next.get();
         }
-        Node<T> *nextNode = current->next;
-        current->next = newNode;
-        newNode->prev = current;
-        newNode->next = nextNode;
-        nextNode->prev = newNode;
+
+        auto newNode = make_unique<Node<T>>(value);
+        Node<T>* nextNode = current->next.get();
+        current->next = move(newNode);
+        current->next->prev = current;
+        current->next->next = move(nextNode->prev->next);
         count++;
     }
 }
 
-// Xóa Node: đầu danh sách
 template <class T>
 void LinkedList<T>::removeFront()
 {
     if (isEmpty())
         return;
 
-    Node<T> *tail = head->prev;
-    if (head == tail)
+    if (head.get() == tail)
     {
-        delete head;
-        head = NULL;
+        head.reset();
+        tail = nullptr;
     }
     else
     {
-        Node<T> *temp = head;
-        head = head->next;
-        head->prev = tail;
-        tail->next = head;
-        delete temp;
+        head = move(head->next);
+        head->prev = nullptr;
     }
     count--;
 }
 
-// Xóa Node: cuối danh sách
 template <class T>
 void LinkedList<T>::removeBack()
 {
     if (isEmpty())
         return;
 
-    Node<T> *tail = head->prev;
-    if (head == tail)
+    if (head.get() == tail)
     {
-        delete head;
-        head = NULL;
+        head.reset();
+        tail = nullptr;
     }
     else
     {
-        Node<T> *temp = tail;
+        Node<T>* temp = tail;
         tail = tail->prev;
-        tail->next = head;
-        head->prev = tail;
-        delete temp;
+        tail->next.reset();  // Sử dụng unique_ptr để tự động giải phóng bộ nhớ của tail->next
+        // Không cần gọi delete temp nữa vì unique_ptr đã tự xử lý việc giải phóng
     }
     count--;
 }
 
-// Xóa Node: tại vị trí pos
 template <class T>
 void LinkedList<T>::remove(int position)
 {
@@ -224,19 +197,24 @@ void LinkedList<T>::remove(int position)
     }
     else
     {
-        Node<T> *current = head;
+        Node<T>* current = head.get();
         for (int i = 0; i < position; i++)
         {
-            current = current->next;
+            current = current->next.get();
         }
-        current->prev->next = current->next;
-        current->next->prev = current->prev;
-        delete current;
+
+        Node<T>* nextNode = current->next.get();
+        Node<T>* prevNode = current->prev;
+
+        prevNode->next = move(current->next);
+        if (nextNode)
+        {
+            nextNode->prev = prevNode;
+        }
         count--;
     }
 }
 
-// Xóa toàn bộ danh sách
 template <class T>
 void LinkedList<T>::clear()
 {
@@ -246,94 +224,108 @@ void LinkedList<T>::clear()
     }
 }
 
-// Tìm Node: trả về vị trí tìm thấy, ngược lại trả về -1
 template <class T>
-int LinkedList<T>::find(T value)
+void LinkedList<T>::removeIf(const function<bool(const T&)>& predicate)
 {
-    if (isEmpty())
-        return -1;
-
-    Node<T> *current = head;
-    int index = 0;
-    do
+    Node<T>* current = head.get();
+    while (current)
     {
-        if (current->data == value)
+        if (predicate(*current->data))
         {
-            return index;
+            Node<T>* toRemove = current;
+            if (toRemove->prev)
+            {
+                toRemove->prev->next = move(toRemove->next);
+                if (toRemove->prev->next)
+                {
+                    toRemove->prev->next->prev = toRemove->prev;
+                }
+            }
+            else
+            {
+                head = move(toRemove->next);
+                if (head)
+                    head->prev = nullptr;
+            }
+            current = toRemove->next.get();
+            if (toRemove == tail)
+            {
+                tail = toRemove->prev;
+            }
+            continue;
         }
-        current = current->next;
-        index++;
-    } while (current != head);
-
-    return -1;
+        current = current->next.get();
+    }
 }
 
-// Lấy Node: lấy giá trị tại vị trí index
 template <class T>
-T LinkedList<T>::get(int index) const
+T* LinkedList<T>::find(const function<bool(const T&)>& predicate)
 {
-    if (isEmpty() || index < 0 || index >= count)
+    Node<T>* current = head.get();
+    while (current)
     {
-        throw out_of_range("Index out of range");
-    }
-
-    Node<T> *current = head;
-    int idx = 0;
-    do
-    {
-        if (idx == index)
+        if (predicate(*current->data))
         {
             return current->data;
         }
-        current = current->next;
-        idx++;
-    } while (current != head);
-
-    return T();
+        current = current->next.get();
+    }
+    return nullptr;
 }
 
 template <class T>
-T LinkedList<T>::begin() const
-{
-    return head->data;
-}
-
-template <class T>
-T LinkedList<T>::end() const
-{
-    return head->prev->data;
-}
-
-template <class T>
-void LinkedList<T>::set(int index, T value)
+T* LinkedList<T>::get(int index) const
 {
     if (isEmpty() || index < 0 || index >= count)
     {
         throw out_of_range("Index out of range");
     }
 
-    Node<T> *current = head;
-    int idx = 0;
-    do
+    Node<T>* current = head.get();
+    for (int i = 0; i < index; i++)
     {
-        if (idx == index)
-        {
-            current->data = value;
-            return;
-        }
-        current = current->next;
-        idx++;
-    } while (current != head);
+        current = current->next.get();
+    }
+
+    return current->data;
 }
 
-// Lấy kích thước
+template <class T>
+T* LinkedList<T>::begin() const
+{
+    return head ? head->data : nullptr;
+}
+
+template <class T>
+T* LinkedList<T>::end() const
+{
+    return tail ? tail->data : nullptr;
+}
+
+template <class T>
+void LinkedList<T>::set(int index, T* value)
+{
+    if (isEmpty() || index < 0 || index >= count)
+    {
+        throw out_of_range("Index out of range");
+    }
+
+    Node<T>* current = head.get();
+    for (int i = 0; i < index; i++)
+    {
+        current = current->next.get();
+    }
+
+    delete current->data; // Giải phóng bộ nhớ trước đó
+    current->data = value;
+}
+
 template <class T>
 int LinkedList<T>::size() const
 {
     return count;
 }
 
-// In danh sách
 template <class T>
 void LinkedList<T>::display()
 {
@@ -343,25 +335,25 @@ void LinkedList<T>::display()
         return;
     }
 
-    Node<T> *current = head;
-    do
+    Node<T>* current = head.get();
+    while (current)
     {
-        cout << current->data << " ";
-        current = current->next;
-    } while (current != head);
+        cout << *current->data << " ";
+        current = current->next.get();
+    }
     cout << endl;
 }
 
 template <class T>
-void LinkedList<T>::forEach(void (*func)(T))
+void LinkedList<T>::forEach(void (*func)(T*))
 {
     if (isEmpty())
         return;
 
-    Node<T> *current = head;
-    do
+    Node<T>* current = head.get();
+    while (current)
     {
         func(current->data);
-        current = current->next;
-    } while (current != head);
+        current = current->next.get();
+    }
 }
