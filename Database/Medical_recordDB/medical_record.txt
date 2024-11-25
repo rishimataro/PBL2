@@ -1,24 +1,25 @@
-MR1
-MR2
-MR3
-MR4
-MR5
-MR6
-MR7
-MR8
-MR9
-MR10
-MR11
-MR12
-MR13
-MR14
-MR15
-MR16
-MR17
-MR18
-MR19
-MR20
-MR21
-MR22
-MR23
-MR24
+MR01;P1;Xuất hiện ho kéo dài, kèm theo sốt cao liên tục trong nhiều ngày;Cảm cúm;12/01/2012
+MR02;P2;Thường xuyên bị đau đầu, cảm giác chóng mặt và mất thăng bằng;Thiếu máu não;15/02/2020
+MR03;P3;Đau quặn bụng bên phải, cảm giác buồn nôn, chán ăn kéo dài;Viêm ruột thừa;18/03/2005
+MR04;P4;Khó thở, đau tức ngực, đặc biệt khi vận động mạnh hoặc thay đổi thời tiết;Hen suyễn;20/04/2017
+MR05;P5;Cảm thấy mệt mỏi kéo dài, cân nặng giảm đột ngột trong thời gian ngắn;Tiểu đường;25/05/2009
+MR06;P6;Đau nhức khớp, các khớp bị sưng đỏ và khó cử động, đặc biệt vào buổi sáng;Viêm khớp dạng thấp;10/06/2018
+MR07;P7;Đau lưng dữ dội, gặp khó khăn khi cúi người hoặc nâng đồ vật;Thoát vị đĩa đệm;14/07/2015
+MR08;P8;Sốt cao liên tục, xuất hiện các nốt ban đỏ trên da toàn thân;Sốt xuất huyết;21/08/2003
+MR09;P9;Ho khan kéo dài, cảm giác tức ngực và khó thở, đặc biệt vào ban đêm;Viêm phổi;05/09/2021
+MR10;P10;Đau rát họng, sốt nhẹ, cảm giác khó chịu khi nuốt thức ăn;Viêm họng;11/10/2000
+MR11;P11;Đau dạ dày từng cơn, ợ nóng, khó chịu khi ăn uống;Viêm loét dạ dày;17/11/2010
+MR12;P12;Chóng mặt nghiêm trọng, kèm theo cảm giác buồn nôn và mất thăng bằng;Rối loạn tiền đình;25/01/2006
+MR13;P13;Ngứa dữ dội, xuất hiện các nốt mẩn đỏ trên da, kèm theo cảm giác nóng rát;Dị ứng da;10/02/2016
+MR14;P14;Đau tức ngực đột ngột, khó thở, cảm giác như bị ép chặt trong lồng ngực;Nhồi máu cơ tim;08/03/2022
+MR15;P15;Đau quặn bụng, tiêu chảy nhiều lần, cơ thể mệt mỏi, mất nước;Nhiễm khuẩn đường ruột;22/04/2001
+MR16;P16;Sốt cao, sưng amidan, đau rát họng kéo dài, khó ăn uống;Viêm amidan;19/05/2013
+MR17;P17;Mắt đỏ, chảy nước mắt liên tục, cảm giác đau nhức khó chịu ở mắt;Viêm kết mạc;30/06/2024
+MR18;P18;Sốt cao đột ngột, cơ thể co giật, rét run và đổ mồ hôi nhiều;Sốt rét;20/07/2014
+MR19;P19;Ho liên tục ra đờm xanh, khó thở, đau tức vùng ngực;Lao phổi;28/08/2007
+MR20;P20;Đau nhức cổ, khó quay đầu, cảm giác cứng khớp cổ kéo dài;Thoái hóa đốt sống cổ;15/09/2023
+MR21;P21;Cảm giác ngứa họng, khó nuốt, giọng nói khàn dần;Viêm thanh quản;10/10/2004
+MR22;P22;Mắt mờ, đau nhức vùng mắt, kèm theo cảm giác chói sáng;Tăng nhãn áp;01/11/2020
+MR23;P23;Đau bụng âm ỉ, đầy hơi, khó tiêu sau bữa ăn;Rối loạn tiêu hóa;10/11/2002
+MR24;P24;Sưng tấy chân, đau nhức, kèm theo cảm giác nóng rát ở khu vực bị sưng;Viêm tĩnh mạch;16/11/2011
+MR25;P25;Thở khò khè, khó thở kéo dài, đặc biệt vào ban đêm;COPD;17/11/2008

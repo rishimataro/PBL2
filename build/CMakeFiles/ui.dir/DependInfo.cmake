@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/Test_Code/PBL/PBL2/src/Interface/Admin_interface.cpp" "CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj.d"
-  "D:/Test_Code/PBL/PBL2/src/Interface/Login.cpp" "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj.d"
-  "D:/Test_Code/PBL/PBL2/src/Interface/Patient_interface.cpp" "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj.d"
+  "F:/03_PBL2/PBL2/CODE/src/Interface/Admin_interface.cpp" "CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj.d"
+  "F:/03_PBL2/PBL2/CODE/src/Interface/Login.cpp" "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Login.cpp.obj.d"
+  "F:/03_PBL2/PBL2/CODE/src/Interface/Patient_interface.cpp" "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj" "gcc" "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

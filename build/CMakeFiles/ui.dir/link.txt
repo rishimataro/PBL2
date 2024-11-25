@@ -1,2 +1,2 @@
-C:\msys64\mingw64\bin\ar.exe qc libui.a CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj CMakeFiles/ui.dir/src/Interface/Login.cpp.obj CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libui.a
+C:\msys64\ucrt64\bin\ar.exe qc libui.a CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj CMakeFiles/ui.dir/src/Interface/Login.cpp.obj CMakeFiles/ui.dir/src/Interface/Admin_interface.cpp.obj
+C:\msys64\ucrt64\bin\ranlib.exe libui.a

@@ -1,0 +1,9 @@
+ADMIN01;admin123@;123456789;0
+ADMIN02;thao1507@;thao1507;0
+ADMIN03;phuoc2005;27072005;0
+ADMIN04;phuongthao2005;1357924680a@;0
+ADMIN05;quanphongbat;aideptraihonquan00;0
+ADMIN06;lailaadminne;111111;0
+ADMIN07;ngocthaoneee;123;0
+ADMIN08;ledung;171005;0
+ADMIN09;phuong;123;0
