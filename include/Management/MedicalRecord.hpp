@@ -37,9 +37,8 @@ public:
     // operator
     MedicalRecord& operator=(const MedicalRecord &record);
 
-    bool writeMedicalRecordToFile(fstream &f);
-    bool writeMedicalRecordToFile_all(ofstream &fout);
-    void readMedicalRecordFromFile(fstream &f);
+    bool writeMedicalRecordToFile(ofstream &f);
+    void readMedicalRecordFromFile(const string &line);
 };
 
 #endif
