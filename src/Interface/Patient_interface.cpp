@@ -1,4 +1,4 @@
-#include <Interface/Patient_interface.hpp>
+/* #include <Interface/Patient_interface.hpp>
 
 string splitText(string text, int boxWidth) {
     vector<string> lines;
@@ -970,4 +970,4 @@ void Patient_UI(Patient& patient)
 
     screen.Loop(main_page);
     
-}
+} */
