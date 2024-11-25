@@ -43,6 +43,8 @@ target_include_directories(lib
 # Thêm file thư viện management
 add_library(manag
     include/Management/Account.hpp
+    include/Management/AccountUser.hpp
+    include/Management/AccountAdmin.hpp
     include/Management/Appoinment.hpp
     include/Management/Date.hpp
     include/Management/listAccount.hpp
@@ -51,6 +53,8 @@ add_library(manag
     include/Management/listPatient.hpp
     include/Management/Patient.hpp
     src/Management/Account.cpp
+    src/Management/AccountUser.cpp
+    src/Management/AccountAdmin.cpp
     src/Management/Appoinment.cpp
     src/Management/Date.cpp
     src/Management/listAccount.cpp
