@@ -1,49 +1,33 @@
 #include <Management/listMedicalRecord.hpp>
 
-listMedicalRecord::listMedicalRecord() {
-    this->head = NULL;
-    loadSymptomSolutionsFromFile();
+listMedicalRecord::listMedicalRecord() : LinkedList<MedicalRecord>() {
+    this->readListMedicalRecordFromFile();
+    this->loadSymptomSolutionsFromFile();
 }
 
-listMedicalRecord::~listMedicalRecord() {
-    if (this->head == NULL) return;
-    
-    Node<MedicalRecord>* current = this->head;
-    Node<MedicalRecord>* tail = this->head->prev;
-
-    do {
-        Node<MedicalRecord>* temp = current;
-        current = current->next;
-        delete temp;
-    } while (current != head);
-
-    this->head = NULL;
+listMedicalRecord::~listMedicalRecord() { 
+    for (int i = 0; i < this->size(); i++) {
+        delete this->get(i); // Giải phóng bộ nhớ cho từng bệnh án
+    }
+    this->clear(); // Xóa các phần tử khỏi danh sách liên kết
 }
 
 bool listMedicalRecord::readListMedicalRecordFromFile() {
     string file_path = "../Database/Medical_recordDB/medical_record.txt";
-    fstream fin, recordFile;
-    MedicalRecord record;
+    fstream fin;
 
     fin.open(file_path, ios::in);
     if (!fin.is_open())
         return false;
 
-    string id;
-    while (getline(fin, id)) {
-        if (id.empty())
-            continue;
-
-        file_path = "../Database/Medical_recordDB/" + id + ".txt";
-        recordFile.open(file_path, ios::in);
-
-        if (!recordFile.is_open())
-            continue;
-
-        record.readMedicalRecordFromFile(recordFile);
-        this->append(record);
-
-        recordFile.close();
+    string line;
+    while (getline(fin, line)) {
+        if (!line.empty()) {
+            // Sử dụng unique_ptr để quản lý bộ nhớ tự động
+            auto record = std::make_unique<MedicalRecord>();
+            record->readMedicalRecordFromFile(line);
+            this->append(record.release()); // Chuyển quyền sở hữu cho LinkedList
+        }
     }
     fin.close();
     return true;
@@ -68,126 +52,61 @@ bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
     ofstream fo;
     check ? fo.open(file_path, ios::trunc) : fo.open(file_path, ios::app);
 
-    if (!fo.is_open())
+    if (!fo.is_open()) 
         return false;
 
-    MedicalRecord record;
+    MedicalRecord* record;
     if (check) {
-        forEach([&](MedicalRecord record) {
-            fo << record.getID_record() << "\n";
-        });
+        for (int i = 0; i < this->size(); i++) {
+            record = this->get(i);
+            record->writeMedicalRecordToFile(fo);
+        }
     } else {
         record = this->get(this->size() - 1);
-        record.writeMedicalRecordToFile(fo);
+        record->writeMedicalRecordToFile(fo);
     }
 
     fo.close();
+    delete record;
     return true;
 }
 
-vector<MedicalRecord> listMedicalRecord::setAllMedicalRecords() {
-    vector<MedicalRecord> records;
+
+vector<MedicalRecord*> listMedicalRecord::setAllMedicalRecords() {
+    vector<MedicalRecord*> records;
     if (this->size() == 0) return records;
 
-    forEach([&](MedicalRecord record) {
-        records.push_back(record);
-    });
-    return records;
-}
-
-vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByPatientID(const string& patientID) {
-    vector<MedicalRecord> records;
-    if (this->size() == 0) return records;
-
-    forEach([&](MedicalRecord record) {
-        if (record.getID_patient() == patientID) {
-            records.push_back(record);
-        }
-    });
-    return records;
-}
-
-vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByDiagnosis(const string& diagnosis) {
-    vector<MedicalRecord> records;
-    if (this->size() == 0) return records;
-
-    forEach([&](MedicalRecord record) {
-        if (record.getDiagnosis() == diagnosis) {
-            records.push_back(record);
-        }
-    });
-    return records;
-}
-
-vector<MedicalRecord> listMedicalRecord::setMedicalRecordsByRecordRange(const string &startDate, const string &endDate) {
-    vector<MedicalRecord> records;
-    if (this->size() == 0) return records;
-
-    Date startDateObj, endDateObj;
-    startDateObj.setDate(startDate);
-    endDateObj.setDate(endDate);
-
-    forEach([&](MedicalRecord record) {
-        Date currentRecordDate = record.getDateOfRecord();
-        if (currentRecordDate >= startDateObj && currentRecordDate <= endDateObj) {
-            records.push_back(record);
-        }
-    });
-
-    return records;
-}
-
-vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
-    vector<pair<string, int>> diagnosisCount;
-    if (this->size() == 0) return diagnosisCount;
-
-    map<string, int> diagnosisMap;
-
-    forEach([&](MedicalRecord record) {
-        string diagnosis = record.getDiagnosis();
-        diagnosisMap[diagnosis]++;
-    });
-
-    for (const auto& pair : diagnosisMap) {
-        diagnosisCount.push_back(pair);
+    for(int i = 0; i < this->size(); i++) {
+        records.push_back(this->get(i)); // Trả về đối tượng đã được quản lý bởi LinkedList
     }
 
-    return diagnosisCount;
+    return records;
 }
 
 void listMedicalRecord::addMedicalRecord(const string& patientID, const string& symptoms, const string& diagnosis, const string& dateOfRecord) {
-    MedicalRecord newRecord;
+    auto newRecord = std::make_unique<MedicalRecord>();
 
-    newRecord.setID_record();
-    newRecord.setID_patient(patientID);
-    newRecord.setSymptoms(symptoms);
-    newRecord.setDiagnosis(diagnosis);
-    newRecord.setDateOfRecord(dateOfRecord);
+    newRecord->setID_record();
+    newRecord->setID_patient(patientID);
+    newRecord->setSymptoms(symptoms);
+    newRecord->setDiagnosis(diagnosis);
+    newRecord->setDateOfRecord(dateOfRecord);
 
-    this->append(newRecord);
-    this->writeMedicalRecordToFile(this->size() - 1);
+    this->append(newRecord.release()); // Chuyển quyền sở hữu cho LinkedList
     this->writeListMedicalRecordToFile(false);
 }
 
 int listMedicalRecord::checkRecordID(const string& recordID) {
-    Node<MedicalRecord> *current = this->head;
-    if (current == NULL)
-        return -1;
-
     for (int i = 0; i < this->size(); i++) {
-        if (current->data.getID_record() == recordID)
+        if (this->get(i)->getID_record() == recordID) {
             return i;
-        current = current->next;
+        }
     }
 
     return -1;
 }
 
 bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
-    Node<MedicalRecord> *current = this->head;
-    if (current == NULL)
-        return false;
-
     int index = this->checkRecordID(recordID);
     if (index == -1)
         return false;
@@ -198,46 +117,25 @@ bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
     return true;
 }
 
-void listMedicalRecord::updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms) {
-    Node<MedicalRecord> *current = this->head;
-    if (current == NULL)
-        return;
-
+bool listMedicalRecord::updateMedicalRecordByID(const string& recordID, const string& newDiagnosis, const string& newSymptoms) {
     int index = this->checkRecordID(recordID);
     if (index == -1)
-        return;
+        return false;
 
-    string file_path = "../Database/Medical_recordDB/medical_record.txt";
-    fstream file;
-    file.open(file_path, ios::in | ios::out);
-    if (!file.is_open()) return;
+    auto curMR = this->get(index);
+    if (!curMR)
+        return false;
 
-    string line;
-    bool updated = false;
-
-    while(getline(file, line)) {
-        if (line == recordID) {
-            file.seekp(file.tellg() - line.length() - 1);
-            file << recordID << ";" << newDiagnosis << ";" << newSymptoms << endl;
-            updated = true;
-            break;
-        }
-    }
-
-    if (!updated) return;
-
-    file.close();
-
-    MedicalRecord curMR = this->get(index);
-    curMR.setDiagnosis(newDiagnosis);
-    curMR.setSymptoms(newSymptoms);
-
+    curMR->setDiagnosis(newDiagnosis);
+    curMR->setSymptoms(newSymptoms);
     this->set(index, curMR);
-    return;
+
+    return this->writeListMedicalRecordToFile(true);
 }
 
-vector<MedicalRecord> listMedicalRecord::searchMedicalRecord(SearchField_MR field, const string& value) {
-    vector<MedicalRecord> result;
+
+vector<MedicalRecord*> listMedicalRecord::searchMedicalRecord(SearchField_MR field, const string& value) {
+    vector<MedicalRecord*> result;
     if (this->size() == 0)
         return result;
 
@@ -247,13 +145,13 @@ vector<MedicalRecord> listMedicalRecord::searchMedicalRecord(SearchField_MR fiel
         string fieldValue;
         switch (field) {
         case SearchField_MR::RecordID:
-            fieldValue = toLowerCase(this->get(i).getID_record());
+            fieldValue = toLowerCase(this->get(i)->getID_record());
             break;
         case SearchField_MR::PatientID:
-            fieldValue = toLowerCase(this->get(i).getID_patient());
+            fieldValue = toLowerCase(this->get(i)->getID_patient());
             break;
         case SearchField_MR::Diagnosis:
-            fieldValue = toLowerCase(this->get(i).getDiagnosis());
+            fieldValue = toLowerCase(this->get(i)->getDiagnosis());
             break;
         }
 
