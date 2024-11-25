@@ -2,6 +2,8 @@
 #define LISTACCOUNT_H
 
 #include <Management/Account.hpp>
+#include <Management/AccountUser.hpp>
+#include <Management/AccountAdmin.hpp>
 #include <Management/listPatient.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
@@ -16,33 +18,34 @@ class listAccount : public LinkedList<Account>
         ~listAccount();
 
         // * Setter & Getter
-        int setCountRole(int role);
+        int setCountRole(bool isUser);
         bool readListAccountFromFile();
-        bool writeListAccountToFile(bool check);
+        bool writeListAccountToFile(bool check, bool isUser);
 
-        vector<Account> setAccountByRole(int role);
-        vector<Account> setAllAccount();
+        vector<Account*> setAccountByRole(bool isUser);
+        vector<Account*> setAllAccount();
 
         // * Sign Up & Sign In
-        int signUp(Account &account, const string &tmpUserName, const string &tmpPassword);
-        int signIn(Account &account, const string &tmpUserName, const string &tmpPassword);
-        int forgotPassword(Account &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass);
-        bool checkSignIn(const string &userName, const string &password, Account &account);
-        
+        int signUp(Account* &account, const string &tmpUserName, const string &tmpPassword);
+        int addAdmin(Account &account, const string &tmpUserName, const string &tmpPassword);
+        int signIn(Account* &account, const string &tmpUserName, const string &tmpPassword);
+        int forgotPassword(Account* &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass);
+        bool checkSignIn(const string &userName, const string &password, Account* &account);
+
         // * Check
         int checkCCCD(const string& CCCD);
         int checkID(const string& ID);
         int checkUserName(const string& userName);
         int checkPassword(const string& password);
-        int checkRole(const int& role);
+        bool checkRole(const string& id, const string& role);
 
         // * Delete
-        void removeAccountByID(const string& ID);
+        bool removeAccountByID(const string& ID);
 
         // * Update
-        void updateAccountByID(const string &ID, const string &newUserName, const string &newPwd);
+        bool updateAccountByID(const string &ID, const string &newUserName, const string &newPwd);
 
         // * Search
-        vector<Account> searchAccount(SearchField_acc field, const string& value);
+        vector<Account*> searchAccount(SearchField_acc field, const string& value);
 };
 #endif
