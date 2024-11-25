@@ -6,44 +6,36 @@
 
 class Account
 {
-    private:
+    protected:
         string ID_acc;
         string userName;
         string password;
-        int role; // 0: Admin, 1: Bệnh nhân
-        string ID_patient;
     public:
         //* Constructor & Destructor
-        Account(const string ID_acc = "", string userName = "", string password = "",  int role = 0, string ID_patient = "");   
+        Account(const string ID_acc = "", string userName = "", string password = "");   
         Account(const Account &another);
-        ~Account();
+        virtual ~Account() = default;
 
         //* Setter
-        void setID();
+        virtual void setID() = 0;
         void setPassword(const string& password);
         void setUserName(const string& userName);
-        void setRole(const int& role);
-        void setID_patient(const string& ID_patient);
 
         //* Getter
         string getID() const;
         string getPassword() const;
         string getUserName() const;
-        int getRole() const;
-        string getRoleToString() const;
-        string getID_patient() const;   
-        string getCCCD() const;
 
         //* Function
         // Lấy 1 account từ file
-        void readAccountFromFile(const string& line);    
+        virtual void readFromFile(const string& line) = 0;    
         // Lưu 1 account vào file
-        void writeAccountToFile(ofstream &f);
+        virtual void writeToFile(ofstream &f) = 0;
 
         //* Operator
-        bool operator==(const Account& another);
-        bool operator!=(const Account& another);
-        Account& operator=(const Account& another);
+        virtual bool operator==(const Account& another);
+        virtual bool operator!=(const Account& another);
+        virtual Account& operator=(const Account& another);
 };
 
 #endif
