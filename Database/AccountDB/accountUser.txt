@@ -1,7 +1,7 @@
 USER1;ledung1710;17102005;P1
 USER2;dattan123456;123456abc;P2
 USER3;test@;123;P3
-USER4;pphukhung123;aideptraihonpp05;P4
+USER4;pphukhung123;Aideptraihonpp05@@;P4
 USER5;user111;130043;P5
 USER6;thao123;123;P6
 USER7;user1;password123;P7

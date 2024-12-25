@@ -18,10 +18,10 @@ public:
 };
 
 template <class T>
-Node<T>::Node(T* val) : data(val), next(nullptr), prev(nullptr) {}
+::Node<T>::Node(T* val) : data(val), next(nullptr), prev(nullptr) {}
 
 template <class T>
-Node<T>::~Node()
+::Node<T>::~Node()
 {
     delete data; // Giải phóng bộ nhớ của data
 }

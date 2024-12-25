@@ -8,10 +8,10 @@ listAccount::listAccount() : LinkedList<Account>() {
 }
 
 listAccount::~listAccount() { 
-    for (int i = 0; i < this->size(); i++) {
-        delete this->get(i); // Free memory for each account
-    }
-    this->clear(); // Clear all elements from the linked list   
+    // for (int i = 0; i < this->size(); i++) {
+    //     delete this->get(i); // Free memory for each account
+    // }
+    // this->clear(); // Clear all elements from the linked list   
 }
 
 // * Setter & Getter
@@ -98,8 +98,9 @@ bool listAccount::writeListAccountToFile(bool check, bool isUser) {
         if (!foAdmin.is_open()) return false;
 
         if(check) {
-            int totalAdmin = this->setCountRole(false), total = this->size();   
-            for (int i = totalAdmin; i < total; i++) {
+            // int totalAdmin = this->setCountRole(false), total = this->size();   
+            int totalUser = this->setCountRole(true), total = this->size(); 
+            for (int i = totalUser; i < total; i++) {
                 Account* acc = reinterpret_cast<Account*>(this->get(i));
                 acc->writeToFile(foAdmin);
             }
@@ -172,10 +173,25 @@ int listAccount::signUp(Account* &account, const string &tmpUserName, const stri
     account = newAccount.release(); // Transfer ownership to account
     return 1;
 }
+int listAccount::allocateAdminAccount(Account* &account, const string &tmpUserName, const string &tmpPassword)
+{
+    if (checkUserName(tmpUserName) != -1)
+        return -1;
+
+    auto newAccount = std::make_unique<AccountAdmin>();
+    newAccount->setID();
+    newAccount->setUserName(tmpUserName);
+    newAccount->setPassword(tmpPassword);
+
+    this->append(reinterpret_cast<Account*>(newAccount.release())); // Release ownership to the list
+    this->writeListAccountToFile(false, false);
+    account = newAccount.release(); // Transfer ownership to account
+    return 1;
+}
 
 int listAccount::signIn(Account* &account, const string &tmpUserName, const string &tmpPassword) {
-    if(checkSignIn(tmpUserName, tmpPassword, account))
-        return 1;
+    if(!checkSignIn(tmpUserName, tmpPassword, account))
+        return -1;
 
     return account->getID().rfind("USER", 0) == 0 ? 1 : 0;
 }

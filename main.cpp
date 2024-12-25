@@ -20,7 +20,11 @@
 #include <string>
 using namespace std;
 // using namespace filesystem;
-
+void test()
+{
+    listMedicalRecord listMR;
+    cout << "1" << endl;
+}
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
@@ -29,6 +33,8 @@ int main()
     Admin_UI();
 
     // listMedicalRecord listMR;
+    // listAccount lspt;
+    // listPatient listpatient;
 
     // // Kiểm tra nếu danh sách ban đầu rỗng
     // if (listMR.size() == 0)
@@ -53,7 +59,7 @@ int main()
     // else
     //     std::cout << "Test 4: Danh sách tìm kiếm không rỗng.\n";
     // cout << mrList[0].getID_patient() << endl;
-    system("pause");
+    // system("pause");
     return 0;
 }
 // // Copyright 2023 Arthur Sonzogni. All rights reserved.

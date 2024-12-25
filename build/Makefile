@@ -476,6 +476,54 @@ src/Management/Account.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/Account.cpp.s
 .PHONY : src/Management/Account.cpp.s
 
+src/Management/AccountAdmin.obj: src/Management/AccountAdmin.cpp.obj
+.PHONY : src/Management/AccountAdmin.obj
+
+# target to build an object file
+src/Management/AccountAdmin.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.obj
+.PHONY : src/Management/AccountAdmin.cpp.obj
+
+src/Management/AccountAdmin.i: src/Management/AccountAdmin.cpp.i
+.PHONY : src/Management/AccountAdmin.i
+
+# target to preprocess a source file
+src/Management/AccountAdmin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.i
+.PHONY : src/Management/AccountAdmin.cpp.i
+
+src/Management/AccountAdmin.s: src/Management/AccountAdmin.cpp.s
+.PHONY : src/Management/AccountAdmin.s
+
+# target to generate assembly for a file
+src/Management/AccountAdmin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.s
+.PHONY : src/Management/AccountAdmin.cpp.s
+
+src/Management/AccountUser.obj: src/Management/AccountUser.cpp.obj
+.PHONY : src/Management/AccountUser.obj
+
+# target to build an object file
+src/Management/AccountUser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountUser.cpp.obj
+.PHONY : src/Management/AccountUser.cpp.obj
+
+src/Management/AccountUser.i: src/Management/AccountUser.cpp.i
+.PHONY : src/Management/AccountUser.i
+
+# target to preprocess a source file
+src/Management/AccountUser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountUser.cpp.i
+.PHONY : src/Management/AccountUser.cpp.i
+
+src/Management/AccountUser.s: src/Management/AccountUser.cpp.s
+.PHONY : src/Management/AccountUser.s
+
+# target to generate assembly for a file
+src/Management/AccountUser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/src/Management/AccountUser.cpp.s
+.PHONY : src/Management/AccountUser.cpp.s
+
 src/Management/Appoinment.obj: src/Management/Appoinment.cpp.obj
 .PHONY : src/Management/Appoinment.obj
 
@@ -714,6 +762,12 @@ help:
 	@echo ... src/Management/Account.obj
 	@echo ... src/Management/Account.i
 	@echo ... src/Management/Account.s
+	@echo ... src/Management/AccountAdmin.obj
+	@echo ... src/Management/AccountAdmin.i
+	@echo ... src/Management/AccountAdmin.s
+	@echo ... src/Management/AccountUser.obj
+	@echo ... src/Management/AccountUser.i
+	@echo ... src/Management/AccountUser.s
 	@echo ... src/Management/Appoinment.obj
 	@echo ... src/Management/Appoinment.i
 	@echo ... src/Management/Appoinment.s

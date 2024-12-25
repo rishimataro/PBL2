@@ -8,11 +8,13 @@
 #include "Interface/Patient_interface.hpp"
 #include "Management/Patient.hpp"
 #include "Management/listPatient.hpp"
+#include "Management/listAccount.hpp"
 using namespace std;
 using namespace ftxui;
 
 // bool validateDate(const std::string& date_);
 void Analyse_UI();
-void QLBA_UI();
-void QLBN_UI();
+void QLTK();
+void QLBA_UI(listPatient &patients);
+void QLBN_UI(listPatient &patients);
 void Admin_UI();

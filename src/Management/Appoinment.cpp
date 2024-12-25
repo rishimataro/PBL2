@@ -263,13 +263,17 @@ vector<Appoinment> searchAppoinments(const Patient& patient)
         searching_month.tm_mon += i;
         mktime(&searching_month);
 
-        path file_path = DATA_PATH "AppoinmentDB";
-        file_path.append(to_string(searching_month.tm_year + 1900) + "_" + (searching_month.tm_mon + 1 < 10 ? "0" : "") + to_string(searching_month.tm_mon) + ".txt");
+        path file_path = "../Database/AppoinmentDB/";
+        file_path.append(to_string(searching_month.tm_year + 1900) + "_" + (searching_month.tm_mon + 1 < 10 ? "0" : "") + to_string(searching_month.tm_mon + 1) + ".txt");
         file_path = absolute(file_path);
+        ofstream temp_fo("temp.txt", ios::app);
         ifstream file(file_path);
+        temp_fo  << file_path;
         string line;
         string curDate;
         if (file.is_open()) {
+            temp_fo << "1" << endl;
+            temp_fo.close();
             while (std::getline(file, line)) {
                 if (line.empty() || line == "---") continue;
 

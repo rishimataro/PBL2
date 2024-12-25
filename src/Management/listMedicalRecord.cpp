@@ -6,33 +6,48 @@ listMedicalRecord::listMedicalRecord() : LinkedList<MedicalRecord>() {
 }
 
 listMedicalRecord::~listMedicalRecord() { 
-    for (int i = 0; i < this->size(); i++) {
-        delete this->get(i); // Giải phóng bộ nhớ cho từng bệnh án
-    }
-    this->clear(); // Xóa các phần tử khỏi danh sách liên kết
+    // for (int i = 0; i < this->size(); i++) {
+    //     delete this->get(i); // Giải phóng bộ nhớ cho từng bệnh án
+    // }
+    // this->clear(); // Xóa các phần tử khỏi danh sách liên kết
 }
+vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
+    vector<pair<string, int>> diagnosisCount;
+    if (this->size() == 0) return diagnosisCount;
 
+    map<string, int> diagnosisMap;
+
+    for (int i = 0; i < this->size(); i++) {
+        MedicalRecord record = *this->get(i);
+        string diagnosis = record.getDiagnosis();
+        diagnosisMap[diagnosis]++;
+    }
+
+    for (const auto& pair : diagnosisMap) {
+        diagnosisCount.push_back(pair);
+    }
+
+    return diagnosisCount;
+}
 bool listMedicalRecord::readListMedicalRecordFromFile() {
     string file_path = "../Database/Medical_recordDB/medical_record.txt";
     fstream fin;
-
+ 
     fin.open(file_path, ios::in);
     if (!fin.is_open())
         return false;
-
+ 
     string line;
     while (getline(fin, line)) {
         if (!line.empty()) {
-            // Sử dụng unique_ptr để quản lý bộ nhớ tự động
-            auto record = std::make_unique<MedicalRecord>();
+            MedicalRecord* record = new MedicalRecord();
             record->readMedicalRecordFromFile(line);
-            this->append(record.release()); // Chuyển quyền sở hữu cho LinkedList
+            this->append(record);
         }
     }
     fin.close();
     return true;
 }
-
 bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
     string file_path = "../Database/Medical_recordDB/medical_record.txt";
     char ch;

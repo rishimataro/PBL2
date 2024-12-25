@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/manag.dir/src/Management/Account.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/Account.cpp.obj.d"
+  "CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.obj"
+  "CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.obj.d"
+  "CMakeFiles/manag.dir/src/Management/AccountUser.cpp.obj"
+  "CMakeFiles/manag.dir/src/Management/AccountUser.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/Date.cpp.obj"

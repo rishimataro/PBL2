@@ -27,6 +27,7 @@ class listAccount : public LinkedList<Account>
 
         // * Sign Up & Sign In
         int signUp(Account* &account, const string &tmpUserName, const string &tmpPassword);
+        int allocateAdminAccount(Account* &account, const string &tmpUserName, const string &tmpPassword);
         int addAdmin(Account &account, const string &tmpUserName, const string &tmpPassword);
         int signIn(Account* &account, const string &tmpUserName, const string &tmpPassword);
         int forgotPassword(Account* &account, const string &tmpCCCD, const string &tmpUser, const string &tmpPass, const string &tmpRePass);

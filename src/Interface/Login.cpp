@@ -1,4 +1,4 @@
-/* #include <Interface/Login.hpp>
+#include <Interface/Login.hpp>
 bool valid_password(const string& password) {
     if (password.length() < 8) {
         return false;
@@ -15,7 +15,7 @@ bool valid_password(const string& password) {
     return true;
     
 }
-void signup_UI()
+void signup_UI(listAccount &accounts, listPatient &patients)
 {   
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
     string username, password, confirm_password;
@@ -54,30 +54,31 @@ void signup_UI()
         else
         {
 
-            Account account;
-            listAccount accounts;
-            accounts.readListAccountFromFile();
+            Account *account;
+            // listAccount accounts;
+            // accounts.readListAccountFromFile();
             int signup_return = accounts.signUp(account, username, password);
             if (signup_return == -1) {
-                // signup_announce_msg = "Tên đăng nhập đã tồn tại.";
-                signup_announce_msg = accounts.end().getUserName();
+                signup_announce_msg = "Tên đăng nhập đã tồn tại.";
+                // signup_announce_msg = accounts.end().getUserName();
                 return;
             }
             if (signup_return == 1) {
+                AccountUser *user = dynamic_cast<AccountUser*>(account);
                 signup_announce_msg = "Đăng ký thành công!";
-                listPatient patients;
-                patients.readListPatientFromFile();
-                Patient patient;
-                patient.setID_patient();
+                // listPatient patients;
+                // patients.readListPatientFromFile();
+                Patient *patient = new Patient();
+                patient->setID_patient();
                 Patientdisplay(patient);
                 patients.append(patient);
 
                 patients.writeListPatientToFile(1);
                 // patients.writeListPatientToFile(0);
-                patients.writePatientToFile(patients.size() - 1);
-                account.setID_patient(patient.getID_patient());
+                // patients.writePatientToFile(patients.size() - 1);
+                user->setID_patient(patient->getID_patient());
                 accounts.set(accounts.size() - 1, account);
-                accounts.writeListAccountToFile(1);
+                accounts.writeListAccountToFile(1, 1);
                 // screen.ExitLoopClosure()();
                 return;
             }
@@ -116,6 +117,7 @@ void signup_UI()
 }
 void loginUI()
 {   
+
     string username, password;
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
     string login_error_msg[] = {
@@ -127,9 +129,13 @@ void loginUI()
     InputOption input_password_option;
     input_password_option.password = true;
     Component password_input = Input(&password, "Mật khẩu:", input_password_option);
+
     listAccount accounts;
-    Account account;
+    Account *account;
     accounts.readListAccountFromFile();
+    listPatient patients;
+    patients.readListPatientFromFile();
+
     Component login_button = Button("Đăng nhập", [&] {
         if (username.empty() || password.empty()) {
             login_msg = login_error_msg[1];
@@ -144,20 +150,22 @@ void loginUI()
         // Perform login logic here
             login_msg = "Đăng nhập thành công!";
         if(login_result == 1) {
-            listPatient patients;
-            patients.readListPatientFromFile();
-            string pt_id = account.getID_patient();
-            vector<Patient> ls_Patients = patients.searchPatient(SearchField::ID, account.getID_patient());
-            Patient_UI(ls_Patients[0]);
+            AccountUser* patient_account = dynamic_cast<AccountUser*>(account);
+            // listPatient patients;
+            // patients.readListPatientFromFile();
+            string pt_id = patient_account->getID_patient();
+            vector<Patient*> ls_Patients = patients.searchPatient(SearchField::ID, patient_account->getID_patient());
+            Patient_UI(ls_Patients[0], patients);
         }else if(login_result == 0) {
             Admin_UI();
         }
 
 
     });
-    Component switch_signUP = Button("Đăng ký", [] {
+
+    Component switch_signUP = Button("Đăng ký", [&] {
         // Navigate to registration screen
-        signup_UI();
+        signup_UI(accounts, patients);
     });
     Component exit_button = Button("Exit", [&] { screen.ExitLoopClosure()(); });
 
@@ -194,4 +202,4 @@ void loginUI()
     screen.Loop(renderer);
 
 
-} */
+}

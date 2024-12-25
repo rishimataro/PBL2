@@ -31,6 +31,18 @@
 },
 {
   "directory": "D:/Test_Code/PBL/PBL2/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/manag.dir/includes_CXX.rsp -std=gnu++23 -o CMakeFiles\\manag.dir\\src\\Management\\AccountUser.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Management\\AccountUser.cpp",
+  "file": "D:/Test_Code/PBL/PBL2/src/Management/AccountUser.cpp",
+  "output": "CMakeFiles/manag.dir/src/Management/AccountUser.cpp.obj"
+},
+{
+  "directory": "D:/Test_Code/PBL/PBL2/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/manag.dir/includes_CXX.rsp -std=gnu++23 -o CMakeFiles\\manag.dir\\src\\Management\\AccountAdmin.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Management\\AccountAdmin.cpp",
+  "file": "D:/Test_Code/PBL/PBL2/src/Management/AccountAdmin.cpp",
+  "output": "CMakeFiles/manag.dir/src/Management/AccountAdmin.cpp.obj"
+},
+{
+  "directory": "D:/Test_Code/PBL/PBL2/build",
   "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/manag.dir/includes_CXX.rsp -std=gnu++23 -o CMakeFiles\\manag.dir\\src\\Management\\Appoinment.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Management\\Appoinment.cpp",
   "file": "D:/Test_Code/PBL/PBL2/src/Management/Appoinment.cpp",
   "output": "CMakeFiles/manag.dir/src/Management/Appoinment.cpp.obj"

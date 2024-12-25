@@ -5,10 +5,10 @@ listPatient::listPatient() : LinkedList<Patient>() {
 }
 
 listPatient::~listPatient() {
-    for (int i = 0; i < this->size(); i++) {
-        delete this->get(i);
-    }
-    this->clear();
+    // for (int i = 0; i < this->size(); i++) {
+    //     delete this->get(i);
+    // }
+    // this->clear();
 }
 
 bool listPatient::readListPatientFromFile() {

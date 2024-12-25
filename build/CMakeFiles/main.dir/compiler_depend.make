@@ -566,6 +566,8 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Test_Code/PBL/PBL2/main.cpp \
   D:/Test_Code/PBL/PBL2/include/Library/Graphics.hpp \
   D:/Test_Code/PBL/PBL2/include/Library/Mouse.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Account.hpp \
+  D:/Test_Code/PBL/PBL2/include/Management/AccountAdmin.hpp \
+  D:/Test_Code/PBL/PBL2/include/Management/AccountUser.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Appoinment.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/Date.hpp \
   D:/Test_Code/PBL/PBL2/include/Management/MedicalRecord.hpp \
@@ -1712,6 +1714,10 @@ D:/Test_Code/PBL/PBL2/include/Interface/Login.hpp:
 D:/Test_Code/PBL/PBL2/include/Management/Patient.hpp:
 
 D:/Test_Code/PBL/PBL2/include/Library/Graphics.hpp:
+
+D:/Test_Code/PBL/PBL2/include/Management/AccountAdmin.hpp:
+
+D:/Test_Code/PBL/PBL2/include/Management/AccountUser.hpp:
 
 D:/Test_Code/PBL/PBL2/include/Management/Appoinment.hpp:
 
