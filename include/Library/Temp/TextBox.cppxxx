@@ -1,0 +1,168 @@
+#include "TextBox.hpp"
+#include "mouse.hpp"
+// Hàm kiểm tra ký tự hợp lệ
+
+void textBox::gotoXY(int x, int y) const {
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void textBox::box(int x, int y, int width, int height, const std::string& content, 
+                  const std::string& backgroundColor, const std::string& borderColor, const std::string& textColor) const {
+    // Vẽ hộp với nội dung và màu sắc
+    for (int i = 0; i < width + 2; ++i) {
+        gotoXY(x + i, y);
+        cout << " ";
+        gotoXY(x + i, y + height);
+        cout << " ";
+    }
+    for (int i = 0; i < height + 2; ++i) {
+        gotoXY(x, y + i);
+        cout << " ";
+        gotoXY(x + width + 1, y + i);
+        cout << " ";
+    }
+
+    // Vẽ nội dung
+    gotoXY(x + 1, y + 1);
+    cout << content; // Có thể thêm xử lý màu sắc ở đây
+}
+
+textBox::textBox(int x, int y, int width, std::string label, std::string labelColor, 
+                 std::string backgroundColor, std::string borderColor, int lengthLimit)
+    : x(x), y(y), width(width), label(label), labelColor(labelColor), 
+      backgroundColor(backgroundColor), borderColor(borderColor), 
+      lengthLimit(lengthLimit), content("") {
+    show(); // Hiện box và label ngay khi khởi tạo
+}
+
+void textBox::show() const {
+    box(x, y, width, 2, content.empty() ? label : content, backgroundColor, borderColor, textColor);
+}
+
+void textBox::showLabel() const {
+    gotoXY(x + 1, y + 1);
+    cout << label;
+    for (int i = label.length(); i < lengthLimit; i++) {
+        cout << " ";
+    }
+}
+
+void textBox::showContent() const {
+    gotoXY(x + 1, y + 1);
+    cout << content;
+    for (int i = content.length(); i < lengthLimit; i++) {
+        cout << " ";
+    }
+}
+
+bool textBox::isClicked(int clickX, int clickY) const {
+    return clickX >= x && clickX <= x + width + 1 && clickY >= y && clickY <= y + 2;
+}
+
+bool textBox::isClickedInside(int clickX, int clickY) const {
+    return clickX >= x + 1 && clickX <= x + width && clickY == y + 1;
+}
+
+void textBox::input() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    show(); // Hiện box ngay lập tức
+
+    InputEvent event;
+    bool inputMode = false; 
+    int cursorPosition = 0; // Vị trí con trỏ
+
+    while (true) {
+        event = MonitorInput();
+
+        if (event.type == InputEventType::MouseLeftClick) {
+            if (isClicked(event.position.X, event.position.Y)) {
+                inputMode = true; 
+                cursorPosition = 0; // Đặt lại con trỏ về đầu
+                gotoXY(x + 1, y + 1);
+                show(); // Hiện nội dung khi vào chế độ nhập
+            } else {
+                inputMode = false;
+                show(); // Hiện lại box với nội dung hoặc label
+                continue; 
+            }
+        }
+
+        if (inputMode && event.type == InputEventType::KeyPress) {
+            if (event.key == VK_RETURN || event.key == VK_ESCAPE) {
+                inputMode = false; 
+                if (content.empty()) {
+                    showLabel(); 
+                } else {
+                    showContent(); 
+                }
+                break; 
+            } 
+            else if (event.key == '\b') {
+                if (cursorPosition > 0) {
+                    content.erase(cursorPosition - 1, 1);
+                    cursorPosition--;
+                    showContent(); 
+                }
+            } 
+            else if (isValidCharacter(event.key)) {
+                if (content.length() < lengthLimit) {
+                    content.insert(cursorPosition, 1, event.key);
+                    cursorPosition++;
+                    showContent(); 
+                }
+            }
+
+            // Di chuyển con trỏ
+            if (event.key == VK_LEFT) {
+                if (cursorPosition > 0) {
+                    cursorPosition--;
+                    gotoXY(x + 1 + cursorPosition, y + 1);
+                }
+            }
+            else if (event.key == VK_RIGHT) {
+                if (cursorPosition < content.length()) {
+                    cursorPosition++;
+                    gotoXY(x + 1 + cursorPosition, y + 1);
+                }
+            }
+        }
+    }
+
+    show(); 
+    showContent(); 
+}
+
+std::string textBox::getContent() const {
+    return content;
+}
+
+void textBox::setSpaceAccepted(bool newSpaceAccepted) {
+    spaceAccepted = newSpaceAccepted;
+}
+
+textBox::~textBox() {
+    // Destructor
+}
+
+bool textBox::isValidCharacter(char key) const {
+    // Kiểm tra ký tự hợp lệ: ký tự nhìn thấy ASCII và UTF-8
+    return (isprint(key) || isUtf8Character(key)); // Có thể mở rộng thêm cho UTF-8
+}
+
+bool textBox::isUtf8Character(char key) const {
+    // Kiểm tra xem ký tự có phải là UTF-8 hay không (dễ dàng mở rộng nếu cần)
+    return (static_cast<unsigned char>(key) >= 128); 
+}
+int main ()
+{
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    textBox tb(1, 1, 30, "user name", "FFFFFF", "000000", "FFFFFF");
+    tb.input();
+    system("pause");
+}

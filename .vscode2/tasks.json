@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C/C++: g++.exe build all .cpp in current folder and subfolders",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-command",
+                "$files = Get-ChildItem -Recurse -Filter *.cpp -Path '${fileDirname}'; & 'C:/ucrt64/ucrt64/bin/g++.exe' $files.FullName -g -fdiagnostics-color=always -o '${fileDirname}/${fileBasenameNoExtension}.exe'"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compile all .cpp files in the folder containing the currently open file and subfolders"
+        },  
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:/msys64/ucrt64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compile current .cpp file"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe Build active all .cpp in current folder",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${fileDirname}\\*.cpp",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:/msys64/ucrt64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compile all .cpp files in the current folder"
+        }
+    ]
+}

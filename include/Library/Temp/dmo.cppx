@@ -1,0 +1,93 @@
+#include <iostream>
+#include <windows.h>
+
+enum class InputEventType {
+    None,
+    KeyPress,
+    MouseLeftClick,
+    MouseRightClick,
+    MouseMove,
+    MouseDoubleClick,
+    Exit
+};
+
+struct InputEvent {
+    InputEventType type;
+    char key;   // Chứa phím nhấn (nếu có)
+    COORD position; // Vị trí chuột (nếu có)
+};
+
+InputEvent MonitorInput() {
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    DWORD prev_mode;
+
+    // Lưu chế độ hiện tại của đầu vào và bật chế độ xử lý sự kiện
+    GetConsoleMode(hInput, &prev_mode);
+    SetConsoleMode(hInput, ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT | ENABLE_WINDOW_INPUT);
+
+    INPUT_RECORD input_record;
+    DWORD events;
+
+    // Đọc sự kiện nhập vào
+    ReadConsoleInput(hInput, &input_record, 1, &events);
+
+    // Xử lý sự kiện bàn phím
+    if (input_record.EventType == KEY_EVENT) {
+        KEY_EVENT_RECORD key_event = input_record.Event.KeyEvent;
+        if (key_event.bKeyDown) {
+            if (key_event.wVirtualKeyCode == VK_ESCAPE) {
+                SetConsoleMode(hInput, prev_mode); // Khôi phục chế độ
+                return { InputEventType::Exit, 0, {0, 0} };
+            }
+            return { InputEventType::KeyPress, key_event.uChar.AsciiChar, {0, 0} };
+        }
+    }
+    // Xử lý sự kiện chuột
+    else if (input_record.EventType == MOUSE_EVENT) {
+        MOUSE_EVENT_RECORD mouse_event = input_record.Event.MouseEvent;
+        if (mouse_event.dwEventFlags == 0) { // Nhấn chuột
+            if (mouse_event.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
+                return { InputEventType::MouseLeftClick, 0, mouse_event.dwMousePosition };
+            else if (mouse_event.dwButtonState == RIGHTMOST_BUTTON_PRESSED)
+                return { InputEventType::MouseRightClick, 0, mouse_event.dwMousePosition };
+        } else if (mouse_event.dwEventFlags == MOUSE_MOVED) { // Di chuyển chuột
+            return { InputEventType::MouseMove, 0, mouse_event.dwMousePosition };
+        } else if (mouse_event.dwEventFlags == DOUBLE_CLICK) { // Nhấp đôi
+            return { InputEventType::MouseDoubleClick, 0, mouse_event.dwMousePosition };
+        }
+    }
+
+    SetConsoleMode(hInput, prev_mode); // Khôi phục chế độ ban đầu
+    return { InputEventType::None, 0, {0, 0} }; // Không có sự kiện nào
+}
+
+int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);    
+    std::cout << "Bắt đầu theo dõi bàn phím và chuột. Nhấn 'Esc' để thoát.\n";
+    while (true) {
+        InputEvent event = MonitorInput();
+        switch (event.type) {
+            case InputEventType::KeyPress:
+                std::cout << "Phím được nhấn: " << event.key << "\n";
+                break;
+            case InputEventType::MouseLeftClick:
+                std::cout << "Nhấn chuột trái tại (" << event.position.X << ", " << event.position.Y << ")\n";
+                break;
+            case InputEventType::MouseRightClick:
+                std::cout << "Nhấn chuột phải tại (" << event.position.X << ", " << event.position.Y << ")\n";
+                break;
+            // case InputEventType::MouseMove:
+            //     std::cout << "Di chuyển chuột tới (" << event.position.X << ", " << event.position.Y << ")\n";
+            //     break;
+            case InputEventType::MouseDoubleClick:
+                std::cout << "Nhấp đôi chuột tại (" << event.position.X << ", " << event.position.Y << ")\n";
+                break;
+            case InputEventType::Exit:
+                return 0;
+            case InputEventType::None:
+                break;
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+MR1;P1;Bụng dưới đau liên tục, ói mửa, cảm giác buồn nôn không dứt;Đau dạ dày cấp tính;15/05/2022
+MR2;P2;Ho dai dẳng, sốt cao liên tục, cơ thể mệt mỏi, không thể ăn uống;Viêm họng;20/05/2021
+MR3;P3;Đau đầu, chóng mặt dữ dội, buồn nôn, khó tập trung khi làm việc;Migraine nặng;22/05/2015
+MR4;P4;Đau bụng âm ỉ, khó tiêu, đầy hơi, cảm giác ợ chua và chướng bụng;Viêm loét dạ dày tá tràng;25/05/2020
+MR5;P5;Ho khan kéo dài, đau họng, sốt cao, khó thở từng cơn;Viêm phế quản cấp tính;30/05/2020
+MR6;P6;Đau nhức khắp cơ thể, mệt mỏi, sốt nhẹ, ăn uống kém, khó ngủ;Viêm khớp dạng thấp;02/06/2013
+MR7;P7;Mắt đỏ, ngứa ngáy, chảy nước mắt, cảm giác cộm ở mắt khi nhìn xa;Viêm kết mạc;04/06/2018
+MR8;P8;Đau ngực liên tục, khó thở, ho có đờm, cảm giác tức ngực;Viêm phổi cấp;07/06/2019
+MR9;P9;Đau lưng dưới dữ dội, tê bì chân tay, cảm giác tê cứng mỗi sáng;Thoái hóa đĩa đệm cột sống thắt lưng;10/06/2005
+MR10;P10;Đau bụng dưới dữ dội, buồn nôn, sốt, cảm giác không thể di chuyển được;Viêm ruột thừa cấp tính;12/06/2024
+MR11;P11;Ho khò khè, thở dốc, khó ngủ, mệt mỏi kéo dài;Hen suyễn cấp tính;15/06/2023
+MR12;P12;Sốt cao liên tục, cơ thể đau nhức, ho, mệt mỏi không thể làm việc;Cúm mùa;18/06/2021
+MR13;P13;Mắt mờ, đau đầu dữ dội, khó ngủ, cảm giác choáng váng khi đứng lên;Tăng huyết áp;20/06/2023
+MR14;P14;Đau bụng liên tục, chướng bụng, cảm giác buồn nôn sau khi ăn;Viêm dạ dày;22/06/2024
+MR15;P15;Đau họng, ho có đờm đặc, sốt, cảm giác ngứa ở cổ họng;Viêm amidan cấp tính;25/06/2022
+MR16;P16;Cảm giác mệt mỏi toàn thân, khó thở, ho khan kéo dài không thuyên giảm;Viêm phổi cấp tính;28/06/2000
+MR17;P17;Đau chân, sưng tấy, không thể đứng lâu, cơn đau kéo dài suốt cả ngày;Bong gân;01/07/2005
+MR18;P18;Cảm giác mệt mỏi, khó thở, căng thẳng, đau đầu, ngủ không sâu;Rối loạn tâm lý;04/07/2008
+MR19;P19;Đau bụng dữ dội, tiêu chảy, sốt, cảm giác yếu sức không thể làm việc;Tiêu chảy cấp do nhiễm trùng;07/07/2010
+MR20;P20;Đau lưng dưới, tê bì chân tay, không thể di chuyển bình thường;Thoát vị đĩa đệm cột sống lưng;10/07/2005
+MR21;P21;Đau bụng âm ỉ, đầy hơi, ợ chua, cảm giác khó tiêu sau khi ăn;Loét dạ dày tá tràng;13/07/2022
+MR22;P22;Ho có đờm, thở khò khè, sốt cao, khó thở từng cơn;Viêm phổi cấp;16/07/204
+MR23;P23;Đau khớp gối, sốt, sưng đau ở các khớp, khó cử động;Viêm khớp dạng thấp;19/07/2023
+MR24;P24;Mệt mỏi kéo dài, khó thở, chóng mặt, dễ bị choáng ngất;Thiếu máu;22/07/2021
+MR25;P25;Đau bụng âm ỉ, buồn nôn, cảm giác mệt mỏi, ăn không thấy ngon;Rối loạn tiêu hóa cấp;25/07/2022
+MR26;P8;Đau đầu;Đau đầu;28/12/2024
+MR27;P8;Đau bụng;Đau bụng;29/12/2024
+MR28;P8;Đau bụng;Đau bụng;29/12/2024

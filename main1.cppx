@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <windows.h> // Thư viện cần thiết để sử dụng SetConsoleOutputCP và SetConsoleCP
+std::streamoff getFileSize(const std::string& file_path) {
+    std::ifstream file(file_path, std::ios::binary); // Mở file ở chế độ nhị phân
+    if (!file.is_open()) {
+        std::cerr << "Không thể mở file: " << file_path << std::endl;
+        return -1; // Trả về -1 nếu không mở được file
+    }
+
+    // Di chuyển con trỏ đến cuối file
+    file.seekg(0, std::ios::end);
+    std::streamoff size = file.tellg(); // Lấy vị trí của con trỏ (kích thước file)
+
+    file.close(); // Đóng file
+    return size; // Trả về kích thước file
+}
+void printCharactersAndASCII(const std::string& file_path) {
+    // Thiết lập console để hỗ trợ UTF-8
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    
+    std::ifstream file(file_path); // Mở file để đọc
+    if (!file.is_open()) {
+        std::cerr << "Không thể mở file: " << file_path << std::endl;
+        return;
+    }
+    std::streamoff file_size = getFileSize(file_path); // Lấy kích thước file
+    char ch;
+    int position = 0; // Biến lưu vị trí ký tự trong file
+
+    std::cout << "Ký tự và mã ASCII:" << std::endl;
+
+    while (file.get(ch)) { // Đọc từng ký tự từ file
+        std::cout << "Vị trí " << position << ": Ký tự '" << ch << "' có mã ASCII: " << static_cast<int>(ch) << std::endl;
+        position++;
+    }
+
+    file.close(); // Đóng file
+}
+
+int main() {
+    std::string file_path = "./Database/AppoinmentDB/2024_10.txt"; // Đường dẫn file
+    printCharactersAndASCII(file_path); // Gọi hàm
+
+    system("pause"); // Giữ cửa sổ console mở
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include "Graphics.h"
+#include <cctype>
+#include <locale>
+#include <codecvt>
+#include <map>
+// Hàm kiểm tra ký tự hợp lệ
+bool isValidCharacter(char32_t ch);
+class textBox {
+private:
+    int x, y, width;
+    std::string content, label;
+    std::string labelColor;
+    std::string textColor, backgroundColor, borderColor;
+    int lengthLimit;
+    bool spaceAccepted;
+
+    void gotoXY(int x, int y) const; // Di chuyển con trỏ đến vị trí (x, y)
+    void box(int x, int y, int width, int height, const std::string& content, 
+             const std::string& backgroundColor, const std::string& borderColor, const std::string& textColor) const; // Vẽ hộp
+
+public:
+    textBox(int x, int y, int width, std::string label = "", std::string labelColor = "FFFFFF", 
+             std::string backgroundColor = "000000", std::string borderColor = "FFFFFF", int lengthLimit = 50);
+             
+    void show() const; // Hiển thị hộp
+    void showLabel() const; // Hiển thị label
+    void showContent() const; // Hiển thị nội dung
+    bool isClicked(int clickX, int clickY) const; // Kiểm tra click
+    bool isClickedInside(int clickX, int clickY) const; // Kiểm tra click trong ô
+    void input(); // Hàm nhập liệu
+    std::string getContent() const; // Lấy nội dung
+    void setSpaceAccepted(bool newSpaceAccepted); // Cập nhật khả năng chấp nhận khoảng trắng
+    ~textBox(); // Destructor
+    
+    bool isValidCharacter(char key) const; // Kiểm tra ký tự hợp lệ
+    bool isUtf8Character(char key) const; // Kiểm tra ký tự UTF-8
+};

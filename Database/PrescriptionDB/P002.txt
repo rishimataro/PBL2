@@ -1,0 +1,6 @@
+P002
+P1
+1805202
+Spasmaverine;5;350000;Sang 1 vien
+Vitamin E Pro;5;750000;Chieu 1 vien
+1100000
