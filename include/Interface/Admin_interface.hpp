@@ -13,7 +13,7 @@ using namespace std;
 using namespace ftxui;
 
 // bool validateDate(const std::string& date_);
-void Analyse_UI();
+void TK_ten_benh();
 void QLTK();
 void QLBA_UI(listPatient &patients);
 void QLBN_UI(listPatient &patients);

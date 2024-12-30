@@ -59,6 +59,21 @@ string Date::getDate() const {
     res = day_str + "/" + month_str + "/" + year_str;
     return res;
 }
+int Date::getWeekDay() const
+{
+    int d = this->day, m = this->month, y = this->year;
+    if(m < 3) {
+        m += 12;
+        y -= 1;
+    }
+    int K = y % 100;
+    int J = y / 100;
+
+    int h = (d + (13 * (m + 1)) / 5 + K + K / 4 + J / 4 - 2 * J) % 7;
+    h--;
+    if (h < 0) h += 7;
+    return h;// 0 = sun
+}
 
 void Date::inputDate() {
     while(true) {
@@ -99,6 +114,13 @@ bool Date::isCurrentDate() const {
     int currentYear = BASE_YEAR + ltm->tm_year;
 
     return (this->day == currentDay && this->month == currentMonth && this->year == currentYear);
+}
+void Date::setCurrentDate() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    this->day = ltm->tm_mday;
+    this->month = 1 + ltm->tm_mon;
+    this->year = BASE_YEAR + ltm->tm_year;
 }
 
 Date& Date::operator=(const Date& date) {

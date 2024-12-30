@@ -22,6 +22,7 @@ class Date
         int getMonth() const;
         int getYear() const;
         string getDate() const;
+        int getWeekDay() const;
 
         void inputDate();
         void printDate() const;

@@ -368,7 +368,7 @@ iwyu_path:FILEPATH=iwyu_path-NOTFOUND
 manag_LIB_DEPENDS:STATIC=general;lib;general;template;general;ftxui::screen;general;ftxui::dom;general;ftxui::component;
 
 //Dependencies for the target
-ui_LIB_DEPENDS:STATIC=general;manag;general;ftxui::screen;general;ftxui::dom;general;ftxui::component;
+ui_LIB_DEPENDS:STATIC=general;lib;general;manag;general;ftxui::screen;general;ftxui::dom;general;ftxui::component;
 
 
 ########################

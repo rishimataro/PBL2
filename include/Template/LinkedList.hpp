@@ -36,6 +36,7 @@ protected:
 
 public:
     LinkedList();
+    LinkedList(const LinkedList<T>& other);
     ~LinkedList();
 
     bool isEmpty() const;
@@ -55,10 +56,23 @@ public:
     void set(int index, T* value);
     void display();
     void forEach(void (*func)(T*));
+    bool operator==(const LinkedList<T>& other) const;
+    void operator=(const LinkedList<T>& other);
 };
 
 template <class T>
 LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr), count(0) {}
+template <class T>
+LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0)
+{
+    Node<T>* current = other.head.get();
+    while (current)
+    {
+        append(new T(*current->data)); // Sao chép từng phần tử
+        current = current->next.get();
+    }
+}
+
 
 template <class T>
 LinkedList<T>::~LinkedList() { clear(); }
@@ -355,5 +369,44 @@ void LinkedList<T>::forEach(void (*func)(T*))
     {
         func(current->data);
         current = current->next.get();
+    }
+}
+template <class T>
+bool LinkedList<T>::operator==(const LinkedList<T>& other) const
+{
+    // Kiểm tra xem cả hai danh sách có cùng kích thước không
+    if (count != other.count)
+        return false;
+
+    Node<T>* current1 = head.get();
+    Node<T>* current2 = other.head.get();
+
+    // So sánh từng phần tử trong danh sách
+    while (current1 && current2)
+    {
+        if (*current1->data != *current2->data) // So sánh dữ liệu
+            return false;
+
+        current1 = current1->next.get();
+        current2 = current2->next.get();
+    }
+
+    return true; // Nếu tất cả các phần tử đều giống nhau
+}
+
+template <class T>
+void LinkedList<T>::operator=(const LinkedList<T>& other)
+{
+    if (this == &other) // Kiểm tra xem có phải là gán cho chính nó không
+        return;
+
+    clear(); // Xóa sạch danh sách hiện tại
+
+    Node<T>* current = other.head.get(); // Bắt đầu từ đầu danh sách khác
+    while (current)
+    {
+        // Sao chép từng giá trị từ danh sách khác và thêm vào danh sách này
+        append(new T(*current->data));
+        current = current->next.get(); // Di chuyển đến nút tiếp theo
     }
 }

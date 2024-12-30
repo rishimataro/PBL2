@@ -1,5 +1,5 @@
 #include "Interface/Admin_interface.hpp"
-bool valid_password(const string &password)
+bool _valid_password(const string &password)
 {
     if (password.length() < 8)
     {
@@ -132,7 +132,7 @@ void create_admin_account(listAccount &accounts)
                         {
                             alert_element = text("Vui lòng nhập lại mật khẩu đúng.") | color(Color::Red);
                         }
-                        else if (!valid_password(password))
+                        else if (!_valid_password(password))
                         {
                             alert_element = text("Mật khẩu phải có ít nhất 8 kí tự, bao gồm chữ cái, số và kí tự đặc biệt!") | color(Color::Red);
                         }
@@ -194,7 +194,7 @@ bool change_password_UI(Account *&account, listPatient &patients)
     bool status = false;
     Component change_password_layout = Container::Vertical({
                                            account_info,
-                                           Input(&old_password, "Mật khẩu cũ:", input_pw_opt),
+                                        //    Input(&old_password, "Mật khẩu cũ:", input_pw_opt),
                                            Input(&new_password, "Mật khẩu mới:", input_pw_opt),
                                            Input(&confirm_password, "Xác nhận mật khẩu:", input_pw_opt),
 
@@ -212,15 +212,15 @@ bool change_password_UI(Account *&account, listPatient &patients)
                                                          {
                                                             change_password_msg = "Mật khẩu không được để trống!";
                                                          }
-                                                         else if (account->getPassword() != old_password)
-                                                          {
-                                                              change_password_msg = "Mật khẩu cũ không đúng!";
-                                                          }
+                                                        //  else if (account->getPassword() != old_password)
+                                                        //   {
+                                                        //       change_password_msg = "Mật khẩu cũ không đúng!";
+                                                        //   }
                                                           else if (new_password != confirm_password)
                                                           {
                                                               change_password_msg = "Vui lòng nhập lại mật khẩu đúng.";
                                                           }
-                                                          else if (!valid_password(new_password))
+                                                          else if (!_valid_password(new_password))
                                                           {
                                                               change_password_msg = "Mật khẩu phải có ít nhất 8 ký tự,\nbao gồm chữ cái, số và ký tự đặc biệt!";
                                                           }
@@ -309,7 +309,7 @@ void QLTK(listPatient &listPatient)
                                           &page_id);
     screen.Loop(tab_layout);
 }
-void Analyse_UI()
+void TK_ten_benh()
 {
     listMedicalRecord M_records;
     M_records.readListMedicalRecordFromFile();
@@ -467,8 +467,8 @@ void QLBN_searchBN(listPatient &patients)
     Patient *selected_patient = nullptr;
     // patients.readListPatientFromFile();
     vector<Patient *> filtered_patients;
-    ofstream out("test_log.txt", ios::app);
-    out << patients.size() << endl;
+    // ofstream out("test_log.txt", ios::app);
+    // out << patients.size() << endl;
     Component QLBN_name_input = Input(&Name_value, "Tên bệnh nhân");
     Component QLBN_id_input = Input(&ID_value, "ID bệnh nhân");
 
@@ -647,20 +647,632 @@ void QLBN_UI(listPatient &patients)
                                          size(WIDTH, EQUAL, 80) | border | hcenter; });
     screen.Loop(render);
 }
+vector<string> splitTextIntoLines(const string& text, int boxWidth) {
+    vector<string> lines;
+    int startIndex = 0;
+    int textLength = text.length();
+
+    while (startIndex < textLength) 
+    {
+        // Xác định chiều dài dòng hiện tại
+        int endIndex = startIndex + boxWidth;
+
+        // Kiểm tra nếu endIndex vượt quá chiều dài của chuỗi
+        if (endIndex >= textLength) {
+            endIndex = textLength;
+        } else {
+            // Lùi lại để tìm khoảng trắng gần nhất nếu có
+            while (endIndex > startIndex && text[endIndex] != ' ') {
+                endIndex--;
+            }
+
+            // Nếu không tìm thấy khoảng trắng, giữ nguyên chiều dài mặc định
+            if (endIndex == startIndex) {
+                endIndex = startIndex + boxWidth;
+            }
+        }
+
+        // Lấy đoạn văn bản từ startIndex đến endIndex
+        string line = text.substr(startIndex, endIndex - startIndex);
+        lines.push_back(line);
+
+        // Bỏ qua dấu cách ở đầu dòng tiếp theo (nếu có)
+        startIndex = endIndex;
+        while (startIndex < textLength && text[startIndex] == ' ') {
+            startIndex++;
+        }
+    }
+    return lines;
+}
+string split_text(string text, int width)
+{
+    vector<string> lines = splitTextIntoLines(text, width);
+    string result = "";
+    for (const auto& line : lines) {
+        result += line + "\n";
+    }
+    return result;
+}
+string delete_break_line(string text)
+{
+    size_t pos = 0;
+    while (((pos = text.find('\n', pos))!= std::string::npos) || ((pos = text.find('\r', pos))!= std::string::npos)) {
+        text.erase(pos, 1);
+    }
+    return text;
+}
+void Kham_benh_UI(Patient* &patient, Appoinment* &selected_app, listAppoinment &Appoinments)
+{   
+    listMedicalRecord medicalRecords;
+    map<string, string> solution_hint = medicalRecords.getSymptomSolutions();
+    auto screen = ScreenInteractive::Fullscreen();
+    Component Patient_id = Wrap("Mã bệnh nhân:", Renderer([&]
+                                                          { return text(patient->getID_patient()); }));
+    Component Full_name = Wrap("Họ và tên:", Renderer([&]()
+                                                      { return text(patient->getFullName()); }));
+    Component Phone_number = Wrap("Số điện thoại:", Renderer([&]
+                                                             { return text(patient->getPhone()); }));
+    Component DOB = Wrap("Ngày sinh:", Renderer([&]()
+                                                { return text(patient->getDayOfBirth().getDate()); }));
+    Component CCCD = Wrap("CCCD:", Renderer([&]()
+                                            { return text(patient->getCCCD()); }));
+    string Gender = (patient->getGender() ? "Nữ" : "Nam");
+    Component Patient_gender = Wrap("Giới tính:", Renderer([&]()
+                                                           { return text(Gender); }));
+    Component Address = Wrap("Địa chỉ:", Renderer([&]()
+                                                  { return text(patient->getAddress()); }));
+    Component a_ID = Wrap("Mã lịch khám:", Renderer([&]()
+                                                    { return text((*selected_app).getID()); }));
+    Component Symptom_text = Wrap("Triệu chứng:", Renderer([&]()
+                                                           { return paragraph((*selected_app).getDescription()); }));
+    string symptom, diagnosis, solution, msg_text = "";
+    Element msg = text(msg_text) | color(Color::Green);
+    Component msg_comp = Renderer([&]() {return msg;});
+    Component info_layout = Container::Vertical({
+        Patient_id,
+        Full_name,
+        Phone_number,
+        DOB,
+        CCCD,
+        Patient_gender,
+        Address,
+        a_ID,
+        Symptom_text,
+    });
+    Component input_layout = Container::Vertical({
+        Renderer([&](){
+            return vbox({
+                text("Triệu chứng:"),
+                // separator(),
+            });
+        }),
+        Input(&symptom, "Triệu chứng") | size(HEIGHT, GREATER_THAN, 1),
+        Renderer([&](){
+            return vbox({
+                separator(),
+                text("Chẩn đoán:"),
+            });
+        }),
+        Input(&diagnosis, "Chẩn đoán") | size(HEIGHT, GREATER_THAN, 1),
+        Renderer([&](){
+            return vbox({
+                separator(),
+                text("Hướng điều trị:"),
+            });
+        }),
+        Input(&solution, "Hướng điều trị") | size(HEIGHT, GREATER_THAN, 1),
+    });
+    Component button_layout = Container::Horizontal({
+        Button("Quay lại", [&]() { screen.ExitLoopClosure()(); }),
+        Button("Lưu và ghi đè hướng dẫn", [&]() {
+            Date date;
+            date.setCurrentDate();
+            string save_symptom, save_diagnosis, save_solution;
+            save_symptom = delete_break_line(symptom);
+            save_diagnosis = delete_break_line(diagnosis);
+            save_solution = delete_break_line(solution);
+            solution_hint[save_symptom] = save_solution;
+            medicalRecords.addMedicalRecord(patient->getID_patient(), save_symptom, save_diagnosis, date.getDate());
+            selected_app->setIsProcessed(true);
+            // Appoinments.writeAppointmentsToFile();
+            msg = text("Đã lưu thông tin khám bệnh thành công!") | color(Color::Green);
+        }),
+    });
+    Component exam_layout = Container::Vertical({
+        info_layout | border,
+        input_layout | border,
+        msg_comp,
+        button_layout,
+    
+    }) | border | size(WIDTH, EQUAL, 80) ;
+    Component hint_button = Container::Vertical({});
+    for (const auto& it : solution_hint) {
+        hint_button->Add(Button(it.first, [&](){diagnosis = it.first; solution = it.second; }, Btn_animated_opt1()));
+    }
+    Component hint_layout = Container::Vertical({
+        Renderer([&](){return vbox({
+            text("Gợi ý hướng điều trị:"),
+            separator(),
+        });}),
+        hint_button | vscroll_indicator | frame,
+    }) | border | size(WIDTH, EQUAL, 80);
+    Component main_layout = Container::Horizontal({
+        exam_layout,
+        hint_layout | align_right,
+        });
+    screen.Loop(main_layout);
+}
+void Chọn_lich_kham_UI(listPatient &patients)
+{
+    auto screen = ScreenInteractive::Fullscreen();
+    listAppoinment appointments;
+    Date today;
+    today.setCurrentDate();
+    string current_date = today.getDate();
+    vector<Appoinment*> today_appointments = appointments.getAppointmentsByDateRange(current_date, current_date);
+    Appoinment *selected_appoinment = nullptr;
+    Patient *selected_patient = nullptr;
+    vector<Patient*> filtered_patients;
+    Component appointment_list = Container::Vertical({});
+    for(auto &app : today_appointments)
+    {   
+        if(app->getStatus() && !app->getIsProcessed())
+        {   
+            filtered_patients = patients.searchPatient(SearchField::ID, app->getPatientID());
+            string fullname = filtered_patients[0]->getFullName();
+            string Patient_id = filtered_patients[0]->getID_patient();
+            appointment_list->Add(Button(("  " + app->getID() + "   " + (app->getDate().getDate()) + "    " + GioKham(app->getTime()) + "       " + Patient_id + string(8- Patient_id.size(), ' ') + fullname), 
+            [&](){
+                selected_appoinment = app;
+                selected_patient = filtered_patients[0];
+                Kham_benh_UI(selected_patient, selected_appoinment, appointments);
+        }, Btn_animated_opt1()));
+        }
+    }
+    Element header_text = text("Danh sách lịch khám") | bold | center;
+    Element tb_text = text(" Mã lịch khám    Ngày hẹn        Giờ hẹn    Mã bệnh nhân  Tên bệnh nhân") | bold;
+    //| vscroll_indicator | frame |
+    Component exit_btn = Button("Quay lại", [&]
+                                { screen.ExitLoopClosure()(); }, btn_style1());
+    Component app_list_layout = Container::Vertical({
+        Container::Vertical({
+            Renderer([&](){
+            return vbox({
+                header_text | hcenter,
+                separator(),
+                tb_text,
+                separator(),
+            });
+        }),
+        appointment_list | vscroll_indicator | frame,
+        }) | size(HEIGHT, GREATER_THAN, 3) | border | hcenter,
+        exit_btn | hcenter,
+    }) |size(WIDTH, GREATER_THAN, 80)| hcenter;
+    screen.Loop(app_list_layout);
+}
+void TK_Tuoi_GT(listPatient &patients)
+{
+    ScreenInteractive screen = ftxui::ScreenInteractive::Fullscreen();
+    Date today;
+    today.setCurrentDate();
+    Date _18_sai = today;
+    Date _60_sai = today;
+    _18_sai.setYear(today.getYear() - 18);
+    _60_sai.setYear(today.getYear() - 60);
+    if (isLeapYear(today.getYear()) && today.getMonth() == 2 && today.getDay() == 29)
+    {
+        if(!isLeapYear(_18_sai.getYear()))
+        {
+            _18_sai.setDay(28);
+        }
+        if(!isLeapYear(_60_sai.getYear()))
+        {
+            _60_sai.setDay(28);
+        }
+    }
+    int count_18 = 0, count_18_m = 0, count_18_f = 0, count_60 = 0, count_60_m = 0, count_60_f = 0, count_60p = 0, count_60p_m = 0, count_60p_f = 0;
+    int total = patients.size();
+
+    for (int i = 0; i < total; i++)
+    {   
+        Patient *patient = patients.get(i);
+        if(patient->getDayOfBirth() >= _18_sai)
+        {
+            count_18++;
+            if(patients.get(i)->getGender() == 0)
+            {
+                count_18_m++;
+            }
+            else
+            {
+                count_18_f++;
+            }
+        }else
+        if (patient->getDayOfBirth() <= _60_sai)
+        {
+            count_60p++;
+            if(patients.get(i)->getGender() == 0)
+            {
+                count_60p_m++;
+            }
+            else
+            {
+                count_60p_f++;
+            }
+            
+        }else
+        {
+            count_60++;
+            if(patients.get(i)->getGender() == 0)
+            {
+                count_60_m++;
+            }
+            else
+            {
+                count_60_f++;
+            }
+            
+        }
+        
+    }
+    Component table = Renderer([&](){
+        return vbox({
+            hbox({
+            text("Độ tuổi") | size(WIDTH, EQUAL, 17),
+            separator(),
+            text("Số lượng") | size(WIDTH, EQUAL, 8),
+            separator(),
+            text("Tỷ lệ") | size(WIDTH, EQUAL, 7) | hcenter,
+            separator(),
+            text("Giới tính") | size(WIDTH, EQUAL, 9),
+            separator(),
+            text("Số lượng") | size(WIDTH, EQUAL, 15),
+            separator(),
+            text("Tỷ lệ/độ tuổi") | size(WIDTH, EQUAL, 13),
+            separator(),
+            text("Tỷ lệ/tổng số") | size(WIDTH, EQUAL, 13),
+            }),
+            separator(),
+            hbox({
+                text("Dưới 18 tuổi") | size(WIDTH, EQUAL, 17) | vcenter,
+                separator(),
+                text(to_string(count_18)) | size(WIDTH, EQUAL, 8) | vcenter | hcenter,
+                separator(),
+                text(format("{:.2f}",(double) ((total != 0) ? (100* count_18 / total) : 0)) + "%") | size(WIDTH, EQUAL, 7) | vcenter | hcenter,
+                vbox({
+                    hbox({
+                        separator(),
+                        text("Nam") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_18_m)) | size(WIDTH, EQUAL, 15) | center,
+                        separator(),
+                        text(format("{:.2f}", (double) ((count_18 != 0) ? (100.0 * count_18_m / count_18) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}", (double) ((total != 0) ? (100.0 * count_18_m / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                    separator(),
+                    hbox({
+                        separator(),
+                        text("Nữ") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_18_f)) | size(WIDTH, EQUAL, 15) | center,
+                        separator(),
+                        text(format("{:.2f}",(double) ((count_18 != 0) ? (100.0 * count_18_f / count_18) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}", (double) ((total != 0) ? (100.0 * count_18_f / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                    })
+            }),
+            separator(),
+            hbox({
+                text("Từ 18 đến 60 tuổi") | size(WIDTH, EQUAL, 17) | vcenter,
+                separator(),
+                text(to_string(count_60)) | size(WIDTH, EQUAL, 8) | vcenter | hcenter,
+                separator(),
+                text(format("{:.2f}", (double) ((total != 0) ? (100.0 * count_60 / total) : 0)) + "%") | size(WIDTH, EQUAL, 7) | vcenter | hcenter,
+                vbox({
+                    hbox({
+                        separator(),
+                        text("Nam") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_60_m)) | size(WIDTH, EQUAL, 15),
+                        separator(),
+                        text(format("{:.2f}",(double) ((count_60 != 0) ? (100.0 * count_60_m / count_60) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}",(double) ((total != 0) ? (100.0 * count_60_m / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                        separator(),
+                    hbox({
+                        separator(),
+                        text("Nữ") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_60_f)) | size(WIDTH, EQUAL, 15),
+                        separator(),
+                        text(format("{:.2f}", (double) ((count_60 != 0) ? (100.0 * count_60_f / count_60) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}", (double) ((total != 0 ) ? (100.0 * count_60_f / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                    })
+                }),
+            separator(),
+            hbox({
+                text("Trên 60 tuổi") | size(WIDTH, EQUAL, 17) | vcenter,
+                separator(),
+                text(to_string(count_60p)) | size(WIDTH, EQUAL, 8) | vcenter | hcenter,
+                separator(),
+                text(format("{:.2f}", (double) ((total != 0 ) ? (100.0 * count_60p / total) : 0)) + "%") | size(WIDTH, EQUAL, 7) | vcenter | hcenter,
+                vbox({
+                    hbox({
+                        separator(),
+                        text("Nam") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_60p_m)) | size(WIDTH, EQUAL, 15),
+                        separator(),
+                        text(format("{:.2f}", (double) ((count_60p != 0) ? (100.0 * count_60p_m / count_60p) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}", (double) ((total != 0 ) ? (100.0 * count_60p_m / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                        separator(),
+                    hbox({
+                        separator(),
+                        text("Nữ") | size(WIDTH, EQUAL, 9),
+                        separator(),
+                        text(to_string(count_60p_f)) | size(WIDTH, EQUAL, 15),
+                        separator(),
+                        text(format("{:.2f}", (double) ((count_60p != 0) ? (100.0 * count_60p_f / count_60p) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        separator(),
+                        text(format("{:.2f}", (double) ((total != 0 ) ? (100.0 * count_60p_f / total) : 0)) + "%") | size(WIDTH, EQUAL, 13),
+                        }),
+                    }),
+            }),
+    });
+    }) | border | hcenter;
+    Component layout = Container::Vertical({
+        table,
+        Button("Thoát", [&]() { screen.ExitLoopClosure()(); }) | hcenter,
+    });
+    screen.Loop(layout);
+    
+}
+void Thong_ke_lich_kham()
+{
+    listAppoinment Appointments;
+    auto screen = ftxui::ScreenInteractive::Fullscreen();
+    vector<Appoinment*> filteredAppoinments;
+    int count[8][9];
+    
+    string start_date, end_date;
+    start_date = "01/01/1900";
+    Date startDate, endDate;
+    endDate.setCurrentDate();
+    end_date = endDate.getDate();
+    auto count_process = [&]() -> void{
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 9; j++)
+                count[i][j] = 0;
+        }
+        filteredAppoinments = Appointments.getAppointmentsByDateRange(start_date, end_date);
+        for(auto &appoinment : filteredAppoinments)
+        {
+            count[appoinment->getTime()][appoinment->getDate().getWeekDay()]++;
+        }
+        for(int i = 0; i < 7; i++)
+        {
+            count[i][8]+= count[i][0] + count[i][1] + count[i][2] + count[i][3] + count[i][4] + count[i][5] + count[i][6];
+            
+        }
+        for(int j = 0; j < 9; j++)
+        {
+            count[7][j]+= count[0][j] + count[1][j] + count[2][j] + count[3][j] + count[4][j] + count[5][j] + count[6][j];
+        }
+    };
+    count_process();
+    const int x_1 = 13;
+    auto table_element = [&](string thu, int i) -> Element {
+        return hbox({
+                text(thu) | size(WIDTH, EQUAL, x_1) | size(HEIGHT, EQUAL, 2) | vcenter,
+                separator(),
+                vbox({
+                    hbox({
+                        text("Số lượng") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][0])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][1])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][2])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][3])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][4])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][5])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][6])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][7])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[i][8])) | size(WIDTH, EQUAL, x_1),
+                        }),
+                    separator(),
+                    hbox({
+                        text("Tỷ lệ") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][0] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][1] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][2] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][3] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][4] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][5] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][6] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][7] / count[i][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[i][8] != 0) ? (100 * count[i][8] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        // separator(),
+                        }),
+                    })
+                });
+    };
+    // Element thu2 = table_element("Thứ 2", 1);
+    Component table = Renderer([&](){
+        return vbox({
+            hbox({
+                text("")|size(WIDTH, EQUAL, 27),
+                separator(),
+                text("07:30 - 08:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("08:30 - 09:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("09:30 - 10:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("10:30 - 11:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("13:30 - 14:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("14:30 - 15:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("15:30 - 16:30")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("16:30 - 17:00")|size(WIDTH, EQUAL, x_1),
+                separator(),
+                text("Ngày/Tuần")|size(WIDTH, EQUAL, x_1),
+            }),
+            separator(),
+            table_element("Thứ 2", 1),
+            separator(),
+            table_element("Thứ 3", 2),
+            separator(),
+            table_element("Thứ 4", 3),
+            separator(),
+            table_element("Thứ 5", 4),
+            separator(),
+            table_element("Thứ 6", 5),
+            separator(),
+            table_element("Thứ 7", 6),
+            separator(),
+            table_element("Chủ nhật", 0),
+            separator(),
+            hbox({
+                text("") | size(WIDTH, EQUAL, x_1) | size(HEIGHT, EQUAL, 2) | vcenter,
+                separator(),
+                vbox({
+                    hbox({
+                        text("Tổng số") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][0])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][1])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][2])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][3])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][4])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][5])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][6])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][7])) | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(to_string(count[7][8])) | size(WIDTH, EQUAL, x_1),
+                        }),
+                    separator(),
+                    hbox({
+                        text("Tỷ lệ/tuần") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][0] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][1] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][2] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][3] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][4] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][5] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][6] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][7] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        separator(),
+                        text(format("{:.2f}", ((double) ((count[7][8] != 0) ? (100 * count[7][8] / count[7][8]) : 0) )) + "%") | size(WIDTH, EQUAL, x_1),
+                        // separator(),
+                        }),
+                    })
+            })
+        }) | border | size(WIDTH, EQUAL, (25 + x_1 * 10)) | size(HEIGHT, EQUAL, 33) | hcenter;
+    });
+    Component msg1 = Renderer([&]{return text(((ValidateDate(start_date) ? "" : "Ngày bắt đầu không hợp lệ!")));}) | color(Color::Red);
+    Component msg2 = Renderer([&]{return text(((ValidateDate(end_date) ? "" : "Ngày kết thúc không hợp lệ!")));}) | color(Color::Red);
+    Component input_start_date = Input(&start_date, "dd/mm/yyyy");
+    Component input_end_date = Input(&end_date, "dd/mm/yyyy");
+    Component layout = Container::Vertical({
+        Container::Horizontal({
+            Container::Vertical({
+                Renderer([&]{return text("Ngày bắt đầu:");}),
+                Input(&start_date, "dd/mm/yyyy"),
+                msg1,
+            }) | size(WIDTH, EQUAL, 40),
+            Container::Vertical({
+                Renderer([&]{return text("Ngày kết thúc:");}),
+                Input(&end_date, "dd/mm/yyyy"),
+                msg2,
+            }) | size(WIDTH, EQUAL, 40),
+            Renderer([&]{return separatorEmpty() | size(WIDTH, EQUAL, 20);}),
+            Button(" Tìm kiếm ", [&]() { if(ValidateDate(start_date) && ValidateDate(end_date)) {count_process();} }) | align_right,
+        }) | border |  size(WIDTH, EQUAL, (25 + x_1 * 10)) | hcenter,
+        table,
+        Button("Trở về", [&]() { screen.ExitLoopClosure()(); }) | hcenter,
+    });
+    screen.Loop(layout);
+}
+void Thong_ke_UI(listPatient &Patients)
+{
+    auto screen = ftxui::ScreenInteractive::Fullscreen();
+    Component ThongKe_ten_benh = Button("Thống kê theo tên bệnh", [&]()
+                                             { TK_ten_benh(); });
+    Component ThongKe_GT_DT= Button("Thống kê theo độ tuổi và giới tính", [&]()
+                                              {  TK_Tuoi_GT(Patients);});
+    
+    Component ThongKe_ngay_gio_cao_diem = Button("Thống kê ngày cao điểm trong tuần", [&]()
+                                               { Thong_ke_lich_kham(); });
+    Component layout = Container::Vertical({
+        Renderer([&](){return vbox({
+            text("Thống kê"),
+            separator(),
+        });
+    }),
+        ThongKe_ten_benh,
+        ThongKe_GT_DT,
+        ThongKe_ngay_gio_cao_diem,
+    }) | border | size(WIDTH, GREATER_THAN, 80);
+    screen.Loop(layout);
+}
 void Admin_UI()
 {
     auto screen = ftxui::ScreenInteractive::Fullscreen();
     listPatient admin_ListPatient;
     // admin_ListPatient.readListPatientFromFile();
     Component QL_benhNhan = Button("Quản lý bệnh nhân", [&]()
-                                   { QLBN_UI(admin_ListPatient); });
+                                   { QLBN_searchBN(admin_ListPatient); });
     Component QL_taikhoan = Button("Quản lý tài khoản", [&]()
                                    { QLTK(admin_ListPatient); });
     Component QL_benhAn = Button("Quản lý bệnh án", [&]()
                                  { QLBA_UI(admin_ListPatient); });
-    Component Kham_benh = Button("Khám bệnh", [&]() {});
+    Component Kham_benh = Button("Khám bệnh", [&]() {
+        Chọn_lich_kham_UI(admin_ListPatient); });
     Component ThongKe = Button("Thống kê", [&]()
-                               { Analyse_UI(); });
+                               { Thong_ke_UI(admin_ListPatient); });
     Component Thoat = Button("Đăng xuất", [&]()
                              { screen.ExitLoopClosure()(); });
 

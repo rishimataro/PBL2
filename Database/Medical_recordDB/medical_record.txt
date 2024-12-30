@@ -23,3 +23,6 @@ MR22;P22;Ho có đờm, thở khò khè, sốt cao, khó thở từng cơn;Viêm
 MR23;P23;Đau khớp gối, sốt, sưng đau ở các khớp, khó cử động;Viêm khớp dạng thấp;19/07/2023
 MR24;P24;Mệt mỏi kéo dài, khó thở, chóng mặt, dễ bị choáng ngất;Thiếu máu;22/07/2021
 MR25;P25;Đau bụng âm ỉ, buồn nôn, cảm giác mệt mỏi, ăn không thấy ngon;Rối loạn tiêu hóa cấp;25/07/2022
+MR26;P8;Đau đầu;Đau đầu;28/12/2024
+MR27;P8;Đau bụng;Đau bụng;29/12/2024
+MR28;P8;Đau bụng;Đau bụng;29/12/2024

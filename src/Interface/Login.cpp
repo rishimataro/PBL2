@@ -1,20 +1,5 @@
 #include <Interface/Login.hpp>
-bool valid_password(const string& password) {
-    if (password.length() < 8) {
-        return false;
-    }
-    if (!regex_search(password, regex("[a-zA-Z]"))) {
-        return false;
-    }
-    if (!regex_search(password, regex("[0-9]"))) {
-        return false;
-    }
-    if (!regex_search(password, regex("[!@#$%^&*()_+=-\\[\\]{};':\"\\\\|,.<>/?]"))) {
-        return false;
-    }
-    return true;
-    
-}
+
 void signup_UI(listAccount &accounts, listPatient &patients)
 {   
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
@@ -54,7 +39,7 @@ void signup_UI(listAccount &accounts, listPatient &patients)
         else
         {
 
-            Account *account;
+            AccountUser *account;
             // listAccount accounts;
             // accounts.readListAccountFromFile();
             int signup_return = accounts.signUp(account, username, password);
@@ -77,8 +62,8 @@ void signup_UI(listAccount &accounts, listPatient &patients)
                 // patients.writeListPatientToFile(0);
                 // patients.writePatientToFile(patients.size() - 1);
                 user->setID_patient(patient->getID_patient());
-                accounts.set(accounts.size() - 1, account);
-                accounts.writeListAccountToFile(1, 1);
+                // accounts.
+                accounts.writeListAccountToFile(0, 1);
                 // screen.ExitLoopClosure()();
                 return;
             }
@@ -100,20 +85,87 @@ void signup_UI(listAccount &accounts, listPatient &patients)
     });
     Component signup_renderer = Renderer(Signup_container, [&](){
         return vbox({
-            text("Đăng ký tài khoản") | hcenter,
-            separator(),
-            username_input->Render(),
-            password_input->Render(),
-            confirm_password_input->Render(),
-            text(signup_announce_msg) | hcenter,
-            separator(),
+            vbox({
+                text("Đăng ký tài khoản") | hcenter,
+                separator(),
+                username_input->Render(),
+                password_input->Render(),
+                confirm_password_input->Render(),
+                text(signup_announce_msg) | hcenter,
+            })| size(WIDTH, EQUAL, 80) | size(HEIGHT, EQUAL, 6) | border | hcenter,
             hbox({
                 exit_button->Render(),
                 signup_button->Render(),
-            }),
+            }) | hcenter,
+            
         });
-    }) | size(WIDTH, EQUAL, 80) | size(HEIGHT, EQUAL, 10) | border | hcenter;
+    }) ;
     screen.Loop(signup_renderer);
+}
+void forgot_password_UI(listAccount &accounts)
+{
+    auto screen = ScreenInteractive::Fullscreen();
+    string username, new_password, confirm_password, CCCD;
+    Element msg = text("");
+    ftxui::InputOption input_pw_opt;
+    input_pw_opt.password = true;
+    Component forgot_password_form = Container::Vertical({
+        Renderer([&]{return vbox({
+            text("Quên mật khẩu") | hcenter,
+            separator(),
+        });}),
+        Container::Horizontal({Renderer([&]
+                                { return vbox({
+                                    text("Tên đăng nhập:"),
+                                    text("Số CCCD:"),
+                                    text("Mật khẩu mới:"),
+                                    text("Xác nhận mật khẩu:"),
+                                }); }),
+                                Renderer([&]
+                                            { return separator(); }),
+                                Container::Vertical({
+                                     Input(&username, "Tên đăng nhập:"),
+                                     Input(&CCCD, "Số CCCD:"),
+                                     Input(&new_password, "Mật khẩu mới:", input_pw_opt),
+                                     Input(&confirm_password, "Xác nhận mật khẩu:", input_pw_opt),
+                                }) | size(WIDTH, EQUAL, 50),
+                                }) | border,
+            Renderer([&]
+            { return msg; }) | hcenter,
+            Container::Horizontal({
+                Button("Quay lại", [&] {
+                    // Exit the application
+                    screen.ExitLoopClosure()();
+                }),
+            Button("Khôi phục mật khẩu", [&] {
+                if(username.empty() || CCCD.empty() || new_password.empty() || confirm_password.empty())
+                {
+                    msg = text("Vui lòng điền đầy đủ thông tin!");
+
+                }else if (new_password!= confirm_password)
+                {
+                    msg = text("Vui lòng nhập lại mật khẩu đúng!");
+                }else if (!valid_password(new_password))
+                {
+                    msg = text("Mật khẩu phải có ít nhất 8 ký tự và bao gồm chữ cái, số và ký tự đặc biệt.");
+                }
+                else
+                {
+                    Account *account;
+                    int result = accounts.forgotPassword(account, CCCD, username, new_password, confirm_password);
+                    if (result == 1) {
+                        msg = text("Khôi phục mật khẩu thành công!") | color(Color::Green);
+                    }else if (result != -3)
+                    {
+                        msg = text("Tên đăng nhập hoặc Số CCCD không đúng!") | color(Color::Red);
+                    }
+                }
+                
+                
+            }),
+        }) | hcenter
+    }) | hcenter;
+    screen.Loop(forgot_password_form);
 }
 void loginUI()
 {   
@@ -132,9 +184,9 @@ void loginUI()
 
     listAccount accounts;
     Account *account;
-    accounts.readListAccountFromFile();
+    // accounts.readListAccountFromFile();
     listPatient patients;
-    patients.readListPatientFromFile();
+    // patients.readListPatientFromFile();
 
     Component login_button = Button("Đăng nhập", [&] {
         if (username.empty() || password.empty()) {
@@ -155,19 +207,23 @@ void loginUI()
             // patients.readListPatientFromFile();
             string pt_id = patient_account->getID_patient();
             vector<Patient*> ls_Patients = patients.searchPatient(SearchField::ID, patient_account->getID_patient());
-            Patient_UI(ls_Patients[0], patients);
+            Patient_UI(ls_Patients[0], patients, accounts, patient_account);
         }else if(login_result == 0) {
             Admin_UI();
         }
 
 
-    });
+    }) | hcenter;
 
     Component switch_signUP = Button("Đăng ký", [&] {
         // Navigate to registration screen
         signup_UI(accounts, patients);
-    });
-    Component exit_button = Button("Exit", [&] { screen.ExitLoopClosure()(); });
+    }) | hcenter;
+    Component forgot_password_button = Button("Quên mật khẩu?", [&] {
+        // Navigate to password reset screen
+        forgot_password_UI(accounts);
+    }) | hcenter;
+    Component exit_button = Button("       Thoát       ", [&] { screen.ExitLoopClosure()(); }) | hcenter;
 
     auto container = Container::Vertical(Components{
         username_input,
@@ -182,24 +238,38 @@ void loginUI()
     auto renderer = Renderer(container, [&] {
         return vbox({
                    username_input->Render() | borderStyled(ROUNDED) |
-                       size(WIDTH, EQUAL, 50),
+                       size(WIDTH, EQUAL, 55),
                    password_input->Render() | borderStyled(ROUNDED) |
-                       size(WIDTH, EQUAL, 50),
+                       size(WIDTH, EQUAL, 55),
                    text(login_msg) | bold | color(Color::Red),
                    hbox({
-                       login_button->Render() |
-                           size(WIDTH, EQUAL, 25) | center,
-                       switch_signUP->Render() |
-                           size(WIDTH, EQUAL, 25) | center,
-                   }),
+                       login_button->Render() | center,
+                       separatorEmpty() | size(WIDTH, EQUAL, 3),
+                       switch_signUP->Render() | center,
+                       separatorEmpty() | size(WIDTH, EQUAL, 3),
+                           forgot_password_button->Render() | center,
+                   }) | hcenter,
                    exit_button->Render() |
                        size(WIDTH, EQUAL, 25) | center,
  
                }) |
-               border | center | hcenter;
+               border | center;
     });
- 
-    screen.Loop(renderer);
+    Component Main_layout = Container::Vertical({
+        username_input | borderStyled(ROUNDED) | size(WIDTH, EQUAL, 55),
+        password_input | borderStyled(ROUNDED) | size(WIDTH, EQUAL, 55),
+        Renderer([&]{return text(login_msg) | bold | color(Color::Red); }) | hcenter,
+        Container::Horizontal({
+            login_button | center,
+            Renderer([&]{return separatorEmpty()|size(WIDTH, EQUAL, 3);}),
+            switch_signUP | center,
+            Renderer([&]{return separatorEmpty()|size(WIDTH, EQUAL, 3);}),
+            forgot_password_button | center,
+        }) | hcenter,
+        exit_button | center
+
+    })|border | center;
+    screen.Loop(Main_layout);
 
 
 }

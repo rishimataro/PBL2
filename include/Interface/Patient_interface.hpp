@@ -7,6 +7,9 @@
 #include "Management/date.hpp"
 #include "Management/listMedicalRecord.hpp"
 #include "Management/listPatient.hpp"
+#include "Management/listAppoinment.hpp"
+#include "Management/listAccount.hpp"
+#include "Header/Header.hpp"
 #include <chrono>  // for system_clock
 #include <iomanip> // for put_time
 #include <ctime>   // for time_t
@@ -39,4 +42,4 @@ void P_Appoinment_info_UI(Patient &patient);
 void Appoinment_UI(Patient &patient);
 string Greeting(const std::string &name);
 void Med_record_UI(Patient &patient);
-void Patient_UI(Patient* &patient, listPatient &patients);
+void Patient_UI(Patient* &patient, listPatient &patients, listAccount &accounts, AccountUser* &current_account);

@@ -1,5 +1,5 @@
-#ifndef LISTMEDICALRECORD_H
-#define LISTMEDICALRECORD_H
+#ifndef LISTMEDICALRECORD_HPP
+#define LISTMEDICALRECORD_HPP
 #include <Management/MedicalRecord.hpp>
 #include <Template/LinkedList.hpp>
 #include <Header/Header.hpp>
@@ -19,7 +19,7 @@ class listMedicalRecord : public LinkedList<MedicalRecord>
         vector<MedicalRecord*> setMedicalRecordsByPatientID(const string& patientID);
         vector<MedicalRecord*> setMedicalRecordsByDiagnosis(const string& diagnosis);
         vector<MedicalRecord*> setMedicalRecordsByRecordRange(const string &startDate, const string &endDate);
-        vector<pair<string, int>> setDiagnosisCount(); // Thống kê số lượng chẩn đoán theo bệnh phổ biến
+        vector<pair<string, int>> setDiagnosisCount();
 
         void addMedicalRecord(const string& patientID, const string& symptoms, const string& diagnosis, const string& dateOfRecord);
 
@@ -32,7 +32,7 @@ class listMedicalRecord : public LinkedList<MedicalRecord>
         vector<MedicalRecord*> searchMedicalRecord(SearchField_MR field, const string& value);
 
         // Phân tích các bệnh phổ biến và đưa ra giải pháp
-        string analyzeDiagnosisAndProvideSolutions(const string& diagnosis);
+        string analyzeDiagnosisAndProvideSolutions(MedicalRecord* record, const string& diagnosis);
         bool appendDiagnosisSolutionToFile(const string& diagnosis, const string& solution);
         void loadSymptomSolutionsFromFile();
         map<string, string> getSymptomSolutions();

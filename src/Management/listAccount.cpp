@@ -53,7 +53,7 @@ bool listAccount::writeListAccountToFile(bool check, bool isUser) {
         char lastChar;
         
         if (fiUser.is_open()) {
-            fiUser.seekg(-1, ios::end);  // Di chuyển con trỏ đến cuối tệp
+            fiUser.seekg(-1, ios::end);
             fiUser.get(lastChar);
             if (lastChar != '\n' && lastChar != '\0') {
                 ofstream temp(file_path_user, ios::app);
@@ -84,7 +84,7 @@ bool listAccount::writeListAccountToFile(bool check, bool isUser) {
         char lastChar;
         
         if (fiAdmin.is_open()) {
-            fiAdmin.seekg(-1, ios::end);  // Di chuyển con trỏ đến cuối tệp
+            fiAdmin.seekg(-1, ios::end);
             fiAdmin.get(lastChar);
             if (lastChar != '\n' && lastChar != '\0') {
                 ofstream temp(file_path_admin, ios::app);
@@ -98,9 +98,8 @@ bool listAccount::writeListAccountToFile(bool check, bool isUser) {
         if (!foAdmin.is_open()) return false;
 
         if(check) {
-            // int totalAdmin = this->setCountRole(false), total = this->size();   
-            int totalUser = this->setCountRole(true), total = this->size(); 
-            for (int i = totalUser; i < total; i++) {
+            int totalAdmin = this->setCountRole(false), total = this->size();   
+            for (int i = totalAdmin; i < total; i++) {
                 Account* acc = reinterpret_cast<Account*>(this->get(i));
                 acc->writeToFile(foAdmin);
             }
@@ -159,18 +158,17 @@ vector<Account*> listAccount::setAllAccount() {
 }
 
 // * Sign Up & Sign In
-int listAccount::signUp(Account* &account, const string &tmpUserName, const string &tmpPassword) {
+int listAccount::signUp(AccountUser* &account, const string &tmpUserName, const string &tmpPassword) {
     if (checkUserName(tmpUserName) != -1)
         return -1;
 
-    auto newAccount = std::make_unique<AccountUser>();
-    newAccount->setID();
-    newAccount->setUserName(tmpUserName);
-    newAccount->setPassword(tmpPassword);
+    account = new AccountUser();
+    account->setUserName(tmpUserName);
+    account->setPassword(tmpPassword);
+    account->setID();
 
-    this->append(reinterpret_cast<Account*>(newAccount.release())); // Release ownership to the list
-    this->writeListAccountToFile(false, true);
-    account = newAccount.release(); // Transfer ownership to account
+    this->append(reinterpret_cast<Account*>(account));
+
     return 1;
 }
 int listAccount::allocateAdminAccount(Account* &account, const string &tmpUserName, const string &tmpPassword)
@@ -190,8 +188,8 @@ int listAccount::allocateAdminAccount(Account* &account, const string &tmpUserNa
 }
 
 int listAccount::signIn(Account* &account, const string &tmpUserName, const string &tmpPassword) {
-    if(!checkSignIn(tmpUserName, tmpPassword, account))
-        return -1;
+    if(checkSignIn(tmpUserName, tmpPassword, account))
+        return 1;
 
     return account->getID().rfind("USER", 0) == 0 ? 1 : 0;
 }
@@ -223,9 +221,9 @@ int listAccount::forgotPassword(Account* &account, const string &tmpCCCD, const 
         return -3;
 
     currentAccount->setPassword(tmpPass);
-    this->set(index, currentAccount);
+    // this->set(index, currentAccount);
     this->writeListAccountToFile(true, true);
-    
+
     account = currentAccount;
     return 1;
 }
@@ -233,9 +231,10 @@ int listAccount::forgotPassword(Account* &account, const string &tmpCCCD, const 
 // * Check
 int listAccount::checkCCCD(const string &CCCD)
 {
-    for (int i = 0; i < this->size(); i++) {
-        AccountUser* acc = reinterpret_cast<AccountUser*>(this->get(i));
-        if (acc->getCCCD() == CCCD) {
+    listPatient listPatient;
+    for (int i = 0; i < listPatient.size(); i++) {
+        Patient* patient = listPatient.get(i);
+        if (patient->getCCCD() == CCCD) {
             return i;
         }
     }

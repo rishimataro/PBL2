@@ -41,6 +41,7 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/bits/cpp_type_traits.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_forced.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_init_exception.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/deque.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/enable_special_members.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/erase_if.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/exception.h \
@@ -93,6 +94,18 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_util.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/refwrap.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_constants.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_error.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/requires_hosted.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr_atomic.h \
@@ -105,6 +118,7 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_algobase.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_bvector.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_construct.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/stl_deque.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_function.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_heap.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_iterator.h \
@@ -114,6 +128,7 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_multimap.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_pair.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_raw_storage_iter.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/stl_stack.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_tempbuf.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_tree.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_uninitialized.h \
@@ -132,6 +147,7 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/bits/utility.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/vector.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/version.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bitset \
   C:/msys64/mingw64/include/c++/14.2.0/cctype \
   C:/msys64/mingw64/include/c++/14.2.0/cerrno \
   C:/msys64/mingw64/include/c++/14.2.0/charconv \
@@ -148,6 +164,7 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/cwctype \
   C:/msys64/mingw64/include/c++/14.2.0/debug/assertions.h \
   C:/msys64/mingw64/include/c++/14.2.0/debug/debug.h \
+  C:/msys64/mingw64/include/c++/14.2.0/deque \
   C:/msys64/mingw64/include/c++/14.2.0/exception \
   C:/msys64/mingw64/include/c++/14.2.0/ext/aligned_buffer.h \
   C:/msys64/mingw64/include/c++/14.2.0/ext/alloc_traits.h \
@@ -179,8 +196,10 @@ CMakeFiles/lib.dir/src/Library/Filelib.cpp.obj: D:/Test_Code/PBL/PBL2/src/Librar
   C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
   C:/msys64/mingw64/include/c++/14.2.0/pstl/pstl_config.h \
   C:/msys64/mingw64/include/c++/14.2.0/ratio \
+  C:/msys64/mingw64/include/c++/14.2.0/regex \
   C:/msys64/mingw64/include/c++/14.2.0/span \
   C:/msys64/mingw64/include/c++/14.2.0/sstream \
+  C:/msys64/mingw64/include/c++/14.2.0/stack \
   C:/msys64/mingw64/include/c++/14.2.0/stdexcept \
   C:/msys64/mingw64/include/c++/14.2.0/stdlib.h \
   C:/msys64/mingw64/include/c++/14.2.0/streambuf \
@@ -528,6 +547,7 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/bits/cpp_type_traits.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_forced.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_init_exception.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/deque.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/enable_special_members.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/erase_if.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/exception.h \
@@ -580,6 +600,18 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_util.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/refwrap.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_constants.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_error.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.tcc \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/requires_hosted.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr_atomic.h \
@@ -592,6 +624,7 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_algobase.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_bvector.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_construct.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/stl_deque.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_function.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_heap.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_iterator.h \
@@ -601,6 +634,7 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_multimap.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_pair.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_raw_storage_iter.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bits/stl_stack.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_tempbuf.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_tree.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/stl_uninitialized.h \
@@ -619,6 +653,7 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/bits/utility.h \
   C:/msys64/mingw64/include/c++/14.2.0/bits/vector.tcc \
   C:/msys64/mingw64/include/c++/14.2.0/bits/version.h \
+  C:/msys64/mingw64/include/c++/14.2.0/bitset \
   C:/msys64/mingw64/include/c++/14.2.0/cctype \
   C:/msys64/mingw64/include/c++/14.2.0/cerrno \
   C:/msys64/mingw64/include/c++/14.2.0/charconv \
@@ -635,6 +670,7 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/cwctype \
   C:/msys64/mingw64/include/c++/14.2.0/debug/assertions.h \
   C:/msys64/mingw64/include/c++/14.2.0/debug/debug.h \
+  C:/msys64/mingw64/include/c++/14.2.0/deque \
   C:/msys64/mingw64/include/c++/14.2.0/exception \
   C:/msys64/mingw64/include/c++/14.2.0/ext/aligned_buffer.h \
   C:/msys64/mingw64/include/c++/14.2.0/ext/alloc_traits.h \
@@ -666,8 +702,10 @@ CMakeFiles/lib.dir/src/Library/Graphics.cpp.obj: D:/Test_Code/PBL/PBL2/src/Libra
   C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
   C:/msys64/mingw64/include/c++/14.2.0/pstl/pstl_config.h \
   C:/msys64/mingw64/include/c++/14.2.0/ratio \
+  C:/msys64/mingw64/include/c++/14.2.0/regex \
   C:/msys64/mingw64/include/c++/14.2.0/span \
   C:/msys64/mingw64/include/c++/14.2.0/sstream \
+  C:/msys64/mingw64/include/c++/14.2.0/stack \
   C:/msys64/mingw64/include/c++/14.2.0/stdexcept \
   C:/msys64/mingw64/include/c++/14.2.0/stdlib.h \
   C:/msys64/mingw64/include/c++/14.2.0/streambuf \
@@ -1258,6 +1296,8 @@ CMakeFiles/lib.dir/src/Library/Mouse.cpp.obj: D:/Test_Code/PBL/PBL2/src/Library/
 
 C:/msys64/mingw64/include/c++/14.2.0/charconv:
 
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.h:
+
 C:/msys64/mingw64/include/_bsd_types.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/locale_facets.h:
@@ -1291,6 +1331,8 @@ C:/msys64/mingw64/include/windef.h:
 C:/msys64/mingw64/include/_mingw_secapi.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/debug/assertions.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_init_exception.h:
 
@@ -1327,6 +1369,8 @@ C:/msys64/mingw64/include/c++/14.2.0/bits/atomic_wait.h:
 C:/msys64/mingw64/include/c++/14.2.0/bits/vector.tcc:
 
 C:/msys64/mingw64/include/apiset.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_scanner.tcc:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h:
 
@@ -1442,6 +1486,12 @@ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_construct.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/cxxabi_forced.h:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/movdirintrin.h:
+
+C:/msys64/mingw64/include/minwindef.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/deque.tcc:
+
 C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_algobase.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/enable_special_members.h:
@@ -1491,6 +1541,8 @@ C:/msys64/mingw64/include/c++/14.2.0/bits/locale_classes.tcc:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mmintrin.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx512bf16vlintrin.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_executor.tcc:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/locale_facets.tcc:
 
@@ -1572,6 +1624,34 @@ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avxvnniint16intrin.h
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/refwrap.h:
 
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex.tcc:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/amxbf16intrin.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.h:
+
+C:/msys64/mingw64/include/sec_api/conio_s.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/cstdlib:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_automaton.tcc:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_compiler.tcc:
+
+C:/msys64/mingw64/include/wnnc.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_constants.h:
+
+D:/Test_Code/PBL/PBL2/include/Header/Header.hpp:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm3dnow.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/regex_error.h:
+
 C:/msys64/mingw64/include/urlmon.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr.h:
@@ -1605,6 +1685,12 @@ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_algobase.h:
 C:/msys64/mingw64/include/errno.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/stl_bvector.h:
+
+C:/msys64/mingw64/include/pthread_signal.h:
+
+C:/msys64/mingw64/include/memoryapi.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/stl_deque.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avxneconvertintrin.h:
 
@@ -1644,6 +1730,10 @@ C:/msys64/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/stl_raw_storage_iter.h:
 
+C:/msys64/mingw64/include/stringapiset.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/bits/stl_stack.h:
+
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx512bitalgvlintrin.h:
 
 C:/msys64/mingw64/include/pshpack4.h:
@@ -1678,6 +1768,8 @@ C:/msys64/mingw64/include/c++/14.2.0/bits/uses_allocator_args.h:
 
 C:/msys64/mingw64/include/c++/14.2.0/bits/utility.h:
 
+C:/msys64/mingw64/include/c++/14.2.0/bitset:
+
 C:/msys64/mingw64/include/c++/14.2.0/cctype:
 
 C:/msys64/mingw64/include/timezoneapi.h:
@@ -1700,10 +1792,6 @@ C:/msys64/mingw64/include/c++/14.2.0/cstddef:
 
 C:/msys64/mingw64/include/c++/14.2.0/cstdio:
 
-C:/msys64/mingw64/include/sec_api/conio_s.h:
-
-C:/msys64/mingw64/include/c++/14.2.0/cstdlib:
-
 C:/msys64/mingw64/include/c++/14.2.0/ctime:
 
 C:/msys64/mingw64/include/c++/14.2.0/cwchar:
@@ -1715,6 +1803,8 @@ C:/msys64/mingw64/include/c++/14.2.0/cwctype:
 C:/msys64/mingw64/include/c++/14.2.0/iomanip:
 
 C:/msys64/mingw64/include/c++/14.2.0/debug/debug.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/deque:
 
 C:/msys64/mingw64/include/c++/14.2.0/exception:
 
@@ -1776,9 +1866,21 @@ D:/Test_Code/PBL/PBL2/src/Library/Mouse.cpp:
 
 C:/msys64/mingw64/include/c++/14.2.0/pstl/pstl_config.h:
 
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/tbmintrin.h:
+
+C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx2intrin.h:
+
+C:/msys64/mingw64/include/mmiscapi.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/regex:
+
 C:/msys64/mingw64/include/c++/14.2.0/span:
 
 C:/msys64/mingw64/include/c++/14.2.0/sstream:
+
+C:/msys64/mingw64/include/excpt.h:
+
+C:/msys64/mingw64/include/c++/14.2.0/stack:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/shaintrin.h:
 
@@ -1874,8 +1976,6 @@ C:/msys64/mingw64/include/driverspecs.h:
 
 C:/msys64/mingw64/include/errhandlingapi.h:
 
-C:/msys64/mingw64/include/excpt.h:
-
 C:/msys64/mingw64/include/winscard.h:
 
 C:/msys64/mingw64/include/fibersapi.h:
@@ -1932,25 +2032,11 @@ C:/msys64/mingw64/include/objidl.h:
 
 C:/msys64/mingw64/include/malloc.h:
 
-C:/msys64/mingw64/include/pthread_signal.h:
-
-C:/msys64/mingw64/include/memoryapi.h:
-
 C:/msys64/mingw64/include/minwinbase.h:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/movdirintrin.h:
-
-C:/msys64/mingw64/include/minwindef.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h:
 
 C:/msys64/mingw64/include/mmeapi.h:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/tbmintrin.h:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx2intrin.h:
-
-C:/msys64/mingw64/include/mmiscapi.h:
 
 C:/msys64/mingw64/include/mmsyscom.h:
 
@@ -2058,8 +2144,6 @@ C:/msys64/mingw64/include/stdlib.h:
 
 C:/msys64/mingw64/include/string.h:
 
-C:/msys64/mingw64/include/stringapiset.h:
-
 C:/msys64/mingw64/include/synchapi.h:
 
 D:/Test_Code/PBL/PBL2/include/Library/Graphics.hpp:
@@ -2112,15 +2196,11 @@ C:/msys64/mingw64/include/winuser.h:
 
 C:/msys64/mingw64/include/winver.h:
 
-C:/msys64/mingw64/include/wnnc.h:
-
 C:/msys64/mingw64/include/wow64apiset.h:
 
 C:/msys64/mingw64/include/wtypes.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/adxintrin.h:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/amxbf16intrin.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/amxcomplexintrin.h:
 
@@ -2195,10 +2275,6 @@ D:/Test_Code/PBL/PBL2/include/Library/Filelib.hpp:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/rdseedintrin.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/keylockerintrin.h:
-
-D:/Test_Code/PBL/PBL2/include/Header/Header.hpp:
-
-C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm3dnow.h:
 
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mwaitintrin.h:
 

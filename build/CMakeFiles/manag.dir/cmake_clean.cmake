@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/manag.dir/src/Management/Patient.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/listAccount.cpp.obj.d"
+  "CMakeFiles/manag.dir/src/Management/listAppoinment.cpp.obj"
+  "CMakeFiles/manag.dir/src/Management/listAppoinment.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj"
   "CMakeFiles/manag.dir/src/Management/listMedicalRecord.cpp.obj.d"
   "CMakeFiles/manag.dir/src/Management/listPatient.cpp.obj"

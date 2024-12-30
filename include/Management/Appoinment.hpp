@@ -1,5 +1,5 @@
 #pragma once
-#include "Header.hpp"
+#include "Header/Header.hpp"
 #include <Management/Date.hpp>
 #include <Management/Patient.hpp>
 #include <Library/Filelib.hpp>
@@ -32,7 +32,7 @@ class Appoinment
         void setID(const string& ID);
         void setStatus(bool status) { this->status = status; };
         void setIsProcessed(bool isProcessed) { this->isProcessed = isProcessed; };
-        bool setID();
+        // bool setID();
         string getID() const { return ID; };
         Date getDate() const { return date; };
         int getTime() const { return time; };

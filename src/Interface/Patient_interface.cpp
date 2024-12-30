@@ -270,7 +270,15 @@ string Greeting(const std::string &name)
 void P_Appoinment_info_UI(Patient &patient)
 {
     auto screen = ScreenInteractive::TerminalOutput();
-    std::vector<Appoinment> danhSachLich = searchAppoinments(patient);
+    // std::vector<Appoinment> danhSachLich = searchAppoinments(patient);
+    listAppoinment listApp;
+    std::time_t now = std::time(nullptr);
+    std::tm *localTime = std::localtime(&now);
+    string start_date = Date_to_string(*localTime);
+    localTime->tm_mday += 30;
+    mktime(localTime);
+    string end_date = Date_to_string(*localTime);
+    vector<Appoinment *> danhSachLich = listApp.getAppointmentsByPatientIDIRange(patient.getID_patient(), start_date, end_date);
     // Component Appoinment_cancel_renderer;
     // ID  Ngày  Thời gian
     // vector<string> App_list;
@@ -291,9 +299,9 @@ void P_Appoinment_info_UI(Patient &patient)
 
     for (auto &app : danhSachLich)
     {
-        auto tmp_btn = Button(("  " + app.getID() + "        " + (app.getDate().getDate()) + "       " + GioKham(app.getTime()) + "            " + (app.getStatus() ? "Hiệu lực" : " Đã hủy")), [&]()
+        auto tmp_btn = Button(("  " + app->getID() + "        " + (app->getDate().getDate()) + "       " + GioKham(app->getTime()) + "            " + (app->getStatus() ? "Hiệu lực" : " Đã hủy")), [&]()
                               {
-            selected_app = &app; // gán lịch khám đã chọn
+            selected_app = app; // gán lịch khám đã chọn
             popup_level = 1; }, Btn_animated_opt1());
         Menu_app_list->Add(tmp_btn);
     }
@@ -421,6 +429,7 @@ void P_Appoinment_info_UI(Patient &patient)
                                    {
                                        (*selected_app).UpdateStatus(0, 0);
                                        Confirm_msg = "Hủy lịch khám thành công!";
+                                       listApp.writeAppointmentsToFile();
                                        // popup_level = 1;
                                    },
                                    btn_style1());
@@ -519,7 +528,7 @@ void Appoinment_UI(Patient &patient)
     string scr_date;
     string scr_time;
     string symptom = "";
-
+    listAppoinment danhSachLich;
     auto screen = ScreenInteractive::FullscreenAlternateScreen();
     int current_page = 0;
     int total_pages = 4;
@@ -595,12 +604,12 @@ void Appoinment_UI(Patient &patient)
     prev_page_btn = Container::Horizontal({prev_page_btn});
     Component end_button = Button("Kết thúc", [&]
                                   {
-        screen.ExitLoopClosure()();
         Date dd;
         dd.setDate(scr_date);
         // Thêm code xử lý đặt lịch khám và thông báo đã đặt lịch thành công
-        Appoinment app(patient, dd, selected_time, symptom);
-        app.ThemLichKham(); });
+        Appoinment *app = new Appoinment(patient, dd, selected_time, symptom);
+        danhSachLich.addAppointment(app);
+        screen.ExitLoopClosure()(); });
     end_button = Container::Horizontal({end_button});
     // Các nút
     Component page_btn = Container::Horizontal({next_page_btn,
@@ -759,6 +768,7 @@ void Appoinment_UI(Patient &patient)
                                      {
         screen.Post([&](){
             if (selected_day >= 0 && selected_time >= 0) {
+                //Chuyển thành ngày chính xác
             auto selected_date = current_date;
             selected_date.tm_mday += selected_day;
             mktime(&selected_date);
@@ -777,7 +787,7 @@ void Appoinment_UI(Patient &patient)
         }); });
 
     screen.Loop(main_layout);
-    system("pause");
+    // system("pause");
 }
 void Med_record_UI(Patient &patient)
 {
@@ -785,20 +795,20 @@ void Med_record_UI(Patient &patient)
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
     listMedicalRecord lsMR;
     // lsMR.readListMedicalRecordFromFile();
-    // vector<MedicalRecord *> medRecords = lsMR.searchMedicalRecord(SearchField_MR::PatientID, patient.getID_patient());
+    vector<MedicalRecord *> medRecords = lsMR.searchMedicalRecord(SearchField_MR::PatientID, patient.getID_patient());
     int popup_level = 0;
-    // MedicalRecord *selected_medRecord = nullptr;
+    MedicalRecord *selected_medRecord = nullptr;
     bool show_window2 = false;
-    // Component medical_records_container = Container::Vertical({});
-    // for (auto &medRecord : medRecords | std::views::reverse)
-    // {
-    //     Component btn = Button(" " + medRecord->getID_record() + " " + medRecord->getDateOfRecord().getDate(), [&]
-    //                            {
-    //         selected_medRecord = medRecord;
-    //         popup_level = 1;
-    //         show_window2= true; }, Btn_animated_opt1());
-    //     medical_records_container->Add(btn);
-    // }
+    Component medical_records_container = Container::Vertical({});
+    for (auto &medRecord : medRecords | std::views::reverse)
+    {
+        Component btn = Button(" " + medRecord->getID_record() + " " + medRecord->getDateOfRecord().getDate(), [&]
+                               {
+            selected_medRecord = medRecord;
+            popup_level = 1;
+            show_window2= true; }, Btn_animated_opt1());
+        medical_records_container->Add(btn);
+    }
     // Menu_app_list->;
     Component exit_btn = Button("Quay lại", [&]
                                 {
@@ -806,7 +816,7 @@ void Med_record_UI(Patient &patient)
         screen.Exit();
         out << "2" << endl; }, btn_style1());
     Component Menu_MR_list = Container::Vertical({
-        // medical_records_container,
+        medical_records_container,
         exit_btn,
     });
     auto Menu_MR_renderer = Renderer(Menu_MR_list, [&]
@@ -817,112 +827,114 @@ void Med_record_UI(Patient &patient)
                                                text("Ngày cấp"),
                                            }),
                                            separator(),
-                                        //    medical_records_container->Render(),
+                                           medical_records_container->Render(),
                                            separator(),
                                            exit_btn->Render() | hcenter,
                                        }); });
-    // Component Patient_id = Wrap("Mã bệnh nhân:", Renderer([&]
-    //                                                       { return text(patient.getID_patient()); }));
-    // Component Full_name = Wrap("Họ và tên:", Renderer([&]()
-    //                                                   { return text(patient.getFullName()); }));
-    // Component Phone_number = Wrap("Số điện thoại:", Renderer([&]
-    //                                                          { return text(patient.getPhone()); }));
-    // Component DOB = Wrap("Ngày sinh:", Renderer([&]()
-    //                                             { return text(patient.getDayOfBirth().getDate()); }));
-    // Component CCCD = Wrap("CCCD:", Renderer([&]()
-    //                                         { return text(patient.getCCCD()); }));
-    // string Gender = (patient.getGender() ? "Nữ" : "Nam");
-    // Component Patient_gender = Wrap("Giới tính:", Renderer([&]()
-    //                                                        { return text(Gender); }));
-    // Component Address = Wrap("Địa chỉ:", Renderer([&]()
-    //                                               { return text(patient.getAddress()); }));
-    // Component MR_ID = Wrap("Mã đơn thuốc:", Renderer([&]
-    //                                                  { return text(selected_medRecord->getID_record()); }));
-    // Component MR_date = Wrap("Ngày cấp:", Renderer([&]
-    //                                                { return text(selected_medRecord->getDateOfRecord().getDate()); }));
-    // Component MR_symptom = Wrap("Triệu chứng:", Renderer([&]
-    //                                                      { return paragraph(selected_medRecord->getSymptoms()); }));
-    // Component MR_diagnosis = Wrap("Chẩn đoán:", Renderer([&]
-    //                                                      { return text(selected_medRecord->getDiagnosis()); }));
-    // Component back_btn = Button("Quay lại", [&]
-    //                             { popup_level = 0;
-    //                             show_window2 = false; }, btn_style1());
-    // Component MR_info = Container::Vertical({
-    //     Patient_id,
-    //     Full_name,
-    //     Phone_number,
-    //     DOB,
-    //     CCCD,
-    //     Patient_gender,
-    //     Address,
-    //     MR_ID,
-    //     MR_date,
-    //     MR_symptom,
-    //     MR_diagnosis,
-    // });
-    // Component MR_popup = Container::Vertical({
-    //     MR_info,
-    //     back_btn,
-    // });
-    // auto popup_renderer = Renderer(MR_popup, [&]
-    //                                { return vbox({
-    //                                      Patient_id->Render(),
-    //                                      Full_name->Render(),
-    //                                      Phone_number->Render(),
-    //                                      DOB->Render(),
-    //                                      CCCD->Render(),
-    //                                      Patient_gender->Render(),
-    //                                      Address->Render(),
-    //                                      separator(),
-    //                                      MR_ID->Render(),
-    //                                      MR_date->Render(),
-    //                                      separator(),
-    //                                      MR_symptom->Render(),
-    //                                      separator(),
-    //                                      MR_diagnosis->Render(),
-    //                                      separator(),
-    //                                      back_btn->Render(),
-    //                                  }); });
+    Component Patient_id = Wrap("Mã bệnh nhân:", Renderer([&]
+                                                          { return text(patient.getID_patient()); }));
+    Component Full_name = Wrap("Họ và tên:", Renderer([&]()
+                                                      { return text(patient.getFullName()); }));
+    Component Phone_number = Wrap("Số điện thoại:", Renderer([&]
+                                                             { return text(patient.getPhone()); }));
+    Component DOB = Wrap("Ngày sinh:", Renderer([&]()
+                                                { return text(patient.getDayOfBirth().getDate()); }));
+    Component CCCD = Wrap("CCCD:", Renderer([&]()
+                                            { return text(patient.getCCCD()); }));
+    string Gender = (patient.getGender() ? "Nữ" : "Nam");
+    Component Patient_gender = Wrap("Giới tính:", Renderer([&]()
+                                                           { return text(Gender); }));
+    Component Address = Wrap("Địa chỉ:", Renderer([&]()
+                                                  { return text(patient.getAddress()); }));
+    Component MR_ID = Wrap("Mã đơn thuốc:", Renderer([&]
+                                                     { return text(selected_medRecord->getID_record()); }));
+    Component MR_date = Wrap("Ngày cấp:", Renderer([&]
+                                                   { return text(selected_medRecord->getDateOfRecord().getDate()); }));
+    Component MR_symptom = Wrap("Triệu chứng:", Renderer([&]
+                                                         { return paragraph(selected_medRecord->getSymptoms()); }));
+    Component MR_diagnosis = Wrap("Chẩn đoán:", Renderer([&]
+                                                         { return text(selected_medRecord->getDiagnosis()); }));
+    Component back_btn = Button("Quay lại", [&]
+                                { popup_level = 0;
+                                show_window2 = false; }, btn_style1());
+    Component MR_info = Container::Vertical({
+        Patient_id,
+        Full_name,
+        Phone_number,
+        DOB,
+        CCCD,
+        Patient_gender,
+        Address,
+        MR_ID,
+        MR_date,
+        MR_symptom,
+        MR_diagnosis,
+    });
+    Component MR_popup = Container::Vertical({
+        MR_info,
+        back_btn,
+    });
+    auto popup_renderer = Renderer(MR_popup, [&]
+                                   { return vbox({
+                                         Patient_id->Render(),
+                                         Full_name->Render(),
+                                         Phone_number->Render(),
+                                         DOB->Render(),
+                                         CCCD->Render(),
+                                         Patient_gender->Render(),
+                                         Address->Render(),
+                                         separator(),
+                                         MR_ID->Render(),
+                                         MR_date->Render(),
+                                         separator(),
+                                         MR_symptom->Render(),
+                                         separator(),
+                                         MR_diagnosis->Render(),
+                                         separator(),
+                                         back_btn->Render(),
+                                     }); });
 
-    // Component window_1 = Window({
-    //     .inner = Menu_MR_renderer,
-    //     .title = "Danh sách đơn thuốc",
-    //     .left = 20,
-    //     .width = 80,
-    //     .height = 50,
+    Component window_1 = Window({
+        .inner = Menu_MR_renderer,
+        .title = "Danh sách đơn thuốc",
+        .left = 20,
+        .width = 80,
+        .height = 30,
+    });
+    Component window_2 = Window({
+        .inner = popup_renderer,
+        .title = "Chi tiết đơn thuốc",
+        .left = 20,
+        .width = 80,
+        .height = 30,
+    });
+
+    // Component main_layout = Container::Tab({
+    //     window_1,
+    //     window_2,
+    // }, &popup_level);
+    // Component main_screen = Renderer(main_layout, [&] {
+    //     Element showing = window_1->Render() | bgcolor(Color::Black);
+    //     if (popup_level == 1)
+    //     {
+    //         showing = dbox({
+    //             showing,
+    //             window_2->Render() | clear_under,
+    //         });
+    //     }
+    //     return showing;
     // });
-    // Component window_2 = Window({
-    //     .inner = popup_renderer,
-    //     .title = "Chi tiết đơn thuốc",
-    //     .left = 20,
-    //     .width = 80,
-    //     .height = 30,
+    // screen.Loop(main_screen);
+    // Component w12 = Container::Stacked({
+    //     window_1,
+    //     window_2,
     // });
-    // // Component main_layout = Container::Tab({
-    // //     window_1,
-    // //     window_2,
-    // // }, &popup_level);
-    // // Component main_screen = Renderer(main_layout, [&] {
-    // //     Element showing = window_1->Render() | bgcolor(Color::Black);
-    // //     if (popup_level == 1)
-    // //     {
-    // //         showing = dbox({
-    // //             showing,
-    // //             window_2->Render() | clear_under,
-    // //         });
-    // //     }
-    // //     return showing;
-    // // });
-    // // Component w12 = Container::Stacked({
-    // //     window_1,
-    // //     window_2,
-    // // });
-    // // Component main_w_layout = Container::Tab({
-    // //                                              window_1,
-    // //                                              w12,
-    // //                                          },
-    // //                                          &popup_level);
-    // // screen.Loop(main_w_layout);
+    Component main_w_layout = Container::Tab({
+                                                 window_1,
+                                                 window_2,
+                                             },
+                                             &popup_level);
+    screen.Loop(main_w_layout);
 
     // auto window12 = Container::Stacked({
     //     window_1,
@@ -938,8 +950,8 @@ void Med_record_UI(Patient &patient)
     //     Menu_MR_list,
     //     MR_popup,
     // }, &popup_level);
-    screen.Loop(Menu_MR_renderer);
-    out << "2.5" << endl;
+    // screen.Loop(Menu_MR_renderer);
+    // out << "2.5" << endl;
     //     Component temp_win1 = Container::Vertical({
     //         window_1
     //     });
@@ -951,7 +963,88 @@ void Med_record_UI(Patient &patient)
     //     });
     // screen.Loop(temp_layout);
 }
-void Patient_UI(Patient *&patient, listPatient &patients)
+void change_password_UI(Patient *patient, listAccount &accounts, AccountUser *&current_account)
+{
+    auto screen = ftxui::ScreenInteractive::TerminalOutput();
+    string old_password, new_password, confirm_password;
+    ftxui::InputOption input_pw_opt;
+    input_pw_opt.password = true;
+    Component account_info = Renderer([&]()
+                                      { return vbox({
+                                            text("Tài khoản bệnh nhân") | bold | center,
+                                            separator(),
+                                            hbox({vbox({
+                                                      text("Mã tài khoản:"),
+                                                      text("Tên đăng nhập:"),
+                                                      text("Mã bệnh nhân:"),
+                                                      text("Tên bệnh nhân:"),
+                                                      text("Số định danh:"),
+                                                  }) |size(WIDTH, EQUAL, 18),
+                                                  separator(),
+                                                  vbox({
+                                                      text(current_account->getID()),
+                                                      text(current_account->getUserName()),
+                                                      text(patient->getID_patient()),
+                                                      text(patient->getFullName()),
+                                                      text(patient->getCCCD()),
+                                                  })}),
+                                            separator(),
+                                        }); });
+    Element change_password_msg = text("");
+    Component change_password_form = Container::Vertical(
+        {
+            Container::Vertical({
+                account_info,
+                Container::Horizontal({Renderer([&]
+                                                { return vbox({
+                                                    text("Mật khẩu cũ:"),
+                                                    text("Mật khẩu mới:"),
+                                                    text("Xác nhận mật khẩu:"),
+                                                }); }),
+                                    Renderer([&]
+                                                { return separator(); }),
+                                    Container::Vertical({
+                                        Input(&old_password, "Mật khẩu cũ:", input_pw_opt),
+                                        Input(&new_password, "Mật khẩu mới:", input_pw_opt),
+                                        Input(&confirm_password, "Xác nhận mật khẩu:", input_pw_opt),
+                                    }) | size(WIDTH, EQUAL, 50),
+
+                }),
+            }) | border,
+                Renderer([&]
+                            { return change_password_msg; }) | hcenter,
+                Container::Horizontal({
+                    Button("Trở về", [&]()
+                        { screen.ExitLoopClosure()(); }),
+                        Renderer([&]{return separatorEmpty() | size(WIDTH, EQUAL, 8);}),
+                    Button("Cập nhật", [&](){ 
+                        if (old_password.empty() || new_password.empty() || confirm_password.empty())
+                        {
+                            change_password_msg = text("Mật khẩu không được để trống!") | color(Color::Red);
+                        }
+                        else if (current_account->getPassword() != old_password)
+                        {
+                            change_password_msg = text("Mật khẩu cũ không đúng!") | color(Color::Red);
+                        }
+                        else if (new_password != confirm_password)
+                        {
+                            change_password_msg = text("Vui lòng nhập lại mật khẩu đúng.") | color(Color::Red);
+                        }
+                        else if (!valid_password(new_password))
+                        {
+                            change_password_msg = hflow(paragraph("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ cái, số và ký tự đặc biệt!")) | color(Color::Red);
+                        }
+                        else
+                        {
+                            current_account->setPassword(new_password);
+                            accounts.writeListAccountToFile(1, 1);
+                            change_password_msg = text("Cập nhật mật khẩu thành công!") | color(Color::Green);
+                        } }),
+            }) | hcenter,
+        }) | hcenter;
+    screen.Loop(change_password_form);
+}
+void Patient_UI(Patient *&patient, listPatient &patients, listAccount &accounts, AccountUser *&current_account)
 {
     // Tạo màn hình giao diện
     auto screen = ftxui::ScreenInteractive::Fullscreen();
@@ -967,31 +1060,38 @@ void Patient_UI(Patient *&patient, listPatient &patients)
     auto xem_sua_xoa_lich = ftxui::Button("Lịch khám Bệnh", [&]
                                           { P_Appoinment_info_UI(*patient); }, btn_style2());
     auto lich_su_kham = ftxui::Button("Lịch Sử Khám Bệnh", [&]
-                                      { 
-                                        Med_record_UI(*patient); }, btn_style2());
+                                      { Med_record_UI(*patient); }, btn_style2());
+    auto doi_mk = Button("Đổi mật khẩu", [&]
+                         { change_password_UI(patient, accounts, current_account); }, btn_style2());
     auto thoat = ftxui::Button("  Đăng xuất  ", [&]
                                { screen.ExitLoopClosure()(); }, btn_style1());
     auto main_page_layout = ftxui::Container::Vertical({
-        greeting,
-        xem_sua_thong_tin,
-        dat_lich,
-        xem_sua_xoa_lich,
-        lich_su_kham,
-        thoat,
-    });
-    auto main_page = ftxui::Renderer(main_page_layout, [&]
-                                     { return vbox({
-                                                  greeting->Render(),
-                                                  separator(),
-                                                  xem_sua_thong_tin->Render(),
-                                                  dat_lich->Render(),
-                                                  xem_sua_xoa_lich->Render(),
-                                                  lich_su_kham->Render(),
-                                                  separator(),
-                                                  thoat->Render(),
-                                              }) |
-                                              xflex | size(WIDTH, EQUAL, 100) | size(HEIGHT, EQUAL, 50) | border | hcenter; });
+                                greeting,
+                                Renderer([&]
+                                         { return separator(); }),
+                                xem_sua_thong_tin,
+                                dat_lich,
+                                xem_sua_xoa_lich,
+                                lich_su_kham,
+                                doi_mk,
+                                Renderer([&]
+                                         { return separator(); }),
+                                thoat,
+                            }) |
+                            xflex | size(WIDTH, EQUAL, 100) | size(HEIGHT, EQUAL, 50) | border | hcenter;
+    // auto main_page = ftxui::Renderer(main_page_layout, [&]
+    //                                  { return vbox({
+    //                                               greeting->Render(),
+    //                                               separator(),
+    //                                               xem_sua_thong_tin->Render(),
+    //                                               dat_lich->Render(),
+    //                                               xem_sua_xoa_lich->Render(),
+    //                                               lich_su_kham->Render(),
+    //                                               separator(),
+    //                                               thoat->Render(),
+    //                                           }) |
+    //                                           xflex | size(WIDTH, EQUAL, 100) | size(HEIGHT, EQUAL, 50) | border | hcenter; });
 
-    screen.Loop(main_page);
+    screen.Loop(main_page_layout);
     // Med_record_UI(*patient);
 }

@@ -9,34 +9,17 @@ listMedicalRecord::~listMedicalRecord() {
     // for (int i = 0; i < this->size(); i++) {
     //     delete this->get(i); // Giải phóng bộ nhớ cho từng bệnh án
     // }
-    // this->clear(); // Xóa các phần tử khỏi danh sách liên kết
+    // this->clear(); // Xóa toàn bộ danh sách bệnh án
 }
-vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
-    vector<pair<string, int>> diagnosisCount;
-    if (this->size() == 0) return diagnosisCount;
 
-    map<string, int> diagnosisMap;
-
-    for (int i = 0; i < this->size(); i++) {
-        MedicalRecord record = *this->get(i);
-        string diagnosis = record.getDiagnosis();
-        diagnosisMap[diagnosis]++;
-    }
-
-    for (const auto& pair : diagnosisMap) {
-        diagnosisCount.push_back(pair);
-    }
-
-    return diagnosisCount;
-}
 bool listMedicalRecord::readListMedicalRecordFromFile() {
     string file_path = "../Database/Medical_recordDB/medical_record.txt";
     fstream fin;
- 
+
     fin.open(file_path, ios::in);
     if (!fin.is_open())
         return false;
- 
+
     string line;
     while (getline(fin, line)) {
         if (!line.empty()) {
@@ -48,6 +31,7 @@ bool listMedicalRecord::readListMedicalRecordFromFile() {
     fin.close();
     return true;
 }
+
 bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
     string file_path = "../Database/Medical_recordDB/medical_record.txt";
     char ch;
@@ -82,7 +66,6 @@ bool listMedicalRecord::writeListMedicalRecordToFile(bool check) {
     }
 
     fo.close();
-    delete record;
     return true;
 }
 
@@ -92,14 +75,73 @@ vector<MedicalRecord*> listMedicalRecord::setAllMedicalRecords() {
     if (this->size() == 0) return records;
 
     for(int i = 0; i < this->size(); i++) {
-        records.push_back(this->get(i)); // Trả về đối tượng đã được quản lý bởi LinkedList
+        records.push_back(this->get(i)); 
     }
 
     return records;
 }
 
+vector<MedicalRecord*> listMedicalRecord::setMedicalRecordsByPatientID(const string& patientID) {
+    vector<MedicalRecord*> records;
+    if (this->size() == 0) return records;
+
+    for(int i = 0; i < this->size(); i++) {
+        if (this->get(i)->getID_patient() == patientID) {
+            records.push_back(this->get(i));
+        }
+    }
+
+    return records;
+}
+
+vector<MedicalRecord*> listMedicalRecord::setMedicalRecordsByDiagnosis(const string& diagnosis) {
+    vector<MedicalRecord*> records;
+    if (this->size() == 0) return records;
+
+    for(int i = 0; i < this->size(); i++) {
+        if (this->get(i)->getDiagnosis() == diagnosis) {
+            records.push_back(this->get(i));
+        }
+    }
+
+    return records;
+}
+
+vector<MedicalRecord*> listMedicalRecord::setMedicalRecordsByRecordRange(const string &startDate, const string &endDate) {
+    vector<MedicalRecord*> records;
+    if (this->size() == 0) return records;
+
+    Date start, end;
+    start.setDate(startDate);
+    end.setDate(endDate);
+
+    for(int i = 0; i < this->size(); i++) {
+        if (this->get(i)->getDateOfRecord() >= start && this->get(i)->getDateOfRecord() <= end) {
+            records.push_back(this->get(i));
+        }
+    }
+
+    return records;
+}
+
+vector<pair<string, int>> listMedicalRecord::setDiagnosisCount() {
+    vector<pair<string, int>> diagnosisCount;
+    if (this->size() == 0) return diagnosisCount;
+
+    map<string, int> count;
+    for (int i = 0; i < this->size(); i++) {
+        count[this->get(i)->getDiagnosis()]++;
+    }
+
+    for (auto it = count.begin(); it != count.end(); it++) {
+        diagnosisCount.push_back(make_pair(it->first, it->second));
+    }
+
+    return diagnosisCount;
+}
+
 void listMedicalRecord::addMedicalRecord(const string& patientID, const string& symptoms, const string& diagnosis, const string& dateOfRecord) {
-    auto newRecord = std::make_unique<MedicalRecord>();
+    MedicalRecord* newRecord = new MedicalRecord();
 
     newRecord->setID_record();
     newRecord->setID_patient(patientID);
@@ -107,7 +149,7 @@ void listMedicalRecord::addMedicalRecord(const string& patientID, const string& 
     newRecord->setDiagnosis(diagnosis);
     newRecord->setDateOfRecord(dateOfRecord);
 
-    this->append(newRecord.release()); // Chuyển quyền sở hữu cho LinkedList
+    this->append(newRecord);
     this->writeListMedicalRecordToFile(false);
 }
 
@@ -117,7 +159,6 @@ int listMedicalRecord::checkRecordID(const string& recordID) {
             return i;
         }
     }
-
     return -1;
 }
 
@@ -125,10 +166,8 @@ bool listMedicalRecord::removeMedicalRecordByID(const string& recordID) {
     int index = this->checkRecordID(recordID);
     if (index == -1)
         return false;
-
     this->remove(index);
     this->writeListMedicalRecordToFile(true);
-
     return true;
 }
 
@@ -220,11 +259,11 @@ bool listMedicalRecord::appendDiagnosisSolutionToFile(const string& diagnosis, c
     return true;
 }
 
-string listMedicalRecord::analyzeDiagnosisAndProvideSolutions(const string& diagnosis) {
-    auto it = symptomSolutions.find(diagnosis);
-    if (it != symptomSolutions.end()) {
-        return it->second;
-    } else {
-        return "No solution available for this diagnosis.";
+string listMedicalRecord::analyzeDiagnosisAndProvideSolutions(MedicalRecord* record, const string& diagnosis) {
+    if (this->symptomSolutions.find(diagnosis) != this->symptomSolutions.end()) {
+        record->setAdvice(this->symptomSolutions[diagnosis]);
+        return this->symptomSolutions[diagnosis];
     }
+
+    return "Không có lời khuyên cho bệnh này!";
 }

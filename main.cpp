@@ -6,12 +6,13 @@
 #include <ftxui/component/screen_interactive.hpp> // for ScreenInteractive
 #include <ftxui/dom/elements.hpp>
 // #include <Management/Appoinment.hpp>
-#include <Management/listPatient.hpp>
-#include <Management/Patient.hpp>
-#include <Management/listMedicalRecord.hpp>
+// #include <Management/listPatient.hpp>
+// #include <Management/Patient.hpp>
+// #include <Management/listMedicalRecord.hpp>
 #include <Management/MedicalRecord.hpp>
+// #include <Management/listAppoinment.hpp>
 // #include "Interface/Patient_interface.hpp"
-#include "Management/Date.hpp"
+// #include "Management/Date.hpp"
 #include "Interface/Login.hpp"
 // #include <fstream>
 // #include <iostream>
@@ -20,17 +21,29 @@
 #include <string>
 using namespace std;
 // using namespace filesystem;
-void test()
-{
-    listMedicalRecord listMR;
-    cout << "1" << endl;
-}
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    // loginUI();
-    Admin_UI();
+    loginUI();
+    // listAppoinment listApp;
+    // for(auto it = listApp.begin(); it!=listApp.end(); ++it)
+    // {
+    //     cout << it->first.getDate() << endl;
+    // }
+    // vector<Appoinment*> result = listApp.getAppointmentsByPatientIDIRange("P4","01/01/2024", "31/12/2025");
+    // for (int i = 0; i < result.size(); i++)
+    // {
+    // //    cout << (*(result.get(i)))->getID() << endl;
+    //     cout << result[i]->getID() << endl;
+    // }   
+    // cout << result.size() << endl;
+    // Date date;
+    // date.setCurrentDate();
+    // cout << date.getWeekDay() << endl;
+    // system("pause");
+    // Admin_UI();
+
 
     // listMedicalRecord listMR;
     // listAccount lspt;

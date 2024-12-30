@@ -52,6 +52,7 @@ add_library(manag
     include/Management/MedicalRecord.hpp
     include/Management/listPatient.hpp
     include/Management/Patient.hpp
+    include/Management/listAppoinment.hpp
     src/Management/Account.cpp
     src/Management/AccountUser.cpp
     src/Management/AccountAdmin.cpp
@@ -62,6 +63,7 @@ add_library(manag
     src/Management/MedicalRecord.cpp
     src/Management/Patient.cpp
     src/Management/listPatient.cpp
+    src/Management/listAppoinment.cpp
 )
 target_include_directories(manag 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -69,7 +71,9 @@ target_include_directories(manag
 )
 add_library(template
     include/Template/LinkedList.hpp
+    include/Template/Map.hpp
     src/Template/LinkedList.cpp
+    src/Template/Map.tpp
 )
 target_include_directories(template 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -93,7 +97,7 @@ target_link_libraries(lib
 
 
 target_link_libraries(manag
-    # PRIVATE header_lib
+    PRIVATE header_lib
     PUBLIC lib
     PUBLIC template
     PRIVATE ftxui::screen
@@ -101,8 +105,8 @@ target_link_libraries(manag
     PRIVATE ftxui::component
 )
 target_link_libraries(ui
-    # PRIVATE header_lib    
-    # PRIVATE lib
+    PRIVATE header_lib    
+    PRIVATE lib
     # PRIVATE template
     PUBLIC manag
     PRIVATE ftxui::screen
@@ -110,8 +114,8 @@ target_link_libraries(ui
     PRIVATE ftxui::component
 ) 
 target_link_libraries(main
-    # PRIVATE header_lib
-    # PRIVATE lib
+    PRIVATE header_lib
+    PRIVATE lib
     # PRIVATE manag
     # PRIVATE template
     PRIVATE ui

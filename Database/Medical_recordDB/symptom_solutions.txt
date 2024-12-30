@@ -1,48 +1,48 @@
-Sốt;Xác định nguyên nhân, kê đơn thuốc hạ sốt và hướng dẫn bệnh nhân nghỉ ngơi
-Ho khan;Khám phổi, chỉ định thuốc giảm ho và uống nước ấm
-Đau đầu;Khám thần kinh, kê thuốc giảm đau và hướng dẫn bệnh nhân nghỉ ngơi
-Khó thở;Khám hô hấp, theo dõi mức độ khó thở và yêu cầu xét nghiệm chức năng hô hấp
-Đau bụng;Khám bụng, yêu cầu siêu âm và xét nghiệm nếu cần thiết, kê thuốc giảm đau
-Buồn nôn;Khám dạ dày, kê thuốc chống nôn và hướng dẫn chế độ ăn nhẹ
-Chóng mặt;Khám thần kinh, yêu cầu xét nghiệm chức năng tiền đình, kê thuốc hỗ trợ
-Đau lưng;Khám cơ xương khớp, kê thuốc giảm đau và hướng dẫn các bài tập vận động
-Mệt mỏi;Xác định nguyên nhân (thiếu máu, nhiễm trùng, rối loạn tuyến giáp), điều trị theo nguyên nhân
-Ho có đờm;Khám hô hấp, kê thuốc giảm ho và điều trị nhiễm trùng đường hô hấp nếu có
-Cảm lạnh;Hướng dẫn bệnh nhân uống nước ấm, nghỉ ngơi và kê thuốc hạ sốt nếu cần
-Viêm họng;Khám họng, kê thuốc kháng sinh nếu có nhiễm trùng, giảm đau họng bằng thuốc và nước muối ấm
-Táo bón;Khám tiêu hóa, kê thuốc nhuận tràng và khuyên bệnh nhân uống nhiều nước, tăng cường chất xơ
-Tiêu chảy;Khám tiêu hóa, kê thuốc cầm tiêu chảy, yêu cầu xét nghiệm phân nếu cần
-Đau cơ;Khám cơ xương khớp, kê thuốc giảm đau và hướng dẫn các bài tập giãn cơ
-Chảy máu cam;Khám mũi, yêu cầu kiểm tra tình trạng huyết áp và kê thuốc nếu cần thiết
-Rối loạn kinh nguyệt;Khám phụ khoa, yêu cầu siêu âm nếu cần và kê thuốc điều trị rối loạn nội tiết
-Đau ngực;Khám tim mạch, yêu cầu làm điện tâm đồ, siêu âm tim và kê thuốc giảm đau nếu cần
-Phát ban;Khám da liễu, yêu cầu xét nghiệm máu và kê thuốc điều trị viêm nhiễm da
-Sưng tấy khớp;Khám xương khớp, yêu cầu xét nghiệm máu để kiểm tra viêm khớp và kê thuốc giảm viêm
-Viêm dạ dày;Khám tiêu hóa, kê thuốc giảm tiết axit và yêu cầu chế độ ăn uống nhẹ nhàng
-Cảm cúm;Khám tổng quát, kê thuốc giảm đau, hạ sốt và yêu cầu nghỉ ngơi đầy đủ
-Viêm phổi;Khám phổi, yêu cầu chụp X-quang và kê thuốc kháng sinh
-Viêm amidan;Khám họng, kê thuốc kháng sinh và hướng dẫn súc miệng bằng nước muối ấm
-Đau dạ dày cấp tính;Khám dạ dày, kê thuốc giảm tiết axit và yêu cầu chế độ ăn uống nhẹ nhàng, tránh đồ ăn cay nóng
-Migraine nặng;Khám thần kinh, kê thuốc giảm đau, tránh ánh sáng mạnh và nghỉ ngơi trong môi trường yên tĩnh
-Viêm loét dạ dày tá tràng;Khám tiêu hóa, kê thuốc giảm tiết axit và yêu cầu chế độ ăn uống nhẹ nhàng, tránh stress
-Viêm phế quản cấp tính;Khám phổi, kê thuốc giảm ho và thuốc chống viêm, yêu cầu nghỉ ngơi và uống nước ấm
-Viêm khớp dạng thấp;Khám khớp, kê thuốc giảm đau và kháng viêm, yêu cầu tập thể dục nhẹ nhàng để duy trì độ dẻo dai
-Viêm kết mạc;Khám mắt, kê thuốc nhỏ mắt kháng sinh nếu cần và yêu cầu tránh dụi mắt, giữ vệ sinh mắt
-Viêm phổi cấp;Khám phổi, yêu cầu chụp X-quang và kê thuốc kháng sinh, nghỉ ngơi và uống nước ấm
-Thoái hóa đĩa đệm cột sống thắt lưng;Khám cơ xương khớp, kê thuốc giảm đau và kháng viêm, yêu cầu tập các bài tập kéo giãn cột sống
-Viêm ruột thừa cấp tính;Khám bụng, yêu cầu phẫu thuật cắt ruột thừa và chăm sóc hậu phẫu
-Hen suyễn cấp tính;Khám hô hấp, kê thuốc giãn phế quản, yêu cầu nghỉ ngơi và tránh các tác nhân gây dị ứng
-Cúm mùa;Khám tổng quát, kê thuốc giảm đau, hạ sốt và yêu cầu nghỉ ngơi đầy đủ
-Tăng huyết áp;Khám tim mạch, yêu cầu đo huyết áp định kỳ và kê thuốc hạ huyết áp, khuyến khích chế độ ăn nhạt
-Viêm dạ dày;Khám tiêu hóa, kê thuốc giảm tiết axit và yêu cầu chế độ ăn uống nhẹ nhàng, tránh stress
-Viêm amidan cấp tính;Khám họng, kê thuốc kháng sinh nếu có nhiễm trùng, giảm đau họng bằng thuốc và nước muối ấm
-Viêm phổi cấp tính;Khám phổi, kê thuốc kháng sinh và thuốc giảm ho, yêu cầu nghỉ ngơi và uống nước ấm
-Bong gân;Khám xương khớp, kê thuốc giảm đau và yêu cầu nghỉ ngơi, chườm đá và băng bó vùng bị tổn thương
-Rối loạn tâm lý;Khám tâm lý, yêu cầu tham vấn với bác sĩ tâm lý và thực hiện các bài tập thư giãn
-Tiêu chảy cấp do nhiễm trùng;Khám tiêu hóa, yêu cầu xét nghiệm phân và kê thuốc cầm tiêu chảy, uống nhiều nước
-Thoát vị đĩa đệm cột sống lưng;Khám cơ xương khớp, kê thuốc giảm đau và kháng viêm, yêu cầu thực hiện các bài tập kéo giãn
-Loét dạ dày tá tràng;Khám tiêu hóa, kê thuốc giảm tiết axit và yêu cầu chế độ ăn uống nhẹ nhàng
-Viêm phổi cấp;Khám phổi, yêu cầu chụp X-quang và kê thuốc kháng sinh, nghỉ ngơi và uống nước ấm
-Viêm khớp dạng thấp;Khám khớp, kê thuốc giảm đau và kháng viêm, yêu cầu tập thể dục nhẹ nhàng để duy trì độ dẻo dai
-Thiếu máu;Khám tổng quát, yêu cầu xét nghiệm máu và kê thuốc bổ sung sắt, khuyến khích chế độ ăn giàu sắt
-Rối loạn tiêu hóa cấp;Khám tiêu hóa, kê thuốc giảm đau và yêu cầu chế độ ăn nhẹ, tránh thức ăn khó tiêu
+Sốt;Cần nghỉ ngơi đầy đủ, uống nhiều nước ấm và dùng thuốc hạ sốt theo chỉ định. Nếu sốt kéo dài hoặc kèm theo triệu chứng nghiêm trọng, hãy đến khám lại.
+Ho khan;Điều trị bằng thuốc giảm ho và duy trì uống nước ấm để giảm kích ứng cổ họng. Nếu ho kéo dài, cần xét nghiệm thêm.
+Đau đầu;Sử dụng thuốc giảm đau để giảm bớt cơn đau. Nếu cơn đau không giảm hoặc có triệu chứng kèm theo, cần theo dõi và khám lại.
+Khó thở;Cần nghỉ ngơi và theo dõi mức độ khó thở. Nếu tình trạng không cải thiện hoặc trở nên nghiêm trọng, cần thực hiện các xét nghiệm hô hấp.
+Đau bụng;Thực hiện siêu âm và xét nghiệm nếu cần thiết để xác định nguyên nhân. Dùng thuốc giảm đau theo chỉ định và ăn uống nhẹ nhàng.
+Buồn nôn;Sử dụng thuốc chống nôn và ăn uống nhẹ nhàng. Tránh các loại thực phẩm khó tiêu và nghỉ ngơi.
+Chóng mặt;Cần nghỉ ngơi và tránh các tác nhân gây chóng mặt. Nếu tình trạng không cải thiện, hãy làm xét nghiệm chức năng tiền đình.
+Đau lưng;Dùng thuốc giảm đau và thực hiện các bài tập vận động nhẹ nhàng. Nếu đau kéo dài, cần kiểm tra thêm tình trạng cơ xương khớp.
+Mệt mỏi;Cần xác định nguyên nhân cụ thể như thiếu máu hoặc nhiễm trùng. Điều trị theo nguyên nhân và cải thiện chế độ ăn uống.
+Ho có đờm;Nếu có đờm, bạn cần điều trị nhiễm trùng đường hô hấp nếu có. Dùng thuốc giảm ho và uống nhiều nước ấm.
+Cảm lạnh;Hãy nghỉ ngơi đầy đủ và uống nước ấm. Nếu cần, dùng thuốc hạ sốt theo chỉ định.
+Viêm họng;Sử dụng thuốc kháng sinh nếu có nhiễm trùng và giảm đau họng bằng thuốc và nước muối ấm.
+Táo bón;Dùng thuốc nhuận tràng và uống nhiều nước. Tăng cường chất xơ trong chế độ ăn.
+Tiêu chảy;Uống nhiều nước và dùng thuốc cầm tiêu chảy. Nếu tình trạng kéo dài, xét nghiệm phân có thể cần thiết.
+Đau cơ;Dùng thuốc giảm đau và thực hiện các bài tập giãn cơ. Hãy nghỉ ngơi đầy đủ.
+Chảy máu cam;Kiểm tra tình trạng huyết áp và thực hiện các biện pháp hỗ trợ cầm máu. Nếu tình trạng không cải thiện, cần kiểm tra thêm.
+Rối loạn kinh nguyệt;Điều trị theo nguyên nhân và yêu cầu siêu âm nếu cần thiết.
+Đau ngực;Nếu có đau ngực, hãy kiểm tra tim mạch và làm điện tâm đồ, siêu âm tim nếu cần.
+Phát ban;Nếu phát ban kéo dài hoặc có triệu chứng nhiễm trùng, cần làm xét nghiệm máu và điều trị viêm nhiễm da.
+Sưng tấy khớp;Xét nghiệm máu để kiểm tra viêm khớp và điều trị giảm viêm.
+Viêm dạ dày;Dùng thuốc giảm tiết axit và duy trì chế độ ăn uống nhẹ nhàng.
+Cảm cúm;Nghỉ ngơi đầy đủ và dùng thuốc giảm đau, hạ sốt.
+Viêm phổi;Cần chụp X-quang và dùng thuốc kháng sinh để điều trị.
+Viêm amidan;Sử dụng thuốc kháng sinh nếu có nhiễm trùng và súc miệng bằng nước muối ấm.
+Đau dạ dày cấp tính;Dùng thuốc giảm tiết axit và ăn uống nhẹ nhàng. Tránh thức ăn cay nóng.
+Migraine nặng;Nghỉ ngơi trong môi trường yên tĩnh, tránh ánh sáng mạnh và sử dụng thuốc giảm đau.
+Viêm loét dạ dày tá tràng;Dùng thuốc giảm tiết axit và duy trì chế độ ăn uống nhẹ nhàng, tránh stress.
+Viêm phế quản cấp tính;Dùng thuốc giảm ho và thuốc chống viêm. Nghỉ ngơi và uống nước ấm.
+Viêm khớp dạng thấp;Dùng thuốc giảm đau, kháng viêm và duy trì tập thể dục nhẹ nhàng để duy trì độ dẻo dai của khớp.
+Viêm kết mạc;Dùng thuốc nhỏ mắt kháng sinh nếu cần và tránh dụi mắt.
+Viêm phổi cấp;Chụp X-quang và dùng thuốc kháng sinh. Nghỉ ngơi và uống nước ấm.
+Thoái hóa đĩa đệm cột sống thắt lưng;Dùng thuốc giảm đau và kháng viêm, thực hiện các bài tập kéo giãn cột sống.
+Viêm ruột thừa cấp tính;Phẫu thuật cắt ruột thừa và chăm sóc hậu phẫu.
+Hen suyễn cấp tính;Dùng thuốc giãn phế quản, nghỉ ngơi và tránh các tác nhân gây dị ứng.
+Cúm mùa;Nghỉ ngơi đầy đủ và dùng thuốc giảm đau, hạ sốt.
+Tăng huyết áp;Theo dõi huyết áp định kỳ và dùng thuốc hạ huyết áp theo chỉ định.
+Viêm dạ dày;Dùng thuốc giảm tiết axit và duy trì chế độ ăn uống nhẹ nhàng, tránh stress.
+Viêm amidan cấp tính;Dùng thuốc kháng sinh và giảm đau họng bằng thuốc và nước muối ấm.
+Viêm phổi cấp tính;Dùng thuốc kháng sinh và thuốc giảm ho. Nghỉ ngơi và uống nước ấm.
+Bong gân;Nghỉ ngơi, chườm đá và băng bó vùng bị tổn thương.
+Rối loạn tâm lý;Tham vấn bác sĩ tâm lý và thực hiện các bài tập thư giãn.
+Tiêu chảy cấp do nhiễm trùng;Xét nghiệm phân và dùng thuốc cầm tiêu chảy, uống nhiều nước.
+Thoát vị đĩa đệm cột sống lưng;Dùng thuốc giảm đau, kháng viêm và thực hiện các bài tập kéo giãn.
+Loét dạ dày tá tràng;Dùng thuốc giảm tiết axit và duy trì chế độ ăn uống nhẹ nhàng.
+Viêm phổi cấp;Chụp X-quang và dùng thuốc kháng sinh. Nghỉ ngơi và uống nước ấm.
+Viêm khớp dạng thấp;Dùng thuốc giảm đau và kháng viêm, duy trì tập thể dục nhẹ nhàng.
+Thiếu máu;Xét nghiệm máu và bổ sung sắt, ăn chế độ ăn giàu sắt.
+Rối loạn tiêu hóa cấp;Dùng thuốc giảm đau và ăn chế độ ăn nhẹ, tránh thức ăn khó tiêu.

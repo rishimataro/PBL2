@@ -26,7 +26,7 @@ class listAccount : public LinkedList<Account>
         vector<Account*> setAllAccount();
 
         // * Sign Up & Sign In
-        int signUp(Account* &account, const string &tmpUserName, const string &tmpPassword);
+        int signUp(AccountUser* &account, const string &tmpUserName, const string &tmpPassword);
         int allocateAdminAccount(Account* &account, const string &tmpUserName, const string &tmpPassword);
         int addAdmin(Account &account, const string &tmpUserName, const string &tmpPassword);
         int signIn(Account* &account, const string &tmpUserName, const string &tmpPassword);

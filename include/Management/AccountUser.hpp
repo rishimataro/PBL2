@@ -1,5 +1,5 @@
-#ifndef ACCOUNTUSER_H
-#define ACCOUNTUSER_H
+#ifndef ACCOUNTUSER_HPP
+#define ACCOUNTUSER_HPP
 #include <Header/Header.hpp>
 #include <Management/Account.hpp>
 
@@ -19,8 +19,7 @@ class AccountUser : public Account
 
         //* Getter
         string getID_patient() const;
-        string getCCCD() const;
-
+        
         //* Function
         // Lấy 1 account từ file
         void readFromFile(const string& line) override;    

@@ -85,6 +85,12 @@
 },
 {
   "directory": "D:/Test_Code/PBL/PBL2/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/manag.dir/includes_CXX.rsp -std=gnu++23 -o CMakeFiles\\manag.dir\\src\\Management\\listAppoinment.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Management\\listAppoinment.cpp",
+  "file": "D:/Test_Code/PBL/PBL2/src/Management/listAppoinment.cpp",
+  "output": "CMakeFiles/manag.dir/src/Management/listAppoinment.cpp.obj"
+},
+{
+  "directory": "D:/Test_Code/PBL/PBL2/build",
   "command": "C:\\msys64\\mingw64\\bin\\c++.exe -DDATA_PATH=\\\"D:/Test_Code/PBL/PBL2/Database/\\\" @CMakeFiles/ui.dir/includes_CXX.rsp -std=gnu++23 -o CMakeFiles\\ui.dir\\src\\Interface\\Patient_interface.cpp.obj -c D:\\Test_Code\\PBL\\PBL2\\src\\Interface\\Patient_interface.cpp",
   "file": "D:/Test_Code/PBL/PBL2/src/Interface/Patient_interface.cpp",
   "output": "CMakeFiles/ui.dir/src/Interface/Patient_interface.cpp.obj"
