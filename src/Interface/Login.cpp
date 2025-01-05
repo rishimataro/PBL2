@@ -169,7 +169,6 @@ void forgot_password_UI(listAccount &accounts)
 }
 void loginUI()
 {   
-
     string username, password;
     ScreenInteractive screen = ScreenInteractive::Fullscreen();
     string login_error_msg[] = {
@@ -270,6 +269,4 @@ void loginUI()
 
     })|border | center;
     screen.Loop(Main_layout);
-
-
 }

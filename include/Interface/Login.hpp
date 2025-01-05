@@ -8,4 +8,5 @@
 #include "Interface/Patient_interface.hpp"
 #include "Interface/Admin_interface.hpp"
 using namespace ftxui;
+
 void loginUI();

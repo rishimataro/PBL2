@@ -188,10 +188,10 @@ int listAccount::allocateAdminAccount(Account* &account, const string &tmpUserNa
 }
 
 int listAccount::signIn(Account* &account, const string &tmpUserName, const string &tmpPassword) {
-    if(checkSignIn(tmpUserName, tmpPassword, account))
-        return 1;
+    if(!checkSignIn(tmpUserName, tmpPassword, account))
+        return -1;
 
-    return account->getID().rfind("USER", 0) == 0 ? 1 : 0;
+    return checkRole(account->getID(), "USER") ? 1 : 0;
 }
 
 bool listAccount::checkSignIn(const string &userName, const string &password, Account* &account)
