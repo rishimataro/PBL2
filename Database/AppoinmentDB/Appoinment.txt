@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 20241227001;P3;1;1;0;dda27.12
 20241227002;P3;1;1;0;aaa27.12
 20241229001;P4;1;1;1;Đau đầu
@@ -10,3 +11,97 @@
 20250106001;P8;2;1;0;Ho, sổ mũi
 20250109001;P3;6;1;0;090101
 20250109002;P4;5;0;0;090102
+=======
+20250101001;P1;3;1;0;Đau đầu dữ dội, cảm giác nhức nhối ở phần trán, ánh sáng làm mắt nhạy cảm, buồn nôn và không thể tập trung được.
+20250101002;P2;5;1;0;Ho dai dẳng không dứt, họng bị khô và ngứa, cảm giác cộm trong cổ, đôi khi có đờm đặc màu vàng và sốt nhẹ.
+20250101003;P3;1;1;0;Đau lưng âm ỉ suốt cả ngày, đặc biệt đau hơn khi ngồi lâu hoặc cúi xuống, cảm giác mỏi và khó chịu dọc cột sống.
+20250101004;P4;7;1;0;Đau bụng dữ dội ở vùng bụng dưới, cảm giác nặng bụng, đôi khi có cảm giác buồn nôn và tiêu chảy.
+20250101005;P5;6;1;0;Chóng mặt nghiêm trọng, đặc biệt khi thay đổi tư thế, cảm giác như mọi thứ xung quanh quay cuồng, có lúc mất thăng bằng khi đứng lâu.
+20250101006;P6;3;1;0;Đau ngực trái khi hít thở sâu, cảm giác tức ngực kéo dài, khó thở khi vận động, cảm thấy lo âu và mệt mỏi.
+20250101007;P7;2;1;0;Đau họng nghiêm trọng, cảm giác khô rát khi nuốt, ho có đờm đặc, mỗi lần ho khiến bụng đau và có cảm giác mệt mỏi.
+
+20250102001;P8;4;1;0;Ngứa da toàn thân, da khô và bong tróc ở các vùng như khuỷu tay, đầu gối, cảm giác khó chịu và da đỏ lên khi gãi.
+20250102002;P9;1;1;0;Đau đầu nặng nề, đặc biệt là ở vùng trán và hai bên thái dương, buồn nôn và cảm giác như có cái gì đó đè nặng lên đầu.
+20250102003;P10;7;1;0;Đau vùng cổ và vai gáy, cảm giác tê cứng không thể quay đầu, đau âm ỉ khi ngồi làm việc lâu.
+20250102004;P11;3;1;0;Đau bụng dưới bên phải, có cảm giác như bị quặn thắt, thỉnh thoảng bị buồn nôn và chán ăn.
+20250102005;P12;2;1;0;Cảm giác mệt mỏi, khó thở, đau ngực khi đi bộ hoặc leo cầu thang, cảm thấy nhịp tim đập nhanh hơn bình thường.
+20250102006;P13;6;1;0;Đau lưng dưới, đặc biệt là vào buổi sáng khi thức dậy, cảm giác như bị cứng lưng, khó di chuyển.
+20250102007;P14;5;1;0;Ho có đờm đặc, sốt nhẹ kèm theo cảm giác mệt mỏi và mất năng lượng trong suốt cả ngày.
+
+20250103001;P15;3;1;0;Chóng mặt nghiêm trọng khi thay đổi tư thế từ ngồi sang đứng, cảm giác buồn nôn và có khi mất thăng bằng.
+20250103002;P16;7;1;0;Đau khớp gối khi di chuyển, cảm giác mỏi và đau đớn khi leo cầu thang hoặc đứng lâu.
+20250103003;P17;5;1;0;Cảm giác đau đớn ở cơ vai, không thể nâng cánh tay lên cao, mỗi lần cử động đều có cảm giác đau nhói.
+20250103004;P18;2;1;0;Khó thở khi hoạt động mạnh, cảm giác ngực bị đè nén, đặc biệt là khi leo lên cầu thang.
+20250103005;P19;1;1;0;Sốt cao, mệt mỏi toàn thân, đau nhức cơ thể và cảm giác nặng nề trong cơ thể suốt cả ngày.
+20250103006;P20;6;1;0;Đau bụng sau khi ăn, cảm giác chướng bụng, đầy hơi, đôi khi có cảm giác khó chịu và buồn nôn.
+20250103007;P21;4;1;0;Đau nhức vùng lưng dưới khi cúi xuống hoặc khi ngồi lâu, cơn đau kéo dài khiến tôi không thể ngồi yên.
+20250103008;P22;7;1;0;Cảm giác mệt mỏi, đau cổ và cơ thể không có sức, khó ngủ và thỉnh thoảng có cảm giác buồn nôn.
+
+20250104001;P23;2;1;0;Đau đầu kéo dài, cảm giác nặng đầu như có vật đè nặng, mắt mờ, khó tập trung khi làm việc.
+20250104002;P24;6;1;0;Sốt nhẹ, cảm giác ớn lạnh, đau họng, có khi bị ho khan hoặc ho có đờm.
+20250104003;P25;3;1;0;Đau bụng dữ dội ở vùng thượng vị, cảm giác đầy hơi, khó chịu khi ăn các loại thực phẩm dầu mỡ.
+20250104004;P26;1;1;0;Mỏi vai gáy, đau cứng cơ và không thể quay đầu mà không cảm thấy đau, đôi khi đau kéo xuống lưng.
+20250104005;P1;4;1;0;Sốt cao, ớn lạnh, đau cơ toàn thân, không thể ra khỏi giường suốt cả ngày.
+
+20250105001;P2;5;1;0;Chóng mặt, mất thăng bằng khi đứng lên hoặc thay đổi tư thế, cảm giác hoa mắt và muốn ngã.
+20250105002;P3;6;1;0;Cảm giác đau nhói vùng bụng dưới, có thể bị tiêu chảy, cảm giác mất nước và mệt mỏi.
+20250105003;P4;2;1;0;Đau cổ họng và mất tiếng, không thể nói chuyện lâu, cảm giác cổ họng rát và ngứa.
+20250105004;P5;7;1;0;Khó thở khi đi bộ, có cảm giác bị căng ngực, nhịp thở không đều.
+20250105005;P6;3;1;0;Đau đầu và mệt mỏi, đôi khi cảm thấy buồn nôn, có lúc nhức mắt và chảy nước mắt.
+20250105006;P7;1;1;0;Đau bụng nhẹ, cảm giác buồn nôn và ăn không ngon miệng, có lúc cảm giác nóng rát trong dạ dày.
+20250105007;P8;4;1;0;Đau vùng lưng, đặc biệt là khi di chuyển hoặc ngồi lâu, cảm giác căng cơ ở vùng thắt lưng.
+
+20250201001;P1;3;1;0;Đau đầu nghiêm trọng, cảm giác buốt ở vùng trán, hay bị hoa mắt và buồn nôn.
+20250201002;P2;5;1;0;Đau họng, cảm giác khô rát và ngứa, ho khan kéo dài không dứt.
+20250201003;P3;2;1;0;Mỏi cơ toàn thân, đặc biệt là vùng lưng và cổ, cảm giác như không có sức lực.
+20250201004;P4;7;1;0;Đau bụng dưới nghiêm trọng, cảm giác quặn thắt, không thể ngồi yên.
+20250201005;P5;6;1;0;Đau lưng dưới, cơn đau kéo dài, không thể cúi xuống mà không cảm thấy đau nhói.
+20250201006;P6;3;1;0;Chóng mặt và cảm giác mất thăng bằng khi đứng lên, có lúc hoa mắt và cảm giác như ngã.
+20250201007;P7;1;1;0;Đau bụng nhẹ, cảm giác buồn nôn và chán ăn, có thể bị tiêu chảy.
+20250201008;P8;2;1;0;Đau vai gáy và cổ, không thể quay đầu một cách tự nhiên, cảm giác tê dọc cánh tay.
+
+20250202001;P9;4;1;0;Ho khan, cảm giác ngứa cổ họng và khó thở khi hít sâu, có khi bị ho có đờm đặc.
+20250202002;P10;5;1;0;Đau khớp gối, cảm giác mỏi khi leo cầu thang, thỉnh thoảng có tiếng kêu lục cục khi di chuyển.
+20250202003;P11;6;1;0;Chóng mặt và nhức đầu kéo dài, cảm giác như có vật đè nặng trên đầu, không thể làm việc được.
+20250202004;P12;7;1;0;Đau bụng dữ dội, đặc biệt là sau khi ăn, cảm giác nặng bụng, đầy hơi và khó tiêu.
+20250202005;P13;3;1;0;Đau cơ ở phần lưng dưới, cảm giác đau nhức và mệt mỏi kéo dài cả ngày.
+20250202006;P14;1;1;0;Cảm giác buồn nôn và khó chịu trong dạ dày, đôi khi có cảm giác nóng rát ở ngực.
+20250202007;P15;2;1;0;Đau đầu kéo dài, cảm giác như có gì đó đè nặng trong não, buồn nôn khi tiếp xúc với ánh sáng.
+
+20250203001;P16;7;1;0;Khó thở khi đi bộ, cảm giác nghẹt ngực và tim đập nhanh hơn bình thường.
+20250203002;P17;4;1;0;Đau bụng vùng dưới, cảm giác rất đau và căng tức khi đi vệ sinh.
+20250203003;P18;1;1;0;Đau ngực trái, cảm giác tức ngực, khó thở và có lúc cảm thấy tim đập mạnh hơn bình thường.
+20250203004;P19;5;1;0;Đau cơ bắp toàn thân, đặc biệt là khi vận động mạnh, mệt mỏi kéo dài trong suốt cả ngày.
+20250203005;P20;6;1;0;Đau lưng dưới kéo dài, mỗi khi ngồi lâu hoặc cúi người là cảm giác đau nhói.
+20250203006;P21;7;1;0;Chóng mặt nghiêm trọng, cảm giác mất thăng bằng và đôi khi bị buồn nôn.
+20250203007;P22;4;1;0;Ho nhiều, đặc biệt là vào ban đêm, cảm giác đau rát cổ họng và khó ngủ.
+
+20250204001;P23;1;1;0;Đau đầu và buồn nôn, cảm giác như có vật đè nặng lên đầu, không thể làm việc.
+20250204002;P24;6;1;0;Sốt nhẹ, cảm giác ớn lạnh và đau nhức toàn thân.
+20250204003;P25;3;1;0;Đau bụng, cảm giác nặng bụng và khó chịu, đặc biệt sau khi ăn các món ăn giàu dầu mỡ.
+20250204004;P26;2;1;0;Mỏi cơ và đau cổ, cảm giác không thể quay đầu sang hai bên mà không cảm thấy đau.
+20250204005;P1;7;1;0;Khó thở, cảm giác như bị căng ngực, có lúc thở hổn hển.
+20250204006;P2;3;1;0;Đau bụng dữ dội, cảm giác như bị cắt ngang dạ dày, rất khó chịu.
+20250204007;P3;5;1;0;Đau khớp gối và chân, có cảm giác như không thể đứng lâu hoặc di chuyển một cách bình thường.
+
+20250301001;P4;6;1;0;Đau cơ bắp, cảm giác mệt mỏi và đau nhức ở phần lưng dưới, không thể di chuyển lâu.
+20250301002;P5;7;1;0;Ho kéo dài, có đờm đặc và khó thở, cảm giác nghẹt cổ họng khi ngủ dậy.
+20250301003;P6;3;1;0;Đau đầu và chóng mặt, cảm giác như có vật đè lên đầu và mất thăng bằng khi đứng lên.
+20250301004;P7;5;1;0;Đau bụng và buồn nôn, cảm giác rất khó chịu, không thể ăn uống bình thường.
+20250301005;P8;1;1;0;Đau lưng dưới và vai gáy, đặc biệt khi ngồi lâu hoặc cúi người xuống.
+20250301006;P9;4;1;0;Khó thở, cảm giác ngực bị căng và đè nén khi đi bộ hoặc leo cầu thang.
+20250301007;P10;2;1;0;Sốt và cảm giác buồn nôn, đau đầu kéo dài không dứt.
+20250301008;P11;6;1;0;Đau ngực, cảm giác tức ngực và khó thở, có lúc cảm thấy như bị ép tim.
+20250301009;P12;7;1;0;Đau bụng dữ dội, không thể đứng hoặc ngồi yên, cảm giác căng tức và khó chịu.
+
+20250302001;P13;3;1;0;Mỏi vai gáy, đau nhức khi quay đầu, cảm giác tê ở tay trái, khó ngủ vào ban đêm.
+20250302002;P14;6;1;0;Sốt và đau cơ toàn thân, cảm giác mệt mỏi và không thể làm gì.
+20250302003;P15;4;1;0;Khó thở khi hoạt động mạnh, cảm giác như bị nghẹt ngực và khó chịu khi thở.
+20250302004;P16;5;1;0;Đau khớp gối, cảm giác mỏi và đau nhức khi đứng lâu hoặc leo cầu thang.
+20250302005;P17;1;1;0;Đau đầu, có cảm giác như có vật nặng trên đầu, buồn nôn và chóng mặt.
+20250302006;P18;2;1;0;Đau lưng dưới và cổ, cảm giác căng cứng không thể cử động một cách tự nhiên.
+20250302007;P19;7;1;0;Đau bụng và cảm giác đầy hơi, đặc biệt là sau khi ăn các món ăn khó tiêu.
+20250302008;P20;3;1;0;Ho kéo dài, cảm giác ngứa rát cổ họng và đau khi nuốt.
+20250302009;P21;4;1;0;Đau cơ toàn thân, cảm giác tê bì tay chân khi ngồi lâu hoặc nằm lâu.
+20250302010;P22;6;1;0;Chóng mặt và mất thăng bằng, cảm giác không thể đứng vững được trong thời gian dài.
+>>>>>>> 07a3d4884eaab1691e08ffb9895cb12ffc4d515e

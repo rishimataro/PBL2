@@ -25,26 +25,6 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    // homeUI();
     loginUI();
-    // dang nhap admin
-    // listAccount accounts;
-    // string username = "admin123@", password = "123456789";
-    // Account *account;
-    // cout << "Dang nhap ADMIN" << endl;
-    // int check = accounts.signIn(account, username, password);
-    // cout << 111 << endl;
-
-    // if(check == 1) {
-    //     cout << "Dang nhap USER thanh cong" << endl;
-    // }
-    // else if(check == 0) {
-    //     cout << "Dang nhap ADMIN thanh cong" << endl;
-    // }
-    // else if(check == -1) {
-    //     cout << "Dang nhap that bai" << endl;
-    // }
-
-    system("pause");
     return 0;
 }

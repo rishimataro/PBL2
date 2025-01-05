@@ -1,10 +1,60 @@
-18/12/2024
-20241218001;P8;1;Đói;1;0
+01/12/2024
+20241201001;P1;1;Đau đầu kéo dài và mất ngủ;0;1
+20241201002;P2;2;Đau bụng dữ dội, nghi viêm ruột thừa;1;0
+20241201003;P3;3;Ho dai dẳng kèm sốt;0;0
+20241201004;P4;4;Chóng mặt và khó thở nhẹ;0;0
 ---
-19/12/2024
-20241219001;P8;1;Đau đầu;0;0
-241219002;P8;5;Đau bụng;1;0
+02/12/2024
+20241202001;P5;1;Đau họng và sưng amidan;1;0
+20241202002;P6;2;Đau vai gáy kéo dài;0;0
+20241202003;P7;3;Khó ngủ và lo lắng kéo dài;0;1
+20241202004;P8;4;Sốt cao kèm phát ban đỏ;1;0
 ---
-26/12/2024
-20241226001;P8;1;Buồn nôn;1;0
+03/12/2024
+20241203001;P9;1;Đau khớp gối, khó vận động;0;0
+20241203002;P10;2;Đau tức ngực khi vận động;1;1
+20241203003;P11;3;Đau bụng và buồn nôn;0;0
+20241203004;P12;4;Cảm giác châm chích ở tay chân;0;0
+---
+04/12/2024
+20241204001;P13;1;Sốt nhẹ và mệt mỏi không rõ nguyên nhân;0;0
+20241204002;P14;2;Hoa mắt, đau nửa đầu dữ dội;0;1
+20241204003;P15;3;Tê chân và đau cơ vùng bắp chân;0;0
+20241204004;P16;4;Sưng và đau ở vùng khớp cổ tay;1;0
+---
+05/12/2024
+20241205001;P17;1;Ho ra máu, cảm giác tức ngực;1;1
+20241205002;P18;2;Đau lưng vùng dưới và mệt mỏi;0;0
+20241205003;P19;3;Mất ngủ, đau đầu căng thẳng;0;1
+20241205004;P20;4;Nổi hạch vùng cổ, đau khi chạm vào;1;0
+---
+06/12/2024
+20241206001;P21;1;Đau nhức mắt, giảm thị lực;0;1
+20241206002;P22;2;Đau họng kèm khàn tiếng;0;0
+20241206003;P23;3;Đau vai và cứng cổ;0;0
+20241206004;P24;4;Khó tiêu và đau bụng trên;1;0
+---
+07/12/2024
+20241207001;P25;1;Đau bụng dưới, nghi rối loạn tiêu hóa;0;0
+20241207002;P26;2;Sốt và ớn lạnh cả ngày;1;0
+20241207003;P1;3;Đau răng và viêm lợi;0;1
+20241207004;P2;4;Chóng mặt, đứng không vững;0;0
+---
+08/12/2024
+20241208001;P3;1;Đau thắt lưng khi ngủ;0;1
+20241208002;P4;2;Sổ mũi và viêm xoang mãn tính;1;0
+20241208003;P5;3;Mệt mỏi toàn thân, không muốn ăn;0;0
+20241208004;P6;4;Đau khớp cổ chân khi đi lại;0;0
+---
+09/12/2024
+20241209001;P7;1;Đau dạ dày khi ăn uống;1;0
+20241209002;P8;2;Sốt kèm buồn nôn và đau cơ;1;0
+20241209003;P9;3;Đau ngực khi hít thở sâu;1;1
+20241209004;P10;4;Khó tiêu và đầy bụng;0;0
+---
+10/12/2024
+20241210001;P11;1;Tê bì tay, mất cảm giác ngón tay;0;0
+20241210002;P12;2;Đau ngực từng cơn, khó ngủ;1;1
+20241210003;P13;3;Đau bụng dưới và mệt mỏi;0;1
+20241210004;P14;4;Nổi mẩn đỏ ở vùng cổ và lưng;0;0
 ---
