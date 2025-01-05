@@ -25,8 +25,8 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    homeUI();
-    // loginUI();
+    // homeUI();
+    loginUI();
     // dang nhap admin
     // listAccount accounts;
     // string username = "admin123@", password = "123456789";

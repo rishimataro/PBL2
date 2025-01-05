@@ -791,7 +791,6 @@ void Appoinment_UI(Patient &patient)
 }
 void Med_record_UI(Patient &patient)
 {
-    ofstream out("test_log.txt", ios::app);
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
     listMedicalRecord lsMR;
     // lsMR.readListMedicalRecordFromFile();
@@ -801,8 +800,9 @@ void Med_record_UI(Patient &patient)
     bool show_window2 = false;
     Component medical_records_container = Container::Vertical({});
     for (auto &medRecord : medRecords | std::views::reverse)
-    {
-        Component btn = Button(" " + medRecord->getID_record() + " " + medRecord->getDateOfRecord().getDate(), [&]
+    {   
+        string ID_record = medRecord->getID_record();
+        Component btn = Button(" " + ID_record+ string(23 - ID_record.size(), ' ') + medRecord->getDateOfRecord().getDate(), [&]
                                {
             selected_medRecord = medRecord;
             popup_level = 1;
@@ -812,9 +812,8 @@ void Med_record_UI(Patient &patient)
     // Menu_app_list->;
     Component exit_btn = Button("Quay lại", [&]
                                 {
-        out << "1" << endl;
         screen.Exit();
-        out << "2" << endl; }, btn_style1());
+        }, btn_style1());
     Component Menu_MR_list = Container::Vertical({
         medical_records_container,
         exit_btn,

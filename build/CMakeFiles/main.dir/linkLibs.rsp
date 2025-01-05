@@ -1,1 +1,0 @@
- liblib.a libui.a "ftxui/libftxui-screen.a" "ftxui/libftxui-dom.a" "ftxui/libftxui-component.a" libmanag.a liblib.a "ftxui/libftxui-component.a" "ftxui/libftxui-dom.a" "ftxui/libftxui-screen.a" libtemplate.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
