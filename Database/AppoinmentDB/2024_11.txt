@@ -1,15 +1,89 @@
-20/11/2024
-241120001;P1;6;Triệu chứngTriệu chứngTriệu chứngTriệu chứngTriệu chứng;1;1
-241120002;P1;5;SOS;0;0
-241120003;P3;2;Tiêu chảy;1;0
-241120004;P3;4;Đau bụng;1;0
+01/10/2024
+20241001001;P1;7;Đau đầu dữ dội, kèm cảm giác buồn nôn và không thể tập trung;0;1
+20241001002;P2;3;Đau họng kéo dài, giọng nói khàn đặc, có cảm giác nghẹn khi nuốt;0;0
+20241001003;P3;1;Sốt nhẹ kèm theo đau nhức cơ, cảm giác mệt mỏi suốt cả ngày;0;0
+20241001004;P4;8;Khó ngủ liên tục trong nhiều đêm, mệt mỏi và uể oải khi làm việc;0;1
 ---
-21/11/2024
-241121001;P1;6;Cứu em;1;0
-241121002;P1;6;Cứu em;1;0
-241121003;P1;6;Cứu em;1;0
+02/10/2024
+20241002001;P5;4;Đau bụng vùng trên, kèm cảm giác đầy hơi và buồn nôn;1;0
+20241002002;P6;2;Tức ngực khi vận động mạnh, cảm giác khó thở và mệt mỏi đột ngột;1;1
+20241002003;P7;6;Đau khớp gối nghiêm trọng, sưng tấy nhẹ, khó khăn khi đứng dậy;0;0
+20241002004;P8;5;Chóng mặt và mất thăng bằng khi thay đổi tư thế đột ngột;0;0
 ---
-22/11/2024
-241122001;P1;6;SOS;1;0
-241122002;P1;6;dc;1;0
+03/10/2024
+20241003001;P9;1;Sốt cao kéo dài kèm ho dai dẳng và cảm giác đau họng;1;1
+20241003002;P10;3;Nổi mẩn đỏ trên da, ngứa nhiều, đặc biệt vào ban đêm;0;0
+20241003003;P11;2;Đau thắt lưng dữ dội vào buổi sáng, khó khăn khi cúi người;0;0
+20241003004;P12;7;Đau vai, khó cử động cánh tay, đặc biệt khi nâng vật nặng;0;0
 ---
+04/10/2024
+20241004001;P13;6;Đau răng nghiêm trọng, lợi sưng đỏ và có mùi khó chịu;1;0
+20241004002;P14;4;Khó tiêu hóa, chán ăn, đầy bụng và buồn nôn sau khi ăn;0;0
+20241004003;P15;8;Đau bụng dưới kèm tiểu khó, nghi ngờ nhiễm trùng đường tiết niệu;1;1
+20241004004;P16;5;Đau nhức mắt, giảm thị lực đột ngột, kèm cảm giác khô mắt;1;0
+---
+05/10/2024
+20241005001;P17;1;Đau ngực trái, cảm giác thắt chặt, khó thở khi leo cầu thang;1;1
+20241005002;P18;3;Đau khớp tay, sưng đỏ, đặc biệt ở các khớp ngón tay;0;0
+20241005003;P19;7;Khó ngủ triền miên, kèm theo lo lắng không rõ nguyên nhân;0;0
+20241005004;P20;6;Sưng amidan, đau họng nặng khi nuốt, sốt nhẹ kèm ho;0;0
+---
+06/10/2024
+20241006001;P21;8;Đau dạ dày sau bữa ăn, cảm giác đầy bụng và khó tiêu;1;0
+20241006002;P22;5;Chóng mặt dữ dội, đau nửa đầu bên trái kéo dài;0;0
+20241006003;P23;3;Ho kèm đờm màu vàng, cảm giác tức ngực và khó thở nhẹ;1;0
+20241006004;P24;2;Đau khớp cổ chân, kèm sưng nhẹ, khó khăn khi đi lại;0;0
+---
+07/10/2024
+20241007001;P25;1;Tê bì ở cánh tay và các ngón tay, đặc biệt sau khi ngủ dậy;0;1
+20241007002;P26;4;Khó thở khi nằm ngửa, thường xuyên tỉnh giấc giữa đêm;1;1
+20241007003;P1;7;Đau lưng vùng thắt lưng, kèm theo cảm giác mỏi cơ và tê chân;0;0
+20241007004;P2;8;Nổi mẩn đỏ, ngứa toàn thân không rõ nguyên nhân, đặc biệt khi tiếp xúc với nước;0;0
+---
+08/10/2024
+20241008001;P3;6;Cảm giác buồn nôn và chóng mặt dữ dội khi thay đổi tư thế;1;0
+20241008002;P4;2;Sốt cao kéo dài kèm ho khan và mệt mỏi toàn thân;0;1
+20241008003;P5;1;Đau vai gáy vào buổi sáng, khó khăn khi xoay cổ;0;0
+20241008004;P6;5;Khó tiêu, đau bụng dưới âm ỉ suốt cả ngày;0;0
+---
+09/10/2024
+20241009001;P7;3;Đau bụng dữ dội, kèm tiêu chảy nhiều lần, mất nước nghiêm trọng;1;0
+20241009002;P8;8;Đau nhức cổ tay, khó khăn khi cầm nắm đồ vật;0;0
+20241009003;P9;4;Đau tức ngực khi thở sâu, kèm theo ho kéo dài;1;1
+20241009004;P10;7;Mất ngủ kéo dài, kèm theo đau đầu và stress nặng;0;1
+---
+10/10/2024
+20241010001;P11;5;Sưng nề và đau khớp ngón chân cái, đặc biệt khi đi lại;1;0
+20241010002;P12;6;Cảm giác khó chịu trong dạ dày, buồn nôn sau khi ăn đồ cay;0;0
+20241010003;P13;2;Tê bì chân tay, cảm giác yếu cơ khi vận động mạnh;0;0
+20241010004;P14;8;Đau rát ở vùng cổ họng, khản tiếng sau khi nói nhiều;0;0
+---
+11/10/2024
+20241011001;P15;4;Đau nhức trong tai, giảm thính lực tạm thời, có cảm giác ù tai;1;1
+20241011002;P16;1;Cảm giác tức bụng dưới, đau nhói từng cơn;1;0
+20241011003;P17;7;Đau mỏi cổ vai gáy, kèm cảm giác khó chịu khi ngồi lâu;0;0
+20241011004;P18;3;Mẩn đỏ và ngứa toàn thân, nghi ngờ dị ứng thực phẩm;0;0
+---
+12/10/2024
+20241012001;P19;6;Đau nhức răng hàm, kèm hơi thở có mùi hôi và lợi sưng đỏ;1;0
+20241012002;P20;8;Đau tức ngực bên trái, cảm giác thở không đủ sâu;1;1
+20241012003;P21;2;Cảm giác đầy hơi, chướng bụng sau bữa ăn;0;0
+20241012004;P22;5;Khó ngủ triền miên, cảm giác bồn chồn không rõ nguyên nhân;0;0
+---
+13/10/2024
+20241013001;P23;4;Đau lưng dưới kéo dài, khó khăn khi cúi người và ngồi lâu;0;0
+20241013002;P24;7;Khó tiêu hóa, đầy bụng, cảm giác buồn nôn sau bữa ăn;1;0
+20241013003;P25;3;Đau răng nghiêm trọng, có lỗ sâu lớn và lợi sưng đỏ;1;0
+20241013004;P26;1;Đau đầu dữ dội vào buổi sáng, kèm cảm giác chóng mặt;0;1
+---
+14/10/2024
+20241014001;P1;8;Mất ngủ kéo dài, mệt mỏi vào ban ngày, giảm hiệu suất làm việc;0;0
+20241014002;P2;5;Sưng tấy và đau khớp gối, khó khăn khi leo cầu thang;0;0
+20241014003;P3;6;Đau bụng dưới dữ dội kèm tiểu buốt và sốt nhẹ;1;0
+20241014004;P4;2;Ho kéo dài, kèm theo đờm vàng và đau họng;1;1
+---
+15/10/2024
+20241015001;P5;4;Đau vai gáy kéo dài, khó cử động cổ và đau đầu âm ỉ;0;0
+20241015002;P6;7;Đau tức vùng bụng trên sau khi ăn, kèm ợ hơi nhiều lần;0;0
+20241015003;P7;3;Khó thở và tức ngực, đặc biệt vào ban đêm;1;1
+20241015004;P8;1;Tê bì ở các đầu ngón tay, cảm giác mất cảm giác nhẹ;0;0

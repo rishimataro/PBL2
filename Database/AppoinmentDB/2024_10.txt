@@ -1,5 +1,35 @@
-000001;28;2;P006;Dau dau
-000002;28;2;P006;Dau dau
-000003;28;2;P006;Dau dau
-000004;28;2;P006;Dau dau
-000005;28;2;P006;Dau dau
+01/10/2022
+20221001001;P1;2;Đau đầu thường xuyên, mờ mắt vào buổi sáng và mất tập trung;0;0
+20221001002;P2;6;Đau bụng dữ dội sau bữa ăn, kèm cảm giác buồn nôn và đầy hơi;1;0
+20221001003;P3;7;Khó ngủ trong nhiều đêm, cảm giác mệt mỏi và chán nản;0;0
+20221001004;P4;4;Đau họng kéo dài, khàn tiếng, và cảm giác nghẹn khi nuốt;1;0
+20221001005;P5;5;Tức ngực khi thở sâu, đau nhói ở vùng ngực trái;1;1
+---
+05/10/2022
+20221005001;P6;1;Chóng mặt khi thay đổi tư thế, cảm giác mất thăng bằng liên tục;0;1
+20221005002;P7;3;Đau nhức khớp gối, sưng nhẹ, khó khăn khi đứng lên ngồi xuống;0;0
+20221005003;P8;5;Ho khan kéo dài, cảm giác rát họng và sốt nhẹ vào buổi tối;0;0
+20221005004;P9;6;Sưng tấy và đau răng hàm, kèm cảm giác nóng ở lợi;1;0
+20221005005;P10;7;Mẩn đỏ và ngứa toàn thân, nghi ngờ dị ứng thực phẩm;0;0
+---
+10/10/2022
+20221010001;P11;2;Đau dạ dày sau bữa ăn, cảm giác chướng bụng và buồn nôn;0;1
+20221010002;P12;4;Đau lưng dưới kéo dài, khó khăn khi ngồi lâu hoặc cúi người;0;0
+20221010003;P13;6;Khó ngủ, căng thẳng, và thường xuyên tỉnh giấc giữa đêm;0;1
+20221010004;P14;7;Sốt cao kéo dài kèm đau cơ, mệt mỏi, và đau đầu dữ dội;1;1
+20221010005;P15;8;Đau tức bụng dưới, kèm tiểu buốt và sốt nhẹ;1;0
+---
+14/10/2022
+20221014001;P16;1;Cảm giác khó thở khi vận động mạnh, đau tức vùng ngực;1;0
+20221014002;P17;3;Đau nhức mắt, cảm giác mỏi mắt khi nhìn màn hình lâu;0;0
+20221014003;P18;4;Tê bì cánh tay và các ngón tay, đặc biệt vào sáng sớm;0;1
+20221014004;P19;5;Khó tiêu, đầy bụng, cảm giác buồn nôn và đau dạ dày âm ỉ;1;0
+20221014005;P20;7;Đau khớp cổ chân, khó đi lại sau khi vận động mạnh;0;0
+---
+19/10/2022
+20221019001;P21;2;Đau đầu dữ dội vào buổi sáng, kèm chóng mặt và buồn nôn;1;1
+20221019002;P22;4;Ho kèm đờm vàng, cảm giác tức ngực và khó thở nhẹ;0;0
+20221019003;P23;6;Mất ngủ kéo dài, mệt mỏi vào ban ngày, giảm hiệu suất làm việc;0;0
+20221019004;P24;7;Sưng tấy và đau khớp ngón tay, khó cầm nắm đồ vật;1;0
+20221019005;P25;8;Đau lưng trên kèm khó thở và cảm giác áp lực ngực;0;1
+---

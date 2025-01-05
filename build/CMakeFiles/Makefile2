@@ -166,13 +166,13 @@ ftxui/examples/clean:
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/screen.dir/all
+CMakeFiles/main.dir/all: ftxui/CMakeFiles/component.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/manag.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/template.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/ui.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/dom.dir/all
-CMakeFiles/main.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\PBL2\build\CMakeFiles --progress-num=70,71 "Built target main"
@@ -234,11 +234,11 @@ CMakeFiles/lib.dir/clean:
 # Target rules for target CMakeFiles/manag.dir
 
 # All Build rule for target.
+CMakeFiles/manag.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/manag.dir/all: ftxui/CMakeFiles/screen.dir/all
+CMakeFiles/manag.dir/all: ftxui/CMakeFiles/component.dir/all
 CMakeFiles/manag.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/manag.dir/all: CMakeFiles/template.dir/all
-CMakeFiles/manag.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/manag.dir/all: ftxui/CMakeFiles/dom.dir/all
-CMakeFiles/manag.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\manag.dir\build.make CMakeFiles/manag.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\PBL2\build\CMakeFiles --progress-num=72,73,74,75,76,77,78,79,80,81,82,83 "Built target manag"
@@ -300,12 +300,12 @@ CMakeFiles/template.dir/clean:
 # Target rules for target CMakeFiles/ui.dir
 
 # All Build rule for target.
+CMakeFiles/ui.dir/all: ftxui/CMakeFiles/dom.dir/all
+CMakeFiles/ui.dir/all: ftxui/CMakeFiles/screen.dir/all
+CMakeFiles/ui.dir/all: ftxui/CMakeFiles/component.dir/all
 CMakeFiles/ui.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/ui.dir/all: CMakeFiles/manag.dir/all
 CMakeFiles/ui.dir/all: CMakeFiles/template.dir/all
-CMakeFiles/ui.dir/all: ftxui/CMakeFiles/screen.dir/all
-CMakeFiles/ui.dir/all: ftxui/CMakeFiles/dom.dir/all
-CMakeFiles/ui.dir/all: ftxui/CMakeFiles/component.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ui.dir\build.make CMakeFiles/ui.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\PBL2\build\CMakeFiles --progress-num=94,95,96,97 "Built target ui"
@@ -398,8 +398,8 @@ ftxui/CMakeFiles/dom.dir/clean:
 # Target rules for target ftxui/CMakeFiles/component.dir
 
 # All Build rule for target.
-ftxui/CMakeFiles/component.dir/all: ftxui/CMakeFiles/screen.dir/all
 ftxui/CMakeFiles/component.dir/all: ftxui/CMakeFiles/dom.dir/all
+ftxui/CMakeFiles/component.dir/all: ftxui/CMakeFiles/screen.dir/all
 	$(MAKE) $(MAKESILENT) -f ftxui\CMakeFiles\component.dir\build.make ftxui/CMakeFiles/component.dir/depend
 	$(MAKE) $(MAKESILENT) -f ftxui\CMakeFiles\component.dir\build.make ftxui/CMakeFiles/component.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\03_PBL2\PBL2\PBL2\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Built target component"
