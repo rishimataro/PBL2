@@ -1246,6 +1246,8 @@ void Thong_ke_UI(listPatient &Patients)
     
     Component ThongKe_ngay_gio_cao_diem = Button("Thống kê ngày cao điểm trong tuần", [&]()
                                                { Thong_ke_lich_kham(); });
+    Component Thoat = Button("Thoát", [&]()
+                             { screen.ExitLoopClosure()(); });
     Component layout = Container::Vertical({
         Renderer([&](){return vbox({
             text("Thống kê"),
@@ -1255,7 +1257,9 @@ void Thong_ke_UI(listPatient &Patients)
         ThongKe_ten_benh,
         ThongKe_GT_DT,
         ThongKe_ngay_gio_cao_diem,
+        Thoat,
     }) | border | size(WIDTH, GREATER_THAN, 80);
+    
     screen.Loop(layout);
 }
 void Admin_UI()
