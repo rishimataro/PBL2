@@ -188,7 +188,7 @@ int listAccount::allocateAdminAccount(Account* &account, const string &tmpUserNa
 }
 
 int listAccount::signIn(Account* &account, const string &tmpUserName, const string &tmpPassword) {
-    if(checkSignIn(tmpUserName, tmpPassword, account))
+    if(!checkSignIn(tmpUserName, tmpPassword, account))
         return 1;
 
     return account->getID().rfind("USER", 0) == 0 ? 1 : 0;
