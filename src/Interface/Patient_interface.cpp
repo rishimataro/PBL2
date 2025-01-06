@@ -437,9 +437,15 @@ void P_Appoinment_info_UI(Patient &patient)
                                   { 
         popup_level = 1;
         Confirm_msg = ""; }, btn_style1());
+    Component exit_btn1_ = Button("Thoát", [&]()
+    {
+        screen.ExitLoopClosure()();
+    }, btn_style1());
     Component cancel_confirm_container = Container::Horizontal({
         cancel_btn,
         confirm_btn,
+        exit_btn1_,
+
     });
     Component cancel_confirm_renderer = Renderer(cancel_confirm_container, [&]
                                                  {
@@ -450,8 +456,10 @@ void P_Appoinment_info_UI(Patient &patient)
                 text("Thao tác hủy sẽ không thể hoàn tác, vui lòng xác nhận trước khi hủy.") | color(Color::Red) | hcenter,
                 hbox({
                     cancel_btn->Render(),
-                    separatorEmpty() | size(WIDTH, EQUAL, 10),  // Add empty space for separator,
+                    separatorEmpty() | size(WIDTH, EQUAL, 5),  // Add empty space for separator,
                     confirm_btn->Render(),
+                    separatorEmpty() | size(WIDTH, EQUAL, 5),  // Add empty space for separator,
+                    exit_btn1_->Render(),
                 }) | hcenter,
                 separator(),
                 text(Confirm_msg)| color(Color::Green) | hcenter,
@@ -462,19 +470,19 @@ void P_Appoinment_info_UI(Patient &patient)
         .title = "Danh sách lịch khám",
         // .title = temp,
         .width = 100,
-        .height = 20,
+        .height = 23,
     });
     auto window_2 = Window({
         .inner = Appoinment_cancel_renderer,
         .title = "Thông tin lịch khám",
         .width = 70,
-        .height = 21,
+        .height = 22,
     });
     auto window_3 = Window({
         .inner = cancel_confirm_renderer,
         .title = "Xác nhận hủy lịch khám",
         .width = 70,
-        .height = 8,
+        .height = 9,
     });
     auto main_container = Container::Tab(
         {

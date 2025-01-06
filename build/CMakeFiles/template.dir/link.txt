@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libtemplate.a CMakeFiles/template.dir/src/Template/LinkedList.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libtemplate.a

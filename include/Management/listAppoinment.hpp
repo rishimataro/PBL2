@@ -15,7 +15,6 @@ class listAppoinment : public map<Date, LinkedList<Appoinment>>
         listAppoinment();
         //* Methods
         void addAppointment(Appoinment* &app);
-        // void removeAppointment(const string &ID);
         bool readAppointmentsFromFile();
         bool writeAppointmentsToFile();
 
